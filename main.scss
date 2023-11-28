@@ -8,8 +8,40 @@
 header{
     background-color: $medBlue;
     display: flex;
+    padding: 1em;
 
     h1{
+        padding-left: 1rem;
         color: white;
+    }
+
+    .icons{
+        display: flex;
+        margin-left: auto;
+        padding-right: 1rem;
+        color: white;
+        text-decoration: none;
+        
+        a{
+            display: flex;
+            align-items: center;
+            text-wrap: nowrap;
+            margin-right: 1rem;
+
+            &:link, &:visited{
+                text-decoration: none;
+                color: white;
+            }
+
+            img{
+                aspect-ratio: 1/1;
+                object-fit: contain;
+            }
+
+            p{
+                margin-left: 0.5rem;
+            }
+
+        }
     }
 }

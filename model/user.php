@@ -80,6 +80,9 @@ class User extends Database {
     //Static methods
     public static function register(){
 
+    function test(){
+        $db = $this->conectar();
+        $sql = "SELECT * FROM admin";
     }
 }
 ?>

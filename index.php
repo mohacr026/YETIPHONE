@@ -4,9 +4,10 @@ require_once "autoload.php";
 
 if (isset($_GET['controller'])){
     $controllerName = $_GET['controller']."Controller";
+    //echo "<script>alert('$controllerName')</script>";
 }
 else{
-    //Controlador per dedecte
+    // Default Controller
     $controllerName = "ProductController";
 }
 if (class_exists($controllerName)){

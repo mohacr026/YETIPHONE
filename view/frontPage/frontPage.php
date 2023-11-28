@@ -13,7 +13,7 @@
             <a 
                 <?php
                 if(!isset($_SESSION['email'])) {
-                    href="index.php?controller=User&action=showLoginForm"
+                    echo 'href="index.php?controller=User&action=showLoginForm"';
                 }
                 ?>
             >

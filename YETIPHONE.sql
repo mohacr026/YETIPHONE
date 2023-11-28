@@ -8,7 +8,8 @@ CREATE TABLE admin (
 CREATE TABLE category (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255),
-  parentCategory INT REFERENCES category(id)
+  parentCategory INT REFERENCES category(id),
+  isActive BOOLEAN
 );
 
 -- Crear la tabla product
@@ -20,7 +21,8 @@ CREATE TABLE product (
   img VARCHAR(150),
   price INT,
   stock INT,
-  featured BOOLEAN
+  featured BOOLEAN,
+  isActive BOOLEAN
 );
 
 -- Crear la tabla purchase
@@ -53,5 +55,6 @@ CREATE TABLE usuarios (
   name VARCHAR(255),
   surname VARCHAR(255),
   direction VARCHAR(255),
-  password VARCHAR(255)
+  password VARCHAR(255),
+  isActive BOOLEAN
 );

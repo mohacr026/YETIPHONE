@@ -29,10 +29,17 @@ CREATE TABLE product (
 CREATE TABLE purchase (
   id SERIAL PRIMARY KEY,
   id_user VARCHAR(255),
-  products JSONB,
+  purchase_details INT REFERENCES purchase_details(id),
   status VARCHAR(10) CHECK (status IN ('PENDING', 'SHIPPED')),
   date_order TIMESTAMP,
   date_shipment TIMESTAMP
+);
+
+-- Crear la tabla purchase details
+CREATE TABLE purchase_details (
+  id INT,
+  product_id INT REFERENCES product(id),
+  quantity INT
 );
 
 /*

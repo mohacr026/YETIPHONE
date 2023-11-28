@@ -58,3 +58,6 @@ CREATE TABLE usuarios (
   password VARCHAR(255),
   isActive BOOLEAN
 );
+
+-- Insert de cuenta admin
+INSERT INTO admin (user, pass) VALUES ('admin', MD5('admin'));

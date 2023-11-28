@@ -8,7 +8,7 @@ class UserController {
     public function login(){
         if(!empty($_POST)){
             $user = new User($_POST['email'], $_POST['password']);
-            $user->login();
+            $user->checkLogin();
         } else {
             echo "no";
         }

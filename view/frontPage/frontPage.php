@@ -20,6 +20,11 @@
         </div>
     </header>
 
+    <?php
+        require_once('model/User.php');
+        $user = new User();
 
+        $user->test();
+    ?>
 </body>
 </html>

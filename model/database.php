@@ -1,7 +1,7 @@
 <?php
 class Database{
 
-    public function conectar(){
+    public function connect(){
         $servername = "localhost";
         $dbname= "yetiphone";
         $username = "yetiphone";

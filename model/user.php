@@ -1,6 +1,6 @@
 <?php
 require_once("database.php");
-require_once("../controller/UserController.php");
+
 class User extends Database {
     //Attributes
     private $email;
@@ -80,9 +80,23 @@ class User extends Database {
     //Static methods
     public static function register(){
 
-    function test(){
-        $db = $this->conectar();
+    // Constructor 
+    public function __construct($email, $password) {
+        $this->email = $email;
+        $this->password = $password;
+    }
+
+    public function test(){
+        $db = $this->connect();
         $sql = "SELECT * FROM admin";
+
+        $result = $db->query($sql);
+
+        print_r($result);
+    }
+
+    public function login(){
+        print_r($_POST);
     }
 }
 ?>

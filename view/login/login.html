@@ -13,7 +13,7 @@
     <!--
         https://codepen.io/david-vallejo/pen/orZZMG
     -->
-    <form>
+    <form action="index.php?controller=User&action=login" method="POST" id="loginForm">
         <div class="menu">
             <a href="index.php"></a>
             <h1>YETiPhone</h1>
@@ -127,18 +127,18 @@
         
         <div class="inputGroup inputGroup1">
             <label for="loginEmail" id="loginEmailLabel">Email</label>
-            <input type="email" id="loginEmail" maxlength="254" placeholder="name@email.com"/>
+            <input type="email" name="email" id="loginEmail" maxlength="254" placeholder="name@email.com"/>
         </div>
         <div class="inputGroup inputGroup2">
             <label for="loginPassword" id="loginPasswordLabel">Password</label>
-            <input type="password" id="loginPassword" />
+            <input type="password" name="password" id="loginPassword" />
             <label id="showPasswordToggle" for="showPasswordCheck">Show
                 <input id="showPasswordCheck" type="checkbox"/>
                 <div class="indicator"></div>
             </label>
         </div>
         <div class="inputGroup inputGroup3">
-            <button id="login">Log in</button>
+            <button type="submit" id="loginButton">Log In</button>
         </div>	
     </form>
 </body>

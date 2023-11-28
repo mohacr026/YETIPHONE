@@ -226,4 +226,12 @@ form .inputGroup2 #showPasswordToggle input:disabled ~ .indicator {
 }
 form .inputGroup2 #showPasswordToggle input:disabled ~ .indicator:after {
   visibility: hidden;
+}
+
+header {
+  background-color: #4eb8dd;
+  display: flex;
+}
+header h1 {
+  color: white;
 }/*# sourceMappingURL=main.css.map */

@@ -4,3 +4,12 @@
 
 @import 'scss/login.scss';
 @import 'scss/colors.scss';
+
+header{
+    background-color: $medBlue;
+    display: flex;
+
+    h1{
+        color: white;
+    }
+}

@@ -4,7 +4,9 @@
     class Product {
         private $id;
         private $name;
-
+        private $description;
+        private $category;
+        
         public function showAll(){
             
         }

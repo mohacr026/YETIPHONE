@@ -1,13 +1,4 @@
-<!--Controlador frontal: fichero que se encarga de cargarlo absolutamente todo -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YETiPhone</title>
-</head>
-<body>
+<!-- MAIN CONTROLLER -->
 <?php 
 require_once "autoload.php";
 
@@ -16,7 +7,7 @@ if (isset($_GET['controller'])){
 }
 else{
     //Controlador per dedecte
-    $controllerName = "productController";
+    $controllerName = "ProductController";
 }
 if (class_exists($controllerName)){
     $controller = new $controllerName(); 
@@ -24,12 +15,10 @@ if (class_exists($controllerName)){
         $action = $_GET['action'];
     }
     else{
-        $action ="showAllProducts";
+        $action ="showFrontPageProducts";
     }
     $controller->$action();   
 }else{
-    require_once("./view/login/login.html");
+    echo "<script>alert('No existe el nombre del controlador')</script>";
 }
 ?>
-</body>
-</html>

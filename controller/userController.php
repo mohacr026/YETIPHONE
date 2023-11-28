@@ -6,7 +6,7 @@ class UserController {
     }
 
     public function login(){
-        if(isset($_POST)){
+        if(!empty($_POST)){
             $user = new User($_POST['email'], $_POST['password']);
             $user->login();
         } else {

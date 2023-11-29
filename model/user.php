@@ -73,48 +73,6 @@ class User extends Database {
     }
 
     //Class methods
-    public function login(){
-
-    }
-
-    //Static methods
-    public static function register(){
-
-    // Constructor 
-    public function __construct($email, $password) {
-        $this->email = $email;
-        $this->password = $password;
-    }
-
-    // Getter for email
-    public function getEmail() {
-        return $this->email;
-    }
-
-    // Setter for email
-    public function setEmail($email) {
-        $this->email = $email;
-    }
-
-    // Getter for password
-    public function getPassword() {
-        return $this->password;
-    }
-
-    // Setter for password
-    public function setPassword($password) {
-        $this->password = $password;
-    }
-
-    public function test(){
-        $db = $this->connect();
-        $sql = "SELECT * FROM admin";
-
-        $result = $db->query($sql);
-
-        print_r($result);
-    }
-
     public function checkLogin(){
         $db = $this->connect();
 
@@ -164,6 +122,11 @@ class User extends Database {
             echo "no existe";
             
         }
+    }
+
+    //Static methods
+    public static function register(){
+
     }
 }
 ?>

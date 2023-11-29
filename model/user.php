@@ -12,7 +12,7 @@ class User extends Database {
     private $state;
 
     //Constructor
-    public function __construct($email, $password, $phoneNumber, $name, $surname, $direction, $state){
+    public function __construct($email, $password, $phoneNumber = null, $name, $surname, $direction = null, $state = true){
         $this->email = $email;
         $this->password = $password;
         $this->phoneNumber = $phoneNumber;

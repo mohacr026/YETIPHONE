@@ -83,14 +83,14 @@ class User extends Database {
 
         $exists = false;
         $passOK = false;
-
+        $isAdmin = false;
         foreach ($result as $key => $adminArr) {
             if($this->getEmail() == $adminArr['username'] && $exists == false) {
                 $exists = true;
 
                 if(md5($this->getPassword()) == $adminArr['pass']) {
                     $passOK = true;
-
+                    $isAdmin = true;
                     $_SESSION['email'] = $adminArr['username'];
                 }
             }
@@ -101,27 +101,26 @@ class User extends Database {
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach ($result as $key => $adminArr) {
-            if($this->getEmail() == $adminArr['email'] && $exists == false) {
+        foreach ($result as $key => $userArr) {
+            if($this->getEmail() == $userArr['email'] && $exists == false) {
                 $exists = true;
 
-                if(md5($this->getPassword()) == $adminArr['password']) {
+                if(md5($this->getPassword()) == $userArr['password']) {
                     $passOK = true;
 
-                    $_SESSION['email'] = $adminArr['email'];
+                    $_SESSION['email'] = $userArr['email'];
+                    $_SESSION['name'] = $userArr['name'];
                 }
             }
         }
 
         if($exists) {
-            echo "existe";
-            if($passOK) echo "pass ok";
-            else echo "pass no ok";
-        }
-        else {
-            echo "no existe";
-            
-        }
+            if($passOK) {
+                if($isAdmin) return "loginAdm";
+                else return "login";
+            }
+            else return "badPass";
+        } else return "noUser";
     }
 
     //Static methods

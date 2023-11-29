@@ -31,5 +31,7 @@
             </a>
         </div>
     </header>
+
+    <a href="index.php?Controller=Product&action=showAddProducts">añadir Product</a>
 </body>
 </html>

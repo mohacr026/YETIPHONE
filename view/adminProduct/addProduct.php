@@ -47,19 +47,36 @@
         <label for="price">Price:</label>
         <input type="number" id="price" name="price" min="1" step="1" required>
         <br>
-        <!-- <label for="category">Category:</label>
-        <select id="featured" name="featured" required>
-                // aqui va el php de las categorias
-        </select>
-        <br>
 
-        <label for="img">Image:</label>
-        <input type="file" id="img" name="img" required accept="img/*">
+        <label for="category">Category:</label>
+        <select id="category" name="category" required>
+            <?php
+            $db = Database::connect();
+            $query = "SELECT id, name FROM category WHERE isActive = true";
+            $stmt = $db->prepare($query);
+            $stmt->execute();
+            $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($categories as $category):
+            ?>
+                <option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
+            <?php endforeach; ?>
+        </select>
         <br>
 
         <label for="stock">Stock:</label>
         <input type="number" id="stock" name="stock" min="0" required>
         <br>
+
+        <label for="image">Product Image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+        <br>
+        <!-- 
+
+
+
+
+
 
         <label for="featured">Featured:</label>
         <select id="featured" name="featured" required>

@@ -11,6 +11,10 @@ class ProductController {
         include("./view/adminProduct/addProduct.php");
     }
 
+    public function showEditProduct(){
+        include("./view/adminProduct/addProduct.php");
+    }
+
     public function registerProduct() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = $_POST['name'];
@@ -92,4 +96,7 @@ class ProductController {
         }
     }
 }
+
+
+
 ?>

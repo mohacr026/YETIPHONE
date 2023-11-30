@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YETiPhone</title>
     <link rel="stylesheet" href="css/main.css">
+    <script src="./src/js/categoryCheckHider.js"></script>
 </head>
 <body>
     <header>
@@ -37,7 +38,7 @@
     <form action="index.php?controller=Category&action=registerCategory" method="POST">
 
         <label for="categoryId">Default Id:</label>
-        <input type="text" id="categoryId" name="categoryId" readonly value="asdasdas">
+        <input type="text" id="categoryId" name="categoryId" readonly value="<?php echo "$defaultId";?>">
         <br>
     
         <label for="name">Category name:</label>
@@ -55,20 +56,21 @@
                 <?php
                     if(isset($parentCategories)){
                         if(empty($parentCategories)){
-                            echo "<option value='nothing'>There are no parent categories</option>";
+                            echo "<option value='nothing' selected>There are no parent categories</option>";
                         } else {
                             foreach ($parentCategories as $parentCategory) {
-                                echo "<option value='{$parentCategoty[`id`]}'>{$parentCategoty[`name`]}</option>";
+                                $id = $parentCategory['id'];
+                                $name = $parentCategory['name'];
+                                echo "<option value='$id'>$name</option>";
                             }
                         }
                     }
                 ?>
             </select>
         </div>
-        
         <br>
 
-        <input type="submit" value="Add Product">
+        <input type="submit" value="Add category">
     </form>
 
 </body>

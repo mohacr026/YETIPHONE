@@ -35,4 +35,8 @@ header .icons a img {
 }
 header .icons a p {
   margin-left: 0.5rem;
+}
+
+.hiddenElement {
+  visibility: hidden;
 }/*# sourceMappingURL=main.css.map */

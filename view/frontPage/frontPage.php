@@ -35,6 +35,7 @@
     <ul>
         <li><a href="index.php?controller=Product&action=showAddProducts">Añadir Product</a></li>
         <li><a href="index.php?controller=Category&action=showAddCategories">Añadir Category</a></li>
+        <li><a href="index.php?controller=Category&action=showEditCategories">Edit Category</a></li>
     </ul>
     
 </body>

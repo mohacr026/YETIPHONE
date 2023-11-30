@@ -67,6 +67,37 @@ class Category extends Database {
         }
 
     }
+    public function getAllCategories()
+    {
+        $db = Category::connect();
+
+        // Consulta recursiva para obtener todas las categorías y subcategorías
+        $categories = $this->getCategoriesRecursively($db, null);
+
+        return $categories;
+    }
+
+    public function getCategoriesRecursively($db, $parentCategory) {
+        $sql = "SELECT * FROM category WHERE parentCategory " . ($parentCategory === null ? "IS NULL" : "= :parentCategory");
+        $stmt = $db->prepare($sql);
+
+        if ($parentCategory !== null) {
+            $stmt->bindParam(':parentCategory', $parentCategory, PDO::PARAM_INT);
+        }
+
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $categories = array();
+
+        foreach ($result as $row) {
+            $subcategories = $this->getCategoriesRecursively($db, $row['id']);
+            $row['subcategories'] = $subcategories;
+            $categories[] = $row;
+        }
+
+        return $categories;
+    }
 
     public static function getDefaultId(){
         try {

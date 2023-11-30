@@ -11,6 +11,13 @@ class CategoryController{
         include("./view/adminCategory/addCategory.php");
     }
 
+    public function showEditCategories(){
+        $category = new Category("", "");
+        $categoriesArray = $category->getAllCategories();
+        
+        include("./view/adminCategory/editCategoryMenu.php");
+    }
+
     public function registerCategory(){
         if(isset($_POST['showParent']) && ($_POST['parent'] != "nothing")){
             $category = new Category($_POST['categoryId'], $_POST['name'], $_POST['parent']);

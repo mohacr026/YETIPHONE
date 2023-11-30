@@ -1,9 +1,15 @@
 *{
-    margin: 0px
+    margin: 0px;
+    font-family: 'Source Sans Pro', sans-serif;
+    scroll-behavior: smooth;
 }
 
 //@import 'scss/login.scss';
 @import 'scss/colors.scss';
+
+body{
+    background-color: $inputBG;
+}
 
 header{
     background-color: $medBlue;

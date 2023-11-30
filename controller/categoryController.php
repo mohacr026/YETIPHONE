@@ -9,6 +9,9 @@ class CategoryController{
             $parentCategories = array();
         }
         include("./view/adminCategory/addCategory.php");
+        if(isset($_GET['insertOk'])) {
+            echo "<script src='./src/js/popups/popupInsertOk.js'></script>";
+        }
     }
 
     public function showEditCategories(){
@@ -25,7 +28,8 @@ class CategoryController{
             $category = new Category($_POST['categoryId'], $_POST['name']);
         }
         $category->insertInDB();
-        include("./view/frontPage/frontPage.php");
+
+        echo "<META HTTP-EQUIV='REFRESH' CONTENT=0.1; URL=index.php?controller=Category&action=showAddCategories&insertOK=true'>";
     }
 }
 ?>

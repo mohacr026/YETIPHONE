@@ -1,6 +1,6 @@
 <?php
 require_once("database.php");
-require_once("../controller/CategoryController.php");
+
 class Category extends Database {
     // Attributes
     private $id;
@@ -51,7 +51,22 @@ class Category extends Database {
     }
 
     // Methods
-    
+    public static function getParentCategories($onlyActives = true) {
+        try {
+            $db = Category::connect();
+            $sql = "SELECT * FROM category WHERE parentCategory IS NULL AND isActive = ?";
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(1, $onlyActives, PDO::PARAM_BOOL);
+            $stmt->execute();
+            $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $categories;
+        } catch (PDOException $e) {
+            //echo "Error: " . $e->getMessage();
+            return null;
+        }
+
+    }
 }
 
 ?>

@@ -5,4 +5,3 @@
     
     spl_autoload_register("load");
 ?>
-

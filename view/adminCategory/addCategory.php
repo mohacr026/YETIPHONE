@@ -36,6 +36,10 @@
 
     <form action="index.php?controller=Category&action=registerCategory" method="POST">
 
+        <label for="categoryId">Default Id:</label>
+        <input type="text" id="categoryId" name="categoryId" readonly value="asdasdas">
+        <br>
+    
         <label for="name">Category name:</label>
         <input type="text" id="name" name="name" required>
         <br>
@@ -44,13 +48,24 @@
         <input type="checkbox" name="showParent" id="showParent">
 
         <br>
-        <label for="parent">Parent category</label>
-        <select id="parent" name="parent" required>
-                <option value="0" selected>No parent category</option>
+        <div id="parentCategoryDiv" class="hiddenElement">
+            <label for="parent">Parent category</label>
+            <select id="parent" name="parent">
+                <option value=""></option>
                 <?php
-                    
+                    if(isset($parentCategories)){
+                        if(empty($parentCategories)){
+                            echo "<option value='nothing'>There are no parent categories</option>";
+                        } else {
+                            foreach ($parentCategories as $parentCategory) {
+                                echo "<option value='{$parentCategoty[`id`]}'>{$parentCategoty[`name`]}</option>";
+                            }
+                        }
+                    }
                 ?>
-        </select>
+            </select>
+        </div>
+        
         <br>
 
         <input type="submit" value="Add Product">

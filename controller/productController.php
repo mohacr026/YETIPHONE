@@ -1,4 +1,6 @@
 <?php
+require_once("../model/database.php");
+
 class ProductController {
     public function showFrontPageProducts(){
         include("./view/frontPage/frontPage.php");
@@ -7,13 +9,13 @@ class ProductController {
     public function showAddProducts(){
         include("./view/adminProduct/addProduct.php");
     }
-
-    public function registerProduct() {
-        // instancia producto de todos los datos del post
+    public function registerProduct(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = $_POST['name'];
             $description = $_POST['description'];
-            
+
+            $db=Product::connect();
+
             // Insertar el producto en la base de datos
             $query = "INSERT INTO productos (name, description) VALUES ($1, $2)";
             
@@ -29,6 +31,7 @@ class ProductController {
             }
         }
     }
+    
 }
 
 ?>

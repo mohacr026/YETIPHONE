@@ -36,5 +36,8 @@ class Product extends Database {
     public static function displayAllCategory($category){
 
     }
+    public insertProduct (){
+
+    }
 }
 ?>

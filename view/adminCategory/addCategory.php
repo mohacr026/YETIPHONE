@@ -40,39 +40,16 @@
         <input type="text" id="name" name="name" required>
         <br>
 
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" rows="4" required></textarea>
-        <br>
+        <label for="showParent">Is a sub category:</label>
+        <input type="checkbox" name="showParent" id="showParent">
 
-        <label for="category">Category:</label>
-        <select id="featured" name="featured" required>
-                // aqui va el php de las categorias
-        </select>
         <br>
-
-        <label for="img">Image:</label>
-        <input type="file" id="img" name="img" required accept="img/*">
-        <br>
-
-        <label for="price">Price:</label>
-        <input type="number" id="price" name="price" min="0.01" step="0.01" required>
-        <br>
-
-        <label for="stock">Stock:</label>
-        <input type="number" id="stock" name="stock" min="0" required>
-        <br>
-
-        <label for="featured">Featured:</label>
-        <select id="featured" name="featured" required>
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-        </select>
-        <br>
-
-        <label for="isactive">Is Active:</label>
-        <select id="isactive" name="isactive" required>
-            <option value="true">Yes</option>
-            <option value="false">No</option>
+        <label for="parent">Parent category</label>
+        <select id="parent" name="parent" required>
+                <option value="0" selected>No parent category</option>
+                <?php
+                    
+                ?>
         </select>
         <br>
 

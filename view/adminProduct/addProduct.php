@@ -44,7 +44,7 @@
         <textarea id="description" name="description" rows="4" required></textarea>
         <br>
 
-        <label for="category">Category:</label>
+        <!-- <label for="category">Category:</label>
         <select id="featured" name="featured" required>
                 // aqui va el php de las categorias
         </select>
@@ -74,7 +74,7 @@
             <option value="true">Yes</option>
             <option value="false">No</option>
         </select>
-        <br>
+        <br> -->
 
         <input type="submit" value="Add Product">
     </form>

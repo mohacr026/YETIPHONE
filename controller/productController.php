@@ -15,9 +15,10 @@ class ProductController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = $_POST['name'];
             $description = $_POST['description'];
+            $price = $_POST['price'];
 
             // instancia 
-            $product = new Product(null, $name, $description, null, null, null, null, null, true);
+            $product = new Product(null, $name, $description, null, null, $price, null, false, true);
             $this->insertProductIntoDatabase($product);
         } else {
             echo "The form was not submitted correctly.";
@@ -27,7 +28,8 @@ class ProductController {
     private function insertProductIntoDatabase(Product $product) {
         $name = $product->getName();
         $description = $product->getDescription();
-    
+        $price = $product->getPrice();
+
         $db = Database::connect();  
     
         if (!$db) {
@@ -36,10 +38,11 @@ class ProductController {
         }
 
         try {
-            $query = "INSERT INTO product (name, description) VALUES (:name, :description)";
+            $query = "INSERT INTO product (name, description, price) VALUES (:name, :description, :price)";
             $stmt = $db->prepare($query);
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':description', $description);
+            $stmt->bindParam(':price', $price);
             $result = $stmt->execute();
 
             if ($result) {

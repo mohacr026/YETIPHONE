@@ -44,6 +44,9 @@
         <textarea id="description" name="description" rows="4" required></textarea>
         <br>
 
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" min="1" step="1" required>
+        <br>
         <!-- <label for="category">Category:</label>
         <select id="featured" name="featured" required>
                 // aqui va el php de las categorias
@@ -52,10 +55,6 @@
 
         <label for="img">Image:</label>
         <input type="file" id="img" name="img" required accept="img/*">
-        <br>
-
-        <label for="price">Price:</label>
-        <input type="number" id="price" name="price" min="0.01" step="0.01" required>
         <br>
 
         <label for="stock">Stock:</label>

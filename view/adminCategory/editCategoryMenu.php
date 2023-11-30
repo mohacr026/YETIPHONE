@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YETiPhone</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="./src/js/dropdownCategories.js"></script>
 </head>
-<body>
+<body class="test">
     <div class="categoryContainer">
         <?php
             require_once("./view/components/categoryComponent.php");

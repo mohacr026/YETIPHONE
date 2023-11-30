@@ -39,4 +39,39 @@ header .icons a p {
 
 .hiddenElement {
   visibility: hidden;
+}
+
+body.test {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.categoryContainer {
+  display: flex;
+  flex-direction: column;
+  width: 15rem;
+}
+.categoryContainer .categoryComponent {
+  display: flex;
+  flex-direction: column;
+  width: 15rem;
+  border: 1px solid black;
+}
+.categoryContainer .categoryComponent h3 {
+  text-align: center;
+  background-color: #217093;
+}
+.categoryContainer .categoryComponent .subcategoriesContainer {
+  transition: all 0.7s;
+  overflow: hidden;
+  transform-origin: top center;
+  transform: scale(1, 0);
+  display: flex;
+  max-height: 0;
+  flex-direction: column;
+}
+.categoryContainer .categoryComponent .subcategoriesContainer p {
+  background-color: #4eb8dd;
 }/*# sourceMappingURL=main.css.map */

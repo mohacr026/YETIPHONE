@@ -14,7 +14,7 @@ class CategoryComponent {
         echo "<div class='categoryComponent'>";
         echo "<h3>$categoryName</h3>";
         if(!empty($this->__subcategories)){
-            echo "<div>";
+            echo "<div class='subcategoriesContainer'>";
             foreach ($this->__subcategories as $subcategory) {
                 echo "<p>{$subcategory['name']}</p>";
             }

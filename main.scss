@@ -49,3 +49,44 @@ header{
 .hiddenElement{
     visibility: hidden;
 }
+
+body.test{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.categoryContainer{
+    display: flex;
+    flex-direction: column;
+    width: 15rem;
+    
+    .categoryComponent{
+        display: flex;
+        flex-direction: column;
+        width: 15rem;
+        border: 1px solid black;
+        h3{
+            text-align: center;
+            background-color: $darkBlue;
+            
+        }
+        
+
+        .subcategoriesContainer{
+            transition: all 0.7s;
+            overflow: hidden;
+            transform-origin: top center;
+            transform: scale(1,0);
+            display: flex;
+            max-height: 0;
+            flex-direction: column;
+            p{
+                background-color: $medBlue;
+            }
+        }
+    }
+
+    
+}

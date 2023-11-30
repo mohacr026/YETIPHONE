@@ -25,6 +25,7 @@ class CategoryController{
             $category = new Category($_POST['categoryId'], $_POST['name']);
         }
         $category->insertInDB();
+        include("./view/frontPage/frontPage.php");
     }
 }
 ?>

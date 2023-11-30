@@ -25,35 +25,22 @@ CREATE TABLE product (
   isActive BOOLEAN
 );
 
--- Crear la tabla purchase
-CREATE TABLE purchase (
-  id SERIAL PRIMARY KEY,
-  id_user VARCHAR(255),
-  purchase_details INT REFERENCES purchase_details(id),
-  status VARCHAR(10) CHECK (status IN ('PENDING', 'SHIPPED')),
-  date_order TIMESTAMP,
-  date_shipment TIMESTAMP
-);
-
--- Crear la tabla purchase details
+-- Crear la tabla purchase_details
 CREATE TABLE purchase_details (
-  id INT,
+  id SERIAL PRIMARY KEY,
   product_id INT REFERENCES product(id),
   quantity INT
 );
 
-/*
-EJEMPLO DE INSERCION EN PURCHASE
-
-INSERT INTO purchase (id_user, products, status, date_order, date_shipment)
-VALUES (
-  'pablo@gmail.com',
-  '[{"id_product": "prod1", "quantity": 2}, {"id_product": prod2, "quantity": 1}]'::JSONB,
-  'PENDING',
-  CURRENT_TIMESTAMP,
-  NULL
+-- Crear la tabla purchase
+CREATE TABLE purchase (
+  id SERIAL PRIMARY KEY,
+  id_user VARCHAR(255),
+  purchase_details_id INT REFERENCES purchase_details(id),
+  status VARCHAR(10) CHECK (status IN ('PENDING', 'SHIPPED')),
+  date_order TIMESTAMP,
+  date_shipment TIMESTAMP
 );
-*/
 
 -- Crear la tabla usuarios
 CREATE TABLE usuarios (
@@ -67,4 +54,4 @@ CREATE TABLE usuarios (
 );
 
 -- Insert de cuenta admin
-INSERT INTO admin (user, pass) VALUES ('admin', MD5('admin'));
+INSERT INTO admin (username, pass) VALUES ('admin', MD5('admin'));

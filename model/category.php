@@ -67,6 +67,45 @@ class Category extends Database {
         }
 
     }
+
+    public static function getDefaultId(){
+        try {
+            $db = Category::connect();
+        
+            $sql = "SELECT COALESCE(MAX(id), 0)+1 AS max_id FROM category";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+        
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $maxId = $result['max_id'];
+        
+            return $maxId;
+        } catch (PDOException $e) {
+            //echo "Error: " . $e->getMessage();
+            return null;
+        }
+        
+    }
+
+    public function insertInDB() {
+        $db = Category::connect();
+        $sql = "INSERT INTO category (name, parentCategory, isActive) VALUES (?, ?, true)";
+        $stmt = $db->prepare($sql);
+        $name = $this->getName();
+        $stmt->bindParam(1, $name, PDO::PARAM_STR);
+    
+        // Create a variable to hold null and pass it by reference
+        $nullValue = null;
+        if ($this->getParentCategory() !== null && $this->getParentCategory() !== "") {
+            $parentCategory = $this->getParentCategory();
+            $stmt->bindParam(2, $parentCategory, PDO::PARAM_STR);
+        } else {
+            $stmt->bindParam(2, $nullValue, PDO::PARAM_NULL);
+        }
+    
+        $stmt->execute();
+    }
+    
 }
 
 ?>

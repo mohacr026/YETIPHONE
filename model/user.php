@@ -9,17 +9,17 @@ class User extends Database {
     private $name;
     private $surname;
     private $direction;
-    private $state;
+    private $isActive;
 
     //Constructor
-    public function __construct($email, $password, $phoneNumber = null, $name, $surname, $direction = null, $state = true){
+    public function __construct($email, $password, $phoneNumber = null, $name, $surname, $direction = null, $isActive = true){
         $this->email = $email;
         $this->password = $password;
         $this->phoneNumber = $phoneNumber;
         $this->name = $name;
         $this->surname = $surname;
         $this->direction = $direction;
-        $this->state = $state;
+        $this->isActive = $isActive;
     }
 
     //Setters & Getters
@@ -65,16 +65,16 @@ class User extends Database {
         $this->direction = $direction;
     }
     
-    public function getState(){
-        return $this->state;
+    public function getIsActive(){
+        return $this->isActive;
     }
-    public function setState($state){
-        $this->state = $state;
+    public function setIsActive($isActive){
+        $this->isActive = $isActive;
     }
 
     //Class methods
     public function checkLogin(){
-        $db = $this->connect();
+        $db = User::connect();
 
         $sql = "SELECT * FROM admin";
         $stmt = $db->prepare($sql);
@@ -84,6 +84,8 @@ class User extends Database {
         $exists = false;
         $passOK = false;
         $isAdmin = false;
+        // TODO: Falta comprobar si el user esta activo o no
+
         foreach ($result as $key => $adminArr) {
             if($this->getEmail() == $adminArr['username'] && $exists == false) {
                 $exists = true;

@@ -1,6 +1,6 @@
 <?php
 require_once("database.php");
-require_once("../controller/productController.php");
+
 class Product extends Database {
     //Attributes
     private $id;
@@ -11,9 +11,10 @@ class Product extends Database {
     private $price;
     private $stock;
     private $featured;
+    private $isActive;
 
     //Constructor
-    public function __construct($id, $name, $description, $category, $image, $price, $stock, $featured){
+    public function __construct($id, $name, $description, $category, $image, $price, $stock, $featured, $isActive = true){
         $this->id = $id;
         $this->name = $name;
         $this->description = $description;
@@ -22,6 +23,7 @@ class Product extends Database {
         $this->price = $price;
         $this->stock = $stock;
         $this->featured = $featured;
+        $this->isActive = $isActive;
     }
 
     //Static methods

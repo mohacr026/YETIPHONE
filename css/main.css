@@ -51,17 +51,24 @@ body.test {
 .categoryContainer {
   display: flex;
   flex-direction: column;
-  width: 15rem;
+  width: 80%;
 }
 .categoryContainer .categoryComponent {
   display: flex;
   flex-direction: column;
-  width: 15rem;
-  border: 1px solid black;
+  width: 80%;
 }
 .categoryContainer .categoryComponent h3 {
-  text-align: center;
+  text-align: left;
   background-color: #217093;
+  cursor: pointer;
+  padding: 1rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  border-radius: 16px;
+  margin: 1rem;
+  margin-bottom: 0;
 }
 .categoryContainer .categoryComponent .subcategoriesContainer {
   transition: all 0.7s;
@@ -74,4 +81,12 @@ body.test {
 }
 .categoryContainer .categoryComponent .subcategoriesContainer p {
   background-color: #4eb8dd;
+  margin: 1rem;
+  margin-left: 2rem;
+  margin-bottom: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  border-radius: 16px;
+  padding: 1rem;
 }/*# sourceMappingURL=main.css.map */

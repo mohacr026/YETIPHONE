@@ -60,20 +60,23 @@ body.test{
 .categoryContainer{
     display: flex;
     flex-direction: column;
-    width: 15rem;
+    width: 80%;
     
     .categoryComponent{
         display: flex;
         flex-direction: column;
-        width: 15rem;
-        border: 1px solid black;
+        width: 80%;
         h3{
-            text-align: center;
+            text-align: left;
             background-color: $darkBlue;
-            
+            cursor: pointer;
+            padding: 1rem;
+            user-select: none;
+            border-radius: 16px;
+            margin: 1rem;
+            margin-bottom: 0;
         }
         
-
         .subcategoriesContainer{
             transition: all 0.7s;
             overflow: hidden;
@@ -84,6 +87,12 @@ body.test{
             flex-direction: column;
             p{
                 background-color: $medBlue;
+                margin: 1rem;
+                margin-left: 2rem;
+                margin-bottom: 0;
+                user-select: none;
+                border-radius: 16px;
+                padding: 1rem;
             }
         }
     }

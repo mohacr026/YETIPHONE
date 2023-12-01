@@ -16,7 +16,7 @@ class CategoryComponent {
         if(!empty($this->__subcategories)){
             echo "<div class='subcategoriesContainer'>";
             foreach ($this->__subcategories as $subcategory) {
-                echo "<p>{$subcategory['name']}</p>";
+                echo "<p>{$subcategory['name']}  Parent category: $categoryName</p>";
             }
             echo "</div>";
         }

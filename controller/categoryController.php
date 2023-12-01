@@ -22,14 +22,18 @@ class CategoryController{
     }
 
     public function registerCategory(){
-        if(isset($_POST['showParent']) && ($_POST['parent'] != "nothing")){
-            $category = new Category($_POST['categoryId'], $_POST['name'], $_POST['parent']);
+        if(!empty($_POST)){
+            if(isset($_POST['showParent']) && ($_POST['parent'] != "nothing")){
+                $category = new Category($_POST['categoryId'], $_POST['name'], $_POST['parent']);
+            } else {
+                $category = new Category($_POST['categoryId'], $_POST['name']);
+            }
+            $category->insertInDB();
+    
+            echo "<META HTTP-EQUIV='REFRESH' CONTENT=1; URL=index.php?controller=Category&action=showAddCategories&insertOK=true>";
         } else {
-            $category = new Category($_POST['categoryId'], $_POST['name']);
+            echo "<META HTTP-EQUIV='REFRESH' CONTENT=1; URL=index.php?controller=Category&action=showAddCategories>";
         }
-        $category->insertInDB();
-
-        echo "<META HTTP-EQUIV='REFRESH' CONTENT=0.1; URL=index.php?controller=Category&action=showAddCategories&insertOK=true'>";
     }
 }
 ?>

@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #f3fafd;
+  background-color: #e2f6ff;
   overflow-x: hidden;
 }
 
@@ -63,16 +63,16 @@ main {
   display: flex;
 }
 main aside {
-  background-color: #ddf1fa;
+  background-color: #c1ebff;
   width: 20vw;
   height: 90vh;
 }
-main div {
+main main {
   width: 80%;
   display: flex;
   flex-direction: column;
 }
-main div h1 {
+main main h1 {
   margin: 2rem;
   margin-bottom: 0;
 }
@@ -81,7 +81,7 @@ main div h1 {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  width: 90%;
+  width: 100%;
   min-height: 70svh;
   height: 70svh;
   max-height: 70svh;
@@ -91,11 +91,12 @@ main div h1 {
 .categoryContainer .categoryComponent {
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   width: 100%;
 }
 .categoryContainer .categoryComponent h3 {
   text-align: left;
-  background-color: #217093;
+  background-color: #4eb8dd;
   cursor: pointer;
   padding: 1rem;
   width: 90%;
@@ -118,7 +119,7 @@ main div h1 {
   align-items: flex-end;
 }
 .categoryContainer .categoryComponent .subcategoriesContainer p {
-  background-color: #4eb8dd;
+  background-color: #c1ebff;
   margin: 1rem;
   width: 80%;
   margin-bottom: 0;

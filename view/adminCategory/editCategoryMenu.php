@@ -16,7 +16,7 @@
             <a href="index.php">Back</a>
             filtros y tal nose
         </aside>
-        <div>
+        <main>
             <h1>Categories</h1>
             <div class="categoryContainer">
                 <?php
@@ -28,7 +28,7 @@
                     }
                 ?>
             </div>
-        </div>
+        </main>
     </main>
 </body>
 </html>

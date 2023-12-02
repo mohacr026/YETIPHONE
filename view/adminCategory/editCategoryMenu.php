@@ -16,8 +16,8 @@
             <a href="index.php">Back</a>
             filtros y tal nose
         </aside>
-        <main>
-            <h1>Categories</h1>
+        <div class="container">
+            <h2>Categories</h2>
             <div class="categoryContainer">
                 <?php
                     require_once("./view/components/categoryComponent.php");
@@ -28,7 +28,7 @@
                     }
                 ?>
             </div>
-        </main>
+        </div>
     </main>
 </body>
 </html>

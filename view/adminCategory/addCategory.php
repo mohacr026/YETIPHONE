@@ -11,46 +11,56 @@
 <?php
     include("./view/components/header.php");
     ?>
+    <main>
+        <aside>
+            <a href="index.php">Back</a>
+            filtros y tal nose
+        </aside>
+        <div class="container">
+            <div class="formContainer">
+                <h2>Add a new category</h2>
+                <form action="index.php?controller=Category&action=registerCategory" method="POST">
+                    <div class="formRow">
+                        <label for="categoryId">Default Id:</label>
+                        <input type="text" id="categoryId" name="categoryId" readonly value="<?php echo "$defaultId";?>">
+                    </div>
 
-    <h2>Add a new category</h2>
+                    <div class="formRow">
+                        <label for="name">Category name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
 
-    <form action="index.php?controller=Category&action=registerCategory" method="POST">
+                    <div class="formRowLine">
+                        <label for="showParent">Is a sub category:</label>
+                        <input type="checkbox" name="showParent" id="showParent">
+                    </div>
 
-        <label for="categoryId">Default Id:</label>
-        <input type="text" id="categoryId" name="categoryId" readonly value="<?php echo "$defaultId";?>">
-        <br>
-    
-        <label for="name">Category name:</label>
-        <input type="text" id="name" name="name" required>
-        <br>
+                    <div class="formRow hiddenElement" id="parentCategoryDiv">
+                        <label for="parent">Parent category</label>
+                        <select id="parent" name="parent">
+                            <option value=""></option>
+                            <?php
+                                if(isset($parentCategories)){
+                                    if(empty($parentCategories)){
+                                        echo "<option value='nothing' selected>There are no parent categories</option>";
+                                    } else {
+                                        foreach ($parentCategories as $parentCategory) {
+                                            $id = $parentCategory['id'];
+                                            $name = $parentCategory['name'];
+                                            echo "<option value='$id'>$name</option>";
+                                        }
+                                    }
+                                }
+                            ?>
+                        </select>
+                    </div>
 
-        <label for="showParent">Is a sub category:</label>
-        <input type="checkbox" name="showParent" id="showParent">
-
-        <br>
-        <div id="parentCategoryDiv" class="hiddenElement">
-            <label for="parent">Parent category</label>
-            <select id="parent" name="parent">
-                <option value=""></option>
-                <?php
-                    if(isset($parentCategories)){
-                        if(empty($parentCategories)){
-                            echo "<option value='nothing' selected>There are no parent categories</option>";
-                        } else {
-                            foreach ($parentCategories as $parentCategory) {
-                                $id = $parentCategory['id'];
-                                $name = $parentCategory['name'];
-                                echo "<option value='$id'>$name</option>";
-                            }
-                        }
-                    }
-                ?>
-            </select>
+                    <div class="formAction">
+                        <input type="submit" value="Add category" class="addBtn">
+                    </div>
+                </form>
+            </div>
         </div>
-        <br>
-
-        <input type="submit" value="Add category">
-    </form>
-
+    </main>
 </body>
 </html>

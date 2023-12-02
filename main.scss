@@ -10,6 +10,8 @@
 body{
     background-color: $inputBG;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 body.noscroll{
@@ -72,14 +74,17 @@ main{
 
     aside{
         background-color: $lightBlue;
-        width: 20vw;
+        width: 30vw;
         height: 90vh;
-    }
-
-    main{
-        width: 80%;
         display: flex;
         flex-direction: column;
+    }
+
+    .container{
+        width: 70vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         h1{
             margin: 2rem;
             margin-bottom: 0;
@@ -100,14 +105,15 @@ main{
     .categoryComponent{
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
+        align-items: center;
         width: 100%;
         h3{
             text-align: left;
             background-color: $medBlue;
             cursor: pointer;
             padding: 1rem;
-            width: 90%;
+            width: 70%;
+            margin-right: 10%;
             user-select: none;
             border-radius: 16px;
             margin: 1rem;
@@ -119,7 +125,7 @@ main{
             overflow: hidden;
             transform-origin: top center;
             max-height: 0;
-            width: 100%;
+            width: 70%;
             opacity: 0;
             display: flex;
             flex-direction: column;
@@ -135,6 +141,120 @@ main{
                 padding: 1rem;
             }
 
+        }
+    }
+}
+
+.formContainer{
+    justify-self: center;
+    align-self: center;
+    padding: 3rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    border-radius: 0.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFF;
+    border: solid 1px #DDD;
+    color: $darkBlue;
+
+    h2{
+        font-size: 36px;
+        margin-bottom: 0.5em;
+    }
+
+    form{
+        width: 100%;
+    }
+
+    .formRow{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        width: 100%;
+        margin: 1rem;
+
+        label{
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        input{
+            border-radius: 4px;
+            border: solid 2px $darkBlue;
+            -webkit-appearance: none; 
+            appearance: none;
+		    box-sizing: border-box;
+            width: 90%;
+            height: 2rem;
+            font-size: 1em;
+            color: #353538;
+            font-weight: 600;
+            transition: box-shadow .2s linear, border-color .25s ease-out;
+            padding: 1em;
+
+            &:focus {
+                outline: none;
+                box-shadow: 0px 2px 10px rgba(0,0,0,.1);
+                border: solid 2px $medBlue;
+            }
+        }
+
+        select{
+            border-radius: 4px;
+            border: solid 2px $darkBlue;
+		    box-sizing: border-box;
+            width: 90%;
+            height: 2rem;
+            font-size: 1em;
+            color: #353538;
+            font-weight: 600;
+            transition: box-shadow .2s linear, border-color .25s ease-out;
+            padding-left: 1em;
+
+            &:focus {
+                outline: none;
+                box-shadow: 0px 2px 10px rgba(0,0,0,.1);
+                border: solid 2px $medBlue;
+            }
+        }
+    }
+
+    .formRowLine{
+        display: flex;
+        margin: 1rem;
+        label{
+            font-weight: bold;
+            font-size: 20px;
+        }
+        input{
+            margin-left: 1rem;
+        }
+    }
+
+    .formAction{
+        display: flex;
+        justify-content: space-around;
+
+        .addBtn{
+            font-size: 1em; 
+            color: #FFF; 
+            font-weight: 600;
+            border: none; 
+            border-radius: 4px;
+		    box-sizing: border-box; 
+            box-shadow: none;
+            background-color: $medBlue;
+            width: 75%;
+            height: 3rem;
+            transition: background-color .2s ease-out;
+
+            &:hover, &:active {
+                background-color: $darkBlue;
+            }
         }
     }
 }

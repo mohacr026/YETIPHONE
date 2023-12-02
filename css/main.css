@@ -277,10 +277,35 @@ main .container h1 {
   box-sizing: border-box;
   box-shadow: none;
   background-color: #4eb8dd;
-  width: 75%;
+  width: 45%;
   height: 3rem;
   transition: background-color 0.2s ease-out;
 }
 .formContainer .formAction .addBtn:hover, .formContainer .formAction .addBtn:active {
   background-color: #217093;
+}
+.formContainer .formAction .cancelBtn {
+  display: grid;
+  place-items: center;
+  font-size: 1em;
+  color: #353538;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+  box-shadow: none;
+  background-color: #FC3D39;
+  width: 45%;
+  height: 3rem;
+  transition: background-color 0.2s ease-out;
+  text-decoration: none;
+}
+.formContainer .formAction .cancelBtn:link, .formContainer .formAction .cancelBtn:visited {
+  color: #353538;
+  text-decoration: none;
+}
+.formContainer .formAction .cancelBtn:hover, .formContainer .formAction .cancelBtn:active {
+  color: #353538;
+  text-decoration: none;
+  background-color: #E33437;
 }/*# sourceMappingURL=main.css.map */

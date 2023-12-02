@@ -35,5 +35,34 @@ class CategoryController{
             echo "<META HTTP-EQUIV='REFRESH' CONTENT=1; URL=index.php?controller=Category&action=showAddCategories>";
         }
     }
+
+    public function editCategory(){
+        if(isset($_GET["id"])){
+            $category = Category::getCategoryById($_GET["id"]);
+            
+            $id = $category->getId();
+            $name = $category->getName();
+            $parentCategory = $category->getParentCategory();
+            
+            if($parentCategory != null) $parentCategories = Category::getParentCategories();
+            
+            $isActive = $category->getIsActive();
+
+            include("./view/adminCategory/editCategory.php");
+        } else{
+            echo "bad id";
+        }
+    }
+
+    public function editCategoryPerformed(){
+        if(!empty($_POST)){
+            print_r($_POST);
+            if(isset($_POST["parent"])){
+                echo "tiene parent";
+            } else {
+                echo "no tiene parent";
+            }
+        }
+    }
 }
 ?>

@@ -29,6 +29,9 @@ header {
 header h1 {
   padding-left: 1rem;
   color: white;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 header .icons {
   display: flex;
@@ -170,6 +173,15 @@ main .container h1 {
   justify-content: center;
   width: 100%;
   margin: 1rem;
+  /*#file-upload-button{
+      background-color: $medBlue;
+      color: white;
+      transition: background-color .2s ease-out;
+
+      &:hover, &:active {
+          background-color: $darkBlue;
+      }
+  }*/
 }
 .formContainer .formRow label {
   font-weight: bold;
@@ -220,6 +232,7 @@ main .container h1 {
   padding: 0em;
   border-radius: 0px;
   border: none;
+  cursor: pointer;
 }
 .formContainer .formRow select {
   border-radius: 4px;
@@ -232,6 +245,7 @@ main .container h1 {
   font-weight: 600;
   transition: box-shadow 0.2s linear, border-color 0.25s ease-out;
   padding-left: 1em;
+  cursor: pointer;
 }
 .formContainer .formRow select:focus {
   outline: none;

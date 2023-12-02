@@ -12,7 +12,8 @@
     ?>
     <main>
         <aside>
-
+            <a href="index.php">Back</a>
+            filtros y tal nose
         </aside>
         <div class="container">
             <div class="formContainer">

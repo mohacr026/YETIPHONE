@@ -31,6 +31,7 @@ header{
     h1{
         padding-left: 1rem;
         color: white;
+        user-select: none;
     }
 
     .icons{
@@ -233,7 +234,18 @@ main{
             padding: 0em;
             border-radius: 0px;
             border: none;
+            cursor: pointer;
         }
+
+        /*#file-upload-button{
+            background-color: $medBlue;
+            color: white;
+            transition: background-color .2s ease-out;
+
+            &:hover, &:active {
+                background-color: $darkBlue;
+            }
+        }*/
 
         select{
             border-radius: 4px;
@@ -246,6 +258,7 @@ main{
             font-weight: 600;
             transition: box-shadow .2s linear, border-color .25s ease-out;
             padding-left: 1em;
+            cursor: pointer;
 
             &:focus {
                 outline: none;

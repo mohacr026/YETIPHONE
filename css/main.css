@@ -157,6 +157,11 @@ main .container h1 {
 }
 .formContainer form {
   width: 100%;
+  display: flex;
+}
+.formContainer .formColumn {
+  display: flex;
+  flex-direction: column;
 }
 .formContainer .formRow {
   display: flex;
@@ -190,6 +195,32 @@ main .container h1 {
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   border: solid 2px #4eb8dd;
 }
+.formContainer .formRow textarea {
+  border-radius: 4px;
+  border: solid 2px #217093;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  box-sizing: border-box;
+  width: 90%;
+  height: 5rem;
+  font-size: 1em;
+  color: #353538;
+  font-weight: 600;
+  transition: box-shadow 0.2s linear, border-color 0.25s ease-out;
+  padding: 1em;
+  resize: none;
+}
+.formContainer .formRow textarea:focus {
+  outline: none;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  border: solid 2px #4eb8dd;
+}
+.formContainer .formRow input[type=file] {
+  padding: 0em;
+  border-radius: 0px;
+  border: none;
+}
 .formContainer .formRow select {
   border-radius: 4px;
   border: solid 2px #217093;
@@ -221,6 +252,7 @@ main .container h1 {
 .formContainer .formAction {
   display: flex;
   justify-content: space-around;
+  width: 100%;
 }
 .formContainer .formAction .addBtn {
   font-size: 1em;

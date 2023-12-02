@@ -167,8 +167,12 @@ main{
 
     form{
         width: 100%;
+        display: flex;
     }
-
+    .formColumn{
+        display: flex;
+        flex-direction: column;
+    }
     .formRow{
         display: flex;
         flex-direction: column;
@@ -201,6 +205,34 @@ main{
                 box-shadow: 0px 2px 10px rgba(0,0,0,.1);
                 border: solid 2px $medBlue;
             }
+        }
+
+        textarea{
+            border-radius: 4px;
+            border: solid 2px $darkBlue;
+            -webkit-appearance: none; 
+            appearance: none;
+		    box-sizing: border-box;
+            width: 90%;
+            height: 5rem;
+            font-size: 1em;
+            color: #353538;
+            font-weight: 600;
+            transition: box-shadow .2s linear, border-color .25s ease-out;
+            padding: 1em;
+            resize: none;
+
+            &:focus {
+                outline: none;
+                box-shadow: 0px 2px 10px rgba(0,0,0,.1);
+                border: solid 2px $medBlue;
+            }
+        }
+
+        input[type='file']{
+            padding: 0em;
+            border-radius: 0px;
+            border: none;
         }
 
         select{
@@ -238,6 +270,7 @@ main{
     .formAction{
         display: flex;
         justify-content: space-around;
+        width: 100%;
 
         .addBtn{
             font-size: 1em; 

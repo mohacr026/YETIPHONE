@@ -118,6 +118,24 @@ class Category extends Database {
         
     }
 
+    public static function getCategoryById($id) {
+        $db = Category::connect();
+        $sql = "SELECT * FROM category WHERE id = ?";
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(1, $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $_id = $result[0]["id"];
+        $_name = $result[0]["name"];
+        $_parentCategory = empty($result[0]["parentcategory"]) ? null : $result[0]["parentcategory"];
+        $_isActive = $result[0]["isActive"] = 1 ? true : false;
+
+        $category = new Category($_id, $_name, $_parentCategory, $_isActive);
+        
+        return $category;
+    }
+
     public function insertInDB() {
         $db = Category::connect();
         $sql = "INSERT INTO category (name, parentCategory, isActive) VALUES (?, ?, true)";

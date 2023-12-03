@@ -109,7 +109,7 @@ form input[type=email], form input[type=text], form input[type=number], form inp
   margin: 0;
   padding: 0.875em 1em 0 0.875em;
   padding-bottom: 0.7em;
-  background-color: #f3fafd;
+  background-color: #e2f6ff;
   border: solid 2px #217093;
   border-radius: 4px;
   -webkit-appearance: none;
@@ -195,7 +195,7 @@ form .inputGroup2 #showPasswordToggle .indicator {
   left: 0;
   height: 0.85em;
   width: 0.85em;
-  background-color: #f3fafd;
+  background-color: #e2f6ff;
   border: solid 2px #217093;
   border-radius: 3px;
 }

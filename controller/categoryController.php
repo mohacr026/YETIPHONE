@@ -9,6 +9,9 @@ class CategoryController{
             $parentCategories = array();
         }
         include("./view/adminCategory/addCategory.php");
+        if(isset($_GET['insertOk'])) {
+            echo "<script src='./src/js/popups/popupInsertOk.js'></script>";
+        }
     }
 
     public function showEditCategories(){
@@ -19,13 +22,47 @@ class CategoryController{
     }
 
     public function registerCategory(){
-        if(isset($_POST['showParent']) && ($_POST['parent'] != "nothing")){
-            $category = new Category($_POST['categoryId'], $_POST['name'], $_POST['parent']);
+        if(!empty($_POST)){
+            if(isset($_POST['showParent']) && ($_POST['parent'] != "nothing")){
+                $category = new Category($_POST['categoryId'], $_POST['name'], $_POST['parent']);
+            } else {
+                $category = new Category($_POST['categoryId'], $_POST['name']);
+            }
+            $category->insertInDB();
+    
+            echo "<META HTTP-EQUIV='REFRESH' CONTENT=1; URL=index.php?controller=Category&action=showAddCategories&insertOK=true>";
         } else {
-            $category = new Category($_POST['categoryId'], $_POST['name']);
+            echo "<META HTTP-EQUIV='REFRESH' CONTENT=1; URL=index.php?controller=Category&action=showAddCategories>";
         }
-        $category->insertInDB();
-        include("./view/frontPage/frontPage.php");
+    }
+
+    public function editCategory(){
+        if(isset($_GET["id"])){
+            $category = Category::getCategoryById($_GET["id"]);
+            
+            $id = $category->getId();
+            $name = $category->getName();
+            $parentCategory = $category->getParentCategory();
+            
+            if($parentCategory != null) $parentCategories = Category::getParentCategories();
+            
+            $isActive = $category->getIsActive();
+
+            include("./view/adminCategory/editCategory.php");
+        } else{
+            echo "bad id";
+        }
+    }
+
+    public function editCategoryPerformed(){
+        if(!empty($_POST)){
+            print_r($_POST);
+            if(isset($_POST["parent"])){
+                echo "tiene parent";
+            } else {
+                echo "no tiene parent";
+            }
+        }
     }
 }
 ?>

@@ -100,22 +100,48 @@ class Product extends Database {
         $this->isActive = $isActive;
     }
 
-    // Static methods
+    // Methodos
+    public function insertProductIntoDatabase() {
+        $name = $this->getName();
+        $description = $this->getDescription();
+        $price = $this->getPrice();
+        $id_category = $this->getCategory();
+        $stock = $this->getStock();
+        $isactive = $this->getIsactive();
+        $featured = $this->getFeatured();
+        $img = $this->getImage();
 
-    public static function displayAll() {
-        // Implementar lógica para mostrar todos los productos
-    }
+        $db = Database::connect();  
+    
+        if (!$db) {
+            echo "Error connecting to the database.";
+            return;
+        }
 
-    public static function displayAllFeatured() {
-        // Implementar lógica para mostrar todos los productos destacados
-    }
+        try {
+            $query = "INSERT INTO product (name, description, price, id_category, stock, isactive, featured, img) VALUES (:name, :description, :price, :id_category, :stock, :isactive, :featured, :image)";
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':description', $description);
+            $stmt->bindParam(':id_category', $id_category);
+            $stmt->bindParam(':price', $price);
+            $stmt->bindParam(':stock', $stock);
+            $stmt->bindParam(':isactive', $isactive);
+            $stmt->bindParam(':featured', $featured);
+            $stmt->bindParam(':image', $img);
 
-    public static function displayAllCategory($category) {
-        // Implementar lógica para mostrar todos los productos de una categoría
-    }
+            $result = $stmt->execute();
 
-    public function insertProduct() {
-        // Implementar lógica para insertar un producto en la base de datos
+            if ($result) {
+                echo "Product successfully registered in the database.";
+            } else {
+                echo "Error registering the product in the database.";
+            }
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        } finally {
+            $db = null;
+        }
     }
 }
 ?>

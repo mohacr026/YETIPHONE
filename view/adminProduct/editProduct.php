@@ -1,92 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YETiPhone - Edit Product</title>
-    <link rel="stylesheet" href="css/main.css">
+    <title>Editar Producto</title>
 </head>
 <body>
-    <header>
-        <h1>YETiPhone</h1>
-        <div class="icons">
-            <a 
-                <?php
-                if(!isset($_SESSION['email'])) {
-                    echo 'href="index.php?controller=User&action=showLoginForm"';
-                }
-                ?>
-            >
-                <img src="./src/img/userIcon.png" alt="log in here">
-                <?php
-                if(isset($_SESSION['email'])) {
-                    echo "<p>{$_SESSION['email']}</p>";
-                } else {
-                    echo "<p>Log In</p>";
-                }
-                ?>
-            </a>
-            <a href="index.php">
-                <img src="./src/img/shoppingCart.png" alt="shopping cart">
-            </a>
-        </div>
-    </header>
 
-    <h2>Edit Product</h2>
+<?php include_once("./view/header.php"); ?>
 
-    <?php
-        // Assuming you have a $product variable with the product details
-        if (isset($product)) {
-    ?>
-        <form action="index.php?controller=Product&action=updateProduct" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="<?php echo $product->getId(); ?>">
+<div class="container">
+    <h2>Editar Producto</h2>
 
-            <label for="name">Product Name:</label>
-            <input type="text" id="name" name="name" value="<?php echo $product->getName(); ?>" required>
-            <br>
+    <form action="?action=updateProduct" method="post" enctype="multipart/form-data">
+        <?php
+        // Obtener el ID del producto de la URL
+        $productId = $_GET['id'];
 
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" rows="4" required><?php echo $product->getDescription(); ?></textarea>
-            <br>
+        // Obtener el producto para mostrar la información actual
+        $product = $this->getProductById($productId);
 
-            <label for="price">Price:</label>
-            <input type="number" id="price" name="price" min="1" step="1" value="<?php echo $product->getPrice(); ?>" required>
-            <br>
+        if ($product) {
+        ?>
+        <input type="hidden" name="id" value="<?php echo $product->getId(); ?>">
 
-            <label for="category">Category:</label>
-            <select id="category" name="category" required>
-                <?php
-                $db = Database::connect();
-                $query = "SELECT id, name FROM category WHERE isActive = true";
-                $stmt = $db->prepare($query);
-                $stmt->execute();
-                $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        <label for="name">Nombre:</label>
+        <input type="text" name="name" value="<?php echo $product->getName(); ?>" required>
 
-                foreach ($categories as $category):
-                    $selected = ($category['id'] == $product->getCategory()) ? 'selected' : '';
-                ?>
-                    <option value="<?php echo $category['id']; ?>" <?php echo $selected; ?>><?php echo $category['name']; ?></option>
-                <?php endforeach; ?>
-            </select>
-            <br>
+        <label for="description">Descripción:</label>
+        <textarea name="description" required><?php echo $product->getDescription(); ?></textarea>
 
-            <label for="stock">Stock:</label>
-            <input type="number" id="stock" name="stock" min="0" value="<?php echo $product->getStock(); ?>" required>
-            <br>
+        <label for="price">Precio:</label>
+        <input type="number" name="price" value="<?php echo $product->getPrice(); ?>" required>
 
-            <label for="image">Product Image:</label>
-            <input type="file" id="image" name="image" accept="image/*">
-            <br>
+        <label for="category">Categoría:</label>
+        <select name="category" required>
+            <!-- Aquí deberías cargar las categorías desde la base de datos y seleccionar la actual del producto -->
+            <option value="1" <?php echo ($product->getCategoryId() == 1) ? 'selected' : ''; ?>>Categoría 1</option>
+            <option value="2" <?php echo ($product->getCategoryId() == 2) ? 'selected' : ''; ?>>Categoría 2</option>
+            <!-- Agrega más opciones según tus categorías -->
 
-            <!-- Additional fields if needed -->
+        </select>
 
-            <input type="submit" value="Update Product">
-        </form>
-    <?php
+        <label for="stock">Stock:</label>
+        <input type="number" name="stock" value="<?php echo $product->getStock(); ?>" required>
+
+        <label for="image">Imagen:</label>
+        <input type="file" name="image">
+
+        <img src="<?php echo $product->getImage(); ?>" alt="Imagen actual" width="100">
+
+        <button type="submit">Guardar Cambios</button>
+        <?php
         } else {
-            echo "Product not found.";
+            echo "Producto no encontrado.";
         }
-    ?>
+        ?>
+    </form>
+</div>
+
+<?php include_once("./view/footer.php"); ?>
 
 </body>
 </html>

@@ -33,7 +33,7 @@
     </header>
     <h2>Lista de enlaces improvisada</h2>
     <ul>
-        <li><a href="index.php?controller=Product&action=showAddProducts">Añadir Product</a></li>
+    <li><a href="index.php?controller=Product&action=">View Products</a></li>
         <li><a href="index.php?controller=Product&action=showEditProduct">Edit Product</a></li>
         <li><a href="index.php?controller=Category&action=showAddCategories">Añadir Category</a></li>
         <li><a href="index.php?controller=Category&action=showEditCategories">Edit Category</a></li>

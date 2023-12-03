@@ -12,7 +12,22 @@ class ProductController {
     }
 
     public function showEditProduct(){
-        include("./view/adminProduct/addProduct.php");
+         // Assuming you have a way to get the product ID from the URL or form data
+         $id = isset($_GET['productId']) ? $_GET['productId'] : null;
+
+         if ($productId) {
+             // Retrieve product details for editing
+             $product = $this->getProductForEditing($productId);
+
+             if ($product) {
+                 // Include the edit product view
+                 include("./view/adminProduct/editProduct.php");
+             } else {
+                 echo "Product not found.";
+             }
+         } else {
+             echo "Product ID not provided.";
+         }
     }
 
     public function registerProduct() {

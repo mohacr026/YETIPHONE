@@ -12,22 +12,25 @@
     ?>
     <main>
         <aside>
-        <a href="index.php">atras</a>
-            filtros y tal nose
+            <a href="index.php">Back</a>
+            Filters and more
         </aside>
 
-<ul>
-<h2>List Product</h2>
+        <ul>
+            <h2>List Product</h2>
+            <?php foreach ($products as $product): ?>
+                <br>
+                <?php echo $product->getName(); ?>
+                <a href="index.php?controller=Product&action=showEditProduct&id=<?php echo $product->getId(); ?>">Edit</a>
+                
 
-    <?php foreach ($products as $product): ?>
-        <br>
-            <?php echo $product->getName(); ?>
-            <a href="index.php?controller=Product&action=showEditProduct&id=<?php echo $product->getId(); ?>">Edit</a>
-            <a href="index.php?controller=Product&action=showActDesc&id=<?php echo $product->getId(); ?>">Active/desactive</a>
 
-        </br>
-    <?php endforeach; ?>
-</ul>
-
+                <a href="index.php?controller=Product&action=toggleProductStatus&id=<?php echo $product->getId(); ?>">
+                    <?php echo $product->getIsActive() ? 'Deactivate' : 'Activate'; ?>
+                </a>
+                <br>
+            <?php endforeach; ?>
+        </ul>
+    </main>
 </body>
 </html>

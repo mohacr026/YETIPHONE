@@ -172,7 +172,26 @@ class Product extends Database {
         $connection->exec($query);
     }
     
-
+    public function updateProductIsActive() {
+        // Conectar a la base de datos
+        $database = new Database();
+        $connection = $database->connect();
+    
+        // Obtener el valor booleano de isactive
+        $isActiveValue = $this->getIsActive() ? 'true' : 'false';
+    
+        // Escapar y sanear los datos antes de usarlos en la consulta (para prevenir inyección SQL)
+        $id = $connection->quote($this->getId());
+        $isActive = $connection->quote($isActiveValue);
+    
+        // Consulta SQL para actualizar el estado isactive del producto
+        $query = "UPDATE product SET isactive = $isActive WHERE id = $id";
+    
+        // Ejecutar la consulta
+        $connection->exec($query);
+    }
+    
+    
 
 }
 ?>

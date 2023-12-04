@@ -186,6 +186,78 @@ class ProductController {
         }
     }
 
+    public function showActDesc() {
+        // Verificar si se proporciona un ID de producto
+        if (isset($_GET['id'])) {
+            $productId = $_GET['id'];
+            
+            // Obtener el producto existente de la base de datos
+            $existingProduct = $this->getProductById($productId);
+    
+            if ($existingProduct) {
+                // Cambiar el estado del producto
+                $newStatus = !$existingProduct->getIsActive(); // Invertir el estado actual
+                $existingProduct->setIsActive($newStatus);
+    
+                // Actualizar el producto en la base de datos
+                $existingProduct->updateProducts();
+    
+                // Redirigir o mostrar un mensaje, según sea necesario
+                header("Location: index.php?controller=Product&action=showProductList");
+                exit();
+            } else {
+                echo "Producto no encontrado.";
+            }
+        } else {
+            echo "ID de producto no proporcionado.";
+        }
+    }
+
+    public function toggleProductStatus() {
+        // Verificar si se proporciona un ID de producto
+        if (isset($_GET['id'])) {
+            $productId = $_GET['id'];
+            
+            // Obtener el producto existente de la base de datos
+            $existingProduct = $this->getProductById($productId);
+    
+            if ($existingProduct) {
+                // Cambiar el estado del producto
+                $newStatus = !$existingProduct->getIsActive(); // Invertir el estado actual
+                $existingProduct->setIsActive($newStatus);
+    
+                // Actualizar el producto en la base de datos
+                $existingProduct->updateProductIsActive();
+    
+                // Redirigir o mostrar un mensaje, según sea necesario
+                header("Location: index.php?controller=Product&action=showProductList");
+                exit();
+            } else {
+                echo "Producto no encontrado.";
+            }
+        } else {
+            echo "ID de producto no proporcionado.";
+        }
+    }
+    
+    
+    
+    // Función para actualizar el estado del producto en la base de datos
+    private function updateProductStatus($productId, $newStatus) {
+        $database = new Database();
+        $connection = $database->connect();
+    
+        // Escapar y sanear los datos antes de usarlos en la consulta (para prevenir inyección SQL)
+        $id = $connection->quote($productId);
+        $isActive = $connection->quote($newStatus);
+    
+        // Consulta SQL para actualizar el estado del producto
+        $query = "UPDATE product SET isActive = $isActive WHERE id = $id";
+    
+        // Ejecutar la consulta
+        $connection->exec($query);
+    }
+
 
 }
 

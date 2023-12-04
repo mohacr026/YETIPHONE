@@ -104,7 +104,7 @@
     <div class="slider-principal" ontouchstart="handleTouchStart(event)" ontouchmove="handleTouchMove(event)">
         <div class="slider">
             <img src="./src/img/hola.png" alt="Slide 1">
-            <img src="./src/img/xiaomi.png" alt="Slide 2">
+            <img src="./src/img/hola.png" alt="Slide 2">
             <img src="./src/img/hola.png" alt="Slide 3">
         </div>
         <button class="prev" onclick="changeSlide(-1)">Previous</button>

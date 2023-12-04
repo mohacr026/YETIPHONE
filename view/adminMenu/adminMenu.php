@@ -15,7 +15,7 @@
     <h2>Improvised link list</h2>
     <ul>
         <li><a href="index.php?controller=Product&action=showAddProducts">Add Products</a></li>
-        <li><a href="index.php?controller=Product&action=showProductList">Edit de Productos</a></li>
+        <li><a href="index.php?controller=Product&action=showEditProducts">Edit de Productos</a></li>
         <li><a href="index.php?controller=Category&action=showAddCategories">Add Category</a></li>
         <li><a href="index.php?controller=Category&action=showEditCategories">Edit Category</a></li>
     </ul>

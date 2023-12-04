@@ -143,9 +143,7 @@ class Product extends Database {
             $db = null;
         }
     }
-    // public function getCategoryId() {
-    //     return $this->categoryId;
-    // }
+    
     public function updateProducts() {
         // Conectar a la base de datos
         $database = new Database();
@@ -190,8 +188,42 @@ class Product extends Database {
         // Ejecutar la consulta
         $connection->exec($query);
     }
-    
-    
 
+    public static function getProductById($id){
+        $db = Product::connect();
+        $sql = "SELECT * FROM product WHERE id = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(1, $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        $productsArray = [];
+        foreach ($result as $key => $product) {
+            $featured = $product["featured"] == null ? false : true;
+            $active = $product["isactive"] == null ? false : true;
+            $newProduct = new Product($product["id"], $product["name"], $product["description"], $product["id_category"], $product["img"], $product["price"], $product["stock"], $product["featured"], $active);
+            $productsArray[] = $newProduct;
+        }
+
+        return $productsArray;
+    }
+
+    public static function getAllProducts() {
+        $db = Product::connect();
+        $sql = "SELECT * FROM product";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        $productsArray = [];
+        foreach ($result as $key => $product) {
+            $featured = $product["featured"] == null ? false : true;
+            $active = $product["isactive"] == null ? false : true;
+            $newProduct = new Product($product["id"], $product["name"], $product["description"], $product["id_category"], $product["img"], $product["price"], $product["stock"], $product["featured"], $active);
+            $productsArray[] = $newProduct;
+        }
+
+        return $productsArray;
+    }
 }
 ?>

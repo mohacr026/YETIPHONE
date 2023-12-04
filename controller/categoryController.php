@@ -16,7 +16,7 @@ class CategoryController{
 
     public function showEditCategories(){
         $category = new Category("", "");
-        $categoriesArray = $category->getAllCategories();
+        $categoriesArray = $category->getAllCategoriesAsoc();
         
         include("./view/adminCategory/editCategoryMenu.php");
     }

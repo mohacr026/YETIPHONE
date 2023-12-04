@@ -67,7 +67,28 @@ class Category extends Database {
         }
 
     }
-    public function getAllCategories()
+
+    public static function getAllCategories(){
+        $db = Category::connect();
+        $sql = "SELECT * FROM category";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $categoriesArray = [];
+
+        foreach ($result as $key => $category) {
+            $parent = $category['parentcategory'] == null ? null : $category['parentcategory'];
+            $active = $category['isactive'] == null ? false : true;
+            $newCategory = new Category($category['id'], $category['name'], $parent, $active);
+
+            $categoriesArray[] = $newCategory;
+        }
+
+        return $categoriesArray;
+    }
+
+    public function getAllCategoriesAsoc()
     {
         $db = Category::connect();
 

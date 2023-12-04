@@ -1,6 +1,6 @@
 <?php
 require_once("./model/product.php");
-require_once("./model/database.php");
+require_once("./model/category.php");
 
 class ProductController {
     public function showFrontPageProducts(){
@@ -36,101 +36,27 @@ class ProductController {
         }
     }
 
-    public function showProductList() {
+    public function showEditProducts() {
         // Obtener la lista de productos desde la base de datos
-        $products = $this->getAllProducts();
+        $productsArray = Product::getAllProducts();
     
         // Incluir la vista de la lista de productos
-        include("./view/adminProduct/productList.php");
+        include("./view/adminProduct/editProductMenu.php");
     }
     
 
-    public function showEditProduct(){
+    public function editProduct(){
         // Verificar si se proporciona un ID de producto
         // var_dump($_GET);  // Muestra toda la información en $_GET
         if (isset($_GET['id'])) {
             $productId = $_GET['id'];
-            $product = $this->getProductById($productId);
-
-            if ($product) {
-                include("./view/adminProduct/editProduct.php");
-            } else {
-                echo "Producto no encontrado.";
-            }
+            $product = Product::getProductById($productId);
+            $product = $product[0];
+            $categoriesArray = Category::getAllCategories();
+            include("./view/adminProduct/editProduct.php");
         } else {
             echo "ID de producto no proporcionado.";
         }
-    }
-
-    public function getAllProducts() {
-        $database = new Database();
-        $connection = $database->connect();
-    
-        $products = array();
-    
-        $result = $connection->query("SELECT * FROM product");
-    
-        while ($row = $result->fetch()) {
-            $product = new Product(
-                $row['id'],
-                $row['name'],
-                $row['description'],
-                $row['id_category'],
-                $row['price'],
-                $row['stock'],
-                $row['isactive'],
-                $row['featured']
-            );
-    
-            $products[] = $product;
-        }
-    
-        return $products;
-    }
-    
-    private function getProductById($productId) {
-        $database = new Database();
-        $connection = $database->connect();
-    
-        $result = $connection->query("SELECT * FROM product WHERE id = $productId");
-    
-        if ($result && $result->rowCount() > 0) {
-            $row = $result->fetch();
-    
-            return new Product(
-                $row['id'],
-                $row['name'],
-                $row['description'],
-                $row['id_category'],
-                $row['price'],
-                $row['stock'],
-                $row['isactive'],
-                $row['featured']
-            );
-        } else {
-            return null;
-        }
-    }
-
-    public function getAllCategories() {
-        $database = new Database();
-        $connection = $database->connect();
-    
-        $categories = array();
-    
-        $result = $connection->query("SELECT * FROM category");
-    
-        while ($row = $result->fetch()) {
-            $category = new Category(
-                $row['id'],
-                $row['name']
-                // Puedes agregar más propiedades según la estructura de tu categoría
-            );
-    
-            $categories[] = $category;
-        }
-    
-        return $categories;
     }
 
     private function uploadImage(Product $product) {
@@ -148,6 +74,10 @@ class ProductController {
         } else {
             echo "No image uploaded.";
         }
+    }
+
+    public function editProductPerformed() {
+        
     }
 
     public function updateProduct() {

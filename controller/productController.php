@@ -11,8 +11,39 @@ class ProductController {
         include("./view/adminProduct/addProduct.php");
     }
 
-    public function showEditProducts(){
+    public function registerProduct() {
+        if (!empty($_POST)) {
+            $name = $_POST['name'];
+            $description = $_POST['description'];
+            $price = $_POST['price'];
+            $id_category = $_POST['category'];
+            $stock = $_POST['stock'];
+
+            // Create an instance of the Product class
+            $product = new Product(null, $name, $description, $id_category, null, $price, $stock, 'false', true);
+
+            // Handle image upload
+            $this->uploadImage($product);
+
+            // Insert the product into the database
+            $product->insertProductIntoDatabase();
+        } else {
+            echo "The form was not submitted correctly.";
+        }
+    }
+
+    public function showProductList() {
+        // Obtener la lista de productos desde la base de datos
+        $products = $this->getAllProducts();
+    
+        // Incluir la vista de la lista de productos
+        include("./view/adminProduct/productList.php");
+    }
+    
+
+    public function showEditProduct(){
         // Verificar si se proporciona un ID de producto
+        // var_dump($_GET);  // Muestra toda la información en $_GET
         if (isset($_GET['id'])) {
             $productId = $_GET['id'];
             $product = $this->getProductById($productId);
@@ -27,26 +58,91 @@ class ProductController {
         }
     }
 
+    public function getAllProducts() {
+        $database = new Database();
+        $connection = $database->connect();
+    
+        $products = array();
+    
+        $result = $connection->query("SELECT * FROM product");
+    
+        while ($row = $result->fetch()) {
+            $product = new Product(
+                $row['id'],
+                $row['name'],
+                $row['description'],
+                $row['id_category'],
+                $row['price'],
+                $row['stock'],
+                $row['isactive'],
+                $row['featured']
+            );
+    
+            $products[] = $product;
+        }
+    
+        return $products;
+    }
+    
     private function getProductById($productId) {
         $database = new Database();
         $connection = $database->connect();
-
-        $product = $connection->query("SELECT * FROM products WHERE id = $productId")->fetch();
-
-        if ($product) {
+    
+        $result = $connection->query("SELECT * FROM product WHERE id = $productId");
+    
+        if ($result && $result->rowCount() > 0) {
+            $row = $result->fetch();
+    
             return new Product(
-                $product['id'],
-                $product['name'],
-                $product['description'],
-                $product['id_category'],
-                $product['image'],
-                $product['price'],
-                $product['stock'],
-                $product['active'],
-                $product['featured']
+                $row['id'],
+                $row['name'],
+                $row['description'],
+                $row['id_category'],
+                $row['price'],
+                $row['stock'],
+                $row['isactive'],
+                $row['featured']
             );
         } else {
             return null;
+        }
+    }
+
+    public function getAllCategories() {
+        $database = new Database();
+        $connection = $database->connect();
+    
+        $categories = array();
+    
+        $result = $connection->query("SELECT * FROM category");
+    
+        while ($row = $result->fetch()) {
+            $category = new Category(
+                $row['id'],
+                $row['name']
+                // Puedes agregar más propiedades según la estructura de tu categoría
+            );
+    
+            $categories[] = $category;
+        }
+    
+        return $categories;
+    }
+
+    private function uploadImage(Product $product) {
+        if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+            $targetDir = "./src/productImg/";
+            $targetFile = $targetDir . uniqid() . '_' . basename($_FILES['image']['name']);
+
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+                echo "File uploaded successfully.";
+            } else {
+                echo "Error uploading file.";
+            }
+
+            $product->setImage($targetFile);
+        } else {
+            echo "No image uploaded.";
         }
     }
 
@@ -72,7 +168,7 @@ class ProductController {
                     $existingProduct->getImage(), // Mantener la imagen existente
                     $price,
                     $stock,
-                    $existingProduct->getActive(),
+                    $existingProduct->getIsActive(),
                     $existingProduct->getFeatured()
                 );
 
@@ -80,7 +176,8 @@ class ProductController {
                 $this->uploadImage($updatedProduct);
 
                 // Actualizar el producto en la base de datos
-                $updatedProduct->updateProductInDatabase();
+                $updatedProduct->updateProducts();
+                echo "Producto actualizado correctamente.";
             } else {
                 echo "Producto no encontrado.";
             }
@@ -89,45 +186,8 @@ class ProductController {
         }
     }
 
-    public function registerProduct() {
-        if (!empty($_POST)) {
-            $name = $_POST['name'];
-            $description = $_POST['description'];
-            $price = $_POST['price'];
-            $id_category = $_POST['category'];
-            $stock = $_POST['stock'];
 
-            // Create an instance of the Product class
-            $product = new Product(null, $name, $description, $id_category, null, $price, $stock, 'false', true);
-
-            // Handle image upload
-            $this->uploadImage($product);
-
-            // Insert the product into the database
-            $product->insertProductIntoDatabase();
-        } else {
-            echo "The form was not submitted correctly.";
-        }
-    }
-
-    private function uploadImage(Product $product) {
-        if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
-            $targetDir = "./src/productImg/";
-            $targetFile = $targetDir . uniqid() . '_' . basename($_FILES['image']['name']);
-
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-                echo "File uploaded successfully.";
-            } else {
-                echo "Error uploading file.";
-            }
-
-            $product->setImage($targetFile);
-        } else {
-            echo "No image uploaded.";
-        }
-    }
 }
-
 
 
 ?>

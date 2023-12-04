@@ -143,5 +143,36 @@ class Product extends Database {
             $db = null;
         }
     }
+    // public function getCategoryId() {
+    //     return $this->categoryId;
+    // }
+    public function updateProducts() {
+        // Conectar a la base de datos
+        $database = new Database();
+        $connection = $database->connect();
+    
+        // Escapar y sanear los datos antes de usarlos en la consulta (para prevenir inyección SQL)
+        $id = $connection->quote($this->getId());
+        $name = $connection->quote($this->getName());
+        $description = $connection->quote($this->getDescription());
+        $id_category = $connection->quote($this->getCategory());  // Modificado de getCategoryId() a getCategory()
+        $price = $connection->quote($this->getPrice());
+        $stock = $connection->quote($this->getStock());
+    
+        // Consulta SQL para actualizar el producto
+        $query = "UPDATE product SET 
+                  name = $name,
+                  description = $description,
+                  id_category = $id_category,
+                  price = $price,
+                  stock = $stock
+                  WHERE id = $id";
+    
+        // Ejecutar la consulta
+        $connection->exec($query);
+    }
+    
+
+
 }
 ?>

@@ -64,20 +64,6 @@
                             <input type="file" id="image" name="image" accept="image/*" required>
                         </div>
                     </div>
-                    
-                    <!-- 
-                    <label for="featured">Featured:</label>
-                    <select id="featured" name="featured" required>
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
-                    </select>
-                    <br>
-                    <label for="isactive">Is Active:</label>
-                    <select id="isactive" name="isactive" required>
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
-                    </select>
-                    <br> -->
                 </form>
                 <div class="formAction">
                     <button type="submit" value="Add Product" class="addBtn" form="productForm">Add product</button>

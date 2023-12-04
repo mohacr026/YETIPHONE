@@ -6,6 +6,7 @@
     <title>YETiPhone</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="shortcut icon" href="./src/img/snowflake.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,38 +20,57 @@
             max-width: 800px;
             margin: auto;
             overflow: hidden;
-            height: 100%; /* Ajuste de altura */
+            height: 100%;
         }
 
         .slider {
+            margin-top: 0.5em;
             display: flex;
             transition: transform 0.5s ease-in-out;
             touch-action: pan-y;
         }
 
         .slider img {
-            width: 100%; /* Ajuste del ancho */
-            height: 100%; /* Ajuste de la altura */
-            object-fit: cover; /* Para mantener la relación de aspecto y cubrir el espacio */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        button {
+        .slider-controls {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .slider-controls button {
             border: none;
-            background: #3498db;
+            background: none;
             color: white;
             padding: 10px;
             cursor: pointer;
+            font-size: 16px;
         }
 
-        .prev {
-            left: 0;
+        .slider-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
         }
 
-        .next {
-            right: 0;
+        .indicator {
+            width: 45px;
+            height: 10px;
+            border-radius: 30%;
+            background: rgba(78, 184, 221, 1); /* Color de fondo de las líneas inactivas */
+        }
+
+        .indicator.active {
+            background: rgba(33, 112, 147, 1); /* Color de fondo de la línea activa */
         }
     </style>
     <script src="./src/js/userMenu.js"></script>
@@ -82,6 +102,12 @@
             slideIndex = (index + totalSlides) % totalSlides;
 
             slides.style.transform = `translateX(${-slideIndex * 100}%)`;
+
+            // Actualizar el estado de las líneas indicadoras
+            const indicators = document.querySelectorAll('.indicator');
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === slideIndex);
+            });
         }
 
         function changeSlide(n) {
@@ -100,17 +126,23 @@
     include("./view/components/header.php");
     ?>
     <main>
-
-    <div class="slider-principal" ontouchstart="handleTouchStart(event)" ontouchmove="handleTouchMove(event)">
-        <div class="slider">
-            <img src="./src/img/hola.png" alt="Slide 1">
-            <img src="./src/img/hola.png" alt="Slide 2">
-            <img src="./src/img/hola.png" alt="Slide 3">
+        <div class="slider-principal" ontouchstart="handleTouchStart(event)" ontouchmove="handleTouchMove(event)">
+            <div class="slider">
+                <img src="./src/img/hola.png" alt="Slide 1">
+                <img src="./src/img/hola.png" alt="Slide 2">
+                <img src="./src/img/hola.png" alt="Slide 3">
+            </div>
+            <div class="slider-controls">
+                <button class="prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                <button class="next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="slider-indicators">
+                <!-- Líneas indicadoras -->
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+            </div>
         </div>
-        <button class="prev" onclick="changeSlide(-1)">Previous</button>
-        <button class="next" onclick="changeSlide(1)">Next</button>
-    </div>
-
     </main>
 </body>
 </html>

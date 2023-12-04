@@ -54,6 +54,10 @@ class CategoryController{
         }
     }
 
+    public function updateCategoryStatus(){
+        
+    }
+
     public function editCategoryPerformed(){
         if(!empty($_POST)){
             print_r($_POST);

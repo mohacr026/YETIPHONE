@@ -40,22 +40,43 @@ header .icons {
   color: white;
   text-decoration: none;
 }
-header .icons a {
+header .icons a.button {
   display: flex;
   align-items: center;
   text-wrap: nowrap;
   margin-right: 1rem;
 }
-header .icons a:link, header .icons a:visited {
+header .icons a.button:link, header .icons a.button:visited {
   text-decoration: none;
   color: white;
 }
-header .icons a img {
+header .icons a.button img {
   aspect-ratio: 1/1;
   -o-object-fit: contain;
      object-fit: contain;
 }
-header .icons a p {
+header .icons a.button p {
+  margin-left: 0.5rem;
+}
+header .icons button {
+  display: flex;
+  align-items: center;
+  text-wrap: nowrap;
+  margin-right: 1rem;
+  border: none;
+  background-color: #4eb8dd;
+  cursor: pointer;
+  color: white;
+}
+header .icons button:hover, header .icons button:active {
+  background-color: #4eb8dd;
+}
+header .icons button img {
+  aspect-ratio: 1/1;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+header .icons button p {
   margin-left: 0.5rem;
 }
 
@@ -102,7 +123,7 @@ main .container h1 {
   align-items: center;
   width: 100%;
 }
-.categoryContainer .categoryComponent h3 {
+.categoryContainer .categoryComponent .category {
   text-align: left;
   background-color: #4eb8dd;
   cursor: pointer;
@@ -127,7 +148,7 @@ main .container h1 {
   flex-direction: column;
   align-items: flex-end;
 }
-.categoryContainer .categoryComponent .subcategoriesContainer p {
+.categoryContainer .categoryComponent .subcategoriesContainer .subcategory {
   background-color: #c1ebff;
   margin: 1rem;
   width: 80%;
@@ -173,15 +194,6 @@ main .container h1 {
   justify-content: center;
   width: 100%;
   margin: 1rem;
-  /*#file-upload-button{
-      background-color: $medBlue;
-      color: white;
-      transition: background-color .2s ease-out;
-
-      &:hover, &:active {
-          background-color: $darkBlue;
-      }
-  }*/
 }
 .formContainer .formRow label {
   font-weight: bold;
@@ -308,4 +320,70 @@ main .container h1 {
   color: #353538;
   text-decoration: none;
   background-color: #E33437;
+}
+
+.dropdownMenu {
+  max-height: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: max-height 0.2s ease, opacity 0.2s ease;
+  border: 2px #217093 solid;
+  background-color: #c1ebff;
+  color: #353538;
+  border-radius: 0.25em;
+  top: 3.5em;
+}
+.dropdownMenu a {
+  background-color: #c1ebff;
+  width: 100%;
+  padding: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  text-align: center;
+}
+.dropdownMenu a:hover {
+  filter: brightness(70%);
+}
+
+.show {
+  max-height: 100vh;
+  opacity: 1;
+}
+
+.switch-button {
+  display: inline-block;
+}
+.switch-button .toggle-checkbox {
+  display: none;
+}
+.switch-button .switch-button__label {
+  background-color: red;
+  width: 5rem;
+  height: 3rem;
+  border-radius: 3rem;
+  display: inline-block;
+  position: relative;
+}
+.switch-button .switch-button__label:before {
+  transition: 0.2s;
+  display: block;
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  background-color: gray;
+  content: "";
+  border-radius: 50%;
+  box-shadow: inset 0px 0px 0px 1px black;
+}
+.switch-button .toggle-checkbox:checked + .switch-button__label {
+  background-color: green;
+}
+.switch-button .toggle-checkbox:checked + .switch-button__label:before {
+  transform: translateX(2rem);
 }/*# sourceMappingURL=main.css.map */

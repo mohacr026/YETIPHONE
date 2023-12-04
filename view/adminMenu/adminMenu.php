@@ -6,19 +6,18 @@
     <title>YETiPhone</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="shortcut icon" href="./src/img/snowflake.png" type="image/x-icon">
+    <script src="./src/js/userMenu.js"></script>
 </head>
 <body>
-    <!--
-        TODO: Hay que hacer que se pueda desloguear, una vez eso, 
-        hay que quitar la lista de enlaces de la portada
-    -->
     <?php
     include("./view/components/header.php");
     ?>
-    <h2>Lista de enlaces improvisada</h2>
+    <h2>Improvised link list</h2>
     <ul>
-        <li><a href="index.php?Controller=Product&action=showAddProducts">Añadir Product</a></li>
-        <li><a href="index.php?Controller=Category&action=showAddCategories">Añadir Category</a></li>
+        <li><a href="index.php?controller=Product&action=showAddProducts">Add Products</a></li>
+        <li><a href="index.php?controller=Product&action=showProductList">Edit de Productos</a></li>
+        <li><a href="index.php?controller=Category&action=showAddCategories">Add Category</a></li>
+        <li><a href="index.php?controller=Category&action=showEditCategories">Edit Category</a></li>
     </ul>
     
 </body>

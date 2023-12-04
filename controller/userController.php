@@ -19,7 +19,7 @@ class UserController {
                 
                 case 'loginAdm':
                     include("./view/frontPage/frontPage.php");
-                    echo "<script>alert(Llogueado Admin')</script>";
+                    echo "<script>alert('Logueado Admin')</script>";
                     break;
                 
                 case 'badPass':

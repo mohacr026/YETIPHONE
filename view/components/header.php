@@ -1,23 +1,26 @@
 <header>
     <h1>YETiPhone</h1>
     <div class="icons">
-        <a 
-            <?php
+        <?php
             if(!isset($_SESSION['email'])) {
-                echo 'href="index.php?controller=User&action=showLoginForm"';
-            }
-            ?>
-        >
-            <img src="./src/img/userIcon.png" alt="log in here">
-            <?php
-            if(isset($_SESSION['email'])) {
-                echo "<p>{$_SESSION['email']}</p>";
+                echo "<a class='button' href='index.php?controller=User&action=showLoginForm'>";
+                echo "  <img src='./src/img/userIcon.png' alt='log in here'>";
+                echo "  <p>Log in</p>";
+                echo "</a>";
             } else {
-                echo "<p>Log In</p>";
+                
+                echo "<button id='userBtn' class='dropBtn'>";
+                echo "  <img class='buttonElements' src='./src/img/userIcon.png' alt='user menu'>";
+                echo "  <p class='buttonElements'>{$_SESSION['email']}</p>";
+                echo "</button>";
+                echo "<div id='userMenu' class='dropdownMenu'>";
+                echo "  <a>elemento</a>";
+                echo "  <a>elemento</a>";
+                echo "  <a>elemento</a>";
+                echo "</div>";
             }
-            ?>
-        </a>
-        <a href="index.php">
+        ?>
+        <a href="#" class="button">
             <img src="./src/img/shoppingCart.png" alt="shopping cart">
         </a>
     </div>

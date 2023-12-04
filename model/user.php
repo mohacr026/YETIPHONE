@@ -94,6 +94,7 @@ class User extends Database {
                     $passOK = true;
                     $isAdmin = true;
                     $_SESSION['email'] = $adminArr['username'];
+                    $_SESSION['role'] = "admin";
                 }
             }
         }
@@ -112,6 +113,7 @@ class User extends Database {
 
                     $_SESSION['email'] = $userArr['email'];
                     $_SESSION['name'] = $userArr['name'];
+                    $_SESSION['role'] = "user";
                 }
             }
         }

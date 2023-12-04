@@ -6,7 +6,6 @@
     <title>YETiPhone</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="shortcut icon" href="./src/img/snowflake.png" type="image/x-icon">
-    <script src="./src/js/categoryCheckHider.js"></script>
 </head>
 <body>
 <?php

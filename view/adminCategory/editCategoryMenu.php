@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="shortcut icon" href="./src/img/snowflake.png" type="image/x-icon">
     <script src="./src/js/dropdownCategories.js"></script>
-    <script src="./src/js/changeStatus.js"></script>
 </head>
 <body class="noscroll">
     <?php
@@ -37,7 +36,6 @@
                 ?>
             </div>
         </div>
-    </main>
-    <div id="data"></div>
+    </main> 
 </body>
 </html>

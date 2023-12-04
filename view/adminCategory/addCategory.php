@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YETiPhone</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="shortcut icon" href="./src/img/snowflake.png" type="image/x-icon">
     <script src="./src/js/categoryCheckHider.js"></script>
 </head>
 <body>

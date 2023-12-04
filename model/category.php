@@ -175,7 +175,18 @@ class Category extends Database {
     
         $stmt->execute();
     }
+
+    public function updateCategory(){
+        $db = Category::connect();
+        $sql = "UPDATE category SET name = ? WHERE id = ?";
+        $stmt = $db->prepare($sql);
+        $name = $this->getName();
+        $id = $this->getId();
+        $stmt->bindParam(1, $name, PDO::PARAM_STR);
+        $stmt->bindParam(2, $id, PDO::PARAM_INT);
     
+        $stmt->execute();
+    }    
 }
 
 ?>

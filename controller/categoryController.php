@@ -30,9 +30,9 @@ class CategoryController{
             }
             $category->insertInDB();
     
-            echo "<META HTTP-EQUIV='REFRESH' CONTENT=1; URL=index.php?controller=Category&action=showAddCategories&insertOK=true>";
+            echo "<META HTTP-EQUIV='REFRESH' CONTENT='0; URL=index.php?controller=Category&action=showAddCategories&insertOK=true'>";
         } else {
-            echo "<META HTTP-EQUIV='REFRESH' CONTENT=1; URL=index.php?controller=Category&action=showAddCategories>";
+            echo "<META HTTP-EQUIV='REFRESH' CONTENT='0; URL=index.php?controller=Category&action=showAddCategories'>";
         }
     }
 
@@ -60,12 +60,11 @@ class CategoryController{
 
     public function editCategoryPerformed(){
         if(!empty($_POST)){
-            print_r($_POST);
-            if(isset($_POST["parent"])){
-                echo "tiene parent";
-            } else {
-                echo "no tiene parent";
-            }
+            $updatedCategory = new Category($_POST['categoryId'], $_POST['name']);
+            $updatedCategory->updateCategory();
+            echo "<META HTTP-EQUIV='REFRESH' CONTENT='0; URL=index.php?controller=Category&action=showEditCategories&updateOK=true'>";
+        } else {
+            echo "No";
         }
     }
 }

@@ -7,6 +7,10 @@ class ProductController {
         include("./view/frontPage/frontPage.php");
     }
 
+    public function showInterfaz(){
+        include("./view/frontPage/interfaz.php");
+    }
+
     public function showAddProducts(){
         include("./view/adminProduct/addProduct.php");
     }

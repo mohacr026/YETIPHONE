@@ -386,4 +386,16 @@ main .container h1 {
 }
 .switch-button .toggle-checkbox:checked + .switch-button__label:before {
   transform: translateX(2rem);
+}
+
+.slider-principal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5em;
+}
+
+.slider-principal img {
+  width: 1596px;
+  height: 600px;
 }/*# sourceMappingURL=main.css.map */

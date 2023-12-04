@@ -414,3 +414,15 @@ main{
         }
     }
 }
+
+
+.slider-principal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5em
+}
+.slider-principal img {
+    width: 1596px;
+    height: 600px;
+}

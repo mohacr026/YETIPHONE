@@ -11,10 +11,15 @@
     include("./view/components/header.php");
     ?>
     <main>
-        <aside>
-            <a href="index.php">Back</a>
-            Filters and more
+    <aside>
+    <h2>Improvised link list</h2>
+    <br>
+        <a href="index.php?controller=Product&action=showAddProducts">Add Products</a>
+        <a href="index.php?controller=Product&action=showProductList">Edit de Productos</a>
+        <a href="index.php?controller=Category&action=showAddCategories">Add Category</a>
+        <a href="index.php?controller=Category&action=showEditCategories">Edit Category</a>
         </aside>
+    </br>
 
         <ul>
             <h2>List Product</h2>

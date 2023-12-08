@@ -18,6 +18,7 @@
         <li><a href="index.php?controller=Product&action=showEditProducts">Edit de Productos</a></li>
         <li><a href="index.php?controller=Category&action=showAddCategories">Add Category</a></li>
         <li><a href="index.php?controller=Category&action=showEditCategories">Edit Category</a></li>
+        <li><a href="index.php?controller=Purchase&action=showPurchases">Purchases</a></li>
     </ul>
     
 </body>

@@ -1,0 +1,6 @@
+@mixin divFlexRowBetween {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}

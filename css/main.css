@@ -400,23 +400,28 @@ main .container h1 {
   height: 600px;
 }
 
-.purchaseTableDisplay {
+.purchaseContainer {
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+}
+.purchaseContainer .purchaseTableDisplay {
   display: flex;
   flex-direction: column;
   width: 50%;
   margin: 50px auto;
 }
-.purchaseTableDisplay div {
+.purchaseContainer .purchaseTableDisplay div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
 }
-.purchaseTableDisplay div span {
+.purchaseContainer .purchaseTableDisplay div span {
   text-align: center;
   width: 20%;
 }
-.purchaseTableDisplay div a {
+.purchaseContainer .purchaseTableDisplay div a {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

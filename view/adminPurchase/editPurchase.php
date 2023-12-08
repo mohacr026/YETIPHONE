@@ -10,25 +10,31 @@
 </head>
 <body>
     <?php include('./view/components/header.php'); ?>
-    <form method="POST" action="index.php?controller=Purchase&action=showPurchases&purchase=<?= urlencode(serialize($purchase)) ?>">
-        <input type="hidden" name="id" value="<?= $purchase->getId() ?>">
+    <main>
+        <?php include("./view/components/adminNavigationAside.php"); ?>
+        <div class="purchaseContainer">
+            <form method="POST" action="index.php?controller=Purchase&action=showPurchases&purchase=<?= urlencode(serialize($purchase)) ?>">
+                <input type="hidden" name="id" value="<?= $purchase->getId() ?>">
 
-        <label>Username:</label>
-        <span><?= $purchase->getUserId() ?></span><br>
+                <label>Username:</label>
+                <span><?= $purchase->getUserId() ?></span><br>
 
-        <label>Date Order:</label>
-        <span><?= $purchase->getDateOrder() ?></span><br>
+                <label>Date Order:</label>
+                <span><?= $purchase->getDateOrder() ?></span><br>
 
-        <label>Date of shipment:</label>
-        <span><?= $purchase->getDateShipment() ?></span><br>
+                <label>Date of shipment:</label>
+                <span><?= $purchase->getDateShipment() ?></span><br>
 
-        <label for="status">Status:</label>
-        <select name="status">
-            <option value="PENDING" <?php if ($purchase->getStatus() === 'PENDING') echo 'selected'; ?>>Pending</option>
-            <option value="SHIPPED" <?php if ($purchase->getStatus() === 'SHIPPED') echo 'selected'; ?>>Shipped</option>
-        </select><br>
+                <label for="status">Status:</label>
+                <select name="status">
+                    <option value="PENDING" <?php if ($purchase->getStatus() === 'PENDING') echo 'selected'; ?>>Pending</option>
+                    <option value="SHIPPED" <?php if ($purchase->getStatus() === 'SHIPPED') echo 'selected'; ?>>Shipped</option>
+                </select><br>
 
-        <button type="submit">Update Status</button>
-    </form>
+                <button type="submit">Update Status</button>
+            </form>
+            <a href="index.php?controller=Purchase&action=showPurchases">Go back</a>
+        </div>
+    </main>
 </body>
 </html>

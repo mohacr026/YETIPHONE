@@ -6,7 +6,7 @@
     <title>YETiPhone</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/aside.css">
-
+    <script src="./src/js/userMenu.js"></script>
 </head>
 <body>
     <?php

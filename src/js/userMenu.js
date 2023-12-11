@@ -1,7 +1,7 @@
 window.onload = function () {
     document.getElementById("userBtn").addEventListener("click", function (event) {
         let userMenu = document.getElementById("userMenu");
-
+        console.log(userMenu);
         // Verificar si el menú está visible y el clic no fue dentro del menú
         if (!userMenu.contains(event.target)) {
             userMenu.classList.toggle("show");

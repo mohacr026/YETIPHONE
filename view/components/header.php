@@ -16,7 +16,8 @@
                 echo "<div id='userMenu' class='dropdownMenu'>";
                 echo "  <a>elemento</a>";
                 echo "  <a>elemento</a>";
-                echo "  <a>elemento</a>";
+                echo "  <div class='dropdownDivider'></div>";
+                echo "  <a href='index.php?controller=User&action=logout'>Log out</a>";
                 echo "</div>";
             }
         ?>

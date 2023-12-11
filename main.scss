@@ -366,6 +366,12 @@ main{
     border-radius: 0.25em;
     top: 3.5em;
 
+    .dropdownDivider{
+        height: 1px;
+        width: 5.5rem;
+        background-color: $darkBlue;
+    }
+
     a{
         background-color: $lightBlue;
         width: 100%;
@@ -374,8 +380,9 @@ main{
         padding-bottom: 0.5rem;
         text-align: center;
         &:hover{
-            filter: brightness(70%);
+            filter: brightness(90%);
         }
+        cursor: pointer;
     }
 }
 

@@ -37,6 +37,7 @@ class UserController {
 
     public function logout(){
         session_destroy();
+        echo "<META HTTP-EQUIV='REFRESH' CONTENT='0; URL=index.php'>";
     }
 
     public function showAdminDashboard(){

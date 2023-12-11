@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/aside.css">
     <link rel="shortcut icon" href="./src/img/snowflake.png" type="image/x-icon">
     <script src="./src/js/dropdownCategories.js"></script>
+    <script src="./src/js/userMenu.js"></script>
 </head>
 <body class="noscroll">
     <?php

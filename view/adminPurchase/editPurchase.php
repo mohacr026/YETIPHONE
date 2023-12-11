@@ -17,7 +17,7 @@
 
     ?>
     <main>
-        <?php include("./view/components/adminNavigationAside.php"); ?>
+        <?php include("./view/components/adminAside.html"); ?>
         <div class="purchaseContainer">
             <form method="POST" action="index.php?controller=Purchase&action=showPurchases&purchase=<?= urlencode(serialize($purchase)) ?>">
                 <input type="hidden" name="id" value="<?= $purchase->getId() ?>">

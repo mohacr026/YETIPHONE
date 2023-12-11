@@ -17,7 +17,7 @@
 
     ?>
     <main>
-        <?php include("./view/components/adminNavigationAside.php"); ?>
+        <?php include("./view/components/adminAsideSearch.html"); ?>
         <div class="purchaseContainer">
             <form method="POST" action="index.php?controller=Purchase&action=showPurchases">
                 <label for="purchase_id">Purchase ID:</label>

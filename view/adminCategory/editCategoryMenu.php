@@ -19,7 +19,7 @@
     include("./view/components/header.php");
     ?>
     <main>
-        <?php include("./view/components/adminNavigationAside.php"); ?>
+        <?php include("./view/components/adminAsideSearch.html"); ?>
         <div class="container">
             <h2>Categories</h2>
             <div class="categoryContainer">

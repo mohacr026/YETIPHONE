@@ -20,7 +20,7 @@ class CategoryComponent {
         if(!empty($this->__subcategories)){
             echo "<div class='subcategoriesContainer'>";
             foreach ($this->__subcategories as $subcategory) {
-                echo "<div class='subcategory'>{$subcategory['name']} <a href='index.php?controller=Category&action=editCategory&id={$subcategory['id']}'>Edit</a>  <a>Disable</a></div>";
+                echo "<div class='subcategory'>{$subcategory['name']} <a href='index.php?controller=Category&action=editCategory&id={$subcategory['id']}'>Edit</a>  <a >Disable</a></div>";
             }
             echo "</div>";
         }

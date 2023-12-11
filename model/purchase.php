@@ -144,4 +144,4 @@ class Purchase extends Database {
         // Return an array of product information
     }
 }
-?>
+?> 

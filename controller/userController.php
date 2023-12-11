@@ -14,29 +14,33 @@ class UserController {
             switch ($action) {
                 case 'login':
                     include("./view/frontPage/frontPage.php");
-                    echo "<script>alert('Logueado')</script>";
                     break;
                 
                 case 'loginAdm':
-                    include("./view/frontPage/frontPage.php");
-                    echo "<script>alert('Logueado Admin')</script>";
+                    echo "<META HTTP-EQUIV='REFRESH' CONTENT='0; URL=index.php?controller=User&action=showAdminDashboard'>";
                     break;
                 
                 case 'badPass':
                     include("./view/login/login.html");
-                    echo "<script>alert('bad pass')</script>";
                     break;
 
                 case 'noUser':
                     
                 default:
                     include("./view/login/login.html");
-                    echo "<script>alert('bad user')</script>";
                     break;
             }
         } else {
             echo "no post";
         }
+    }
+
+    public function logout(){
+        session_destroy();
+    }
+
+    public function showAdminDashboard(){
+        include("./view/frontPage/adminMenu.php");
     }
 }
 ?>

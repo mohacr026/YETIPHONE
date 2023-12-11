@@ -1,5 +1,6 @@
 <!-- MAIN CONTROLLER -->
-<?php 
+<?php
+session_start();
 require_once "autoload.php";
 
 if (isset($_GET['controller'])){

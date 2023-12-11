@@ -9,7 +9,12 @@
 
 </head>
 <body>
-    <?php include("./view/components/header.php"); ?>
+    <?php include("./view/components/header.php"); 
+    if(!isset($_SESSION['role'] && $_SESSION['role'] != "admin")){
+        echo "<META HTTP-EQUIV='REFRESH' CONTENT='0; URL=index.php?controller=User&action=showLoginForm'>";
+    } else {
+
+    ?>
     <main>
         <?php include("./view/components/adminNavigationAside.php"); ?>
         <div class="container">
@@ -79,5 +84,8 @@
             </div>
         </div>
     </main>
+    <?php
+    }
+    ?>
 </body>
 </html>

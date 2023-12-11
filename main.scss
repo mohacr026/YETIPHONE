@@ -6,6 +6,7 @@
 
 //@import 'scss/login.scss';
 @import 'scss/colors.scss';
+@import 'scss/mixins.scss';
 
 body{
     background-color: $inputBG;
@@ -427,4 +428,24 @@ main{
     height: 600px;
 }
 
-
+.purchaseContainer {
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    .purchaseTableDisplay {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin: 50px auto;
+        div {
+            @include divFlexRowBetween;
+            span {
+                text-align: center;
+                width: 20%;
+            }
+            a {
+                @include divFlexRowBetween;
+            }
+        }
+    }
+}

@@ -398,4 +398,32 @@ main .container h1 {
 .slider-principal img {
   width: 1596px;
   height: 600px;
+}
+
+.purchaseContainer {
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+}
+.purchaseContainer .purchaseTableDisplay {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 50px auto;
+}
+.purchaseContainer .purchaseTableDisplay div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+.purchaseContainer .purchaseTableDisplay div span {
+  text-align: center;
+  width: 20%;
+}
+.purchaseContainer .purchaseTableDisplay div a {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }/*# sourceMappingURL=main.css.map */

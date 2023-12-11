@@ -14,7 +14,7 @@ class CategoryComponent {
         $categoryStatus = $this->__category->getIsActive();
         echo "<div class='categoryComponent'>";
         echo "  <div class='category'>";
-        echo "  $categoryName";
+        echo "  <p class='categoryName'>$categoryName</p>";
         echo "  <a href='index.php?controller=Category&action=editCategory&id=$categoryId'>Edit</a>";
         echo "</div>";
         if(!empty($this->__subcategories)){

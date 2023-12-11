@@ -17,7 +17,7 @@
 
     ?>
     <main>
-        <?php include("./view/components/adminNavigationAside.php"); ?>
+        <?php include("./view/components/adminAsideSearch.html"); ?>
         <div class="container">
             <h2>List Product</h2>
             <div class="productContainer">

@@ -16,7 +16,7 @@
 
     ?>
     <main>
-        <?php include("./view/components/adminNavigationAside.php"); ?>
+        <?php include("./view/components/adminAside.html"); ?>
         <div class="container">
             <div class="formContainer">
                 <h2>Edit Product</h2>

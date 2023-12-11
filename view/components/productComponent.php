@@ -13,7 +13,7 @@ class ProductComponent {
         echo "  <div class='product'>";
         echo "      $productName";
         echo "      <a href='index.php?controller=Product&action=editproduct&id=$productId'>Edit</a>";
-        echo "      <a>Disable</a>";
+        echo "<a href='index.php?controller=Product&action=showActDesc&id=$productId'>Disable</a>";
         echo "  </div>";
         echo "</div>";
     }

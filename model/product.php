@@ -204,9 +204,10 @@ class Product extends Database {
             $newProduct = new Product($product["id"], $product["name"], $product["description"], $product["id_category"], $product["img"], $product["price"], $product["stock"], $product["featured"], $active);
             $productsArray[] = $newProduct;
         }
-
+    
         return $productsArray;
     }
+    
 
     public static function getAllProducts() {
         $db = Product::connect();

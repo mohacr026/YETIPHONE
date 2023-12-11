@@ -90,7 +90,7 @@ class ProductController {
             $stock = $_POST['stock'];
 
             // Obtener el producto existente de la base de datos
-            $existingProduct = $this->getProductById($id);
+            $existingProduct = Product::getProductById($id);
 
             if ($existingProduct) {
                 // Crear una instancia de la clase Product con los nuevos datos
@@ -126,18 +126,20 @@ class ProductController {
             $productId = $_GET['id'];
             
             // Obtener el producto existente de la base de datos
-            $existingProduct = $this->getProductById($productId);
+            $existingProducts = Product::getProductById($productId);
     
-            if ($existingProduct) {
-                // Cambiar el estado del producto
-                $newStatus = !$existingProduct->getIsActive(); // Invertir el estado actual
-                $existingProduct->setIsActive($newStatus);
+            if (!empty($existingProducts)) {
+                foreach ($existingProducts as $existingProduct) {
+                    // Cambiar el estado del producto
+                    $newStatus = !$existingProduct->getIsActive(); // Invertir el estado actual
+                    $existingProduct->setIsActive($newStatus);
     
-                // Actualizar el producto en la base de datos
-                $existingProduct->updateProducts();
+                    // Actualizar el producto en la base de datos
+                    $existingProduct->updateProducts();
+                }
     
-                // Redirigir o mostrar un mensaje, según sea necesario
-                header("Location: index.php?controller=Product&action=showProductList");
+                // Redirigir a la página de productos
+                header("Location: index.php?controller=Product&action=showFrontPageProducts");
                 exit();
             } else {
                 echo "Producto no encontrado.";
@@ -146,6 +148,8 @@ class ProductController {
             echo "ID de producto no proporcionado.";
         }
     }
+    
+    
 
     public function toggleProductStatus() {
         // Verificar si se proporciona un ID de producto

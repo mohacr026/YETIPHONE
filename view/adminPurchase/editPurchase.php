@@ -39,6 +39,15 @@
 
                 <button type="submit">Update Status</button>
             </form>
+            <div>
+                <?php foreach($products as $product): ?>
+                    <?php try {
+                        include("./view/components/productDisplayComponent.php");
+                    } catch(Exception $e) {
+                        echo "<span>Error</span>";
+                    } ?>
+                <?php endforeach; ?>
+            </div>
             <a href="index.php?controller=Purchase&action=showPurchases">Go back</a>
         </div>
     </main>

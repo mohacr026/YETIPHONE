@@ -226,5 +226,58 @@ class Product extends Database {
 
         return $productsArray;
     }
+
+    public static function fetchProducts(array $filters = []){
+        /* 
+            Example of $filters array application
+            $filters = [
+                'user_id' => 456,
+                'status' => 'shipped',
+                'startDate' => '2023-10-01',
+                'endDate' => '2023-10-15',
+            ];
+            $records = Product::fetchPurchases($filters);
+        */
+
+        //Connect into the database
+        $db = self::connect();
+        
+        //SQL basic query, we'll modify it later if needed
+        $sql = "SELECT * FROM product";
+
+        //This code creates a dynamic SQL query based on the filters given by the parameters
+        if(!empty($filters)){
+            $sql .= " WHERE ";
+            // $i is started in 1 because the first clause will be always WHERE not AND
+            $i = 1;
+            foreach($filters as $field => $value){
+                $sql .= "$field = ? ";
+                if($i < count($filters)){
+                    $sql .= " AND ";
+                }
+                $i++;
+            }
+
+        }
+
+        //Here the SQL query prepares and bind the given parameters on its values to execute the filters
+        $statement = $db->prepare($sql);
+
+        if(!empty($filters)){
+            $i = 1;
+            foreach($filters as $value){
+                $statement->bindValue($i++, $value);
+            }
+        }
+
+        $statement->execute();
+
+        // Adds into the purchases array every purchase the SQL returned
+        $products = [];
+        while($row = $statement->fetch(PDO::FETCH_ASSOC)){
+            $products[] = new Product($row['id'], $row['name'], $row['description'], $row['id_category'], $row['img'], $row['img'], $row['price'], $row['stock'], $row['featured']);
+        }
+        return $products;
+    }
 }
 ?>

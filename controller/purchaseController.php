@@ -1,5 +1,7 @@
 <?php 
 require_once("./model/purchase.php");
+require_once("./model/product.php");
+require_once("./model/productDetails.php");
 class PurchaseController {
     public function showPurchases(){
         $filters = [];
@@ -31,6 +33,11 @@ class PurchaseController {
     public function showPurchaseInformation(){
         if (isset($_GET['purchase'])) {
             $purchase = unserialize(urldecode($_GET['purchase']));
+            $products = Product::fetchProducts(['id' => $purchase->getId()]);
+            $details = [];
+            foreach($products as $product){
+                $details[$product->getId()] = ProductDetails::fetchDetails(['id' => $purchase->getPurchaseDetails()])[0];
+            }
         }
         include("./view/adminPurchase/editPurchase.php");
     }

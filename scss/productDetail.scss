@@ -1,0 +1,29 @@
+.productDetailDisplay {
+    width: 575px;
+    height: 75px;
+    border-radius: 25px;
+    @include flexCenterAroundItems;
+    flex-direction: row;
+    background-color: $lightBlue;
+    span, img {
+        height: 45px;
+        border-radius: 25px;
+        @include flexCenterItems;
+        background-color: $medBlue;
+        color: $white;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    :nth-child(1) {
+        width: 160px;
+    }
+    :nth-child(2) {
+        width: 200px;
+    }
+    :nth-child(3) {
+        width: 45px;
+    }
+    :nth-child(4) {
+        width: 55px;
+    }
+}

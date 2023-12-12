@@ -23,13 +23,13 @@
                 <input type="hidden" name="id" value="<?= $purchase->getId() ?>">
 
                 <label>Username:</label>
-                <span><?= $purchase->getUserId() ?></span><br>
+                <span><?= $purchase->getUserId() ?></span>
 
                 <label>Date Order:</label>
-                <span><?= $purchase->getDateOrder() ?></span><br>
+                <span><?= $purchase->getDateOrder() ?></span>
 
                 <label>Date of shipment:</label>
-                <span><?= $purchase->getDateShipment() ?></span><br>
+                <span><?= $purchase->getDateShipment() ?></span>
 
                 <label for="status">Status:</label>
                 <select name="status">
@@ -37,18 +37,20 @@
                     <option value="SHIPPED" <?php if ($purchase->getStatus() === 'SHIPPED') echo 'selected'; ?>>Shipped</option>
                 </select><br>
 
-                <button type="submit">Update Status</button>
+                <div>
+                    <button type="submit">SAVE</button>
+                    <a href="index.php?controller=Purchase&action=showPurchases">CANCEL</a>
+                </div>
             </form>
             <div>
                 <?php foreach($products as $product): ?>
                     <?php try {
-                        include("./view/components/productDisplayComponent.php");
+                        include("./view/components/productDetailDisplayComponent.php");
                     } catch(Exception $e) {
                         echo "<span>Error</span>";
                     } ?>
                 <?php endforeach; ?>
             </div>
-            <a href="index.php?controller=Purchase&action=showPurchases">Go back</a>
         </div>
     </main>
     <?php

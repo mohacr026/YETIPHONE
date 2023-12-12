@@ -275,7 +275,7 @@ class Product extends Database {
         // Adds into the purchases array every purchase the SQL returned
         $products = [];
         while($row = $statement->fetch(PDO::FETCH_ASSOC)){
-            $products[] = new Product($row['id'], $row['name'], $row['description'], $row['id_category'], $row['img'], $row['img'], $row['price'], $row['stock'], $row['featured']);
+            $products[] = new Product($row['id'], $row['name'], $row['description'], $row['id_category'], $row['img'], $row['price'], $row['stock'], $row['featured']);
         }
         return $products;
     }

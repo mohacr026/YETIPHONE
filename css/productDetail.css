@@ -1,0 +1,27 @@
+.productDetailDisplay {
+  width: 575px;
+  height: 75px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.productDetailDisplay span, .productDetailDisplay img {
+  height: 45px;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.productDetailDisplay :nth-child(1) {
+  width: 160px;
+}
+.productDetailDisplay :nth-child(2) {
+  width: 200px;
+}
+.productDetailDisplay :nth-child(3) {
+  width: 45px;
+}
+.productDetailDisplay :nth-child(4) {
+  width: 55px;
+}/*# sourceMappingURL=productDetail.css.map */

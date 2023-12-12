@@ -54,9 +54,17 @@ class Category extends Database {
     public static function getParentCategories($onlyActives = true) {
         try {
             $db = Category::connect();
-            $sql = "SELECT * FROM category WHERE parentCategory IS NULL AND isActive = ?";
-            $stmt = $db->prepare($sql);
-            $stmt->bindParam(1, $onlyActives, PDO::PARAM_BOOL);
+            
+            if($onlyActives) {
+                $sql = "SELECT * FROM category WHERE parentCategory IS NULL AND isActive = ?";
+                $stmt = $db->prepare($sql);
+                $stmt->bindParam(1, $onlyActives, PDO::PARAM_BOOL);
+                
+            } else {
+                $sql = "SELECT * FROM category WHERE parentCategory IS NULL";
+                $stmt = $db->prepare($sql);
+            }
+                        
             $stmt->execute();
             $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -88,37 +96,37 @@ class Category extends Database {
         return $categoriesArray;
     }
 
-    public function getAllCategoriesAsoc()
-    {
-        $db = Category::connect();
-
-        // Consulta recursiva para obtener todas las categorías y subcategorías
-        $categories = $this->getCategoriesRecursively($db, null);
-
-        return $categories;
-    }
-
-    public function getCategoriesRecursively($db, $parentCategory) {
-        $sql = "SELECT * FROM category WHERE parentCategory " . ($parentCategory === null ? "IS NULL" : "= :parentCategory");
-        $stmt = $db->prepare($sql);
-
-        if ($parentCategory !== null) {
-            $stmt->bindParam(':parentCategory', $parentCategory, PDO::PARAM_INT);
+    public static function getSubCategories() {
+        try {
+            $db = self::connect();
+        
+            // Obtener todas las filas como un array asociativo
+            $categoryData = $db->query("SELECT * FROM category WHERE parentcategory IS NULL")->fetchAll(PDO::FETCH_ASSOC);
+    
+            $subCategoriesArray = [];
+            foreach ($categoryData as $value) {
+                $subCategoriesArray[$value['id']] = [];
+    
+                $subCatSQL = "SELECT * FROM category WHERE parentcategory = ?";
+                $stmt = $db->prepare($subCatSQL);
+                $stmt->execute([$value['id']]);
+    
+                $subCategoryData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($subCategoryData as $subValue) {
+                    $state = ($subValue !== null);
+                    $subCategory = new Category($subValue['id'], $subValue['name'], $subValue['parentcategory'], $state);
+    
+                    $subCategoriesArray[$value['id']][] = $subCategory;
+                }
+            }
+    
+            return $subCategoriesArray;
+        } catch (PDOException $e) {
+            // Manejar el error según tus necesidades
+            // Por ejemplo: throw new Exception("Error fetching subcategories: " . $e->getMessage());
         }
-
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $categories = array();
-
-        foreach ($result as $row) {
-            $subcategories = $this->getCategoriesRecursively($db, $row['id']);
-            $row['subcategories'] = $subcategories;
-            $categories[] = $row;
-        }
-
-        return $categories;
     }
+       
 
     public static function getDefaultId(){
         try {
@@ -150,10 +158,10 @@ class Category extends Database {
         $_id = $result[0]["id"];
         $_name = $result[0]["name"];
         $_parentCategory = empty($result[0]["parentcategory"]) ? null : $result[0]["parentcategory"];
-        $_isActive = $result[0]["isActive"] = 1 ? true : false;
-
-        $category = new Category($_id, $_name, $_parentCategory, $_isActive);
+        $_isActive = $result[0]["isactive"] == 1 ? true : false;
         
+        $category = new Category($_id, $_name, $_parentCategory, $_isActive);
+
         return $category;
     }
 
@@ -185,6 +193,18 @@ class Category extends Database {
         $stmt->bindParam(1, $name, PDO::PARAM_STR);
         $stmt->bindParam(2, $id, PDO::PARAM_INT);
     
+        $stmt->execute();
+    }
+    
+    public function toggleStatus(){
+        $id = $this->getId();
+        $status = $this->getIsActive();
+    
+        $db = self::connect();
+        $sql = $status ? "UPDATE category SET isactive = false WHERE id = ?" : "UPDATE category SET isactive = true WHERE id = ?";
+        
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(1, $id, PDO::PARAM_INT);
         $stmt->execute();
     }    
 }

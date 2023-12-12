@@ -15,9 +15,8 @@ class CategoryController{
     }
 
     public function showEditCategories(){
-        $category = new Category("", "");
-        $categoriesArray = $category->getAllCategoriesAsoc();
-        
+        $categoriesArray = Category::getParentCategories(false);
+        $subCategoriesArray = Category::getSubCategories();
         include("./view/adminCategory/editCategoryMenu.php");
     }
 
@@ -54,8 +53,13 @@ class CategoryController{
         }
     }
 
-    public function updateCategoryStatus(){
-        
+    public function toggleCategory(){
+        if(isset($_GET["id"])){
+            $category = Category::getCategoryById($_GET["id"]);
+
+            $category->toggleStatus();
+            echo "<META HTTP-EQUIV='REFRESH' CONTENT='0; URL=index.php?controller=Category&action=showEditCategories&insertOK=true'>";
+        }
     }
 
     public function editCategoryPerformed(){

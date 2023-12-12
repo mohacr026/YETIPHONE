@@ -1,8 +1,10 @@
-window.onload=loadEvents;
+window.addEventListener("load", (event) => {
+    loadEvents();
+  });
 
 function loadEvents(){
     let components = document.getElementsByClassName("categoryComponent");
-
+     
     for (let i = 0; i < components.length; i++) {
         let component = components[i];
         

@@ -26,8 +26,10 @@
                 <?php
                     require_once("./view/components/categoryComponent.php");
                     foreach ($categoriesArray as $key => $value) {
-                        $category = new Category($value['id'], $value['name']);
-                        $component = new CategoryComponent($category, $value['subcategories']);
+                        $state = $value['isactive'] == null ? false : true;
+                        $category = new Category($value['id'], $value['name'], "", $state);
+                        $subCategories = $subCategoriesArray[strval($value['id'])];
+                        $component = new CategoryComponent($category, $subCategories);
                         $component->render();
                     }
                 ?>

@@ -11,6 +11,7 @@
     <script src="./src/js/userMenu.js"></script>
 </head>
 <body class="noscroll">
+    <div id="destination" data-destination="Category"></div>
     <?php
     if(!isset($_SESSION['role']) && $_SESSION['role'] != "admin"){
         echo "<META HTTP-EQUIV='REFRESH' CONTENT='0; URL=index.php?controller=User&action=showLoginForm'>";

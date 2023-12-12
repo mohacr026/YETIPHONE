@@ -9,6 +9,7 @@
     <script src="./src/js/userMenu.js"></script>
 </head>
 <body>
+    <div id="destination" data-destination="Product"></div>
     <?php
     include("./view/components/header.php");
     if(!isset($_SESSION['role']) && $_SESSION['role'] != "admin"){

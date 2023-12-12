@@ -20,7 +20,7 @@
         <div class="container">
             <div class="formContainer">
                 <h2>Edit Product</h2>
-                <form action="index.php?controller=Product&action=editProductPerformed" method="post" id="productForm" enctype="multipart/form-data">
+                <form action="index.php?controller=Product&action=updateProduct" method="post" id="productForm" enctype="multipart/form-data">
                     <div class="formColumn">
                         <div class="formRow">
                             <label for="id">Id:</label>

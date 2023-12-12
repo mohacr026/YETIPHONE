@@ -9,14 +9,16 @@ function searchBarEvents(){
     console.log(controller);
 
     $('#search').keyup(function(){
-        let query = $(this).val();
-
+        let content = $(this).val();
+        console.log(content);
+        
         $.ajax({
             url: 'index.php?controller='+controller+"&action=searchBarFilters",
             method: 'POST',
-            data: { query: query },
+            data: { query: content },
             success: function(data){
-                let divToWrite = "#" + controller.toLowerCase + "Container";
+                let divToWrite = "#" + controller.toLowerCase() + "Container";
+                console.log(data);
                 $(divToWrite).html(data);
             }
         });

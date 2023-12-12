@@ -139,7 +139,7 @@ class ProductController {
                 }
     
                 // Redirigir a la página de productos
-                header("Location: index.php?controller=Product&action=showFrontPageProducts");
+                header("Location: index.php?controller=Product&action=showEditProducts");
                 exit();
             } else {
                 echo "Producto no encontrado.";

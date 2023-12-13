@@ -24,6 +24,7 @@
         display: flex; /* Para utilizar flexbox */
         align-items: center; /* Centra verticalmente */
         position: relative;
+        cursor: pointer;
     }
 
     .categorias select {
@@ -79,13 +80,37 @@
         padding: 0 10px;
         border-radius: 50px;
     }
+
+    .categorias-dropdown {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .categorias-dropdown a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .categorias-dropdown a:hover {
+        background-color: #ddd;
+    }
+
+    .show {
+        display: block;
+    }
 </style>
 
 
 
 <header>
     <h1>YETiPhone</h1>
-        <button class="categorias">
+    <button id="categoriasBtn" class="categorias">
 
         <svg xmlns="http://www.w3.org/2000/svg" width="44" height="29" viewBox="0 0 44 29" fill="none">
             <path d="M0 2.5C0 1.11929 1.11929 0 2.5 0H41.5C42.8807 0 44 1.11929 44 2.5C44 3.88071 42.8807 5 41.5 5H2.5C1.11929 5 0 3.88071 0 2.5Z" fill="#F3FAFD"/>
@@ -94,6 +119,45 @@
         </svg>
         All Categories
         </button>
+
+        <div id="categoriasDropdown" class="categorias-dropdown">
+            <?php
+            $db = Database::connect();
+            $query = "SELECT id, name FROM category WHERE isActive = true";
+            $stmt = $db->prepare($query);
+            $stmt->execute();
+            $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($categories as $category):
+            ?>
+            
+                <a href="index.php?category=<?php echo $category['id']; ?>"><?php echo $category['name']; ?></a>
+            <?php endforeach; ?>
+        </div>
+
+        <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var categoriasBtn = document.getElementById("categoriasBtn");
+        var categoriasDropdown = document.getElementById("categoriasDropdown");
+
+        categoriasBtn.addEventListener("click", function () {
+            categoriasDropdown.classList.toggle("show");
+        });
+
+        // Cierra el desplegable si se hace clic fuera de él
+        window.addEventListener("click", function (event) {
+            if (!event.target.matches("#categoriasBtn")) {
+                var dropdowns = document.getElementsByClassName("categorias-dropdown");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains("show")) {
+                        openDropdown.classList.remove("show");
+                    }
+                }
+            }
+        });
+    });
+</script>
+
 
         <div class="buscador">
         <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

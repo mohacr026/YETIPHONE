@@ -9,13 +9,15 @@ class ProductComponent {
     public function render(){
         $productName = $this->__product->getName();
         $productId = $this->__product->getId();
-        echo "<div class='productComponent'>";
-        echo "  <div class='product'>";
-        echo "      $productName";
-        echo "      <a href='index.php?controller=Product&action=editproduct&id=$productId'>Edit</a>";
-        echo "<a href='index.php?controller=Product&action=showActDesc&id=$productId'>Disable</a>";
+        $productStatus = $this->__product->getIsActive();
 
-        echo "  </div>";
+        echo "<div class='productComponent'>";
+        echo "<div class='product'>";
+        echo "<p class='productName'>$productName</p>";
+        echo "<a href='index.php?controller=Product&action=editproduct&id=$productId'>Edit</a>";
+        $statusMessage = $productStatus ? "Disable" : "Enable";
+        echo "<a href='index.php?controller=Product&action=toggleProduct&id=$productId'>$statusMessage</a>";
+        echo "</div>";
         echo "</div>";
     }
     

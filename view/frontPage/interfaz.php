@@ -33,6 +33,11 @@
                 <div class="indicator"></div>
             </div>
         </div>
+
+        <!-- <div class="slider-destacados">
+
+        </div> -->
     </main>
+
 </body>
 </html>

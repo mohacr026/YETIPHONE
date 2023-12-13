@@ -146,18 +146,16 @@ class Product extends Database {
     
     public function updateProducts() {
         // Conectar a la base de datos
-        $database = new Database();
-        $connection = $database->connect();
+        $connection = self::connect();
     
         // Escapar y sanear los datos antes de usarlos en la consulta (para prevenir inyección SQL)
         $id = $connection->quote($this->getId());
         $name = $connection->quote($this->getName());
         $description = $connection->quote($this->getDescription());
-        $id_category = $connection->quote($this->getCategory());  // Modificado de getCategoryId() a getCategory()
+        $id_category = $connection->quote($this->getCategory());
         $price = $connection->quote($this->getPrice());
         $stock = $connection->quote($this->getStock());
-    
-        // Consulta SQL para actualizar el producto
+        
         $query = "UPDATE product SET 
                   name = $name,
                   description = $description,
@@ -201,7 +199,9 @@ class Product extends Database {
         foreach ($result as $key => $product) {
             $featured = $product["featured"] == null ? false : true;
             $active = $product["isactive"] == null ? false : true;
+            
             $newProduct = new Product($product["id"], $product["name"], $product["description"], $product["id_category"], $product["img"], $product["price"], $product["stock"], $product["featured"], $active);
+            
             $productsArray[] = $newProduct;
         }
     
@@ -279,5 +279,17 @@ class Product extends Database {
         }
         return $products;
     }
+
+    public function toggleStatus(){
+        $id = $this->getId();
+        $status = $this->getIsActive();
+    
+        $db = self::connect();
+        $sql = $status ? "UPDATE product SET isactive = false WHERE id = ?" : "UPDATE product SET isactive = true WHERE id = ?";
+        
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(1, $id, PDO::PARAM_INT);
+        $stmt->execute();
+    }    
 }
 ?>

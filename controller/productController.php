@@ -206,9 +206,6 @@ class ProductController {
             }
             $filters = ['elementToSearch' => $elementToSearch];
 
-
-            print_r($filters);
-
             Product::getAllProducts(false, $filters);
         }
     }

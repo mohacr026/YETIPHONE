@@ -218,6 +218,7 @@ class Product extends Database {
             $search = $filters["elementToSearch"];
             // Checks if element to search is empty or spaces
             if (preg_match('/^\s*$/', $search)) $search = "";
+            
             $sql = "
             SELECT
                 p.id AS product_id,
@@ -234,26 +235,46 @@ class Product extends Database {
             JOIN
                 category c ON p.id_category = c.id
             WHERE
-                (p.id LIKE %:id% OR p.name LIKE %:pname% OR c.name LIKE %:pname%)
+                ( LOWER(p.name) LIKE :pname OR LOWER(c.name) LIKE :pname)
             ";
+            // AÑADIR LOWER(p.id) LIKE :id OR dentro de los parentesis
             foreach ($filters as $key => $value) {
-                # code...
+                if ($key != "elementToSearch") {
+                    $sql .= " AND $key = :$key";
+                }
             }
+
+            $stmt = $db->prepare($sql);
+            $searchWithPercent = "%" . $search . "%";
+            //$stmt->bindParam(':id', $searchWithPercent, PDO::PARAM_STR);
+            $stmt->bindParam(':pname', $searchWithPercent, PDO::PARAM_STR);
+
+            foreach ($filters as $key => $value) {
+                if ($key != "elementToSearch") {
+                    $stmt->bindParam(":$key", $value, PDO::PARAM_STR);
+                }
+            }
+
+            $productsArray = [];
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            print_r($result);
         } else{
             //Action if doesnt come with filters
             if($onlyActives) $sql = "SELECT * FROM product WHERE isActive = true";
             else $sql = "SELECT * FROM product";
-        }
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        $productsArray = [];
-        foreach ($result as $key => $product) {
-            $featured = $product["featured"] == null ? false : true;
-            $active = $product["isactive"] == null ? false : true;
-            $newProduct = new Product($product["id"], $product["name"], $product["description"], $product["id_category"], $product["img"], $product["price"], $product["stock"], $product["featured"], $active);
-            $productsArray[] = $newProduct;
+            
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            $productsArray = [];
+            foreach ($result as $key => $product) {
+                $featured = $product["featured"] == null ? false : true;
+                $active = $product["isactive"] == null ? false : true;
+                $newProduct = new Product($product["id"], $product["name"], $product["description"], $product["id_category"], $product["img"], $product["price"], $product["stock"], $product["featured"], $active);
+                $productsArray[] = $newProduct;
+            }
         }
 
         return $productsArray;

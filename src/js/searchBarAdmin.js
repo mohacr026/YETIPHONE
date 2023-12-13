@@ -17,9 +17,8 @@ function searchBarEvents(){
 
     $('#search').keyup(function(){
         let content = $(this).val();
+        content = content.toLowerCase();
         console.log(content);
-        console.log(filtersArray);
-        
         $.ajax({
             url: 'index.php?controller='+controller+"&action=searchBarFilters",
             method: 'POST',

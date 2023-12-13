@@ -178,8 +178,6 @@ class ProductController {
         }
     }
     
-    
-    
     // Función para actualizar el estado del producto en la base de datos
     private function updateProductStatus($productId, $newStatus) {
         $database = new Database();
@@ -196,8 +194,24 @@ class ProductController {
         $connection->exec($query);
     }
 
+    public function searchBarFilters(){
+        if(isset($_POST["query"])) {
+            $elementToSearch = $_POST["query"];
 
+            if(isset($_POST["filters"])){
+                $POSTfilters = $_POST["filters"];
+                foreach ($POSTfilters as $key => $value) {
+                    $filters[$key] = $value;
+                }
+            }
+            $filters = ['elementToSearch' => $elementToSearch];
+
+
+            print_r($filters);
+
+            Product::getAllProducts(false, $filters);
+        }
+    }
+    
 }
-
-
 ?>

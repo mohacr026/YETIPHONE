@@ -71,5 +71,9 @@ class CategoryController{
             echo "No";
         }
     }
+
+    public function searchBarFilters(){
+        echo "hola";
+    }
 }
 ?>

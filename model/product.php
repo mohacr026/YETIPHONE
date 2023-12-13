@@ -211,9 +211,39 @@ class Product extends Database {
     }
     
 
-    public static function getAllProducts() {
+    public static function getAllProducts($onlyActives = false, $filters = null) {
         $db = Product::connect();
-        $sql = "SELECT * FROM product";
+        if($filters != null){
+            // Action if comes with filters
+            $search = $filters["elementToSearch"];
+            // Checks if element to search is empty or spaces
+            if (preg_match('/^\s*$/', $search)) $search = "";
+            $sql = "
+            SELECT
+                p.id AS product_id,
+                p.name AS product_name,
+                p.description AS product_description,
+                p.img AS product_img,
+                p.price AS product_price,
+                p.stock AS product_stock,
+                p.featured AS product_featured,
+                p.isActive AS product_isActive,
+                c.name AS category_name
+            FROM
+                product p
+            JOIN
+                category c ON p.id_category = c.id
+            WHERE
+                (p.id LIKE %:id% OR p.name LIKE %:pname% OR c.name LIKE %:pname%)
+            ";
+            foreach ($filters as $key => $value) {
+                # code...
+            }
+        } else{
+            //Action if doesnt come with filters
+            if($onlyActives) $sql = "SELECT * FROM product WHERE isActive = true";
+            else $sql = "SELECT * FROM product";
+        }
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

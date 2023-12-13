@@ -1,6 +1,13 @@
 window.addEventListener("load", (event) => {
     searchBarEvents();
+    filterEvents();
 });
+
+let filtersArray = {};
+
+function filterEvents() {
+
+}
 
 function searchBarEvents(){
     let destinationElement = document.getElementById("destination");
@@ -11,11 +18,15 @@ function searchBarEvents(){
     $('#search').keyup(function(){
         let content = $(this).val();
         console.log(content);
+        console.log(filtersArray);
         
         $.ajax({
             url: 'index.php?controller='+controller+"&action=searchBarFilters",
             method: 'POST',
-            data: { query: content },
+            data: { 
+                query: content,
+                filters: filtersArray
+            },
             success: function(data){
                 let divToWrite = "#" + controller.toLowerCase() + "Container";
                 console.log(data);

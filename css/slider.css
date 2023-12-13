@@ -56,3 +56,13 @@
 .indicator.active {
     background: rgba(33, 112, 147, 1); 
 }
+
+.slider-destacados {
+
+    display: block;
+    border-radius: 25px;
+    background: var(--LightBlue, #DDF1FA);
+    width: 1596px;
+    height: 450px;
+    flex-shrink: 0;
+}

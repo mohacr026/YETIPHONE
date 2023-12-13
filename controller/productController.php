@@ -212,7 +212,13 @@ class ProductController {
         }
     }
 
-
+    public function showProducts(){
+        if(isset($_GET['category'])){
+            $category = Category::getCategoryById($_GET['category']);
+            $products = Product::fetchProducts(['id_category' => $_GET['category']]);
+            include "./view/product/productByCategory.php";
+        }
+    }
 }
 
 

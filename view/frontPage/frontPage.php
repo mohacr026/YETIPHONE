@@ -18,7 +18,8 @@
     <main>
         <div class="slider-principal" ontouchstart="handleTouchStart(event)" ontouchmove="handleTouchMove(event)">
             <div class="slider">
-                <img src="./src/img/hola.png" alt="Slide 1">
+                <!-- Reemplazar la primera imagen con un video -->
+                <video controls src="./src/img/movil.mp4" alt="Video Slide 1"></video>
                 <img src="./src/img/hola.png" alt="Slide 2">
                 <img src="./src/img/hola.png" alt="Slide 3">
             </div>

@@ -1,3 +1,9 @@
+.slider-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .slider-principal {
     position: relative;
     width: 80%;
@@ -5,6 +11,7 @@
     margin: auto;
     overflow: hidden;
     height: 100%;
+    margin-bottom: 20px; /* Espacio entre los dos sliders */
 }
 
 .slider {
@@ -20,21 +27,13 @@
     object-fit: cover;
 }
 
+
 .slider-controls {
     position: absolute;
     bottom: 20px;
     right: 20px;
     display: flex;
     gap: 10px;
-}
-
-.slider-controls button {
-    border: none;
-    background: none;
-    color: white;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 16px;
 }
 
 .slider-indicators {
@@ -58,11 +57,22 @@
 }
 
 .slider-destacados {
-
     display: block;
     border-radius: 25px;
     background: var(--LightBlue, #DDF1FA);
-    width: 1596px;
+    width: 80%; /* Ajusta el ancho según tus necesidades */
+    max-width: 1596px;
     height: 450px;
+    margin: auto; /* Centra el slider-destacados en la página */
     flex-shrink: 0;
 }
+
+.slider-controls button {
+    border: none;
+    color: white;
+    background: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+

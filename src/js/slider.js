@@ -40,4 +40,4 @@ function changeSlide(n) {
 // Autoplay (opcional)
 setInterval(() => {
     changeSlide(1);
-}, 3000);
+}, 10000);

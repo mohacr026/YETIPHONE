@@ -14,7 +14,7 @@ CREATE TABLE category (
 
 -- Crear la tabla product
 CREATE TABLE product (
-  id SERIAL PRIMARY KEY,
+  id VARCHAR(10) PRIMARY KEY,
   name VARCHAR(100),
   description VARCHAR(2000),
   id_category INT REFERENCES category(id),

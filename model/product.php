@@ -224,6 +224,7 @@ class Product extends Database {
                 p.id AS product_id,
                 p.name AS product_name,
                 p.description AS product_description,
+                p.id_category AS product_id_category,
                 p.img AS product_img,
                 p.price AS product_price,
                 p.stock AS product_stock,
@@ -255,10 +256,16 @@ class Product extends Database {
                 }
             }
 
-            $productsArray = [];
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            print_r($result);
+            
+            $productsArray = [];
+            foreach ($result as $key => $product) {
+                $featured = $product["product_featured"] == null ? false : true;
+                $active = $product["product_isactive"] == null ? false : true;
+                $newProduct = new Product($product["product_id"], $product["product_name"], $product["product_description"], $product["product_id_category"], $product["product_img"], $product["product_price"], $product["product_stock"], $featured, $active);
+                $productsArray[] = $newProduct;
+            }
         } else{
             //Action if doesnt come with filters
             if($onlyActives) $sql = "SELECT * FROM product WHERE isActive = true";

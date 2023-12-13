@@ -1,6 +1,6 @@
 -- Crear la tabla admin
 CREATE TABLE admin (
-  username VARCHAR(50) PRIMARY KEY,
+  email VARCHAR(50) PRIMARY KEY,
   pass VARCHAR(255)
 );
 
@@ -21,8 +21,17 @@ CREATE TABLE product (
   img VARCHAR(150),
   price INT,
   stock INT,
+  storage INT,
+  memory INT,
   featured BOOLEAN,
   isActive BOOLEAN
+);
+
+-- Crear la tabla de colores
+CREATE TABLE colors (
+  id SERIAL PRIMARY KEY,
+  product INT REFERENCES product(id),
+  color_code VARCHAR(20)
 );
 
 -- Crear la tabla purchase_details
@@ -43,10 +52,10 @@ CREATE TABLE purchase (
 );
 
 -- Crear la tabla usuarios
-CREATE TABLE usuarios (
+CREATE TABLE users (
   email VARCHAR(255),
   phone_number VARCHAR(20),
-  name VARCHAR(255),
+  username VARCHAR(255),
   surname VARCHAR(255),
   direction VARCHAR(255),
   password VARCHAR(255),
@@ -54,4 +63,4 @@ CREATE TABLE usuarios (
 );
 
 -- Insert de cuenta admin
-INSERT INTO admin (username, pass) VALUES ('admin', MD5('admin'));
+INSERT INTO admin (email, pass) VALUES ('admin@gmail.com', MD5('admin'));

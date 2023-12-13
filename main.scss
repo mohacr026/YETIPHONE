@@ -1,6 +1,6 @@
 *{
     margin: 0px;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Inter', 'Source Sans Pro', sans-serif;
     scroll-behavior: smooth;
 }
 
@@ -437,10 +437,25 @@ main{
     height: 600px;
 }
 
-.purchaseContainer {
+
+.purchaseFilterContainer {
     display: flex;
-    flex-direction: row;
-    width: 70vw;
+    flex-direction: column;
+    width: 50%;
+    margin: 50px auto;
+    form {
+        @include flexCenterItems;
+        flex-direction: column;
+    }
+    label {
+        @include formLabel;
+    }
+    select, input {
+        @include formFields;
+    }
+    button {
+        @include formButtons;
+    }
     .purchaseTableDisplay {
         display: flex;
         flex-direction: column;
@@ -457,6 +472,11 @@ main{
             }
         }
     }
+}
+.purchaseContainer {
+    display: flex;
+    flex-direction: row;
+    width: 70vw;
     form {
         max-width: 500px;
         max-height: 600px;
@@ -467,46 +487,13 @@ main{
         flex-direction: column;
         border-radius: 20px;
         label {
-            display: block;
-		    font-size: 1.25em; 
-            color: $white; 
-            font-weight: 700; 
-            font-family: inherit;
-            width: 100%;
-            max-width: 460px;
-            margin: 0 auto;
+            @include formLabel;
         }
         span, select {
-            display: flex;
-            align-items: center;
-            padding: 5px;
-            padding-left: 10px;
-            margin: 4px auto; 
-            background-color: $inputBG; 
-            border: none;
-            border-radius: 10px; 
-            box-sizing: border-box;
-            width: 100%; 
-            max-width: 460px;
-            height: 40px;
-            font-size: 18px; 
-            color: #353538; 
-            font-weight: bold; 
+            @include formFields;
         }
         button, a {
-            @include flexCenterItems;
-            width: 100%;
-            max-width: 190px;
-            height: 55px;
-            margin: 10px auto;
-            border: none;
-            border-radius: 15px;
-            padding: 0;
-            font-size: 24px;
-            font-family: 'Inter', sans-serif;
-            font-weight: bold;
-            background-color: $inputBG;
-            cursor: pointer
+            @include formButtons;
         }
         div {
             @include flexCenterItems;

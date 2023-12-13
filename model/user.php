@@ -87,19 +87,19 @@ class User extends Database {
         // TODO: Falta comprobar si el user esta activo o no
 
         foreach ($result as $key => $adminArr) {
-            if($this->getEmail() == $adminArr['username'] && $exists == false) {
+            if($this->getEmail() == $adminArr['email'] && $exists == false) {
                 $exists = true;
 
                 if(md5($this->getPassword()) == $adminArr['pass']) {
                     $passOK = true;
                     $isAdmin = true;
-                    $_SESSION['email'] = $adminArr['username'];
+                    $_SESSION['email'] = $adminArr['email'];
                     $_SESSION['role'] = "admin";
                 }
             }
         }
 
-        $sql = "SELECT * FROM usuarios";
+        $sql = "SELECT * FROM users";
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -112,7 +112,7 @@ class User extends Database {
                     $passOK = true;
 
                     $_SESSION['email'] = $userArr['email'];
-                    $_SESSION['name'] = $userArr['name'];
+                    $_SESSION['name'] = $userArr['username'];
                     $_SESSION['role'] = "user";
                 }
             }

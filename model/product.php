@@ -199,7 +199,9 @@ class Product extends Database {
         foreach ($result as $key => $product) {
             $featured = $product["featured"] == null ? false : true;
             $active = $product["isactive"] == null ? false : true;
+            
             $newProduct = new Product($product["id"], $product["name"], $product["description"], $product["id_category"], $product["img"], $product["price"], $product["stock"], $product["featured"], $active);
+            
             $productsArray[] = $newProduct;
         }
     

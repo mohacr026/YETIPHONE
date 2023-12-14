@@ -66,6 +66,7 @@
     height: 450px;
     margin: auto; /* Centra el slider-destacados en la página */
     flex-shrink: 0;
+    margin-bottom: 20px; /* Espacio entre los dos sliders */
 }
 
 .slider-controls button {
@@ -76,4 +77,97 @@
     cursor: pointer;
     font-size: 16px;
 }
+
+.slider-categories {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos */
+    justify-content: center; /* Centra horizontalmente los elementos */
+    border-radius: 25px;
+    background: var(--LightBlue, #DDF1FA);
+    width: 80%;
+    max-width: 1596px;
+    height: 100px;
+    margin: auto;
+    flex-shrink: 0;
+    overflow: hidden; /* Agregado overflow para evitar desbordamiento de elementos flexibles */
+}
+
+.categories {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: var(--DarkBlue, #217093);
+    box-shadow: 0px 4px 10px 4px rgba(0, 0, 0, 0.25);
+    margin-right: 10px; /* Puedes ajustar el margen según tus necesidades para separar los elementos */
+}
+
+.categories:last-child {
+    margin-right: 0; /* Elimina el margen derecho para el último elemento */
+}
+
+.categories-controls button {
+    border: none;
+    color: white;
+    background: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+        /* Estilos para las categorías */
+        .slider-categories {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden; /* Para ocultar el desbordamiento del contenido que se desplaza */
+        }
+
+        .categories-container {
+            display: flex;
+            animation: slideAnimation 20s linear infinite; /* Ajusta la velocidad y el tiempo según tus necesidades */
+        }
+
+        @keyframes slideAnimation {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .categories {
+            width: 80px;
+            height: 80px;
+            flex-shrink: 0;
+            border-radius: 20px;
+            background: var(--DarkBlue, #217093);
+            box-shadow: 0px 4px 10px 4px rgba(0, 0, 0, 0.25);
+            margin-right: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .categories:hover {
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+
+        .categories:hover p {
+            font-size: 14px;
+        }
+
+        .categories p {
+            margin: 0;
+            color: white;
+            font-weight: bold;
+            transition: font-size 0.3s ease-in-out;
+            text-align: center;
+            line-height: 80px;
+        }
 

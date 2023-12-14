@@ -41,3 +41,10 @@ function changeSlide(n) {
 setInterval(() => {
     changeSlide(1);
 }, 10000);
+
+$(document).ready(function(){
+
+});
+setInterval(() => {
+    changeSlide(1);
+}, 10000);

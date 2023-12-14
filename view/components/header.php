@@ -98,7 +98,7 @@
     }
 
     .categorias-dropdown a:hover {
-        background-color: #ddd;
+        background-color: rgba(33, 112, 147, 1); 
     }
 
     .categoryshow {
@@ -107,6 +107,8 @@
         background: rgba(78, 184, 221, 1); 
         width: 80%;
         border-radius: 0  0  0.5em 0.5em;
+        box-shadow: 0px -5px 10px rgba(1, 0, 0, 0);
+
     }
 
     .buscador input::placeholder {

@@ -39,7 +39,32 @@ class ProductController {
     public function showEditProducts() {
         // Obtener la lista de productos desde la base de datos
         $productsArray = Product::getAllProducts();
-    
+        $categoriesArray = Category::getAllCategories();
+        
+        $productsJSON = [];
+        foreach ($productsArray as $product) {
+            $productsJSON[] = array(
+                "id" => strtolower($product->getId()),
+                "name" => strtolower($product->getName()),
+                "description" => $product->getDescription(),
+                "id_category" => $product->getCategory(),
+                "image" => $product->getImage(),
+                "price" => $product->getPrice(),
+                "stock" => $product->getStock(),
+                "featured" => $product->getFeatured(),
+                "isActive" => $product->getIsActive()
+            );
+        }
+        $categoriesJSON = [];
+        foreach ($categoriesArray as $category) {
+            $categoriesJSON[] = array(
+                "id" => $category->getId(),
+                "name" => strtolower($category->getName())
+            );
+        }
+
+        $productsJsonResult = json_encode($productsJSON);
+        $categoriesJsonResult = json_encode($categoriesJSON);
         // Incluir la vista de la lista de productos
         include("./view/adminProduct/editProductMenu.php");
     }
@@ -208,20 +233,7 @@ class ProductController {
 
             $productsArray = Product::getAllProducts(false, $filters);
             
-            $productsJSON = [];
-            foreach ($productsArray as $product) {
-                $productsJSON[] = array(
-                    "id" => $product->getId(),
-                    "name" => $product->getName(),
-                    "description" => $product->getDescription(),
-                    "id_category" => $product->getCategory(),
-                    "image" => $product->getImage(),
-                    "price" => $product->getPrice(),
-                    "stock" => $product->getStock(),
-                    "featured" => $product->getFeatured(),
-                    "isActive" => $product->getIsActive()
-                );
-            }
+            
 
             header('Content-Type: application/json');
             $jsonResult = json_encode($productsJSON);

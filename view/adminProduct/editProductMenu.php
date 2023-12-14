@@ -7,8 +7,13 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/aside.css">
     <script src="./src/js/userMenu.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./src/js/searchBarAdmin.js"></script>
+    <script id="productJSON" type="application/json"> <?php echo "$productsJsonResult"; ?> </script>
+    <script id="categoryJSON" type="application/json"> <?php echo "$categoriesJsonResult"; ?> </script>
 </head>
 <body>
+    
     <div id="destination" data-destination="Product"></div>
     <?php
     include("./view/components/header.php");

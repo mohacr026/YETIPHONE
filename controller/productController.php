@@ -219,5 +219,21 @@ class ProductController {
         $connection->exec($query);
     }
     
+    public function toggleProduct(){
+        if(isset($_GET["id"])){
+            $product = Product::getProductById($_GET["id"]);
+            
+            $product[0]->toggleStatus();
+            echo "<META HTTP-EQUIV='REFRESH' CONTENT='0; URL=index.php?controller=Product&action=showEditProducts&insertOK=true'>";
+        }
+    }
+
+    public function showProducts(){
+        if(isset($_GET['category'])){
+            $category = Category::getCategoryById($_GET['category']);
+            $products = Product::fetchProducts(['id_category' => $_GET['category']]);
+            include "./view/product/productByCategory.php";
+        }
+    }
 }
 ?>

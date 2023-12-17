@@ -31,3 +31,18 @@ a {
 a:hover {
     background-color: #ddd;
 }
+
+#search{
+    padding: 0.5em;
+    border-radius: 4px;
+    border: solid 2px #217093;
+    font-size: 1em;
+    color: #353538;
+    transition: box-shadow .2s linear, border-color .25s ease-out;
+}
+
+#search:focus {
+    outline: none;
+    box-shadow: 0px 2px 10px rgba(0,0,0,.1);
+    border: solid 2px #4eb8dd;
+}

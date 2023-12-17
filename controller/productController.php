@@ -219,6 +219,8 @@ class ProductController {
         $connection->exec($query);
     }
 
+    // Ahora esto no sirve para  nada, pero lo usaré para otra cosa
+    /*
     public function searchBarFilters(){
         if(isset($_POST["query"])) {
             $elementToSearch = $_POST["query"];
@@ -240,6 +242,7 @@ class ProductController {
             print($jsonResult);
         }
     }
+    */
     
 }
 ?>

@@ -212,6 +212,7 @@ class Product extends Database {
     
 
     public static function getAllProducts($onlyActives = false, $filters = null) {
+        // Ahora lo de los filtros no tiene uso, pero lo usaré en otra cosa
         $db = Product::connect();
         if($filters != null){
             // Action if comes with filters

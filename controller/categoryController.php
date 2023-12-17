@@ -17,6 +17,28 @@ class CategoryController{
     public function showEditCategories(){
         $categoriesArray = Category::getParentCategories(false);
         $subCategoriesArray = Category::getSubCategories();
+
+        $categoriesJSON = [];
+        foreach ($categoriesArray as $key => $category) {
+            $state = $category['isactive'] == null ? false : true;
+            $subCategories = [];
+            foreach ($subCategoriesArray[$category["id"]] as $subcategory) {
+                $subCategories[] = array(
+                    "id" => $subcategory->getId(),
+                    "name" => $subcategory->getName(),
+                    "isActive" => $subcategory->getIsActive()
+                );
+            }
+            $categoriesJSON[] = array(
+                "id" => $category["id"],
+                "name" => $category['name'],
+                "subcategories" => $subCategories,
+                "isActive" => $state
+            );
+
+        }
+        $categoriesJsonResult = json_encode($categoriesJSON);
+
         include("./view/adminCategory/editCategoryMenu.php");
     }
 

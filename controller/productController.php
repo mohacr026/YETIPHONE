@@ -44,8 +44,8 @@ class ProductController {
         $productsJSON = [];
         foreach ($productsArray as $product) {
             $productsJSON[] = array(
-                "id" => strtolower($product->getId()),
-                "name" => strtolower($product->getName()),
+                "id" => $product->getId(),
+                "name" => $product->getName(),
                 "description" => $product->getDescription(),
                 "id_category" => $product->getCategory(),
                 "image" => $product->getImage(),
@@ -59,7 +59,7 @@ class ProductController {
         foreach ($categoriesArray as $category) {
             $categoriesJSON[] = array(
                 "id" => $category->getId(),
-                "name" => strtolower($category->getName())
+                "name" => $category->getName()
             );
         }
 

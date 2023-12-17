@@ -218,31 +218,6 @@ class ProductController {
         // Ejecutar la consulta
         $connection->exec($query);
     }
-
-    // Ahora esto no sirve para  nada, pero lo usaré para otra cosa
-    /*
-    public function searchBarFilters(){
-        if(isset($_POST["query"])) {
-            $elementToSearch = $_POST["query"];
-
-            if(isset($_POST["filters"])){
-                $POSTfilters = $_POST["filters"];
-                foreach ($POSTfilters as $key => $value) {
-                    $filters[$key] = $value;
-                }
-            }
-            $filters = ['elementToSearch' => $elementToSearch];
-
-            $productsArray = Product::getAllProducts(false, $filters);
-            
-            
-
-            header('Content-Type: application/json');
-            $jsonResult = json_encode($productsJSON);
-            print($jsonResult);
-        }
-    }
-    */
     
 }
 ?>

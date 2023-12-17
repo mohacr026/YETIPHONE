@@ -100,6 +100,8 @@ function searchBarEvents(){
                 divToWrite.appendChild(product.render());
             });
         } else if(controller == "Category"){
+            // TODO:
+            // Estaria bien que también aceptase los nombres de las subcategorías
             let categoriesMatched = categoriesArray.filter(category =>{
                 const regex = new RegExp(content, "gi");
                 const categoryName = category.name && category.name.match(regex);
@@ -117,10 +119,12 @@ function searchBarEvents(){
                 empty.appendChild(message);
                 divToWrite.appendChild(empty);
             }
-
+            console.log(categoriesMatched);
             categoriesMatched.forEach(category => {
                 divToWrite.appendChild(category.render());
             });
+        } else {
+            console.log("Controller not suported");
         }
                 
     });

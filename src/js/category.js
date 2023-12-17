@@ -26,6 +26,10 @@ export class Category{
         toggleLink.innerText = this.isActive ? "Disable" : "Enable";
         toggleLink.href = "index.php?controller=Category&action=showActDesc&id=" + this.id;
 
+        categoryDiv.appendChild(categoryName);
+        categoryDiv.appendChild(editLink);
+        categoryDiv.appendChild(toggleLink);
+
         // If category has subcategories, append subcategories
         if(this.subcategories.length != 0){
             let subcategoriesDiv = document.createElement("div");
@@ -54,13 +58,9 @@ export class Category{
 
                 subcategoriesDiv.appendChild(subcategoryDiv);
             });
-
+            categoryDiv.appendChild(subcategoriesDiv);
         }
-
-        categoryDiv.appendChild(categoryName);
-        categoryDiv.appendChild(editLink);
-        categoryDiv.appendChild(toggleLink);
-        if(subcategoriesDiv) categoryDiv.appendChild(subcategoriesDiv);
+        
         categoryComponent.appendChild(categoryDiv);
 
         return categoryComponent;

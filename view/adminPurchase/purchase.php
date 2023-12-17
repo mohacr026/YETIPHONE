@@ -19,7 +19,7 @@
     ?>
     <main>
         <?php include("./view/components/adminAsideSearch.html"); ?>
-        <div class="purchaseContainer">
+        <div class="purchaseFilterContainer">
             <form method="POST" action="index.php?controller=Purchase&action=showPurchases">
                 <label for="purchase_id">Purchase ID:</label>
                 <input type="text" name="purchase_id" id="purchase_id"> <br>

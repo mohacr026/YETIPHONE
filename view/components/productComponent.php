@@ -12,12 +12,12 @@ class ProductComponent {
         $productStatus = $this->__product->getIsActive();
 
         echo "<div class='productComponent'>";
-        echo "  <div class='product'>";
-        echo "      <p class='productName'>$productName</p>";
-        echo "      <a href='index.php?controller=Product&action=editproduct&id=$productId'>Edit</a>";
+        echo "<div class='product'>";
+        echo "<p class='productName'>$productName</p>";
+        echo "<a href='index.php?controller=Product&action=editproduct&id=$productId'>Edit</a>";
         $statusMessage = $productStatus ? "Disable" : "Enable";
-        echo "      <a href='index.php?controller=Product&action=showActDesc&id=$productId'>$statusMessage</a>";
-        echo "  </div>";
+        echo "<a href='index.php?controller=Product&action=toggleProduct&id=$productId'>$statusMessage</a>";
+        echo "</div>";
         echo "</div>";
     }
     

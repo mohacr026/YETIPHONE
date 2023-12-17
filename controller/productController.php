@@ -106,44 +106,51 @@ class ProductController {
     }
 
     public function updateProduct() {
-        if (!empty($_POST)) {
-            $id = $_POST['id'];
-            $name = $_POST['name'];
-            $description = $_POST['description'];
-            $price = $_POST['price'];
-            $id_category = $_POST['category'];
-            $stock = $_POST['stock'];
-
-            // Obtener el producto existente de la base de datos
-            $existingProduct = Product::getProductById($id);
-
-            if ($existingProduct) {
-                // Crear una instancia de la clase Product con los nuevos datos
-                $updatedProduct = new Product(
-                    $id,
-                    $name,
-                    $description,
-                    $id_category,
-                    $existingProduct->getImage(), // Mantener la imagen existente
-                    $price,
-                    $stock,
-                    $existingProduct->getIsActive(),
-                    $existingProduct->getFeatured()
-                );
-
-                // Manejar la actualización de la imagen (si se proporciona una nueva)
-                $this->uploadImage($updatedProduct);
-
-                // Actualizar el producto en la base de datos
-                $updatedProduct->updateProducts();
-                echo "Producto actualizado correctamente.";
+        try {
+            if (!empty($_POST)) {
+                // Validar datos (agrega validaciones según sea necesario)
+    
+                $id = $_POST['id'];
+                $name = $_POST['name'];
+                $description = $_POST['description'];
+                $price = $_POST['price'];
+                $id_category = $_POST['category'];
+                $stock = $_POST['stock'];
+    
+                // Obtener el producto existente de la base de datos
+                $existingProduct = Product::getProductById($id);
+                $existingProduct = $existingProduct[0];
+                if ($existingProduct) {
+                    // Crear una instancia de la clase Product con los nuevos datos
+                    $updatedProduct = new Product(
+                        $id,
+                        $name,
+                        $description,
+                        $id_category,
+                        // $existingProduct->getImage(),
+                        $price,
+                        $stock,
+                        $existingProduct->getIsActive(),
+                        $existingProduct->getFeatured()
+                    );
+    
+                    // Manejar la actualización de la imagen (si se proporciona una nueva)
+                    // $this->uploadImage($updatedProduct);
+    
+                    // Actualizar el producto en la base de datos
+                    $updatedProduct->updateProducts();
+                    echo "Producto actualizado correctamente.";
+                } else {
+                    echo "Producto no encontrado.";
+                }
             } else {
-                echo "Producto no encontrado.";
+                echo "El formulario no se envió correctamente.";
             }
-        } else {
-            echo "El formulario no se envió correctamente.";
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
         }
     }
+    
 
     public function showActDesc() {
         // Verificar si se proporciona un ID de producto
@@ -227,7 +234,7 @@ class ProductController {
             echo "<META HTTP-EQUIV='REFRESH' CONTENT='0; URL=index.php?controller=Product&action=showEditProducts&insertOK=true'>";
         }
     }
-
+  
     public function showProducts(){
         if(isset($_GET['category'])){
             $category = Category::getCategoryById($_GET['category']);

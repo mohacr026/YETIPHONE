@@ -13,11 +13,11 @@
     include("./view/components/header.php");
     ?>
     <main>
-        <div><?php $category->getName() ?></div>
+        <div><?php echo $category['name'] ?></div>
         <div class="productsShopContainer">
-            <?php foreach($products as $product)
-                include "./view/components/productTargetComponent.php"; 
-            endforeach; ?>
+            <?php foreach($products as $product): ?>
+                <?= include "./view/components/productTargetComponent.php"; ?>
+            <?php endforeach; ?>
         </div>
     </main>
 </body>

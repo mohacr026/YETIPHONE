@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/aside.css">
     <link rel="shortcut icon" href="./src/img/snowflake.png" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./src/js/userMenu.js"></script>
+    <script src="./src/js/productIdUpdater.js"></script>
 </head>
 <body>
     <?php
@@ -22,11 +24,15 @@
         <div class="container">
             <div class="formContainer">
                 <h2>Add a new product</h2>
+                <div class="formRow">
+                    <label for="product_id">Product ID</label>
+                    <input type="text" name="product_id" id="product_id" value="CC000-PP" readonly form="productForm">
+                </div>
                 <form action="index.php?controller=Product&action=registerProduct" method="post" id="productForm">
                     <div class="formColumn">
                         <div class="formRow">
                             <label for="name">Product Name:</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="name" required min="2">
                         </div>
     
                         <div class="formRow">

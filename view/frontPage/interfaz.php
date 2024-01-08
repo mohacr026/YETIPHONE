@@ -36,7 +36,22 @@
             </div>
 
             <div class="slider-destacados">
-                <!-- Contenido del slider-destacados -->
+
+            </div>
+
+
+            <div class="slider-categories">
+                <div class="categories-container">
+                    <?php foreach ($categories as $category): ?>
+                        <div class="categories">
+                            <p><?php echo $category['name']; ?></p>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <div class="slider-controls">
+                <button class="prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                <button class="next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+            </div>
             </div>
         </div>
     </main>

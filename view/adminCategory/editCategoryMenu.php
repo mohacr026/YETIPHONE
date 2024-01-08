@@ -9,8 +9,13 @@
     <link rel="shortcut icon" href="./src/img/snowflake.png" type="image/x-icon">
     <script src="./src/js/dropdownCategories.js"></script>
     <script src="./src/js/userMenu.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="module" src="./src/js/searchBarAdmin.js"></script>
+    <script id="categoryJSON" type="application/json"> <?php echo "$categoriesJsonResult"; ?> </script>
 </head>
 <body class="noscroll">
+    
+    <div id="destination" data-destination="Category"></div>
     <?php
     if(!isset($_SESSION['role']) && $_SESSION['role'] != "admin"){
         echo "<META HTTP-EQUIV='REFRESH' CONTENT='0; URL=index.php?controller=User&action=showLoginForm'>";

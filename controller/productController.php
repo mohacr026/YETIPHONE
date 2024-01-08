@@ -39,7 +39,32 @@ class ProductController {
     public function showEditProducts() {
         // Obtener la lista de productos desde la base de datos
         $productsArray = Product::getAllProducts();
-    
+        $categoriesArray = Category::getAllCategories();
+        
+        $productsJSON = [];
+        foreach ($productsArray as $product) {
+            $productsJSON[] = array(
+                "id" => $product->getId(),
+                "name" => $product->getName(),
+                "description" => $product->getDescription(),
+                "id_category" => $product->getCategory(),
+                "image" => $product->getImage(),
+                "price" => $product->getPrice(),
+                "stock" => $product->getStock(),
+                "featured" => $product->getFeatured(),
+                "isActive" => $product->getIsActive()
+            );
+        }
+        $categoriesJSON = [];
+        foreach ($categoriesArray as $category) {
+            $categoriesJSON[] = array(
+                "id" => $category->getId(),
+                "name" => $category->getName()
+            );
+        }
+
+        $productsJsonResult = json_encode($productsJSON);
+        $categoriesJsonResult = json_encode($categoriesJSON);
         // Incluir la vista de la lista de productos
         include("./view/adminProduct/editProductMenu.php");
     }
@@ -185,8 +210,6 @@ class ProductController {
         }
     }
     
-    
-    
     // Función para actualizar el estado del producto en la base de datos
     private function updateProductStatus($productId, $newStatus) {
         $database = new Database();
@@ -202,7 +225,7 @@ class ProductController {
         // Ejecutar la consulta
         $connection->exec($query);
     }
-
+    
     public function toggleProduct(){
         if(isset($_GET["id"])){
             $product = Product::getProductById($_GET["id"]);
@@ -211,7 +234,7 @@ class ProductController {
             echo "<META HTTP-EQUIV='REFRESH' CONTENT='0; URL=index.php?controller=Product&action=showEditProducts&insertOK=true'>";
         }
     }
-
+  
     public function showProducts(){
         if(isset($_GET['category'])){
             $category = Category::getCategoryById($_GET['category']);
@@ -220,6 +243,4 @@ class ProductController {
         }
     }
 }
-
-
 ?>

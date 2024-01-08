@@ -209,19 +209,78 @@ class Product extends Database {
     }
     
 
-    public static function getAllProducts() {
+    public static function getAllProducts($onlyActives = false, $filters = null) {
+        // Ahora lo de los filtros no tiene uso, pero lo usaré en otra cosa
         $db = Product::connect();
-        $sql = "SELECT * FROM product";
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        $productsArray = [];
-        foreach ($result as $key => $product) {
-            $featured = $product["featured"] == null ? false : true;
-            $active = $product["isactive"] == null ? false : true;
-            $newProduct = new Product($product["id"], $product["name"], $product["description"], $product["id_category"], $product["img"], $product["price"], $product["stock"], $product["featured"], $active);
-            $productsArray[] = $newProduct;
+        if($filters != null){
+            // Action if comes with filters
+            $search = $filters["elementToSearch"];
+            // Checks if element to search is empty or spaces
+            if (preg_match('/^\s*$/', $search)) $search = "";
+            
+            $sql = "
+            SELECT
+                p.id AS product_id,
+                p.name AS product_name,
+                p.description AS product_description,
+                p.id_category AS product_id_category,
+                p.img AS product_img,
+                p.price AS product_price,
+                p.stock AS product_stock,
+                p.featured AS product_featured,
+                p.isActive AS product_isActive,
+                c.name AS category_name
+            FROM
+                product p
+            JOIN
+                category c ON p.id_category = c.id
+            WHERE
+                ( LOWER(p.name) LIKE :pname OR LOWER(c.name) LIKE :pname)
+            ";
+            // AÑADIR LOWER(p.id) LIKE :id OR dentro de los parentesis
+            foreach ($filters as $key => $value) {
+                if ($key != "elementToSearch") {
+                    $sql .= " AND $key = :$key";
+                }
+            }
+
+            $stmt = $db->prepare($sql);
+            $searchWithPercent = "%" . $search . "%";
+            //$stmt->bindParam(':id', $searchWithPercent, PDO::PARAM_STR);
+            $stmt->bindParam(':pname', $searchWithPercent, PDO::PARAM_STR);
+
+            foreach ($filters as $key => $value) {
+                if ($key != "elementToSearch") {
+                    $stmt->bindParam(":$key", $value, PDO::PARAM_STR);
+                }
+            }
+
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            $productsArray = [];
+            foreach ($result as $key => $product) {
+                $featured = $product["product_featured"] == null ? false : true;
+                $active = $product["product_isactive"] == null ? false : true;
+                $newProduct = new Product($product["product_id"], $product["product_name"], $product["product_description"], $product["product_id_category"], $product["product_img"], $product["product_price"], $product["product_stock"], $featured, $active);
+                $productsArray[] = $newProduct;
+            }
+        } else{
+            //Action if doesnt come with filters
+            if($onlyActives) $sql = "SELECT * FROM product WHERE isActive = true";
+            else $sql = "SELECT * FROM product";
+            
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            $productsArray = [];
+            foreach ($result as $key => $product) {
+                $featured = $product["featured"] == null ? false : true;
+                $active = $product["isactive"] == null ? false : true;
+                $newProduct = new Product($product["id"], $product["name"], $product["description"], $product["id_category"], $product["img"], $product["price"], $product["stock"], $product["featured"], $active);
+                $productsArray[] = $newProduct;
+            }
         }
 
         return $productsArray;

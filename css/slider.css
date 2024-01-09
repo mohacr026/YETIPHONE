@@ -12,7 +12,7 @@
     margin: auto;
     overflow: hidden;
     height: 100%;
-    margin-bottom: 20px; /* Espacio entre los dos sliders */
+    margin-bottom: 50px; /* Espacio entre los dos sliders */
 }
 
 .slider {
@@ -60,12 +60,13 @@
 }
 
 .slider-destacados {
+    margin-top: 20px;
     display: block;
     border-radius: 25px;
-    background: var(--LightBlue, #DDF1FA);
+    background: var(--LightBlue, #bed2db);
     width: 80%; /* Ajusta el ancho según tus necesidades */
     max-width: 1596px;
-    height: 450px;
+    height: auto;
     margin: auto; /* Centra el slider-destacados en la página */
     flex-shrink: 0;
     margin-bottom: 20px; /* Espacio entre los dos sliders */

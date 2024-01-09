@@ -242,5 +242,19 @@ class ProductController {
             include "./view/product/productByCategory.php";
         }
     }
+
+    public function showProductPage(){
+        if(isset($_GET['product'])){
+            $product = unserialize(urldecode($_GET['product']));
+            $categoria = Category::getCategoryById($product->getCategory());
+            include("./view/product/productPage.php");
+        } else {
+            if(isset($_GET['category'])){
+                echo"<META HTTP-EQUIV='REFRESH' CONTENT='0;URL=index.php?controller=Product&action=showProducts&category='".$_GET['category']."'";
+            } else {
+                echo"<META HTTP-EQUIV='REFRESH' CONTENT='0;URL=index.php?controller=Product&action=showInterfaz";
+            }
+        }
+    }
 }
 ?>

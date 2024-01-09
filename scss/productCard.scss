@@ -1,0 +1,67 @@
+@import 'colors.scss';
+@import 'mixins.scss';
+
+.productCardContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    max-width: 300px;
+    max-height: 350px;
+    width: 19.5em;
+    height: 20em;
+    background-color: $medBlue;
+    border-radius: 20px;
+    padding: 1em;
+    box-sizing: border-box;
+    > img {
+        max-width: 260px;
+        max-height: 240px;
+        width: 17em;
+        height: 15em;
+        border-radius: 20px;
+    }
+    span, a {
+        @include boldText;
+        color: $white;
+    }
+    a {
+        position: absolute;
+        @include flexCenterItems;
+        @include boldText;
+        background-color: $darkBlue;
+        max-width: 200px;
+        max-height: 40px;
+        width: 12.5em;
+        height: 2.5em;
+        border-radius: 10px;
+        left: 50%;
+        top: 60%;
+        transform: translate(-50%, -50%);
+        visibility: hidden;
+        text-decoration: none;
+        font-style: normal;
+    }
+    > div {
+        @include flexCenterBetweenItems;
+        margin-top: 0.2em;
+        div {
+            @include flexCenterBetweenItems;
+            flex-direction: column;
+            span {
+                width: 100%;
+                font-size: large;
+                text-align: left;
+            }
+        }
+        img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}
+.productCardContainer:hover {
+    > a {
+        visibility: visible;
+    }
+}

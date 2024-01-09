@@ -10,14 +10,14 @@
 </head>
 <body>
     <?php
-    include("./view/components/header.php");
+        include("./view/components/header.php");
     ?>
-    <main>
-        <div><?php $category->getName() ?></div>
+    <main class="productCategoryContainer">
+        <div class="categoryTitle"><?php echo $categoria->getName(); ?></div>
         <div class="productsShopContainer">
-            <?php foreach($products as $product)
-                include "./view/components/productTargetComponent.php"; 
-            endforeach; ?>
+            <?php foreach($products as $product): ?>
+                <?php include "./view/components/productCardComponent.php"; ?>
+            <?php endforeach; ?>
         </div>
     </main>
 </body>

@@ -207,6 +207,48 @@ class Category extends Database {
         $stmt->bindParam(1, $id, PDO::PARAM_INT);
         $stmt->execute();
     }    
+    
+    public static function fetchCategory(array $filters = []){
+        //Connect into the database
+        $db = self::connect();
+        
+        //SQL basic query, we'll modify it later if needed
+        $sql = "SELECT * FROM category";
+
+        //This code creates a dynamic SQL query based on the filters given by the parameters
+        if(!empty($filters)){
+            $sql .= " WHERE ";
+            // $i is started in 1 because the first clause will be always WHERE not AND
+            $i = 1;
+            foreach($filters as $field => $value){
+                $sql .= "$field = ? ";
+                if($i < count($filters)){
+                    $sql .= " AND ";
+                }
+                $i++;
+            }
+
+        }
+
+        //Here the SQL query prepares and bind the given parameters on its values to execute the filters
+        $statement = $db->prepare($sql);
+
+        if(!empty($filters)){
+            $i = 1;
+            foreach($filters as $value){
+                $statement->bindValue($i++, $value);
+            }
+        }
+
+        $statement->execute();
+
+        // Adds into the purchases array every purchase the SQL returned
+        $categories = [];
+        while($row = $statement->fetch(PDO::FETCH_ASSOC)){
+            $categories[] = new Category($row['id'], $row['name'], $row['parentcategory'], $row['isactive']);
+        }
+        return $categories;
+    }
 }
 
 ?>

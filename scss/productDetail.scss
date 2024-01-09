@@ -1,3 +1,5 @@
+@import 'colors.scss';
+@import 'mixins.scss';
 .productDetailDisplay {
     width: 575px;
     height: 75px;
@@ -8,7 +10,7 @@
     span, img {
         height: 45px;
         border-radius: 25px;
-        @include flexCenterItems;
+        @include flexCenterAroundItems;
         background-color: $medBlue;
         color: $white;
         font-weight: bold;

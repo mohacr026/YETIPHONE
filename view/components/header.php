@@ -138,10 +138,9 @@
             $stmt = $db->prepare($query);
             $stmt->execute();
             $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($categories as $category):
-            ?>
+            foreach ($categories as $category): ?>
             
-                <a href="index.php?category=<?php echo $category['id']; ?>"><?php echo $category['name']; ?></a>
+                <a href="index.php?controller=Product&action=showProducts&category=<?= $category['id']; ?>"><?= $category['name']; ?></a>
             <?php endforeach; ?>
         </div>
 

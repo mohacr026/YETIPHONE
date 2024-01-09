@@ -9,6 +9,7 @@
 @import 'scss/colors.scss';
 @import 'scss/mixins.scss';
 @import 'scss/productDetail.scss';
+@import 'scss/productCard.scss';
 
 body{
     background-color: $inputBG;
@@ -501,5 +502,32 @@ main{
             margin: 40px auto;
             width: 100%;
         }
+    }
+}
+.productCategoryContainer {
+    @include flexCenterItems;
+    flex-direction: column;
+    .productsShopContainer {
+        max-width: 1200px;
+        width: 100%;
+        margin-left: 10em;
+        margin-right: 10em;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1em;
+    }
+    .categoryTitle {
+        margin: 0.5em auto;
+        @include flexCenterItems;
+        background-color: $darkBlue;
+        max-width: 200px;
+        max-height: 45px;
+        width: 7em;
+        height: 1.5em;
+        border-radius: 20px;
+
+        @include boldText;
+        font-size: 24px;
+        color: $white;
     }
 }

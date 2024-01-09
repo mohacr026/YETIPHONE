@@ -242,5 +242,12 @@ class ProductController {
             include "./view/product/productByCategory.php";
         }
     }
+
+    public function searchProducts(){
+        if(isset($_POST['toSearch'])){
+            $products = Product::searchProducts($_POST['toSearch']);
+            
+        }
+    }
 }
 ?>

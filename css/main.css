@@ -463,9 +463,11 @@ main .container h1 {
   font-family: "Inter", "sans-serif";
 }
 .purchaseFilterContainer select, .purchaseFilterContainer input {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: left;
   margin: 0;
-  padding: 0.875em 1em 0 0.875em;
+  padding: 0.5em 1em 0 0.5em;
   padding-bottom: 0.7em;
   background-color: #e2f6ff;
   border: solid 2px #217093;
@@ -554,9 +556,11 @@ main .container h1 {
   font-family: "Inter", "sans-serif";
 }
 .purchaseContainer form span, .purchaseContainer form select {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: left;
   margin: 0;
-  padding: 0.875em 1em 0 0.875em;
+  padding: 0.5em 1em 0 0.5em;
   padding-bottom: 0.7em;
   background-color: #e2f6ff;
   border: solid 2px #217093;
@@ -602,4 +606,13 @@ main .container h1 {
   flex-direction: column;
   margin: 40px auto;
   width: 100%;
+}
+
+#resultDropdown {
+  position: absolute;
+  left: 50vw;
+  top: 50vh;
+  padding: 10px;
+  background-color: red;
+  border: 1px solid;
 }/*# sourceMappingURL=main.css.map */

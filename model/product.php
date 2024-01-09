@@ -350,5 +350,22 @@ class Product extends Database {
         $stmt->bindParam(1, $id, PDO::PARAM_INT);
         $stmt->execute();
     }    
+
+    public function searchProducts($toSearch){
+        $db = self::connect();
+        $sql = "SELECT * FROM product WHERE name LIKE %:name%";
+        $stmt->bindParam(':name', $toSearch);
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        
+        $productsAsoc = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $productsJson;
+        foreach ($productsAsoc as $key => $value) {
+            
+        }
+
+        return $productsJson;
+    }
 }
 ?>

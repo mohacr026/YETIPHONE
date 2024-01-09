@@ -10,13 +10,13 @@
 </head>
 <body>
     <?php
-    include("./view/components/header.php");
+        include("./view/components/header.php");
     ?>
-    <main>
-        <div><?php echo $category['name'] ?></div>
+    <main class="productCategoryContainer">
+        <div class="categoryTitle"><?php echo $categoria->getName(); ?></div>
         <div class="productsShopContainer">
             <?php foreach($products as $product): ?>
-                <?= include "./view/components/productTargetComponent.php"; ?>
+                <?php include "./view/components/productCardComponent.php"; ?>
             <?php endforeach; ?>
         </div>
     </main>

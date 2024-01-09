@@ -8,8 +8,11 @@ class ProductController {
     }
 
     public function showInterfaz(){
+        $products = Product::fetchProducts(["featured" => "true"]);
+    
         include("./view/frontPage/interfaz.php");
     }
+    
 
     public function showAddProducts(){
         include("./view/adminProduct/addProduct.php");

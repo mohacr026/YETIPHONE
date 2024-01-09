@@ -536,14 +536,15 @@ main{
     @include flexRow;
     div:nth-child(1) {
         @include flexRow;
-        img:nth-child(5) {
+        img {
             height: 100%;
-            max-width: 50em;
+            max-width: 25em;
         }
         div {
             display: flex;
             flex-direction: column;
             > img {
+                max-width: 10em;
                 width: 10em;
                 height: 10em;
             }

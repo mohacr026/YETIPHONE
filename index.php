@@ -16,7 +16,7 @@ if (class_exists($controllerName)){
         $action = $_GET['action'];
     }
     else{
-        $action ="showFrontPageProducts";
+        $action ="showInterfaz";
     }
         $controller->$action(); 
 } else {

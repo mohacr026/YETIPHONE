@@ -8,55 +8,62 @@ function searchBarEvents() {
         console.log(content);
         let resultDropdown = document.getElementById("resultDropdown");
 
-        if(resultDropdown) console.log(resultDropdown);
-        if(content.length == 0 && resultDropdown) {
-            // ESTA VACIO Y EXISTE
-            resultDropdown.remove();
-            console.log("INTENTO BORRAR");
-        } else if((content.length > 0) && resultDropdown){
-            // NO ESTA VACIO Y EXISTE
-            resultDropdown = updateDropdownAsync(resultDropdown, content);
-            console.log("INTENTO CAMBIAR");
-        } else if((content.length > 0) && !resultDropdown){
-            // NO ESTA VACIO Y NO EXISTE
-            console.log("INTENTO CREAR");
-            resultDropdown = document.createElement("div");
-            resultDropdown.id = "resultDropdown";
-
-            resultDropdown = updateDropdownAsync(resultDropdown, content);
-
-            let body = document.getElementsByTagName("body")[0];
-            body.appendChild(resultDropdown);
-        }
+        if(content.trim().length != 0) handleDropdown(content, resultDropdown);
     });
+}
+
+async function handleDropdown(content, resultDropdown) {
+    if (content.length === 0 && resultDropdown) {
+        // ESTÁ VACÍO Y EXISTE
+        resultDropdown.remove();
+    } else if (content.length > 0 && resultDropdown) {
+        // NO ESTÁ VACÍO Y EXISTE
+        // Actualiza el contenido de resultDropdown
+        resultDropdown = await updateDropdownAsync(resultDropdown, content);
+    } else if (content.length > 0 && !resultDropdown) {
+        // NO ESTÁ VACÍO Y NO EXISTE
+        resultDropdown = document.createElement("div");
+        resultDropdown.id = "resultDropdown";
+
+        // Actualiza el contenido de resultDropdown
+        resultDropdown = await updateDropdownAsync(resultDropdown, content);
+
+        let body = document.getElementsByTagName("body")[0];
+        body.appendChild(resultDropdown);
+    }
 }
 
 async function updateDropdownAsync(resultDropdown, content) {
-    while(resultDropdown.firstChild) {
-        resultDropdown.removeChild(resultDropdown.firstChild);
-    }
-    // Updatea el div resultDropdown de acuerdo con el content
-    let ul = document.createElement("ul");
-    
-    const data = {toSearch: content};
+    // Elimina todos los hijos del resultDropdown
+    resultDropdown.innerHTML = '';
 
-    fetchData(data)
-    .then(resultado => {
-        console.log('Éxito:', resultado);
+    // Crea un nuevo ul
+    let ul = document.createElement("ul");
+
+    try {
+        // Intenta obtener datos utilizando fetchData
+        const data = { toSearch: content };
+        const resultado = await fetchData(data);
+
+        // Actualiza el contenido del ul con el resultado
         let li = document.createElement("li");
         li.innerHTML = resultado;
         ul.appendChild(li);
-    })
-    .catch(error => {
-        console.error('Error:', error);
+    } catch (error) {
+        // Maneja errores
+        console.error(error)
         let li = document.createElement("li");
-        li.innerHTML = resultado;
+        li.innerHTML = `Error: ${error.message}`;
         ul.appendChild(li);
-    });
-    
+    }
+
+    // Agrega el ul al resultDropdown
     resultDropdown.appendChild(ul);
+
+    // Devuelve el resultDropdown envuelto en una promesa
     return resultDropdown;
 }
+
 
 function fetchData(data) {
     return new Promise((resolve, reject) => {

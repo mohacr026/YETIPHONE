@@ -9,6 +9,7 @@ function searchBarEvents() {
         let resultDropdown = document.getElementById("resultDropdown");
 
         if(content.trim().length != 0) handleDropdown(content, resultDropdown);
+        else if(content.length === 0) handleDropdown(content, resultDropdown);
     });
 }
 

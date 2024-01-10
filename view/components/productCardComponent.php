@@ -1,6 +1,6 @@
-<div class="productCardContainer">
+<article class="productCardContainer">
     <img src="./src/img/<?= $product->getImage(); ?>" >
-    <a href="index.php?controller=productController&action=productCart&product=<?= urlencode(serialize($product)) ?>">ADD TO CART</a>
+    <a href="index.php?controller=Product&action=showProductPage&product=<?= urlencode(serialize($product)) ?>&category=<?= $product->getCategory(); ?>">ADD TO CART</a>
     <div>
         <div>
             <span><?= $product->getName(); ?></span>
@@ -8,4 +8,4 @@
         </div>
         <img id="product-<?= $product->getId(); ?>" src="./src/svg/heart.svg">
     </div>
-</div>
+</article>

@@ -43,9 +43,10 @@ async function updateDropdownAsync(resultDropdown, content) {
 
     try {
         // Intenta obtener datos utilizando fetchData
-        const data = { toSearch: content };
-        const resultado = await fetchData(data);
+        let data = new FormData();
+        data.append('toSearch', content);
 
+        const resultado = await fetchData(data);
         // Actualiza el contenido del ul con el resultado
         let li = document.createElement("li");
         li.innerHTML = resultado;
@@ -70,11 +71,8 @@ function fetchData(data) {
     return new Promise((resolve, reject) => {
         fetch('index.php?controller=Product&action=searchProducts', {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-          })
+            body: data,
+        })
         .then(response => {
           if (!response.ok) {
             throw new Error('Error en la petición HTTP, estado ' + response.status);
@@ -83,9 +81,11 @@ function fetchData(data) {
         })
         .then(data => {
           // Intentar parsear el JSON recibido
+          console.log(data);
           try {
-            const parsedData = JSON.parse(data);
-            resolve(parsedData);
+            //const parsedData = JSON.parse(data);
+            //console.log(parsedData);
+            resolve(data);
           } catch (error) {
             reject('Error al parsear el JSON');
           }

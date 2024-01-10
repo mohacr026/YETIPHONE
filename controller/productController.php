@@ -245,8 +245,11 @@ class ProductController {
 
     public function searchProducts(){
         if(isset($_POST['toSearch'])){
-            $products = Product::searchProducts($_POST['toSearch']);
-            
+            $JSON = Product::searchProducts($_POST['toSearch']);
+
+            header("Content-Type: application/json");
+            $productsJSON = json_encode($JSON);
+            echo "$productsJSON";
         }
     }
 }

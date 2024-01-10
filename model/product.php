@@ -351,18 +351,33 @@ class Product extends Database {
         $stmt->execute();
     }    
 
-    public function searchProducts($toSearch){
+    public static function searchProducts($toSearch){
         $db = self::connect();
-        $sql = "SELECT * FROM product WHERE name LIKE %:name%";
-        $stmt->bindParam(':name', $toSearch);
+        $sql = "SELECT * FROM product WHERE name LIKE :name";
         $stmt = $db->prepare($sql);
+        $search = "%" . $toSearch . "%";
+        $stmt->bindParam(':name', $search);
         $stmt->execute();
         
         $productsAsoc = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $productsJson;
+        $productsJson = [];
         foreach ($productsAsoc as $key => $value) {
-            
+            $active = $value['isactive'] == "" ? "false" : "true";
+            $featured = $value['featured'] == "" ? "false" : "true";
+            $json = array(
+                "productId" => $value['id'],
+                "name" => $value['name'],
+                "id_category" => $value['id_category'],
+                "img" => $value['img'],
+                "price" => $value['price'],
+                "stock" => $value['stock'],
+                "storage" => $value['storage'],
+                "memory" => $value['memory'],
+                "isActive" => $active,
+                "isFeatured" => $featured
+            );
+            $productsJson[] = $json;
         }
 
         return $productsJson;

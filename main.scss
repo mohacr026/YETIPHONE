@@ -505,10 +505,11 @@ main{
 }
 
 #resultDropdown{
-    position: absolute;
-    left: 50vw;
-    top: 50vh;
     padding: 10px;
     background-color: red;
     border: 1px solid;
+    img{
+        height: 10px;
+        aspect-ratio: 1/1;
+    }
 }

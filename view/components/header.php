@@ -46,7 +46,7 @@
         outline: none;
     }
 
-    .buscador {
+    .searchBar {
         width: 550px;
         height: 45px;
         display: flex;
@@ -55,7 +55,7 @@
         background: var(--BGColor, #F3FAFD);
     }
 
-    .buscador input {
+    .searchBar input {
         width: 100%; /* Ocupa el 100% del espacio disponible */
         height: 100%;
         border: none;
@@ -111,7 +111,7 @@
 
     }
 
-    .buscador input::placeholder {
+    .searchBar input::placeholder {
     color: #CBCBCB;
 }
 
@@ -170,7 +170,7 @@
 </script>
 
 
-        <div class="buscador">
+        <div class="searchBar">
         <svg  width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <rect width="45" height="45" rx="25" fill="url(#pattern0)"/>
         <defs>

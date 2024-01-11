@@ -609,10 +609,11 @@ main .container h1 {
 }
 
 #resultDropdown {
-  position: absolute;
-  left: 50vw;
-  top: 50vh;
   padding: 10px;
   background-color: red;
   border: 1px solid;
+}
+#resultDropdown img {
+  height: 10px;
+  aspect-ratio: 1/1;
 }/*# sourceMappingURL=main.css.map */

@@ -1,101 +1,106 @@
-window.addEventListener("load", (event) => {
+import { Product } from "./product.js";
+
+// Se agrega un evento que se ejecuta cuando la ventana ha cargado completamente
+window.addEventListener("load", () => {
     searchBarEvents();
 });
 
-function searchBarEvents() {
-    $('#search').keyup(function(){
-        let content = $(this).val();
-        console.log(content);
-        let resultDropdown = document.getElementById("resultDropdown");
+// Declaración de variables globales
+let typingTimer;
+const doneTypingInterval = 500;
 
-        if(content.trim().length != 0) handleDropdown(content, resultDropdown);
-        else if(content.length === 0) handleDropdown(content, resultDropdown);
+// Función que agrega un evento de escucha al input de búsqueda
+function searchBarEvents() {
+    $('#search').on('input', function () {
+        // Se limpia el temporizador si ya está en marcha
+        clearTimeout(typingTimer);
+
+        // Se establece un temporizador para ejecutar handleDropdown después de un breve retraso
+        typingTimer = setTimeout(() => handleDropdown($(this).val()), doneTypingInterval);
     });
 }
 
-async function handleDropdown(content, resultDropdown) {
-    if (content.length === 0 && resultDropdown) {
-        // ESTÁ VACÍO Y EXISTE
+// Función asincrónica que maneja la lógica del dropdown
+async function handleDropdown(content) {
+    // Obtiene el elemento resultDropdown o crea uno nuevo si no existe
+    const resultDropdown = document.getElementById("resultDropdown") || createResultDropdown();
+
+    // Si el contenido está vacío, se elimina el dropdown
+    if (content.trim().length === 0) {
         resultDropdown.remove();
-    } else if (content.length > 0 && resultDropdown) {
-        // NO ESTÁ VACÍO Y EXISTE
-        // Actualiza el contenido de resultDropdown
-        resultDropdown = await updateDropdownAsync(resultDropdown, content);
-    } else if (content.length > 0 && !resultDropdown) {
-        // NO ESTÁ VACÍO Y NO EXISTE
-        resultDropdown = document.createElement("div");
-        resultDropdown.id = "resultDropdown";
-
-        // Actualiza el contenido de resultDropdown
-        resultDropdown = await updateDropdownAsync(resultDropdown, content);
-
-        let body = document.getElementsByTagName("body")[0];
-        body.appendChild(resultDropdown);
+    } else {
+        // Se limpia el contenido existente y se actualiza con nuevos elementos
+        resultDropdown.innerHTML = "";
+        resultDropdown.appendChild(await updateDropdownAsync(content));
     }
 }
 
-async function updateDropdownAsync(resultDropdown, content) {
-    // Elimina todos los hijos del resultDropdown
-    resultDropdown.innerHTML = '';
+// Función que crea y devuelve un nuevo elemento resultDropdown
+function createResultDropdown() {
+    const resultDropdown = document.createElement("div");
+    resultDropdown.id = "resultDropdown";
 
-    // Crea un nuevo ul
-    let ul = document.createElement("ul");
+    // Busca el contenedor de la barra de búsqueda y añade resultDropdown
+    const searchBarDiv = document.querySelector(".searchBar");
+    searchBarDiv.appendChild(resultDropdown);
+
+    return resultDropdown;
+}
+
+// Función asincrónica que actualiza el contenido del dropdown
+async function updateDropdownAsync(content) {
+    const ul = document.createElement("ul");
 
     try {
         // Intenta obtener datos utilizando fetchData
-        let data = new FormData();
+        const data = new FormData();
         data.append('toSearch', content);
 
-        const resultado = await fetchData(data);
-        // Actualiza el contenido del ul con el resultado
-        let li = document.createElement("li");
-        li.innerHTML = resultado;
-        ul.appendChild(li);
+        const result = await fetchData(data);
+
+        // Para cada resultado, crea un objeto Product y agrega un elemento de lista al ul
+        result.forEach(productData => {
+            const product = new Product(
+                productData.productId,
+                productData.name,
+                productData.description,
+                productData.category,
+                productData.img,
+                productData.price,
+                productData.stock,
+                productData.featured,
+                productData.isActive
+            );
+
+            ul.appendChild(product.renderList());
+        });
     } catch (error) {
-        // Maneja errores
-        console.error(error)
-        let li = document.createElement("li");
+        // Maneja errores mostrando un mensaje de error en el dropdown
+        console.error(error);
+        const li = document.createElement("li");
         li.innerHTML = `Error: ${error.message}`;
         ul.appendChild(li);
     }
 
-    // Agrega el ul al resultDropdown
-    resultDropdown.appendChild(ul);
-
-    // Devuelve el resultDropdown envuelto en una promesa
-    return resultDropdown;
+    return ul;
 }
 
-
+// Función que realiza una solicitud fetch para obtener datos del servidor
 function fetchData(data) {
-    return new Promise((resolve, reject) => {
-        fetch('index.php?controller=Product&action=searchProducts', {
-            method: 'POST',
-            body: data,
-        })
-        .then(response => {
-          if (!response.ok) {
+    return fetch('index.php?controller=Product&action=searchProducts', {
+        method: 'POST',
+        body: data,
+    })
+    .then(response => {
+        // Verifica si la respuesta de la petición es exitosa
+        if (!response.ok) {
             throw new Error('Error en la petición HTTP, estado ' + response.status);
-          }
-          return response.json();
-        })
-        .then(data => {
-          // Intentar parsear el JSON recibido
-          console.log(data);
-          try {
-            //const parsedData = JSON.parse(data);
-            //console.log(parsedData);
-            resolve(data);
-          } catch (error) {
-            reject('Error al parsear el JSON');
-          }
-        })
-        .catch(error => {
-          reject(error.message);
-        });
+        }
+        // Devuelve el resultado en formato JSON
+        return response.json();
+    })
+    .catch(error => {
+        // Lanza un error si hay un problema durante la solicitud fetch
+        throw new Error(error.message);
     });
-  }
-  
-  // Ejemplo de uso
-  
-  
+}

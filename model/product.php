@@ -353,9 +353,9 @@ class Product extends Database {
 
     public static function searchProducts($toSearch){
         $db = self::connect();
-        $sql = "SELECT * FROM product WHERE name LIKE :name";
+        $sql = "SELECT * FROM product WHERE LOWER(name) LIKE :name";
         $stmt = $db->prepare($sql);
-        $search = "%" . $toSearch . "%";
+        $search = "%" . strtolower($toSearch) . "%";
         $stmt->bindParam(':name', $search);
         $stmt->execute();
         

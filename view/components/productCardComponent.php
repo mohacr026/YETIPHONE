@@ -4,7 +4,7 @@
     <div>
         <div>
             <span><?= $product->getName(); ?></span>
-            <span><?= $product->getPrice(); ?>€</span>
+            <span><?= $product->getPrice(); ?> €</span>
         </div>
         <img id="product-<?= $product->getId(); ?>" src="./src/svg/heart.svg">
     </div>

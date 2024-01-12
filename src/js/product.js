@@ -57,7 +57,7 @@ export class Product{
         sideContent.appendChild(name);
 
         let price = document.createElement("p");
-        price.innerText = this.price;
+        price.innerText = this.price + "€";
         price.classList.add("listItemPrice");
         sideContent.appendChild(price);
 

@@ -20,14 +20,18 @@ class ProductController {
 
     public function registerProduct() {
         if (!empty($_POST)) {
-            $name = $_POST['name'];
-            $description = $_POST['description'];
-            $price = $_POST['price'];
-            $id_category = $_POST['category'];
-            $stock = $_POST['stock'];
 
-            // Create an instance of the Product class
-            $product = new Product(null, $name, $description, $id_category, null, $price, $stock, 'false', true);
+            $data['name'] = $_POST['name'];
+            $data['description'] = $_POST['description'];
+            $data['id_category'] = $_POST['category'];
+            $data['price'] = $_POST['price'];
+            $data['category'] = $_POST['category'];
+            $data['stock'] = $_POST['stock'];
+            $data['storage'] = $_POST['storage'];
+            $data['memory'] = $_POST['memory'];
+
+            Product::insertProducts($data);
+            
 
             // Handle image upload
             $this->uploadImage($product);

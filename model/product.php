@@ -286,6 +286,46 @@ class Product extends Database {
         return $productsArray;
     }
 
+    public static function insertProducts(array $data = []){
+        //Connect into the database
+        $db = self::connect();
+        
+        //SQL basic query, we'll modify it later if needed
+        $sql = "INSERT INTO product";
+
+        $columns = array_keys($data);
+        $values = [];
+
+        foreach($data as $value){
+            $values[] = $value;
+        }
+        
+        //This code creates a dynamic SQL query based on the filters given by the parameters
+        if(!empty($data)){
+            $sql .= "(". implode(", ", $columns).") VALUES(". implode(", ", $values).")";
+
+            //Here the SQL query prepares and bind the given parameters on its values to execute the filters
+            $statement = $db->prepare($sql);
+    
+            $result = $statement->execute();
+        }
+
+        return $result;
+    }
+
+    public static function insertImages(array $images = [], $product_id){
+        //Connect into the database
+        $db = self::connect();
+
+        if(!empty($images)){
+            foreach($images as $image){
+                $sql = "INSERT INTO product_image (img, product_id) VALUES($image, $product_id);";
+
+                $statement = $db->prepare($sql);
+            }
+        }
+    }
+
     public static function fetchProducts(array $filters = []){
         /* 
             Example of $filters array application
@@ -334,7 +374,7 @@ class Product extends Database {
         // Adds into the purchases array every purchase the SQL returned
         $products = [];
         while($row = $statement->fetch(PDO::FETCH_ASSOC)){
-            $products[] = new Product($row['id'], $row['name'], $row['description'], $row['id_category'], $row['img'], $row['price'], $row['stock'], $row['featured']);
+            $products[] = new Product($row['id'], $row['name'], $row['description'], $row['id_category'], $row['images'], $row['price'], $row['stock'], $row['featured']);
         }
         return $products;
     }

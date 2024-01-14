@@ -18,7 +18,6 @@ CREATE TABLE product (
   name VARCHAR(100),
   description VARCHAR(2000),
   id_category INT REFERENCES category(id),
-  images INT,
   price INT,
   stock INT,
   storage INT,

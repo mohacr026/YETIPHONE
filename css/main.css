@@ -191,6 +191,10 @@ header .icons button p {
   visibility: hidden;
 }
 
+.hidden {
+  display: none;
+}
+
 main {
   width: 100vw;
   display: flex;
@@ -715,25 +719,46 @@ main .container h1 {
 .productPageContainer {
   display: flex;
   flex-direction: row;
+  box-sizing: border-box;
+  align-content: center;
+  height: 60vh;
+  padding: 2em;
+  padding-left: 15%;
+  padding-right: 15%;
 }
-.productPageContainer div:nth-child(1) {
+.productPageContainer > div {
+  margin: 1.5em;
+}
+.productPageContainer .productPagePackImages {
   display: flex;
   flex-direction: row;
+  max-height: 40em;
+  width: -moz-max-content;
+  width: max-content;
 }
-.productPageContainer div:nth-child(1) img {
-  height: 100%;
-  max-width: 25em;
+.productPageContainer .productPagePackImages #productPageShowingImage {
+  height: 35em;
+  width: 35em;
+  margin: 0.5em;
 }
-.productPageContainer div:nth-child(1) div {
+.productPageContainer .productPagePackImages div {
   display: flex;
   flex-direction: column;
 }
-.productPageContainer div:nth-child(1) div > img {
-  max-width: 10em;
-  width: 10em;
-  height: 10em;
+.productPageContainer .productPagePackImages div > img {
+  width: 8em;
+  height: 8em;
+  margin: 0.5em;
 }
 .productPageContainer div:nth-child(2) {
   display: flex;
   flex-direction: column;
+}
+.productPageContainer input[type=submit] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }/*# sourceMappingURL=main.css.map */

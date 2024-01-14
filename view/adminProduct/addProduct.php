@@ -70,9 +70,10 @@
                         </div>
     
                         <div class="formRow">
-                            <label for="image">Product Image:</label>
-                            <input type="file" id="image" name="image" accept="image/*" required>
+                            <label for="img">Product Image:</label>
+                            <input type="file" id="img" name="img" accept="image/jpeg, image/png" >
                         </div>
+
                     </div>
                 </form>
                 <div class="formAction">

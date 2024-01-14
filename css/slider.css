@@ -66,10 +66,10 @@
     background: var(--LightBlue, #bed2db);
     width: 80%; /* Ajusta el ancho según tus necesidades */
     max-width: 1596px;
-    height: auto;
+    height: 300px;
     margin: auto; /* Centra el slider-destacados en la página */
     flex-shrink: 0;
-    margin-bottom: 20px; /* Espacio entre los dos sliders */
+    margin-bottom: 60px; /* Espacio entre los dos sliders */
 }
 
 .slider-controls button {
@@ -93,6 +93,7 @@
     margin: auto;
     flex-shrink: 0;
     overflow: hidden; /* Agregado overflow para evitar desbordamiento de elementos flexibles */
+    
 }
 
 .categories {
@@ -125,6 +126,7 @@
             justify-content: center;
             position: relative;
             overflow: hidden; /* Para ocultar el desbordamiento del contenido que se desplaza */
+
         }
 
         .categories-container {

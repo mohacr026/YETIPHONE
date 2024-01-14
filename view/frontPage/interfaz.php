@@ -17,6 +17,12 @@
     .products-container {
         display: flex; /* Establece el contenedor de productos como un contenedor de tipo flex */
         padding: 10px; /* Agrega un relleno para espaciar los productos del borde del contenedor */
+        margin-top: 115px;
+    }
+
+    .products-container-2 {
+        display: flex; /* Establece el contenedor de productos como un contenedor de tipo flex */
+        padding: 10px; /* Agrega un relleno para espaciar los productos del borde del contenedor */
     }
 
     .product {
@@ -184,7 +190,7 @@
     .tops-controls{
         position: absolute;
         margin-right: 155px;
-        bottom: 20px;
+        bottom: -149px;
         right: 20px;
         display: flex;
         gap: 10px;
@@ -199,7 +205,56 @@
         font-size: 16px;
     }
 
+    .slider-products{
+        margin-top: 20px;
+        display: block;
+        border-radius: 25px;
+        background: var(--LightBlue, #bed2db);
+        width: 80%; /* Ajusta el ancho según tus necesidades */
+        max-width: 1596px;
+        height: auto;
+        margin: auto; /* Centra el slider-destacados en la página */
+        flex-shrink: 0;
+        margin-bottom: 20px; /* Espacio entre los dos sliders */
+    }
 
+    .box-product {
+        background-color: #3498db; /* Color azulado de fondo */
+        margin-right: 20px; /* Agrega un margen derecho para espaciar los productos horizontalmente */
+        padding: 10px; /* Agrega relleno dentro de cada producto */
+        width: max-content;
+        height: 200px;
+        flex-shrink: 0;
+        border-radius: 20px;
+        background: var(--DarkBlue, #217093);
+        box-shadow: 0px 4px 10px 4px rgba(0, 0, 0, 0.25);
+        color: white;
+    }
+
+    .productImg {
+        display: flex;
+        margin-top: -190px;
+    }
+    
+    .productImg img {
+        display: flex;
+        margin-right: -300px;
+        margin-top: 75px;
+        width: 248px;
+        height: 177px;
+        z-index: 1;
+        margin-left: -20px;
+    }
+
+    .products-normal {
+        display: flex;
+        background: #00344b;
+        width: 251px;
+        height: 310px;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 10px;
+    }
 </style>
 
 <body>
@@ -237,6 +292,9 @@
                         <?php $count = 0; ?>
                         <?php foreach ($products as $product): ?>
                             <?php if ($count < 3): ?>
+                                <div class="productImg">
+                                        <img src="./src/img/iphone12.png" alt="iphone 12">
+                                    </div>
                                 <div class="product">
                                     <div class="name">
                                         <p><?php echo $product->getName(); ?></p>
@@ -261,20 +319,54 @@
                     <button class="next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
-
+<!-- 
             <div class="slider-categories">
                 <div class="categories-container">
-                    <?php foreach ($categories as $category): ?>
+                    <?php #foreach ($categories as $category): ?>
                         <div class="categories">
-                            <p><?php echo $category['name']; ?></p>
+                            <p><?php# echo $category['name']; ?></p>
                         </div>
-                    <?php endforeach; ?>
+                    <?php# endforeach; ?>
                 </div>
                 <div class="slider-controls">
                 <button class="prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
                 <button class="next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
             </div>
-            </div>
+            </div> -->
+
+            <div class="slider-products">
+                <div class="Tops">
+                    <div class="topProducts">
+                        <p>PRODUCTS</p>
+                    </div>
+                </div>
+
+                <div class="products-container-2">
+                    <div class="products-slider">
+                        <div class="products-normal">
+
+                        </div>
+
+                        <div class="products-normal">
+
+                        </div>
+                        
+                        <div class="products-normal">
+
+                        </div>
+                        
+                        <div class="products-normal">
+
+                        </div>
+                    </div>
+                    
+                </div>
+                    <div class="tops-controls">
+                    <button class="prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                    <button class="next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            
         </div>
     </main>
 

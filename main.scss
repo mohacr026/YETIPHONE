@@ -9,6 +9,7 @@
 @import 'scss/colors.scss';
 @import 'scss/mixins.scss';
 @import 'scss/productDetail.scss';
+@import 'scss/productCard.scss';
 
 body{
     background-color: $inputBG;
@@ -95,6 +96,9 @@ header{
 
 .hiddenElement{
     visibility: hidden;
+}
+.hidden {
+    display: none;
 }
 
 main{
@@ -504,10 +508,80 @@ main{
     }
 }
 
+.productCategoryContainer {
+    @include flexCenterItems;
+    flex-direction: column;
+    .productsShopContainer {
+        max-width: 1200px;
+        width: 100%;
+        margin-left: 10em;
+        margin-right: 10em;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1em;
+    }
+    .categoryTitle {
+        margin: 0.5em auto;
+        @include flexCenterItems;
+        background-color: $darkBlue;
+        max-width: 200px;
+        max-height: 45px;
+        width: 7em;
+        height: 1.5em;
+        border-radius: 20px;
+
+        @include boldText;
+        font-size: 24px;
+        color: $white;
+    }
+}
+
+.productPageContainer {
+    @include flexRow;
+    box-sizing: border-box;
+    align-content: center;
+    height: 60vh;
+    padding: 2em;
+    padding-left: 15%;
+    padding-right: 15%;
+    > div {
+        margin: 1.5em;
+    }
+    .productPagePackImages {
+        @include flexRow;
+        max-height: 40em;
+        width: max-content;
+        #productPageShowingImage {
+            height: 35em;
+            width: 35em;
+            margin: 0.5em;
+        }
+        div {
+            display: flex;
+            flex-direction: column;
+            > img {
+                width: 8em;
+                height: 8em;
+                margin: 0.5em;
+            }
+        }
+    }
+    div:nth-child(2) {
+        display: flex;
+        flex-direction: column;
+    }
+    input[type="submit"]{
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}
 #resultDropdown{
     padding: 10px;
     background-color: white;
     border: 1px solid;
     
-
 }

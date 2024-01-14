@@ -8,8 +8,11 @@ class ProductController {
     }
 
     public function showInterfaz(){
+        $products = Product::fetchProducts(["featured" => "true"]);
+    
         include("./view/frontPage/interfaz.php");
     }
+    
 
     public function showAddProducts(){
         include("./view/adminProduct/addProduct.php");
@@ -17,24 +20,29 @@ class ProductController {
 
     public function registerProduct() {
         if (!empty($_POST)) {
-            $name = $_POST['name'];
-            $description = $_POST['description'];
-            $price = $_POST['price'];
-            $id_category = $_POST['category'];
-            $stock = $_POST['stock'];
 
-            // Create an instance of the Product class
-            $product = new Product(null, $name, $description, $id_category, null, $price, $stock, 'false', true);
+            $data['name'] = $_POST['name'];
+            $data['description'] = $_POST['description'];
+            $data['id_category'] = $_POST['category'];
+            $data['price'] = $_POST['price'];
+            $data['category'] = $_POST['category'];
+            $data['stock'] = $_POST['stock'];
+            $data['storage'] = $_POST['storage'];
+            $data['memory'] = $_POST['memory'];
+
+            Product::insertProducts($data);
+            
 
             // Handle image upload
             $this->uploadImage($product);
-
+    
             // Insert the product into the database
             $product->insertProductIntoDatabase();
         } else {
             echo "The form was not submitted correctly.";
         }
     }
+    
 
     public function showEditProducts() {
         // Obtener la lista de productos desde la base de datos
@@ -48,7 +56,7 @@ class ProductController {
                 "name" => $product->getName(),
                 "description" => $product->getDescription(),
                 "id_category" => $product->getCategory(),
-                "image" => $product->getImage(),
+                "img" => $product->getImage(),
                 "price" => $product->getPrice(),
                 "stock" => $product->getStock(),
                 "featured" => $product->getFeatured(),
@@ -85,21 +93,29 @@ class ProductController {
     }
 
     private function uploadImage(Product $product) {
-        if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
-            $targetDir = "./src/productImg/";
-            $targetFile = $targetDir . uniqid() . '_' . basename($_FILES['image']['name']);
-
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+        if (isset($_FILES['img']) && $_FILES['img']['error'] == UPLOAD_ERR_OK) {
+            // Mostrar detalles de la carga de archivos
+            echo "<pre>";
+            print_r($_FILES['img']);
+            echo "</pre>";
+    
+            $targetDir = __DIR__ . "/src/productImg/";
+            $targetFile = $targetDir . uniqid() . '_' . basename($_FILES['img']['name']);
+    
+            if (move_uploaded_file($_FILES['img']['tmp_name'], $targetFile)) {
                 echo "File uploaded successfully.";
+                return $targetFile;
             } else {
                 echo "Error uploading file.";
             }
-
-            $product->setImage($targetFile);
         } else {
-            echo "No image uploaded.";
+            echo "No img uploaded.";
+            return null;
         }
     }
+    
+    
+    
 
     public function editProductPerformed() {
         
@@ -237,12 +253,29 @@ class ProductController {
   
     public function showProducts(){
         if(isset($_GET['category'])){
-            $category = Category::getCategoryById($_GET['category']);
-            $products = Product::fetchProducts(['id_category' => $_GET['category']]);
+            $categoria = Category::fetchCategory(['id' => $_GET['category']])[0];
+            $products = Product::fetchProducts(['id_category' => $categoria->getId() ]);
             include "./view/product/productByCategory.php";
         }
     }
 
+    public function showProductPage(){
+        if(isset($_GET['product'])){
+            $product = unserialize(urldecode($_GET['product']));
+            $categoria = Category::getCategoryById($product->getCategory());
+            include("./view/product/productPage.php");
+        } else if(isset($_GET['id'])) {
+            $product = Product::fetchProducts(['id' => $_GET['id']])[0];
+            $categoria = Category::getCategoryById($product->getCategory());
+            include("./view/product/productPage.php");
+        } else {
+            if(isset($_GET['category'])){
+                echo"<META HTTP-EQUIV='REFRESH' CONTENT='0;URL=index.php?controller=Product&action=showProducts&category='".$_GET['category']."'";
+            } else {
+                echo"<META HTTP-EQUIV='REFRESH' CONTENT='0;URL=index.php?controller=Product&action=showInterfaz";
+            }
+        }
+    }
     public function searchProducts(){
         if(isset($_REQUEST['toSearch'])){
             $JSON = Product::searchProducts($_REQUEST['toSearch']);

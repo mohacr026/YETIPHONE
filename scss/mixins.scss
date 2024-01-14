@@ -1,12 +1,16 @@
 @mixin boldText {
     font-weight: bold;
-    font-family: 'Inter', 'sans-serif';
+    font-family: "Inter", "Source Sans Pro", sans-serif;
 }
 @mixin divFlexRowBetween {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+}
+@mixin flexRow {
+    display: flex;
+    flex-direction: row;
 }
 @mixin flexCenterItems {
     display: flex;

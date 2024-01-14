@@ -7,19 +7,19 @@ class Product extends Database {
     private $name;
     private $description;
     private $category;
-    private $image;
+    private $img;
     private $price;
     private $stock;
     private $featured;
     private $isActive;
 
     // Constructor
-    public function __construct($id, $name, $description, $category, $image, $price, $stock, $featured, $isActive = true){
+    public function __construct($id, $name, $description, $category, $img, $price, $stock, $featured, $isActive = true){
         $this->id = $id;
         $this->name = $name;
         $this->description = $description;
         $this->category = $category;
-        $this->image = $image;
+        $this->img = $img;
         $this->price = $price;
         $this->stock = $stock;
         $this->featured = $featured;
@@ -61,11 +61,11 @@ class Product extends Database {
     }
 
     public function getImage() {
-        return $this->image;
+        return $this->img;
     }
 
-    public function setImage($image) {
-        $this->image = $image;
+    public function setImage($img) {
+        $this->img = $img;
     }
 
     public function getPrice() {
@@ -107,31 +107,31 @@ class Product extends Database {
         $price = $this->getPrice();
         $id_category = $this->getCategory();
         $stock = $this->getStock();
-        $isactive = $this->getIsactive();
+        $isActive = $this->getIsActive();
         $featured = $this->getFeatured();
-        $img = $this->getImage();
-
-        $db = Database::connect();  
+        $img = $this->getImage();  // Ahora se obtiene la ruta de la imagen desde el modelo
     
+        $db = Database::connect();  
+        
         if (!$db) {
             echo "Error connecting to the database.";
             return;
         }
-
+    
         try {
-            $query = "INSERT INTO product (name, description, price, id_category, stock, isactive, featured, img) VALUES (:name, :description, :price, :id_category, :stock, :isactive, :featured, :image)";
+            $query = "INSERT INTO product (name, description, price, id_category, stock, isactive, featured, img) VALUES (:name, :description, :price, :id_category, :stock, :isactive, :featured, :img)";
             $stmt = $db->prepare($query);
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':description', $description);
             $stmt->bindParam(':id_category', $id_category);
             $stmt->bindParam(':price', $price);
             $stmt->bindParam(':stock', $stock);
-            $stmt->bindParam(':isactive', $isactive);
+            $stmt->bindParam(':isactive', $isActive);
             $stmt->bindParam(':featured', $featured);
-            $stmt->bindParam(':image', $img);
-
+            $stmt->bindParam(':img', $img);
+    
             $result = $stmt->execute();
-
+    
             if ($result) {
                 echo "Product successfully registered in the database.";
             } else {
@@ -143,6 +143,7 @@ class Product extends Database {
             $db = null;
         }
     }
+    
     
     public function updateProducts() {
         // Conectar a la base de datos
@@ -286,6 +287,46 @@ class Product extends Database {
         return $productsArray;
     }
 
+    public static function insertProducts(array $data = []){
+        //Connect into the database
+        $db = self::connect();
+        
+        //SQL basic query, we'll modify it later if needed
+        $sql = "INSERT INTO product";
+
+        $columns = array_keys($data);
+        $values = [];
+
+        foreach($data as $value){
+            $values[] = $value;
+        }
+        
+        //This code creates a dynamic SQL query based on the filters given by the parameters
+        if(!empty($data)){
+            $sql .= "(". implode(", ", $columns).") VALUES(". implode(", ", $values).")";
+
+            //Here the SQL query prepares and bind the given parameters on its values to execute the filters
+            $statement = $db->prepare($sql);
+    
+            $result = $statement->execute();
+        }
+
+        return $result;
+    }
+
+    public static function insertImages(array $images = [], $product_id){
+        //Connect into the database
+        $db = self::connect();
+
+        if(!empty($images)){
+            foreach($images as $image){
+                $sql = "INSERT INTO product_image (img, product_id) VALUES($image, $product_id);";
+
+                $statement = $db->prepare($sql);
+            }
+        }
+    }
+
     public static function fetchProducts(array $filters = []){
         /* 
             Example of $filters array application
@@ -334,7 +375,7 @@ class Product extends Database {
         // Adds into the purchases array every purchase the SQL returned
         $products = [];
         while($row = $statement->fetch(PDO::FETCH_ASSOC)){
-            $products[] = new Product($row['id'], $row['name'], $row['description'], $row['id_category'], $row['img'], $row['price'], $row['stock'], $row['featured']);
+            $products[] = new Product($row['id'], $row['name'], $row['description'], $row['id_category'], $row['images'], $row['price'], $row['stock'], $row['featured']);
         }
         return $products;
     }

@@ -18,7 +18,6 @@ CREATE TABLE product (
   name VARCHAR(100),
   description VARCHAR(2000),
   id_category INT REFERENCES category(id),
-  img VARCHAR(150),
   price INT,
   stock INT,
   storage INT,
@@ -27,17 +26,24 @@ CREATE TABLE product (
   isActive BOOLEAN
 );
 
+-- Crear la tabla de imagenes 
+CREATE TABLE product_image (
+  id SERIAL PRIMARY KEY,
+  img VARCHAR(150),
+  product_id VARCHAR(10) REFERENCES product(id)
+);
+
 -- Crear la tabla de colores
 CREATE TABLE colors (
   id SERIAL PRIMARY KEY,
-  product INT REFERENCES product(id),
+  product_id VARCHAR(10) REFERENCES product(id),
   color_code VARCHAR(20)
 );
 
 -- Crear la tabla purchase_details
 CREATE TABLE purchase_details (
   id SERIAL PRIMARY KEY,
-  product_id INT REFERENCES product(id),
+  product_id VARCHAR(10) REFERENCES product(id),
   quantity INT
 );
 

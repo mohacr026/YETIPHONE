@@ -507,6 +507,7 @@ main{
         }
     }
 }
+
 .productCategoryContainer {
     @include flexCenterItems;
     flex-direction: column;
@@ -577,4 +578,10 @@ main{
         border-radius: 5px;
         cursor: pointer;
     }
+}
+#resultDropdown{
+    padding: 10px;
+    background-color: white;
+    border: 1px solid;
+    
 }

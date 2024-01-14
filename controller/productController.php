@@ -276,5 +276,13 @@ class ProductController {
             }
         }
     }
+    public function searchProducts(){
+        if(isset($_REQUEST['toSearch'])){
+            $JSON = Product::searchProducts($_REQUEST['toSearch']);
+            header("Content-Type: application/json");
+            $productsJSON = json_encode($JSON);
+            echo "$productsJSON";
+        }
+    }
 }
 ?>

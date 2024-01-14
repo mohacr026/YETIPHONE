@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="css/slider.css">
     <link rel="shortcut icon" href="./src/img/snowflake.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./src/js/userMenu.js"></script>
     <script src="./src/js/slider.js"></script>
-    
+    <script type="module" src="./src/js/searchBar.js"></script>
 </head>
 
 <style>
@@ -279,7 +280,7 @@
                     <div class="indicator"></div>
                 </div>
             </div>
-
+            
             <div class="slider-destacados">
                 <div class="Tops">
                     <div class="topProducts">

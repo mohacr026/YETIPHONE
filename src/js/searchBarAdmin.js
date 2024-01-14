@@ -123,6 +123,7 @@ function searchBarEvents(){
             categoriesMatched.forEach(category => {
                 divToWrite.appendChild(category.render());
             });
+            loadEvents();
         } else {
             console.log("Controller not suported");
         }

@@ -33,4 +33,39 @@ export class Product{
 
         return productComponent;
     }
+
+    renderList(){
+        let li = document.createElement("li");
+        li.classList.add("listItem");
+
+        let linkComponent = document.createElement("a");
+        linkComponent.href = "index.php?controller=Product&action=showProductPage&id=" + this.id;
+        let insideComponent = document.createElement("div");
+
+        let image = document.createElement("img");
+        image.src = this.image;
+        image.alt = this.name;
+        image.classList.add("listItemImage");
+        insideComponent.appendChild(image);
+
+        let sideContent = document.createElement("div");
+        sideContent.classList.add("listItemContent")
+
+        let name = document.createElement("p");
+        name.innerText = this.name;
+        name.classList.add("listItemName");
+        sideContent.appendChild(name);
+
+        let price = document.createElement("p");
+        price.innerText = this.price + "€";
+        price.classList.add("listItemPrice");
+        sideContent.appendChild(price);
+
+        insideComponent.appendChild(sideContent);
+        linkComponent.appendChild(insideComponent);
+        li.appendChild(linkComponent);
+
+        return li;
+
+    }
 }

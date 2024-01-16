@@ -7,6 +7,7 @@
 @import url('http//fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 //@import 'scss/login.scss';
 @import 'scss/colors.scss';
+@import 'scss/header.scss';
 @import 'scss/mixins.scss';
 @import 'scss/productDetail.scss';
 @import 'scss/productCard.scss';
@@ -27,76 +28,10 @@ body.noscroll{
     width: 0px;
 }
 
-header{
-    background-color: $medBlue;
-    display: flex;
-    padding: 1em;
-    max-height: 5vh;
-    h1{
-        padding-left: 1rem;
-        color: white;
-        user-select: none;
-    }
-
-    .icons{
-        display: flex;
-        margin-left: auto;
-        padding-right: 1rem;
-        color: white;
-        text-decoration: none;
-        
-        a.button{
-            display: flex;
-            align-items: center;
-            text-wrap: nowrap;
-            margin-right: 1rem;
-
-            &:link, &:visited{
-                text-decoration: none;
-                color: white;
-            }
-
-            img{
-                aspect-ratio: 1/1;
-                object-fit: contain;
-            }
-
-            p{
-                margin-left: 0.5rem;
-            }
-
-        }
-
-        button{
-            display: flex;  
-            align-items: center;
-            text-wrap: nowrap;
-            margin-right: 1rem;
-            border: none;
-            background-color: $medBlue;
-            cursor: pointer;
-            color: white;
-
-            &:hover, &:active{
-                background-color: $medBlue;
-            }
-
-            img{
-                aspect-ratio: 1/1;
-                object-fit: contain;
-            }
-
-            p{
-                margin-left: 0.5rem;
-            }
-
-        }
-    }
-}
-
 .hiddenElement{
     visibility: hidden;
 }
+
 .hidden {
     display: none;
 }

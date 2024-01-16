@@ -1,3 +1,8 @@
+<!--
+    POR HACER:
+        CSS
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -321,6 +326,8 @@
                     </div>
                 </div>
 <!-- 
+    SI ESTO SE PUEDE QUITAR YA HAY QUE QUITARLO
+
             <div class="slider-categories">
                 <div class="categories-container">
                     <?php #foreach ($categories as $category): ?>
@@ -434,7 +441,6 @@
             </defs>
             </svg>
             </div>
-
         </div>
     </footer>
 </body>

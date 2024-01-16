@@ -1,3 +1,8 @@
+<!--
+    POR HACER:
+        CSS JS Y PHP FUERA
+-->
+
 <style>
     header {
         display: flex;
@@ -156,7 +161,6 @@
 </style>
 
 
-
 <header>
     <h1>YETiPhone</h1>
     <button id="categoriasBtn" class="categorias">
@@ -183,28 +187,28 @@
         </div>
 
         <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var categoriasBtn = document.getElementById("categoriasBtn");
-        var categoriasDropdown = document.getElementById("categoriasDropdown");
+            document.addEventListener("DOMContentLoaded", function () {
+                var categoriasBtn = document.getElementById("categoriasBtn");
+                var categoriasDropdown = document.getElementById("categoriasDropdown");
 
-        categoriasBtn.addEventListener("click", function () {
-            categoriasDropdown.classList.toggle("categoryshow");
-        });
+                categoriasBtn.addEventListener("click", function () {
+                    categoriasDropdown.classList.toggle("categoryshow");
+                });
 
-        // Cierra el desplegable si se hace clic fuera de él
-        window.addEventListener("click", function (event) {
-            if (!event.target.matches("#categoriasBtn")) {
-                var dropdowns = document.getElementsByClassName("categorias-dropdown");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains("categoryshow")) {
-                        openDropdown.classList.remove("categoryshow");
+                // Cierra el desplegable si se hace clic fuera de él
+                window.addEventListener("click", function (event) {
+                    if (!event.target.matches("#categoriasBtn")) {
+                        var dropdowns = document.getElementsByClassName("categorias-dropdown");
+                        for (var i = 0; i < dropdowns.length; i++) {
+                            var openDropdown = dropdowns[i];
+                            if (openDropdown.classList.contains("categoryshow")) {
+                                openDropdown.classList.remove("categoryshow");
+                            }
+                        }
                     }
-                }
-            }
-        });
-    });
-</script>
+                });
+            });
+        </script>
 
 
         <div class="searchBar">

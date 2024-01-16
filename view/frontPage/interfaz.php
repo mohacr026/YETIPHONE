@@ -298,7 +298,7 @@
                     <?php foreach ($products as $product): ?>
                         <?php if ($count < 3): ?>
                             <div class="productImg">
-                                <img src="./src/img/iphone12.png" alt="iphone 12">
+                                <img src="./src/img/products/iphone12.png" alt="iphone 12">
                             </div>
                             <div class="product">
                                 <div class="name">

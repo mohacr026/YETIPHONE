@@ -7,19 +7,19 @@ class Product extends Database {
     private $name;
     private $description;
     private $category;
-    private $img;
+    private $image;
     private $price;
     private $stock;
     private $featured;
     private $isActive;
 
     // Constructor
-    public function __construct($id, $name, $description, $category, $img, $price, $stock, $featured, $isActive = true){
+    public function __construct($id, $name, $description, $category, $image, $price, $stock, $featured, $isActive = true){
         $this->id = $id;
         $this->name = $name;
         $this->description = $description;
         $this->category = $category;
-        $this->img = $img;
+        $this->image = $image;
         $this->price = $price;
         $this->stock = $stock;
         $this->featured = $featured;
@@ -61,11 +61,11 @@ class Product extends Database {
     }
 
     public function getImage() {
-        return $this->img;
+        return $this->image;
     }
 
-    public function setImage($img) {
-        $this->img = $img;
+    public function setImage($image) {
+        $this->image = $image;
     }
 
     public function getPrice() {
@@ -327,6 +327,24 @@ class Product extends Database {
         }
     }
 
+    public static function fetchProductImages($productId){
+        // Connect into database
+        $db = self::connect();
+
+        // SQL to execute the query
+        $sql = "SELECT * FROM product_image WHERE product_id = :id";
+        
+        $statement = $db->prepare($sql);
+        $statement->bindValue(":id", $productId);
+
+        $statement->execute();
+        $images = [];
+        while($row = $statement->fetch(PDO::FETCH_ASSOC)){
+            $images[] = $row['img'];
+        }
+        return $images;
+    }
+
     public static function fetchProducts(array $filters = []){
         /* 
             Example of $filters array application
@@ -375,7 +393,8 @@ class Product extends Database {
         // Adds into the purchases array every purchase the SQL returned
         $products = [];
         while($row = $statement->fetch(PDO::FETCH_ASSOC)){
-            $products[] = new Product($row['id'], $row['name'], $row['description'], $row['id_category'], $row['images'], $row['price'], $row['stock'], $row['featured']);
+            $images = self::fetchProductImages($row['id']);
+            $products[] = new Product($row['id'], $row['name'], $row['description'], $row['id_category'], $images, $row['price'], $row['stock'], $row['featured']);
         }
         return $products;
     }

@@ -24,36 +24,39 @@ function searchBarEvents() {
 
 // Función asincrónica que maneja la lógica del dropdown
 async function handleDropdown(content) {
+    let resultDropdown;
+
     // Si el contenido está vacío, se elimina el dropdown
     if (content.trim().length === 0) {
-        const resultDropdown = document.getElementById("resultDropdown");
+        resultDropdown = document.getElementById("resultDropdown");
         if (resultDropdown) resultDropdown.remove();
-        return;
-    }
+    } else {
+        // Obtiene el elemento resultDropdown o crea uno nuevo si no existe
+        resultDropdown = document.getElementById("resultDropdown") || createResultDropdown();
 
-    // Obtiene el elemento resultDropdown o crea uno nuevo si no existe
-    const resultDropdown = document.getElementById("resultDropdown") || createResultDropdown();
+        try {
+            // Limpia el contenido existente y actualiza con nuevos elementos
+            const ul = await updateDropdownAsync(content);
 
-    try {
-        // Limpia el contenido existente y actualiza con nuevos elementos
-        const ul = await updateDropdownAsync(content);
-
-        // Verifica si ya existe un ul dentro de resultDropdown
-        const existingUl = resultDropdown.querySelector("ul");
-        if (existingUl) {
-            // Si existe, actualiza su contenido en lugar de crear uno nuevo
-            existingUl.innerHTML = ul.innerHTML;
-        } else {
-            // Si no existe, agrega el ul al resultDropdown
-            resultDropdown.appendChild(ul);
+            // Verifica si ya existe un ul dentro de resultDropdown
+            const existingUl = resultDropdown.querySelector("ul");
+            if (existingUl) {
+                // Si existe, actualiza su contenido en lugar de crear uno nuevo
+                existingUl.innerHTML = ul.innerHTML;
+            } else {
+                // Si no existe, agrega el ul al resultDropdown
+                resultDropdown.appendChild(ul);
+            }
+        } catch (error) {
+            // Maneja errores mostrando un mensaje de error en el dropdown
+            console.error(error);
+            const li = document.createElement("li");
+            li.innerHTML = `Error: ${error.message}`;
+            resultDropdown.appendChild(li);
         }
-    } catch (error) {
-        // Maneja errores mostrando un mensaje de error en el dropdown
-        console.error(error);
-        const li = document.createElement("li");
-        li.innerHTML = `Error: ${error.message}`;
-        resultDropdown.appendChild(li);
     }
+
+    return resultDropdown;
 }
 
 // Función que crea y devuelve un nuevo elemento resultDropdown

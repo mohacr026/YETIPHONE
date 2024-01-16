@@ -146,7 +146,7 @@
 
     .categoryshow {
         display: flex;
-        margin-top: 120px;
+        margin-top: 115px;
         background: rgba(78, 184, 221, 1); 
         width: 80%;
         border-radius: 0  0  0.5em 0.5em;

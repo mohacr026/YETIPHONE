@@ -262,23 +262,21 @@
     <?php
     include("./view/components/header.php");
 ?>
-    <main>
-        <div class="slider-container">
-            <div class="slider-principal" ontouchstart="handleTouchStart(event)" ontouchmove="handleTouchMove(event)">
-                <div class="slider">
-                    <img src="./src/img/hola.png" alt="Slide 1">
-                    <img src="./src/img/hola.png" alt="Slide 2">
-                    <img src="./src/img/hola.png" alt="Slide 3">
-                </div>
-            <div class="slider-controls">
-                <button class="prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-                <button class="next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+    <div class="slider-container">
+        <div class="slider-principal" ontouchstart="handlePrincipalTouchStart(event)" ontouchmove="handlePrincipalTouchMove(event)">
+            <div class="slider">
+                <img src="./src/img/hola.png" alt="Slide 1">
+                <img src="./src/img/hola.png" alt="Slide 2">
+                <img src="./src/img/hola.png" alt="Slide 3">
             </div>
-                <div class="slider-indicators">
-                    <div class="indicator"></div>
-                    <div class="indicator"></div>
-                    <div class="indicator"></div>
-                </div>
+            <div class="slider-controls">
+                <button class="prev" onclick="changePrincipalSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                <button class="next" onclick="changePrincipalSlide(1)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="slider-indicators">
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
             </div>
             
             <div class="slider-destacados">
@@ -369,6 +367,66 @@
                 </div>
             
         </div>
+
+        <div class="slider-destacados" ontouchstart="handleDestacadosTouchStart(event)" ontouchmove="handleDestacadosTouchMove(event)">
+        <div class="Tops">
+            <div class="topProducts">
+                <p>TOP PRODUCTS</p>
+            </div>
+        </div>
+
+        <div class="products-container">
+            <div class="products-slider">
+                <?php $count = 0; ?>
+                <?php foreach ($products as $product): ?>
+                    <?php if ($count < 3): ?>
+                        <div class="product">
+                            <div class="productImg">
+                                <img src="./src/img/iphone12.png" alt="iphone 12">
+                            </div>
+                            <div class="name">
+                                <p><?php echo $product->getName(); ?></p>
+                            </div>
+                            <div class="price">
+                                <p><?php echo $product->getPrice(); ?> €</p>
+                            </div>
+                            <div class="Tops2">
+                                <div class="topSale">
+                                    <p>TOP SALE</p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php $count++; ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <div class="tops-controls">
+            <button class="prev" onclick="changeDestacadosSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+            <button class="next" onclick="changeDestacadosSlide(1)"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+                <!-- <div class="slider-products">
+                    <div class="Tops">
+                        <div class="topProducts">
+                            <p>PRODUCTS</p>
+                        </div>
+                </div>
+                    <div class="products-container-2">
+                        <div class="products-slider">
+                            <div class="products-normal"></div>
+                            <div class="products-normal"></div>
+                            <div class="products-normal"></div>
+                            <div class="products-normal"></div>
+                        </div> 
+                    </div>
+                        <div class="tops-controls">
+                            <button class="prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                            <button class="next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div> -->
     </main>
 
     <footer>

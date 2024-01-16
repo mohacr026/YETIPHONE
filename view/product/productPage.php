@@ -13,12 +13,12 @@
     <form class="productPageContainer">
         <div class="productPagePackImages">
             <div>
-                <img src="./src/img/<?= $product->getImage(); ?>" alt="<?= $product->getName(); ?> image 1">
-                <img src="./src/img/<?= $product->getImage(); ?>" alt="<?= $product->getName(); ?> image 2">
-                <img src="./src/img/<?= $product->getImage(); ?>" alt="<?= $product->getName(); ?> image 3">
-                <img src="./src/img/<?= $product->getImage(); ?>" alt="<?= $product->getName(); ?> image 4">
+                <img src="./src/img/products/<?= $product->getImage()[0]; ?>" alt="<?= $product->getName(); ?> image 1">
+                <img src="./src/img/products/<?= $product->getImage()[1]; ?>" alt="<?= $product->getName(); ?> image 2">
+                <img src="./src/img/products/<?= $product->getImage()[2]; ?>" alt="<?= $product->getName(); ?> image 3">
+                <img src="./src/img/products/<?= $product->getImage()[3]; ?>" alt="<?= $product->getName(); ?> image 4">
             </div>
-            <img id="productPageShowingImage" src="./src/img/<?= $product->getImage(); ?>" alt="">
+            <img id="productPageShowingImage" src="./src/img/products/<?= $product->getImage()[0]; ?>" alt="">
         </div>
         <div>
             <h1><?= $product->getName(); ?></h1>

@@ -489,18 +489,25 @@ main{
             width: 70%;
             aspect-ratio: 1/1;
             margin: 0.5em;
+            object-fit: contain;
         }
         .sideImages {
             width: 30%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             margin: 0.5em;
             > img {
                 aspect-ratio: 1/1;
+                object-fit: contain;
+                height: 25%;
                 margin: 0.5em;
                 border: 1px solid black;
+                cursor: pointer;
+            }
+            > img.selected {
+                border: 1px solid red;
             }
         }
     }
@@ -529,7 +536,6 @@ main{
 .zoom {
 	width: 14rem;
 	height: 14rem;
-	background: #fff;
 	border-radius: 50%;
 	position: absolute;
 	// box-shadow: inset 0 0 0 1px #000;

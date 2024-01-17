@@ -14,10 +14,12 @@
     <form class="productPageContainer">
         <div class="productPagePackImages">
             <div class="sideImages">
-                <img src="./src/img/products/<?= $product->getImage()[0]; ?>" alt="<?= $product->getName(); ?> image 1">
-                <img src="./src/img/products/<?= $product->getImage()[1]; ?>" alt="<?= $product->getName(); ?> image 2">
-                <img src="./src/img/products/<?= $product->getImage()[2]; ?>" alt="<?= $product->getName(); ?> image 3">
-                <img src="./src/img/products/<?= $product->getImage()[3]; ?>" alt="<?= $product->getName(); ?> image 4">
+                <?php $imagesArray = $product->getImage(); $i=0;?>
+                <?php for ($i = 0; $i < 5; $i++): ?>
+                    <?php if(isset($imagesArray[$i])): ?>
+                        <img src="./src/img/products/<?= $imagesArray[$i] ?>" alt="<?= $product->getName(); ?> image">
+                    <?php endif; ?>
+                <?php endfor; ?>
             </div>
             <img id="productPageShowingImage" src="src/img/products/iphone12.png" alt="<?= $product->getName(); ?> big image">
             <div class="zoom" id="zoom"></div>

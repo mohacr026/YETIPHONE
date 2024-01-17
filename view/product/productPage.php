@@ -28,7 +28,11 @@
             <label for="price"><?= $product->getPrice(); ?> €</label>
             <input type="number" value=<?= $product->getPrice(); ?> name="price" class="hidden">
             <h2>Pick a color</h2>
-            <div>Colors</div>
+            <div>
+                <?php
+                    //print_r($product->getColor());
+                ?>
+            </div>
             <h2>Product details</h2>
             <div><?= $product->getDescription(); ?></div>
             <div><span>Storage: </span><?= $product->getDescription(); ?></div>

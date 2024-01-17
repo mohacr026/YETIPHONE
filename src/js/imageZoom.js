@@ -37,6 +37,15 @@ document.addEventListener("DOMContentLoaded", function () {
         zoom.style.top = `${posY - zoom.offsetHeight / 2}px`;
         zoom.style.left = `${posX - zoom.offsetWidth / 2}px`;
 
+        let percX = (posX - image.offsetLeft) / image.offsetWidth,
+            percY = (posY - image.offsetTop) / image.offsetHeight;
+
+        let zoomLeft = -percX * zoomImage.offsetWidth + (zoom.offsetWidth / 2),
+            zoomTop = -percY * zoomImage.offsetHeight + (zoom.offsetHeight / 2);
+
+        zoomImage.style.left = `${zoomLeft}px`;
+        zoomImage.style.top = `${zoomTop}px`;
+
         zoomImage.setAttribute('src', originalImage);
 
         zoomImage.onload = function () {

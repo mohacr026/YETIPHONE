@@ -1008,4 +1008,12 @@ main .container h1 {
   left: 0;
   top: 0;
   transition: opacity 0.25s ease;
+}
+
+.zoom.show img {
+  position: absolute;
+  width: 200%; /* ajustar el ancho de la imagen al contenedor */
+  height: 200%; /* ajustar la altura de la imagen al contenedor */
+  -o-object-fit: cover;
+     object-fit: cover; /* ajustar el tamaño de la imagen para cubrir completamente el contenedor */
 }/*# sourceMappingURL=main.css.map */

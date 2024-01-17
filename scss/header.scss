@@ -76,6 +76,7 @@ header {
     align-items: center;
     position: relative;
     cursor: pointer;
+    margin-top: -4px;
 
     select {
         appearance: none;
@@ -105,6 +106,7 @@ header {
     align-items: center;
     border-radius: 50px;
     background: var(--BGColor, #F3FAFD);
+    margin-top: -4px;
 
     &.open {
         grid-template-rows: 1fr 100vh;

@@ -77,6 +77,7 @@ header .icons button:hover, header .icons button:active {
   align-items: center;
   position: relative;
   cursor: pointer;
+  margin-top: -4px;
 }
 .categorias select {
   -webkit-appearance: none;
@@ -107,6 +108,7 @@ header .icons button:hover, header .icons button:active {
   align-items: center;
   border-radius: 50px;
   background: var(--BGColor, #F3FAFD);
+  margin-top: -4px;
 }
 .searchBar.open {
   grid-template-rows: 1fr 100vh;

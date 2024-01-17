@@ -32,10 +32,11 @@
     }
 
     .product {
+        background: black;
         background-color: #3498db; /* Color azulado de fondo */
         margin-right: 20px; /* Agrega un margen derecho para espaciar los productos horizontalmente */
         padding: 10px; /* Agrega relleno dentro de cada producto */
-        width: 355px;
+        width: max-content;
         height: 90px;
         /* transform: rotate(-90deg); */
         flex-shrink: 0;

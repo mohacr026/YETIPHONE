@@ -21,14 +21,13 @@
 
 <style>
     .products-container {
-        display: flex; /* Establece el contenedor de productos como un contenedor de tipo flex */
-        padding: 10px; /* Agrega un relleno para espaciar los productos del borde del contenedor */
+        display: flex;
+        padding: 10px;
         margin-top: 115px;
-    }
+        width: 100%; /* Ajusta el ancho al 100% para ocupar todo el ancho del contenedor padre */
+        box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total */
+        overflow-x: auto; /* Permite el desplazamiento horizontal si el contenido es más ancho que el contenedor */
 
-    .products-container-2 {
-        display: flex; /* Establece el contenedor de productos como un contenedor de tipo flex */
-        padding: 10px; /* Agrega un relleno para espaciar los productos del borde del contenedor */
     }
 
     .product {
@@ -299,7 +298,7 @@
                     <?php foreach ($products as $product): ?>
                         <?php if ($count < 3): ?>
                             <div class="productImg">
-                                <img src="./src/img/products/iphone12.png" alt="iphone 12">
+                                <img src="./src/img/products/<?php echo $product->getImage()[0];?>" alt="<?php $product->getName();?>">
                             </div>
                             <div class="product">
                                 <div class="name">

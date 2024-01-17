@@ -2,16 +2,32 @@
     POR HACER:
         JS Y PHP FUERA
 -->
+
 <header>
-    <a href="index.php" style="text-decoration: none">
-        <h1>YETiPhone</h1>
-    <a>
+<input type="checkbox" id="menuBtn" class="menu-button-checkbox">
+    <label for="menuBtn" class="menu-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </label>
+    <div id="mobileMenu" class="mobile-menu">
+        <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+        </ul>
+    </div>
+
+    <h1 class="titulo">YETiPhone</h1>
     <button id="categoriasBtn" class="categorias">
         <svg xmlns="http://www.w3.org/2000/svg" width="33" height="19" viewBox="0 0 44 29" fill="none">
             <path d="M0 2.5C0 1.11929 1.11929 0 2.5 0H41.5C42.8807 0 44 1.11929 44 2.5C44 3.88071 42.8807 5 41.5 5H2.5C1.11929 5 0 3.88071 0 2.5Z" fill="#F3FAFD"/>
-            <path d="M0 14.125C0 12.7443 1.11929 11.625 2.5 11.625H41.5C42.8807 11.625 44 12.7443 44 14.125C44 15.5057 42.8807 16.625 41.5 16.625H2.5C1.11929 16.625 0 15.5057 0 14.125Z" fill="#F3FAFD"/>
-            <path d="M0 25.75C0 24.3693 1.11929 23.25 2.5 23.25H41.5C42.8807 23.25 44 24.3693 44 25.75C44 27.1307 42.8807 28.25 41.5 28.25H2.5C1.11929 28.25 0 27.1307 0 25.75Z" fill="#F3FAFD"/>
-        </svg>
+                <path d="M0 14.125C0 12.7443 1.11929 11.625 2.5 11.625H41.5C42.8807 11.625 44 12.7443 44 14.125C44 15.5057 42.8807 16.625 41.5 16.625H2.5C1.11929 16.625 0 15.5057 0 14.125Z" fill="#F3FAFD"/>
+                <path d="M0 25.75C0 24.3693 1.11929 23.25 2.5 23.25H41.5C42.8807 23.25 44 24.3693 44 25.75C44 27.1307 42.8807 28.25 41.5 28.25H2.5C1.11929 28.25 0 27.1307 0 25.75Z" fill="#F3FAFD"/>
+            </svg>
         All Categories
     </button>
 

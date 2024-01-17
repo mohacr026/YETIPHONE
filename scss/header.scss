@@ -1,3 +1,10 @@
+@import "colors.scss";
+
+    /* Oculta el botón de menú y el menú desplegable en la versión de escritorio */
+    .menu-button, .mobile-menu {
+        display: none;
+    }
+    
 header {
     background-color: $medBlue;
     display: flex;
@@ -188,4 +195,71 @@ header {
     width: 80%;
     border-radius: 0 0 0.5em 0.5em;
     box-shadow: 0px -5px 10px rgba(1, 0, 0, 0);
+}
+
+@media screen and (max-width: 767px) {
+    header {
+        background-color: $medBlue;
+        display: flex;
+        max-height: 5vh;
+        padding-left: 0;
+        padding-right: 0;
+        position: relative;
+    }
+
+    .categorias, .searchBar, .icons p {
+        display: none; /* Oculta el botón "All Categories" y otros elementos en pantallas pequeñas */
+    }
+
+    .titulo {
+        display: flex;
+        justify-content: center;
+    }
+
+    .menu-button-checkbox {
+        display: none;
+    }
+
+    .menu-button {
+        display: flex;
+        align-items: center;
+        padding: 1em;
+        color: white;
+        cursor: pointer;
+    }
+
+    .menu-button svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .mobile-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        z-index: 20;
+        top: 100%;
+        right: 0;
+        background-color: $medBlue;
+        width: 100%;
+        border-top: 1px solid white; /* Añadido para separar del header */
+    }
+
+    .mobile-menu ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .mobile-menu li {
+        color: white;
+        padding: 1em;
+        text-align: center;
+        cursor: pointer;
+        border-bottom: 1px solid white; /* Añadido para separar los elementos del menú */
+    }
+
+    #menuBtn:checked + .menu-button + .mobile-menu {
+        display: flex;
+    }
 }

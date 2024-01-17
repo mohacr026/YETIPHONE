@@ -67,7 +67,6 @@
                 echo "  <p>Log in</p>";
                 echo "</a>";
             } else {
-                
                 echo "<button id='userBtn' class='dropBtn'>";
                 echo "  <img class='buttonElements' src='./src/img/userIcon.png' alt='user menu'>";
                 echo "  <p class='buttonElements'>{$_SESSION['email']}</p>";

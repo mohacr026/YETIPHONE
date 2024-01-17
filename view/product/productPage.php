@@ -7,20 +7,22 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="shortcut icon" href="./src/img/snowflake.png" type="image/x-icon">
     <script src="./src/js/userMenu.js"></script>
+    <script src="./src/js/imageZoom.js"></script>
 </head>
 <body>
     <?php include("./view/components/header.php"); ?>
     <form class="productPageContainer">
         <div class="productPagePackImages">
-            <div>
+            <div class="sideImages">
                 <img src="./src/img/products/<?= $product->getImage()[0]; ?>" alt="<?= $product->getName(); ?> image 1">
                 <img src="./src/img/products/<?= $product->getImage()[1]; ?>" alt="<?= $product->getName(); ?> image 2">
                 <img src="./src/img/products/<?= $product->getImage()[2]; ?>" alt="<?= $product->getName(); ?> image 3">
                 <img src="./src/img/products/<?= $product->getImage()[3]; ?>" alt="<?= $product->getName(); ?> image 4">
             </div>
-            <img id="productPageShowingImage" src="./src/img/products/<?= $product->getImage()[0]; ?>" alt="">
+            <img id="productPageShowingImage" src="src/img/products/iphone12.png" alt="<?= $product->getName(); ?> big image">
+            <div class="zoom" id="zoom"></div>
         </div>
-        <div>
+        <div class="productInfo">
             <h1><?= $product->getName(); ?></h1>
             <div>from <span><?= $categoria->getName(); ?></span></div>
             <label for="price"><?= $product->getPrice(); ?> €</label>

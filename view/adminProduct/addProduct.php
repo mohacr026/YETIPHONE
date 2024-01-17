@@ -70,7 +70,7 @@
 
                         <div class="formRow">
                             <label for="colors">Colors:</label>
-                            <input type="text" id="colors" name="colors" placeholder="#FFFFFF, #000000, #FF00FF..." required>
+                            <input type="text" id="colors" name="colors" placeholder="#FFFFFF, #000000, #FF00FF..." title="Write each color code separated with commas as shown in the example" required>
                         </div>
     
                         <div class="formRow">

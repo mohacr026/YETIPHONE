@@ -9,18 +9,24 @@ class Product extends Database {
     private $category;
     private $image;
     private $price;
+    private $storage;
+    private $memory;
+    private $colors;
     private $stock;
     private $featured;
     private $isActive;
 
     // Constructor
-    public function __construct($id, $name, $description, $category, $image, $price, $stock, $featured, $isActive = true){
+    public function __construct($id, $name, $description, $category, $image, $price, $storage, $memory, $colors, $stock, $featured, $isActive){
         $this->id = $id;
         $this->name = $name;
         $this->description = $description;
         $this->category = $category;
         $this->image = $image;
         $this->price = $price;
+        $this->storage = $storage;
+        $this->memory = $memory;
+        $this->colors = $colors;
         $this->stock = $stock;
         $this->featured = $featured;
         $this->isActive = $isActive;
@@ -84,6 +90,30 @@ class Product extends Database {
         $this->stock = $stock;
     }
 
+    public function getStorage(){
+        return $this->storage;
+    }
+
+    public function setStorage($storage) {
+        $this->storage = $storage;
+    }
+
+    public function getMemory() {
+        return $this->memory;
+    }
+
+    public function setMemory($memory) {
+        $this->memory = $memory;
+    }
+
+    public function getColors() {
+        return $this->colors;
+    }
+
+    public function setColors($colors) {
+        $this->colors = $colors;
+    }
+
     public function getFeatured() {
         return $this->featured;
     }
@@ -100,193 +130,7 @@ class Product extends Database {
         $this->isActive = $isActive;
     }
 
-    // Methodos
-    public function insertProductIntoDatabase() {
-        $name = $this->getName();
-        $description = $this->getDescription();
-        $price = $this->getPrice();
-        $id_category = $this->getCategory();
-        $stock = $this->getStock();
-        $isActive = $this->getIsActive();
-        $featured = $this->getFeatured();
-        $img = $this->getImage();  // Ahora se obtiene la ruta de la imagen desde el modelo
-    
-        $db = Database::connect();  
-        
-        if (!$db) {
-            echo "Error connecting to the database.";
-            return;
-        }
-    
-        try {
-            $query = "INSERT INTO product (name, description, price, id_category, stock, isactive, featured, img) VALUES (:name, :description, :price, :id_category, :stock, :isactive, :featured, :img)";
-            $stmt = $db->prepare($query);
-            $stmt->bindParam(':name', $name);
-            $stmt->bindParam(':description', $description);
-            $stmt->bindParam(':id_category', $id_category);
-            $stmt->bindParam(':price', $price);
-            $stmt->bindParam(':stock', $stock);
-            $stmt->bindParam(':isactive', $isActive);
-            $stmt->bindParam(':featured', $featured);
-            $stmt->bindParam(':img', $img);
-    
-            $result = $stmt->execute();
-    
-            if ($result) {
-                echo "Product successfully registered in the database.";
-            } else {
-                echo "Error registering the product in the database.";
-            }
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-        } finally {
-            $db = null;
-        }
-    }
-    
-    
-    public function updateProducts() {
-        // Conectar a la base de datos
-        $connection = self::connect();
-    
-        // Escapar y sanear los datos antes de usarlos en la consulta (para prevenir inyección SQL)
-        $id = $connection->quote($this->getId());
-        $name = $connection->quote($this->getName());
-        $description = $connection->quote($this->getDescription());
-        $id_category = $connection->quote($this->getCategory());
-        $price = $connection->quote($this->getPrice());
-        $stock = $connection->quote($this->getStock());
-        
-        $query = "UPDATE product SET 
-                  name = $name,
-                  description = $description,
-                  id_category = $id_category,
-                  price = $price,
-                  stock = $stock
-                  WHERE id = $id";
-    
-        // Ejecutar la consulta
-        $connection->exec($query);
-    }
-    
-    public function updateProductIsActive() {
-        // Conectar a la base de datos
-        $database = new Database();
-        $connection = $database->connect();
-    
-        // Obtener el valor booleano de isactive
-        $isActiveValue = $this->getIsActive() ? 'true' : 'false';
-    
-        // Escapar y sanear los datos antes de usarlos en la consulta (para prevenir inyección SQL)
-        $id = $connection->quote($this->getId());
-        $isActive = $connection->quote($isActiveValue);
-    
-        // Consulta SQL para actualizar el estado isactive del producto
-        $query = "UPDATE product SET isactive = $isActive WHERE id = $id";
-    
-        // Ejecutar la consulta
-        $connection->exec($query);
-    }
-
-    public static function getProductById($id){
-        $db = Product::connect();
-        $sql = "SELECT * FROM product WHERE id = ?";
-        $stmt = $db->prepare($sql);
-        $stmt->bindParam(1, $id, PDO::PARAM_INT);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        $productsArray = [];
-        foreach ($result as $key => $product) {
-            $featured = $product["featured"] == null ? false : true;
-            $active = $product["isactive"] == null ? false : true;
-            
-            $newProduct = new Product($product["id"], $product["name"], $product["description"], $product["id_category"], $product["img"], $product["price"], $product["stock"], $product["featured"], $active);
-            
-            $productsArray[] = $newProduct;
-        }
-    
-        return $productsArray;
-    }
-    
-
-    public static function getAllProducts($onlyActives = false, $filters = null) {
-        // Ahora lo de los filtros no tiene uso, pero lo usaré en otra cosa
-        $db = Product::connect();
-        if($filters != null){
-            // Action if comes with filters
-            $search = $filters["elementToSearch"];
-            // Checks if element to search is empty or spaces
-            if (preg_match('/^\s*$/', $search)) $search = "";
-            
-            $sql = "
-            SELECT
-                p.id AS product_id,
-                p.name AS product_name,
-                p.description AS product_description,
-                p.id_category AS product_id_category,
-                p.img AS product_img,
-                p.price AS product_price,
-                p.stock AS product_stock,
-                p.featured AS product_featured,
-                p.isActive AS product_isActive,
-                c.name AS category_name
-            FROM
-                product p
-            JOIN
-                category c ON p.id_category = c.id
-            WHERE
-                ( LOWER(p.name) LIKE :pname OR LOWER(c.name) LIKE :pname)
-            ";
-            // AÑADIR LOWER(p.id) LIKE :id OR dentro de los parentesis
-            foreach ($filters as $key => $value) {
-                if ($key != "elementToSearch") {
-                    $sql .= " AND $key = :$key";
-                }
-            }
-
-            $stmt = $db->prepare($sql);
-            $searchWithPercent = "%" . $search . "%";
-            //$stmt->bindParam(':id', $searchWithPercent, PDO::PARAM_STR);
-            $stmt->bindParam(':pname', $searchWithPercent, PDO::PARAM_STR);
-
-            foreach ($filters as $key => $value) {
-                if ($key != "elementToSearch") {
-                    $stmt->bindParam(":$key", $value, PDO::PARAM_STR);
-                }
-            }
-
-            $stmt->execute();
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            
-            $productsArray = [];
-            foreach ($result as $key => $product) {
-                $featured = $product["product_featured"] == null ? false : true;
-                $active = $product["product_isactive"] == null ? false : true;
-                $newProduct = new Product($product["product_id"], $product["product_name"], $product["product_description"], $product["product_id_category"], $product["product_img"], $product["product_price"], $product["product_stock"], $featured, $active);
-                $productsArray[] = $newProduct;
-            }
-        } else{
-            //Action if doesnt come with filters
-            if($onlyActives) $sql = "SELECT * FROM product WHERE isActive = true";
-            else $sql = "SELECT * FROM product";
-            
-            $stmt = $db->prepare($sql);
-            $stmt->execute();
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            
-            $productsArray = [];
-            foreach ($result as $key => $product) {
-                $featured = $product["featured"] == null ? false : true;
-                $active = $product["isactive"] == null ? false : true;
-                $newProduct = new Product($product["id"], $product["name"], $product["description"], $product["id_category"], $product["img"], $product["price"], $product["stock"], $product["featured"], $active);
-                $productsArray[] = $newProduct;
-            }
-        }
-
-        return $productsArray;
-    }
-
+    // Metodos
     public static function insertProducts(array $data = []){
         //Connect into the database
         $db = self::connect();
@@ -339,6 +183,23 @@ class Product extends Database {
         }
     }
 
+    public static function insertColors($colorField, $product_id){
+        //Connect into the database
+        $db = self::connect();
+
+        $colors = explode(",", $colorField);
+
+        if(!empty($colors)){
+            foreach($colors as $color){
+                $sql = "INSERT INTO colors (product_id, color_code) VALUES('$product_id', '$color');";
+
+                $statement = $db->prepare($sql);
+
+                $statement->execute();
+            }
+        }
+    }
+
     public static function generateProductID($categoryName, $productName, $categoryID) {
         // Get the first two letters of the category name
         $categoryPrefix = strtoupper(substr($categoryName, 0, 2));
@@ -366,7 +227,7 @@ class Product extends Database {
         return $productID;
     }
 
-    public static function fetchProductImages($productId){
+    public static function fetchProductImages($productId, $parsed = true){
         // Connect into database
         $db = self::connect();
 
@@ -379,9 +240,31 @@ class Product extends Database {
         $statement->execute();
         $images = [];
         while($row = $statement->fetch(PDO::FETCH_ASSOC)){
-            $images[] = $row['img'];
+            if($parsed){
+                $images[] = $row['img'];
+            } else {
+                $images[] = $row;
+            }
         }
         return $images;
+    }
+
+    public static function fetchProductColors($productId){
+        // Connect into database
+        $db = self::connect();
+
+        // SQL to execute the query
+        $sql = "SELECT * FROM colors WHERE product_id = :id";
+        
+        $statement = $db->prepare($sql);
+        $statement->bindValue(":id", $productId);
+
+        $statement->execute();
+        $colors = [];
+        while($row = $statement->fetch(PDO::FETCH_ASSOC)){
+            $colors[] = $row['color_code'];
+        }
+        return $colors;
     }
 
     public static function fetchProducts(array $filters = []){
@@ -433,7 +316,8 @@ class Product extends Database {
         $products = [];
         while($row = $statement->fetch(PDO::FETCH_ASSOC)){
             $images = self::fetchProductImages($row['id']);
-            $products[] = new Product($row['id'], $row['name'], $row['description'], $row['id_category'], $images, $row['price'], $row['stock'], $row['featured']);
+            $colors = self::fetchProductColors($row['id']);
+            $products[] = new Product($row['id'], $row['name'], $row['description'], $row['id_category'], $images, $row['price'], $row['storage'], $row['memory'], $colors, $row['stock'], $row['featured'], $row['isactive']);
         }
         return $products;
     }

@@ -40,7 +40,8 @@ class ProductController {
 
             // Loop through each uploaded file
             foreach ($_FILES["img"]["tmp_name"] as $key => $tmp_name) {
-                $image_name = $data['id']."$key.png";
+                $timestamp = time();
+                $image_name = $data['id']."-$timestamp.png";
                 $image_tmp = $_FILES["img"]["tmp_name"][$key];
                 
                 // Move the uploaded file to a desired location
@@ -51,6 +52,7 @@ class ProductController {
             }
 
             Product::insertImages($images, $data["id"]);
+            Product::insertColors($_POST["colors"], $data["id"]);
 
             $categories = Category::fetchCategory(["isActive" => "true"]);
             include("./view/adminProduct/addProduct.php");
@@ -62,7 +64,7 @@ class ProductController {
 
     public function showEditProducts() {
         // Obtener la lista de productos desde la base de datos
-        $productsArray = Product::getAllProducts();
+        $productsArray = Product::fetchProducts();
         $categoriesArray = Category::getAllCategories();
         
         $productsJSON = [];
@@ -99,39 +101,14 @@ class ProductController {
         // var_dump($_GET);  // Muestra toda la información en $_GET
         if (isset($_GET['id'])) {
             $productId = $_GET['id'];
-            $product = Product::getProductById($productId);
-            $product = $product[0];
+            $product = Product::fetchProducts(['id' => $productId])[0];
+            $productImages = Product::fetchProductImages($product->getId(), false);
             $categoriesArray = Category::getAllCategories();
             include("./view/adminProduct/editProduct.php");
         } else {
             echo "ID de producto no proporcionado.";
         }
     }
-
-    private function uploadImage(Product $product) {
-        if (isset($_FILES['img']) && $_FILES['img']['error'] == UPLOAD_ERR_OK) {
-            // Mostrar detalles de la carga de archivos
-            echo "<pre>";
-            print_r($_FILES['img']);
-            echo "</pre>";
-    
-            $targetDir = __DIR__ . "/src/productImg/";
-            $targetFile = $targetDir . uniqid() . '_' . basename($_FILES['img']['name']);
-    
-            if (move_uploaded_file($_FILES['img']['tmp_name'], $targetFile)) {
-                echo "File uploaded successfully.";
-                return $targetFile;
-            } else {
-                echo "Error uploading file.";
-            }
-        } else {
-            echo "No img uploaded.";
-            return null;
-        }
-    }
-    
-    
-    
 
     public function editProductPerformed() {
         
@@ -150,7 +127,7 @@ class ProductController {
                 $stock = $_POST['stock'];
     
                 // Obtener el producto existente de la base de datos
-                $existingProduct = Product::getProductById($id);
+                $existingProduct = Product::fetchProducts(['id' => $id]);
                 $existingProduct = $existingProduct[0];
                 if ($existingProduct) {
                     // Crear una instancia de la clase Product con los nuevos datos

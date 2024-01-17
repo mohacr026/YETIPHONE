@@ -63,13 +63,30 @@
                         </div>
 
                         <div class="formRow">
-                            <label for="stock">Stock:</label>
-                            <input type="number" name="stock" value="<?php print($product->getStock()); ?>" required>
+                            <label for="storage">Storage:</label>
+                            <input type="number" name="storage" min="0" value="<?php print($product->getStorage()); ?>" required>
                         </div>
 
                         <div class="formRow">
-                            <label for="image">Image:</label>
-                            <input type="file" name="image">
+                            <label for="memory">Memory:</label>
+                            <input type="number" name="memory" min="0" value="<?php print($product->getMemory()); ?>" required>
+                        </div>
+
+                        <div class="formRow">
+                            <label for="stock">Stock:</label>
+                            <input type="number" name="stock" min="0" value="<?php print($product->getStock()); ?>" required>
+                        </div>
+
+                        <div class="formRow">
+                            <label for="delete_imgs">Product images:</label>
+                            <?php foreach($productImages as $image): ?>
+                                <input type="checkbox" name="delete_imgs[]" value="<?php echo $image['img']; ?>"><img style="width: 50px;" src="./src/img/products/<?php echo $image['img']; ?>" alt="<?php echo $product->getName(); ?>'s image"> 
+                            <?php endforeach; ?>
+                        </div>
+
+                        <div class="formRow">
+                            <label for="img">Add product Image:</label>
+                            <input type="file" id="img" name="img[]" accept="image/jpeg, image/png" multiple>
                         </div>
 
                         <div class="formRow">

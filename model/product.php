@@ -303,7 +303,17 @@ class Product extends Database {
         
         //This code creates a dynamic SQL query based on the filters given by the parameters
         if(!empty($data)){
-            $sql .= "(". implode(", ", $columns).") VALUES(". implode(", ", $values).")";
+
+            $valuesWithQuotes = [];
+            foreach ($values as $value) {
+                if (is_string($value)) {
+                    $valuesWithQuotes[] = "'" . $value . "'";
+                } else {
+                    $valuesWithQuotes[] = $value;
+                }
+            }
+
+            $sql .= "(". implode(', ', $columns).") VALUES(". implode(', ', $valuesWithQuotes).")";
 
             //Here the SQL query prepares and bind the given parameters on its values to execute the filters
             $statement = $db->prepare($sql);
@@ -320,11 +330,40 @@ class Product extends Database {
 
         if(!empty($images)){
             foreach($images as $image){
-                $sql = "INSERT INTO product_image (img, product_id) VALUES($image, $product_id);";
+                $sql = "INSERT INTO product_image (img, product_id) VALUES('$image', '$product_id');";
 
                 $statement = $db->prepare($sql);
+
+                $statement->execute();
             }
         }
+    }
+
+    public static function generateProductID($categoryName, $productName, $categoryID) {
+        // Get the first two letters of the category name
+        $categoryPrefix = strtoupper(substr($categoryName, 0, 2));
+       
+        // Get desired number based on how many products have the same category 
+        $db = self::connect();
+        // Query the database to get the count of products in the same category
+        $sql = "SELECT COUNT(*) as count FROM product WHERE id_category = :category";
+        
+        $statement = $db->prepare($sql);
+        $statement->bindValue(":category", $categoryID);
+
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+       
+        // Increment the count by 1 and format it as a three-digit number
+        $productCount = str_pad($result['count'] + 1, 3, '0', STR_PAD_LEFT);
+       
+        // Get the first two letters of the product name
+        $productPrefix = strtoupper(substr($productName, 0, 2));
+       
+        // Combine the prefixes and the product count to form the final ID
+        $productID = $categoryPrefix . $productCount . $productPrefix;
+       
+        return $productID;
     }
 
     public static function fetchProductImages($productId){

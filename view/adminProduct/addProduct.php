@@ -24,11 +24,7 @@
         <div class="container">
             <div class="formContainer">
                 <h2>Add a new product</h2>
-                <div class="formRow">
-                    <label for="product_id">Product ID</label>
-                    <input type="text" name="product_id" id="product_id" value="CC000-PP" readonly form="productForm">
-                </div>
-                <form action="index.php?controller=Product&action=registerProduct" method="post" id="productForm">
+                <form action="index.php?controller=Product&action=registerProduct" method="post" id="productForm" enctype="multipart/form-data">
                     <div class="formColumn">
                         <div class="formRow">
                             <label for="name">Product Name:</label>
@@ -40,38 +36,46 @@
                             <textarea id="description" name="description" rows="4" required></textarea>
                         </div>
     
-                        <div class="formRow">
-                            <label for="price">Price:</label>
-                            <input type="number" id="price" name="price" min="1" step="1" required>
-                        </div>
                     </div>
                     <div class="formColumn">
 
                         <div class="formRow">
-                            <label for="category">Category:</label>
-                            <select id="category" name="category" required>
-                                <?php
-                                $db = Database::connect();
-                                $query = "SELECT id, name FROM category WHERE isActive = true";
-                                $stmt = $db->prepare($query);
-                                $stmt->execute();
-                                $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-                                foreach ($categories as $category):
-                                ?>
+                            <label for="id_category">Category:</label>
+                            <select id="category" name="id_category" required>
+                                <?php foreach ($categories as $category): ?>
                                     <option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
-    
+                        
+                        <div class="formRow">
+                            <label for="price">Price:</label>
+                            <input type="number" id="price" name="price" min="1" step="1" required>
+                        </div>
+
+                        <div class="formRow">
+                            <label for="storage">Storage:</label>
+                            <input type="number" id="storage" name="storage" min="0" required>
+                        </div>
+
+                        <div class="formRow">
+                            <label for="memory">Memory:</label>
+                            <input type="number" id="memory" name="memory" min="0" required>
+                        </div>
+
                         <div class="formRow">
                             <label for="stock">Stock:</label>
                             <input type="number" id="stock" name="stock" min="0" required>
                         </div>
+
+                        <div class="formRow">
+                            <label for="colors">Colors:</label>
+                            <input type="text" id="colors" name="colors" placeholder="#FFFFFF, #000000, #FF00FF..." required>
+                        </div>
     
                         <div class="formRow">
                             <label for="img">Product Image:</label>
-                            <input type="file" id="img" name="img" accept="image/jpeg, image/png" >
+                            <input type="file" id="img" name="img[]" accept="image/jpeg, image/png" multiple>
                         </div>
 
                     </div>

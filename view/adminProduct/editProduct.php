@@ -90,7 +90,19 @@
                         </div>
 
                         <div class="formRow">
-                            <img src="<?php print($product->getImage()); ?>" alt="Current image" width="100">
+                            <label for="featured">Featured:</label>
+                            <select id="featured" name="featured" required>
+                                <option value="true" <?php if($product->getFeatured()){ echo("selected"); } ?>>True</option>
+                                <option value="false" <?php if(!$product->getFeatured()){ echo("selected"); } ?>>False</option>
+                            </select>
+                        </div>
+
+                        <div class="formRow">
+                            <label for="isactive">Active:</label>
+                            <select id="isactive" name="isactive" required>
+                                <option value="true" <?php if($product->getIsActive()){ echo("selected"); } ?>>True</option>
+                                <option value="false" <?php if(!$product->getIsActive()){ echo("selected"); } ?>>False</option>
+                            </select>
                         </div>
                     </div>
                 </form>

@@ -267,6 +267,44 @@ class Product extends Database {
         return $colors;
     }
 
+    public static function updateProducts(array $fields = [], $productId){
+        //Connect into the database
+        $db = self::connect();
+        
+        //SQL basic query, we'll modify it later if needed
+        $sql = "UPDATE product";
+
+        //This code creates a dynamic SQL query based on the fields given by the parameters
+        if(!empty($fields)){
+            $sql .= " SET ";
+            // $i is started in 1 because the first clause will be always WHERE not ,
+            $i = 1;
+            foreach($fields as $field => $value){
+                $sql .= "$field = ? ";
+                if($i < count($fields)){
+                    $sql .= ", ";
+                }
+                $i++;
+            }
+            $sql .= " WHERE id = ?";
+        }
+
+        //Here the SQL query prepares and bind the given parameters on its values to execute the filters
+        $statement = $db->prepare($sql);
+
+        if(!empty($fields)){
+            $i = 1;
+            foreach($fields as $value){
+                $statement->bindValue($i++, $value);
+            }
+            $statement->bindValue($i++, $productId);
+        }
+
+        $result = $statement->execute();
+
+        return $result;
+    }
+
     public static function fetchProducts(array $filters = []){
         /* 
             Example of $filters array application
@@ -320,6 +358,24 @@ class Product extends Database {
             $products[] = new Product($row['id'], $row['name'], $row['description'], $row['id_category'], $images, $row['price'], $row['storage'], $row['memory'], $colors, $row['stock'], $row['featured'], $row['isactive']);
         }
         return $products;
+    }
+
+    public static function deleteImages($images){
+        $db = self::connect();
+
+        foreach($images as $image) {
+            // Delete the image from the database
+            $query = "DELETE FROM product_image WHERE 'img' = :image";
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(':image', $image);
+            $stmt->execute();
+           
+            // Delete the image file from the server
+            $filePath = "./src/img/products/" . $image;
+            if(file_exists($filePath)) {
+                unlink($filePath);
+            }
+        }
     }
 
     public function toggleStatus(){

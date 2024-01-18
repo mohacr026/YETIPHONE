@@ -117,43 +117,52 @@ class ProductController {
     public function updateProduct() {
         try {
             if (!empty($_POST)) {
-                // Validar datos (agrega validaciones según sea necesario)
-    
-                $id = $_POST['id'];
-                $name = $_POST['name'];
-                $description = $_POST['description'];
-                $price = $_POST['price'];
-                $id_category = $_POST['category'];
-                $stock = $_POST['stock'];
-    
-                // Obtener el producto existente de la base de datos
-                $existingProduct = Product::fetchProducts(['id' => $id]);
-                $existingProduct = $existingProduct[0];
-                if ($existingProduct) {
-                    // Crear una instancia de la clase Product con los nuevos datos
-                    $updatedProduct = new Product(
-                        $id,
-                        $name,
-                        $description,
-                        $id_category,
-                        // $existingProduct->getImage(),
-                        $price,
-                        $stock,
-                        $existingProduct->getIsActive(),
-                        $existingProduct->getFeatured()
-                    );
-    
-                    // Manejar la actualización de la imagen (si se proporciona una nueva)
-                    // $this->uploadImage($updatedProduct);
-    
-                    // Actualizar el producto en la base de datos
-                    $updatedProduct->updateProducts();
-                    echo "Producto actualizado correctamente.";
+
+                $productId = $_POST["id"];
+                if(isset($_POST["name"])){
+                    $data["name"] = $_POST["name"];
+                }
+                if(isset($_POST["description"])){
+                    $data["description"] = $_POST["description"];
+                }
+                if(isset($_POST["id_category"])){
+                    $data["id_category"] = $_POST["id_category"];
+                }
+                if(isset($_POST["price"])){
+                    $data["price"] = $_POST["price"];
+                }
+                if(isset($_POST["stock"])){
+                    $data["stock"] = $_POST["stock"];
+                }
+                if(isset($_POST["storage"])){
+                    $data["storage"] = $_POST["storage"];
+                }
+                if(isset($_POST["memory"])){
+                    $data["memory"] = $_POST["memory"];
+                }
+                if(isset($_POST["isactive"])){
+                    $data["isactive"] = $_POST["isactive"];
+                }
+                if(isset($_POST["featured"])){
+                    $data["featured"] = $_POST["featured"];
+                }
+
+                if (count(Product::fetchProducts(['id' => $productId])) > 0) {
+                    $result = Product::updateProducts($data, $productId);
+                    if(isset($_POST["delete_imgs"])){
+                        $selectedImages = $_POST["delete_imgs"];
+                        Product::deleteImages($selectedImages);
+                    }
+                    if($result){
+                        echo"<meta http-equiv='refresh' content='0; URL=index.php?controller=Product&action=showEditProducts'>";
+                    } else {
+                        echo"<meta http-equiv='refresh' content='0; URL=index.php?controller=Product&action=editProduct&id=".$productId."'>";
+                    }
                 } else {
-                    echo "Producto no encontrado.";
+                    echo "Product not found";
                 }
             } else {
-                echo "El formulario no se envió correctamente.";
+                echo"<meta http-equiv='refresh' content='0; URL=index.php?controller=Product&action=editProduct&id=".$productId."'>";
             }
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage();

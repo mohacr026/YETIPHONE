@@ -7,7 +7,7 @@
 }
 
 /* Oculta el botón de menú y el menú desplegable en la versión de escritorio */
-.menu-button, .mobile-menu {
+.menu-button, .menu-button-checkbox, .mobile-menu {
   display: none;
 }
 

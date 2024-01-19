@@ -14,14 +14,25 @@
     </label>
     <div id="mobileMenu" class="mobile-menu">
         <ul>
-            <li>Link 1</li>
-            <li>Link 2</li>
+            <li>BEST CATEGORIES</li>
+            <li>                
+                <?php
+                    $db = Database::connect();
+                    $query = "SELECT id, name FROM category WHERE isActive = true";
+                    $stmt = $db->prepare($query);
+                    $stmt->execute();
+                    $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($categories as $category): ?>
+        
+                    <a href="index.php?controller=Product&action=showProducts&category=<?= $category['id']; ?>"><?= $category['name']; ?></a>
+                <?php endforeach; ?>
+            </li>
             <li>Link 3</li>
             <li>Link 4</li>
         </ul>
     </div>
 
-    <h1 class="titulo">YETiPhone</h1>
+    <a href="index.php" style="text-decoration: none"><h1 class="titulo">YETiPhone</h1></a>
     <button id="categoriasBtn" class="categorias">
         <svg xmlns="http://www.w3.org/2000/svg" width="33" height="19" viewBox="0 0 44 29" fill="none">
             <path d="M0 2.5C0 1.11929 1.11929 0 2.5 0H41.5C42.8807 0 44 1.11929 44 2.5C44 3.88071 42.8807 5 41.5 5H2.5C1.11929 5 0 3.88071 0 2.5Z" fill="#F3FAFD"/>

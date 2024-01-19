@@ -511,6 +511,41 @@ main{
             }
         }
     }
+    .productInfo{
+        .color{
+            display: flex;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            input[type="radio"] {
+                display: none;
+                &:checked + label {
+                  span { transform: scale(1.25); }
+                } // !&:checked + label
+              }
+              
+              label {
+                display: inline-block;
+                width: 2rem;
+                height: 2rem;
+                margin-right: 10px;
+                cursor: pointer;
+                &:hover {
+                  span { 
+                    transform: scale(1.25); 
+                    
+                  }
+                }
+                span {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    transition: transform .2s ease-in-out;
+                    border-radius: 50%;
+                    border: 1px solid black;
+                }
+              }
+        }
+    }
     div:nth-child(2) {
         display: flex;
         flex-direction: column;

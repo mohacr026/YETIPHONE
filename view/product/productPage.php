@@ -30,9 +30,17 @@
             <label for="price"><?= $product->getPrice(); ?> €</label>
             <input type="number" value=<?= $product->getPrice(); ?> name="price" class="hidden">
             <h2>Pick a color</h2>
-            <div>
+            <div class="color">
                 <?php
-                    //print_r($product->getColor());
+                    $colors = $product->getColors();
+                    $first = true;
+                    foreach ($colors as $key => $color) {
+                        if ($first){ 
+                            echo "<input class='colorSelector' type='radio' name='color' id='$color' value='$color' checked/>";
+                            $first = false;
+                        } else echo "<input class='colorSelector' type='radio' name='color' id='$color' value='$color'/>";
+                        echo "<label class='colorSelector' for='$color'><span style='background-color: $color' class='colorSpan'></span></label>";
+                    }
                 ?>
             </div>
             <h2>Product details</h2>

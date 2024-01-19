@@ -14,43 +14,55 @@
     <form class="productPageContainer">
         <div class="productPagePackImages">
             <div class="sideImages">
-                <?php $imagesArray = $product->getImage(); $i=0;?>
+                <?php $imagesArray = $product->getImage();?>
                 <?php for ($i = 0; $i < 5; $i++): ?>
                     <?php if(isset($imagesArray[$i])): ?>
                         <img src="./src/img/products/<?= $imagesArray[$i] ?>" alt="<?= $product->getName(); ?> image">
                     <?php endif; ?>
                 <?php endfor; ?>
             </div>
-            <img id="productPageShowingImage" src="src/img/products/iphone12.png" alt="<?= $product->getName(); ?> big image">
+            <img id="productPageShowingImage" src="./src/img/products/<?= $imagesArray[0] ?>" alt="<?= $product->getName(); ?> big image">
             <div class="zoom" id="zoom"></div>
         </div>
         <div class="productInfo">
-            <h1><?= $product->getName(); ?></h1>
-            <div>from <span><?= $categoria->getName(); ?></span></div>
-            <label for="price"><?= $product->getPrice(); ?> €</label>
-            <input type="number" value=<?= $product->getPrice(); ?> name="price" class="hidden">
-            <h2>Pick a color</h2>
-            <div class="color">
-                <?php
-                    $colors = $product->getColors();
-                    $first = true;
-                    foreach ($colors as $key => $color) {
-                        if ($first){ 
-                            echo "<input class='colorSelector' type='radio' name='color' id='$color' value='$color' checked/>";
-                            $first = false;
-                        } else echo "<input class='colorSelector' type='radio' name='color' id='$color' value='$color'/>";
-                        echo "<label class='colorSelector' for='$color'><span style='background-color: $color' class='colorSpan'></span></label>";
-                    }
-                ?>
+            <div>
+                <h2> <?= $product->getName(); ?> </h2>
+                <!--<div><?= $product->getDescription(); ?></div>-->
+                <div class="separator"></div>
+                <div>
+                    <p>Storage</p>
+                    <p><?= $product->getStorage(); ?> GB</p>
+                </div>
+                <div class="separator"></div>
+                <div>
+                    <p>Memory</p>
+                    <p><?= $product->getMemory(); ?> GB</p>
+                </div>
+                <div class="separator"></div>
+                <h3>Select your color</h3>
+                <div class="color">
+                    <?php
+                        $colors = $product->getColors();
+                        $first = true;
+                        foreach ($colors as $key => $color) {
+                            if ($first){ 
+                                echo "<input class='colorSelector' type='radio' name='color' id='$color' value='$color' checked required/>";
+                                $first = false;
+                            } else echo "<input class='colorSelector' type='radio' name='color' id='$color' value='$color' required/>";
+                            echo "<label class='colorSelector' for='$color'><span style='background-color: $color' class='colorSpan'></span></label>";
+                        }
+                    ?>
+                </div>
+                <div class="separator"></div>
             </div>
-            <h2>Product details</h2>
-            <div><?= $product->getDescription(); ?></div>
-            <div><span>Storage: </span><?= $product->getDescription(); ?></div>
-            <div><span>Memory: </span><?= $product->getDescription(); ?></div>
-            <div><span>Screen: </span><?= $product->getDescription(); ?></div>
-            <label for="amount">Amount</label>
-            <input type="number" name="amount">
-            <input type="submit" value="Add to cart">
+            <div>
+                <label for="price"><?= $product->getPrice(); ?> €</label>
+                <input type="number" value=<?= $product->getPrice(); ?> name="price" class="hidden">
+                
+                <label for="amount">Amount</label>
+                <input type="number" name="amount">
+                <input type="submit" value="Add to cart">
+            </div>
         </div>
     </form>
 </body>

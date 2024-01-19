@@ -354,6 +354,96 @@ header .icons button:hover, header .icons button:active {
   visibility: visible;
 }
 
+.productPageContainer {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  align-content: center;
+  height: 80vh;
+  padding: 2em;
+}
+.productPageContainer > div {
+  margin: 1.5em;
+}
+.productPageContainer .productPagePackImages {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+}
+.productPageContainer .productPagePackImages #productPageShowingImage {
+  border: 1px solid black;
+  width: 70%;
+  aspect-ratio: 1/1;
+  margin: 0.5em;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.productPageContainer .productPagePackImages .sideImages {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0.5em;
+}
+.productPageContainer .productPagePackImages .sideImages > img {
+  aspect-ratio: 1/1;
+  -o-object-fit: contain;
+     object-fit: contain;
+  height: 25%;
+  margin: 0.5em;
+  border: 1px solid black;
+  cursor: pointer;
+}
+.productPageContainer .productPagePackImages .sideImages > img.selected {
+  border: 1px solid red;
+}
+.productPageContainer .productInfo {
+  display: flex;
+  flex-direction: row;
+  width: 59%;
+}
+.productPageContainer .productInfo div {
+  width: 50%;
+}
+.productPageContainer .productInfo div .color {
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.productPageContainer .productInfo div .color input[type=radio] {
+  display: none;
+}
+.productPageContainer .productInfo div .color input[type=radio]:checked + label span {
+  transform: scale(1.25);
+}
+.productPageContainer .productInfo div .color label {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.productPageContainer .productInfo div .color label:hover span {
+  transform: scale(1.25);
+}
+.productPageContainer .productInfo div .color label span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.2s ease-in-out;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+.productPageContainer input[type=submit] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 body {
   background-color: #e2f6ff;
   overflow-x: hidden;
@@ -899,92 +989,6 @@ main .container h1 {
   color: #FFFFFF;
 }
 
-.productPageContainer {
-  display: flex;
-  flex-direction: row;
-  box-sizing: border-box;
-  align-content: center;
-  height: 80vh;
-  padding: 2em;
-}
-.productPageContainer > div {
-  margin: 1.5em;
-}
-.productPageContainer .productPagePackImages {
-  display: flex;
-  flex-direction: row;
-  width: 40%;
-}
-.productPageContainer .productPagePackImages #productPageShowingImage {
-  border: 1px solid black;
-  width: 70%;
-  aspect-ratio: 1/1;
-  margin: 0.5em;
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-.productPageContainer .productPagePackImages .sideImages {
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  margin: 0.5em;
-}
-.productPageContainer .productPagePackImages .sideImages > img {
-  aspect-ratio: 1/1;
-  -o-object-fit: contain;
-     object-fit: contain;
-  height: 25%;
-  margin: 0.5em;
-  border: 1px solid black;
-  cursor: pointer;
-}
-.productPageContainer .productPagePackImages .sideImages > img.selected {
-  border: 1px solid red;
-}
-.productPageContainer .productInfo .color {
-  display: flex;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-.productPageContainer .productInfo .color input[type=radio] {
-  display: none;
-}
-.productPageContainer .productInfo .color input[type=radio]:checked + label span {
-  transform: scale(1.25);
-}
-.productPageContainer .productInfo .color label {
-  display: inline-block;
-  width: 2rem;
-  height: 2rem;
-  margin-right: 10px;
-  cursor: pointer;
-}
-.productPageContainer .productInfo .color label:hover span {
-  transform: scale(1.25);
-}
-.productPageContainer .productInfo .color label span {
-  display: block;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.2s ease-in-out;
-  border-radius: 50%;
-  border: 1px solid black;
-}
-.productPageContainer div:nth-child(2) {
-  display: flex;
-  flex-direction: column;
-}
-.productPageContainer input[type=submit] {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
 #resultDropdown {
   padding: 10px;
   background-color: white;
@@ -1053,4 +1057,18 @@ main .container h1 {
   height: 200%; /* ajustar la altura de la imagen al contenedor */
   -o-object-fit: cover;
      object-fit: cover; /* ajustar el tamaño de la imagen para cubrir completamente el contenedor */
+}
+
+.productInfo > div:nth-child(1) {
+  padding: 0.5em;
+}
+.productInfo > div:nth-child(1) h2 {
+  font-size: 3rem;
+}
+.productInfo > div:nth-child(1) .separator {
+  border: 1px solid #217093;
+}
+
+.productInfo > div:nth-child(2) {
+  padding: 0.5em;
 }/*# sourceMappingURL=main.css.map */

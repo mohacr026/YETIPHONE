@@ -435,14 +435,6 @@ header .icons button:hover, header .icons button:active {
   border-radius: 50%;
   border: 1px solid black;
 }
-.productPageContainer input[type=submit] {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
 
 body {
   background-color: #e2f6ff;
@@ -1067,8 +1059,44 @@ main .container h1 {
 }
 .productInfo > div:nth-child(1) .separator {
   border: 1px solid #217093;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  width: 80%;
 }
 
 .productInfo > div:nth-child(2) {
   padding: 0.5em;
+}
+.productInfo > div:nth-child(2) > div:first-of-type {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #217093;
+  background-color: #c1ebff;
+  width: 80%;
+  padding: 1em;
+  border-radius: 0.5em;
+}
+.productInfo > div:nth-child(2) > div:first-of-type .price {
+  font-size: 2rem;
+}
+.productInfo > div:nth-child(2) > div:first-of-type .amount {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0.5em;
+  margin-left: 0;
+}
+.productInfo > div:nth-child(2) > div:first-of-type .amount input {
+  width: 2rem;
+}
+.productInfo > div:nth-child(2) > div:first-of-type .addCart {
+  font-size: 1.5rem;
+  align-self: center;
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #217093;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }/*# sourceMappingURL=main.css.map */

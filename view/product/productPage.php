@@ -56,12 +56,26 @@
                 <div class="separator"></div>
             </div>
             <div>
-                <label for="price"><?= $product->getPrice(); ?> €</label>
-                <input type="number" value=<?= $product->getPrice(); ?> name="price" class="hidden">
-                
-                <label for="amount">Amount</label>
-                <input type="number" name="amount">
-                <input type="submit" value="Add to cart">
+                <div>
+                    <label for="price" class="price"><?= $product->getPrice(); ?> €</label>
+                    <input type="number" value=<?= $product->getPrice(); ?> name="price" class="hidden">
+                    <p>Availability:</p>
+                    <?php
+                        $stock = $product->getStock();
+                        if ($stock < 1000) {
+                            echo "<p>Low units left, only $stock on stock</p>";
+                        } elseif ($stock >= 1000) {
+                            echo "<p>On stock</p>";
+                        }                        
+                    ?>
+                    <div class="amount">
+                        <button>-</button>
+                        <input type="number" name="amount">
+                        <button>+</button>
+                    </div>
+                    <p>no pulseis los botones hacen cosas raras</p>
+                    <input type="submit" value="Add to cart" class="addCart">
+                </div>
             </div>
         </div>
     </form>

@@ -560,8 +560,47 @@ main{
     }
     .separator{
         border: 1px solid $darkBlue;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        width: 80%;
     }
 }
 .productInfo > div:nth-child(2){
     padding: 0.5em;
+    > div:first-of-type{
+        .price{
+            font-size: 2rem;
+        }
+        display: flex;
+        flex-direction: column;
+        border: 1px solid $darkBlue;
+        background-color: $lightBlue;
+        width: 80%;
+        padding: 1em;
+        border-radius: 0.5em;
+
+        .amount{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin: 0.5em;
+            margin-left: 0;
+
+            input{
+                width: 2rem;
+            }
+        }
+
+        .addCart{
+            font-size: 1.5rem;
+            align-self: center;
+            width: 100%;
+            padding: 10px 20px;
+            background-color: $darkBlue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    }
 }

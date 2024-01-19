@@ -78,12 +78,4 @@
   transition: transform 0.2s ease-in-out;
   border-radius: 50%;
   border: 1px solid black;
-}
-.productPageContainer input[type=submit] {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }/*# sourceMappingURL=productPage.css.map */

@@ -403,6 +403,10 @@ header .icons button:hover, header .icons button:active {
   flex-direction: row;
   width: 59%;
 }
+.productPageContainer .productInfo .infoLabel {
+  font-size: 24px;
+  margin-bottom: 0.2em;
+}
 .productPageContainer .productInfo div {
   width: 50%;
 }
@@ -421,7 +425,7 @@ header .icons button:hover, header .icons button:active {
   display: inline-block;
   width: 2rem;
   height: 2rem;
-  margin-right: 10px;
+  margin-right: 1em;
   cursor: pointer;
 }
 .productPageContainer .productInfo div .color label:hover span {
@@ -1078,6 +1082,12 @@ main .container h1 {
 }
 .productInfo > div:nth-child(2) > div:first-of-type .price {
   font-size: 2rem;
+}
+.productInfo > div:nth-child(2) > div:first-of-type .separator {
+  width: 100%;
+  border: 1px solid #217093;
+  margin-top: 0.3em;
+  margin-bottom: 0.5em;
 }
 .productInfo > div:nth-child(2) > div:first-of-type .amount {
   display: flex;

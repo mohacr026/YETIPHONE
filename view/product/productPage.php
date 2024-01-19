@@ -30,16 +30,16 @@
                 <!--<div><?= $product->getDescription(); ?></div>-->
                 <div class="separator"></div>
                 <div>
-                    <p>Storage</p>
+                    <p class="infoLabel">Storage</p>
                     <p><?= $product->getStorage(); ?> GB</p>
                 </div>
                 <div class="separator"></div>
                 <div>
-                    <p>Memory</p>
+                    <p class="infoLabel">Memory</p>
                     <p><?= $product->getMemory(); ?> GB</p>
                 </div>
                 <div class="separator"></div>
-                <h3>Select your color</h3>
+                <p class="infoLabel">Select your color</p>
                 <div class="color">
                     <?php
                         $colors = $product->getColors();
@@ -59,6 +59,7 @@
                 <div>
                     <label for="price" class="price"><?= $product->getPrice(); ?> €</label>
                     <input type="number" value=<?= $product->getPrice(); ?> name="price" class="hidden">
+                    <div class="separator"></div>
                     <p>Availability:</p>
                     <?php
                         $stock = $product->getStock();

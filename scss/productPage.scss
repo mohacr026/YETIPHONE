@@ -45,6 +45,10 @@
         display: flex;
         flex-direction: row;
         width: 59%;
+        .infoLabel{
+            font-size: 24px;
+            margin-bottom: 0.2em;
+        }
         div{
             width: 50%;
             .color{
@@ -62,7 +66,7 @@
                     display: inline-block;
                     width: 2rem;
                     height: 2rem;
-                    margin-right: 10px;
+                    margin-right: 1em;
                     cursor: pointer;
                     &:hover {
                       span { 

@@ -47,6 +47,10 @@
   flex-direction: row;
   width: 59%;
 }
+.productPageContainer .productInfo .infoLabel {
+  font-size: 24px;
+  margin-bottom: 0.2em;
+}
 .productPageContainer .productInfo div {
   width: 50%;
 }
@@ -65,7 +69,7 @@
   display: inline-block;
   width: 2rem;
   height: 2rem;
-  margin-right: 10px;
+  margin-right: 1em;
   cursor: pointer;
 }
 .productPageContainer .productInfo div .color label:hover span {

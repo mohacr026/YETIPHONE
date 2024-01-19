@@ -568,9 +568,18 @@ main{
 .productInfo > div:nth-child(2){
     padding: 0.5em;
     > div:first-of-type{
+
         .price{
             font-size: 2rem;
         }
+        
+        .separator{
+            width: 100%;
+            border: 1px solid $darkBlue;
+            margin-top: 0.3em;
+            margin-bottom: 0.5em;
+        }
+
         display: flex;
         flex-direction: column;
         border: 1px solid $darkBlue;

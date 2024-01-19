@@ -1,8 +1,3 @@
-<!--
-    POR HACER:
-        JS Y PHP FUERA
--->
-
 <header>
 <input type="checkbox" id="menuBtn" class="menu-button-checkbox">
     <label for="menuBtn" class="menu-button">

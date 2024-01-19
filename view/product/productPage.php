@@ -8,10 +8,11 @@
     <link rel="shortcut icon" href="./src/img/snowflake.png" type="image/x-icon">
     <script src="./src/js/userMenu.js"></script>
     <script src="./src/js/imageZoom.js"></script>
+    <script src="./src/js/productAmountHandler.js"></script>
 </head>
 <body>
     <?php include("./view/components/header.php"); ?>
-    <form class="productPageContainer">
+    <div class="productPageContainer">
         <div class="productPagePackImages">
             <div class="sideImages">
                 <?php $imagesArray = $product->getImage();?>
@@ -45,6 +46,7 @@
                         $colors = $product->getColors();
                         $first = true;
                         foreach ($colors as $key => $color) {
+                            $color = trim($color);
                             if ($first){ 
                                 echo "<input class='colorSelector' type='radio' name='color' id='$color' value='$color' checked required/>";
                                 $first = false;
@@ -57,28 +59,30 @@
             </div>
             <div>
                 <div>
-                    <label for="price" class="price"><?= $product->getPrice(); ?> €</label>
-                    <input type="number" value=<?= $product->getPrice(); ?> name="price" class="hidden">
+                    <p class="price"><?= $product->getPrice(); ?> €</p>
                     <div class="separator"></div>
                     <p>Availability:</p>
                     <?php
                         $stock = $product->getStock();
-                        if ($stock < 1000) {
+                        if ($stock < 100) {
                             echo "<p>Low units left, only $stock on stock</p>";
-                        } elseif ($stock >= 1000) {
+                        } elseif ($stock >= 100) {
                             echo "<p>On stock</p>";
                         }                        
                     ?>
                     <div class="amount">
-                        <button>-</button>
-                        <input type="number" name="amount">
-                        <button>+</button>
+                        <button id="decreaseAmount">
+                            <img src="./src/img/decBtn.png" alt="decrease quantity">
+                        </button>
+                        <input type="number" name="amount" id="amount" value="1">
+                        <button id="increaseAmount">
+                            <img src="./src/img/addBtn.png" alt="increase quantity">
+                        </button>
                     </div>
-                    <p>no pulseis los botones hacen cosas raras</p>
-                    <input type="submit" value="Add to cart" class="addCart">
+                    <button class="addCart">Add to cart</button>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 </body>
 </html>

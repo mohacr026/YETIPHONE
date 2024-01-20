@@ -25,6 +25,20 @@ body.noscroll{
     max-height: 100svh;
 }
 
+body.flex-row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    aside{
+        width: 20vw;
+        border: 1px solid black;
+    }
+    main{
+        width: 79vw;
+        border: 1px solid black;
+    }
+}
+
 ::-webkit-scrollbar{
     width: 0px;
 }
@@ -445,30 +459,18 @@ main{
 }
 
 .productCategoryContainer {
-    @include flexCenterItems;
     flex-direction: column;
+
     .productsShopContainer {
-        max-width: 1200px;
         width: 100%;
-        margin-left: 10em;
-        margin-right: 10em;
         display: flex;
+        justify-content: center;
         flex-wrap: wrap;
         gap: 1em;
     }
     .categoryTitle {
-        margin: 0.5em auto;
-        @include flexCenterItems;
-        background-color: $darkBlue;
-        max-width: 200px;
-        max-height: 45px;
-        width: 7em;
-        height: 1.5em;
-        border-radius: 20px;
-
-        @include boldText;
-        font-size: 24px;
-        color: $white;
+        margin: 1em;
+        text-align: left;
     }
 }
 
@@ -652,6 +654,41 @@ main{
             border: none;
             border-radius: 5px;
             cursor: pointer;
+        }
+    }
+}
+
+.productCardContainer{
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    border: 2.5px solid $darkBlue;
+    border-radius: 1em;
+    padding: 1em;
+    width: 95%;
+    a{
+        display: none;
+    }
+    h3{
+        font-size: 1.5rem;
+        margin: 0.5em;
+        margin-top: 0;
+    }
+    .separator{
+        width: 100%;
+        border: 1px solid $darkBlue;
+        margin-bottom: 0.5em;
+    }
+    div{
+        display: flex;
+        img{
+            width: 25%;
+        }
+        .info{
+            width: 47%;
+        }
+        .price{
+            width: 47%;
         }
     }
 }

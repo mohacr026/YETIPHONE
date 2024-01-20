@@ -8,12 +8,28 @@
     <link rel="shortcut icon" href="./src/img/snowflake.png" type="image/x-icon">
     <script src="./src/js/userMenu.js"></script>
 </head>
-<body>
+<body class="flex-row">
     <?php
         include("./view/components/header.php");
     ?>
+    <aside>
+        filtros
+        <ul>
+            <li>
+                <div>
+                    precio
+                </div>
+            </li>
+            <li>
+                memoria
+            </li>
+            <li>
+                capacidad
+            </li>
+        </ul>
+    </aside>
     <main class="productCategoryContainer">
-        <div class="categoryTitle"><?php echo $categoria->getName(); ?></div>
+        <h2 class="categoryTitle">Showing products from <?php echo $categoria->getName(); ?></h2>
         <div class="productsShopContainer">
             <?php foreach($products as $product): ?>
                 <?php include "./view/components/productCardComponent.php"; ?>

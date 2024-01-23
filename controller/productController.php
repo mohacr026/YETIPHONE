@@ -13,6 +13,12 @@ class ProductController {
         include("./view/frontPage/interfaz.php");
     }
 
+    public function showPageProductMobile(){
+        $products = Product::fetchProducts(["featured" => "true"]);
+    
+        include("./view/frontPage/pageProductMobile.php");
+    }
+
     public function showAddProducts(){
         $categories = Category::fetchCategory(["isActive" => "true"]);
         include("./view/adminProduct/addProduct.php");

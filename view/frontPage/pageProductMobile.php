@@ -20,125 +20,6 @@
 </head>
 
 <style>
-    .products-container {
-        display: flex;
-        padding: 10px;
-        margin-top: 115px;
-        width: 100%; /* Ajusta el ancho al 100% para ocupar todo el ancho del contenedor padre */
-        box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total */
-        overflow-x: auto; /* Permite el desplazamiento horizontal si el contenido es más ancho que el contenedor */
-
-    }
-
-    .product {
-        background: var(--DarkBlue, #217093);
-        box-shadow: 0px 4px 10px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 20px;
-        color: white;
-        margin-right: 20px;
-        padding: 10px;
-        width: 100%;
-        max-width: 400px;
-        height: auto;
-        position: relative; /* Añadido para establecer un contexto de apilamiento para el posicionamiento absoluto */
-        z-index: 1; /* Ajusta el valor de z-index según sea necesario */
-    }
-
-    .topProducts {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 3em;
-        width: 182px;
-        height: 50px;
-        flex-shrink: 0;
-        background: rgba(78, 184, 221, 1);
-        margin-top: -25px; /* Ajusta este valor según tus necesidades */
-        margin-left: 35px;
-        z-index: 10; /* Asegura que topProducts esté por encima de slider-destacados */
-        color: #FFF;
-        text-align: center;
-        font-family: Inter;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-    }
-
-    .topSale {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-left: 240px;
-        margin-top: -120px;
-        width: 107px;
-        height: 23px;
-        flex-direction: column;
-        justify-content: center;
-        flex-shrink: 0;
-        background: rgba(211, 74, 74, 1);
-        border-radius: 3em;
-        z-index: 10; /* Asegura que topProducts esté por encima de slider-destacados */
-        color: #FFF;
-        text-align: center;
-        font-family: Inter;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-    }
-
-    .Tops {
-        display: flex;
-        justify-content: space-between; /* Distribuye los elementos con espacio entre ellos */
-        align-items: center; /* Centra los elementos verticalmente */
-    }
-
-    .Tops2 {
-        display: flex;
-        justify-content: space-between; /* Distribuye los elementos con espacio entre ellos */
-        align-items: center; /* Centra los elementos verticalmente */
-    }
-
-    .hidden {
-        display: none;
-    }
-
-    .products-slider {
-        display: flex;
-        transition: transform 0.5s ease-in-out;
-    }
-
-    .price {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: none;
-        border-radius: 3em;
-        width: 75px;
-        color: #FFF;
-        font-family: Inter;
-        font-size: 24px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-        margin-left: 175px;
-    }
-
-    .name {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-left: 65px;
-        color: #FFF;
-        font-family: Inter;
-        font-size:15px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-        margin-top: 6px;
-    }
-
     footer {
         display: flex;
         width:100%;
@@ -263,48 +144,47 @@
         padding: 10px;
         margin: 10px;
     }
+
+    .sliderProducts {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        background: white;
+    }
+
+    .sliderProducts img {
+        width: 100%;
+        height: 100%;
+
+    }
+
+    .settings-iphone {
+        display: flex;
+        background: #217499;
+        width: 100%;
+        height: 200px;
+    }
+
 </style>
 
 <body>
     <?php
     include("./view/components/header.php");
 ?>
-    <div class="slider-container">
-        <div class="slider-principal" ontouchstart="handlePrincipalTouchStart(event)" ontouchmove="handlePrincipalTouchMove(event)">
-            <div class="slider">
-                <img src="./src/img/hola.png" alt="Slide 1">
-                <img src="./src/img/hola.png" alt="Slide 2">
-                <img src="./src/img/hola.png" alt="Slide 3">
-            </div>
-            <div class="slider-controls">
-                <button class="prev" onclick="changePrincipalSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-                <button class="next" onclick="changePrincipalSlide(1)"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            <div class="slider-indicators">
-                <div class="indicator"></div>
-                <div class="indicator"></div>
-                <div class="indicator"></div>
-            </div>
-        </div>
 
-        <div class="slider-destacados" ontouchstart="handleDestacadosTouchStart(event)" ontouchmove="handleDestacadosTouchMove(event)">
-            <div class="Tops">
-                <div class="topProducts">
-                    <p>TOP PRODUCTS</p>
-                </div>
-            </div>
+    <div class="sliderProducts">
+        <img src="src/img/products/iphone12.png" alt="iphone 12">
+    </div>
 
-            <div class="products-container">
-                <div class="products-slider">
-                    <?php $count = 0; ?>
+    <div class="settings-iphone">
+    <?php $count = 0; ?>
                     <?php foreach ($products as $product): ?>
-                        <?php if ($count < 3): ?>
-                            <div class="productImg">
-                                <img src="./src/img/products/<?php echo $product->getImage()[0];?>" alt="<?php $product->getName();?>">
-                            </div>
-                            <div class="product">
+                        <?php if ($count < 1): ?>
                                 <div class="name">
                                     <p><?php echo $product->getName(); ?></p>
+                                </div>
+                                <div class="description">
+                                    <p><?php echo $product->getDescription(); ?></p>
                                 </div>
                                 <div class="price">
                                     <p><?php echo $product->getPrice(); ?> €</p>
@@ -314,21 +194,12 @@
                                     <div class="topSale">
                                         <p>TOP SALE</p>
                                     </div>
-                                </div>
                             </div>
                         <?php endif; ?>
                         <?php $count++; ?>
                     <?php endforeach; ?>
-                </div>
-            </div>
-            <div class="tops-controls">
-                <button class="prev" onclick="changeDestacadosSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-                <button class="next" onclick="changeDestacadosSlide(1)"><i class="fas fa-chevron-right"></i></button>
-            </div>
-        </div>
     </div>
-    </main>
-
+  
     <footer>
         <div class="columna">
             <div>

@@ -5,7 +5,7 @@
 }
 
 header {
-  background-color: #4eb8dd;
+  background-color: black;
   display: flex;
   padding: 1em;
   max-height: 5vh;
@@ -26,6 +26,7 @@ header .icons {
   padding-right: 1rem;
   color: white;
   text-decoration: none;
+  background-color: black;
 }
 header .icons a.button,
 header .icons button {
@@ -50,7 +51,7 @@ header .icons a.button:link, header .icons a.button:visited {
 }
 header .icons button {
   border: none;
-  background-color: #4eb8dd;
+  background-color: black;
   cursor: pointer;
 }
 header .icons button:hover, header .icons button:active {
@@ -69,7 +70,7 @@ header .icons button:hover, header .icons button:active {
   flex-shrink: 0;
   border-radius: 15px;
   border: 5px solid #FFF;
-  background: var(--MediumBlue, #4EB8DD);
+  background: black;
   display: flex;
   align-items: center;
   position: relative;
@@ -163,19 +164,19 @@ header .icons button:hover, header .icons button:active {
   z-index: 1;
 }
 .categorias-dropdown a {
-  color: black;
+  color: white;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 .categorias-dropdown a:hover {
-  background-color: rgb(33, 112, 147);
+  background-color: rgb(145, 145, 145);
 }
 
 .categoryshow {
   display: flex;
   margin-top: 50px;
-  background: rgb(78, 184, 221);
+  background: black;
   width: 80%;
   border-radius: 0 0 0.5em 0.5em;
   box-shadow: 0px -5px 10px rgba(1, 0, 0, 0);

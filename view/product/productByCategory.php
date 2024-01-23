@@ -6,14 +6,22 @@
     <title>YETiPhone</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="shortcut icon" href="./src/img/snowflake.png" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="./src/js/userMenu.js"></script>
+    <script src="./src/js/priceBar.js"></script>
 </head>
 <body class="flex-row">
     <?php
         include("./view/components/header.php");
     ?>
     <aside class="filtersAside">
-            
+        <!--<div class="price-range-slider">
+            <p class="range-value">
+            <input type="text" id="amount" readonly>
+            </p>
+            <div id="slider-range" class="range-bar"></div>
+        </div>-->
     </aside>
     <main class="productCategoryContainer">
         <h2 class="categoryTitle">Showing products from <?php echo $categoria->getName(); ?></h2>

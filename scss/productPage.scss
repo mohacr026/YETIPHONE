@@ -27,7 +27,6 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
-            margin: 0.5em;
             > img {
                 aspect-ratio: 1/1;
                 object-fit: contain;
@@ -53,8 +52,10 @@
             width: 50%;
             .color{
                 display: flex;
+                flex-wrap: wrap;
                 margin-top: 1rem;
                 margin-bottom: 1rem;
+                max-width: 80%;
                 input[type="radio"] {
                     display: none;
                     &:checked + label {

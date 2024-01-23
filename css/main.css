@@ -68,8 +68,7 @@ header .icons button:hover, header .icons button:active {
   margin-left: 2.5em;
   margin-right: 1em;
   color: #FFF;
-  font-family: Source Sans Pro;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
   line-height: normal;
   width: 180px;
@@ -91,7 +90,6 @@ header .icons button:hover, header .icons button:active {
   background: transparent;
   border: none;
   color: inherit;
-  font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
   width: 100%;
@@ -127,7 +125,6 @@ header .icons button:hover, header .icons button:active {
   box-sizing: border-box;
   background: none;
   color: black;
-  font-family: "Inter", Source Sans Pro;
   font-size: 20px;
   font-weight: 700;
   line-height: normal;
@@ -247,20 +244,6 @@ header .icons button:hover, header .icons button:active {
   #menuBtn:checked + .menu-button + .mobile-menu {
     display: flex;
   }
-  .product {
-    background: var(--DarkBlue, #217093);
-    box-shadow: 0px 4px 10px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
-    color: white;
-    margin-right: 20px;
-    padding: 10px;
-    width: 100%; /* Establece el ancho al 100% */
-    max-width: 400px; /* O establece un ancho máximo para evitar que se extienda demasiado */
-    height: auto; /* Establece la altura a 'auto' para adaptarse al contenido */
-  }
-  .product {
-    margin-right: 20px;
-  }
 }
 .productDetailDisplay {
   width: 575px;
@@ -326,7 +309,6 @@ header .icons button:hover, header .icons button:active {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 0.5em;
 }
 .productPageContainer .productPagePackImages .sideImages > img {
   aspect-ratio: 1/1;
@@ -354,8 +336,10 @@ header .icons button:hover, header .icons button:active {
 }
 .productPageContainer .productInfo div .color {
   display: flex;
+  flex-wrap: wrap;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  max-width: 80%;
 }
 .productPageContainer .productInfo div .color input[type=radio] {
   display: none;

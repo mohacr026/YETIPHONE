@@ -61,8 +61,7 @@ header .icons button:hover, header .icons button:active {
   margin-left: 2.5em;
   margin-right: 1em;
   color: #FFF;
-  font-family: Source Sans Pro;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
   line-height: normal;
   width: 180px;
@@ -84,7 +83,6 @@ header .icons button:hover, header .icons button:active {
   background: transparent;
   border: none;
   color: inherit;
-  font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
   width: 100%;
@@ -120,7 +118,6 @@ header .icons button:hover, header .icons button:active {
   box-sizing: border-box;
   background: none;
   color: black;
-  font-family: "Inter", Source Sans Pro;
   font-size: 20px;
   font-weight: 700;
   line-height: normal;

@@ -28,7 +28,6 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 0.5em;
 }
 .productPageContainer .productPagePackImages .sideImages > img {
   aspect-ratio: 1/1;
@@ -56,8 +55,10 @@
 }
 .productPageContainer .productInfo div .color {
   display: flex;
+  flex-wrap: wrap;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  max-width: 80%;
 }
 .productPageContainer .productInfo div .color input[type=radio] {
   display: none;

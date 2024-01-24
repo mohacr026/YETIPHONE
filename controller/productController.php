@@ -118,8 +118,6 @@ class ProductController {
         try {
             if (!empty($_POST)) {
 
-                print_r($_POST);
-
                 $productId = $_POST["id"];
                 $data["name"] = $_POST["name"];
                 $data["description"] = $_POST["description"];
@@ -132,6 +130,9 @@ class ProductController {
                 $data["featured"] = $_POST["featured"];
 
                 if (count(Product::fetchProducts(['id' => $productId])) > 0) {
+
+                    Product::updateColors($_POST["colors"], $productId);
+
                     $result = Product::updateProducts($data, $productId);
                     if(isset($_POST["delete_imgs"])){
                         $selectedImages = $_POST["delete_imgs"];

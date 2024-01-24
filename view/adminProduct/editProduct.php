@@ -78,6 +78,11 @@
                         </div>
 
                         <div class="formRow">
+                            <label for="colors">Colors:</label>
+                            <input type="text" id="colors" name="colors" value="<?php print(implode(", ",$product->getColors())); ?>" title="Write each color code separated with commas as shown in the example" required>
+                        </div>
+
+                        <div class="formRow">
                             <label for="delete_imgs">Product images:</label>
                             <?php foreach($productImages as $image): ?>
                                 <input type="checkbox" name="delete_imgs[]" value="<?php echo $image['img']; ?>"><img style="width: 50px;" src="./src/img/products/<?php echo $image['img']; ?>" alt="<?php echo $product->getName(); ?>'s image"> 

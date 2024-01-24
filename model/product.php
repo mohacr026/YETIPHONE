@@ -183,11 +183,12 @@ class Product extends Database {
         }
     }
 
-    public static function insertColors($colorField, $product_id){
+    public static function insertColors($colors, $product_id){
         //Connect into the database
         $db = self::connect();
 
-        $colors = explode(",", $colorField);
+        $colors = str_replace(" ", "", $colors);
+        $colors = explode(",", $colors);
 
         if(!empty($colors)){
             foreach($colors as $color){
@@ -198,6 +199,18 @@ class Product extends Database {
                 $statement->execute();
             }
         }
+    }
+    
+    public static function updateColors($colors, $product_id){
+        //Connect into the database
+        $db = self::connect();
+
+        $sql = "DELETE FROM colors WHERE product_id = :id";
+        $statement = $db->prepare($sql);
+        $statement->bindValue(":id", $product_id);
+        $statement->execute();
+
+        self::insertColors($colors, $product_id);
     }
 
     public static function generateProductID($categoryName, $productName, $categoryID) {

@@ -28,8 +28,8 @@ class ProductController {
             $data["stock"] = $_POST["stock"];
             $data["storage"] = $_POST["storage"];
             $data["memory"] = $_POST["memory"];
-            $data["isactive"] = "true";
-            $data["featured"] = "false";
+            $data["isactive"] = $_POST["isactive"];
+            $data["featured"] = $_POST["featured"];
 
             $categoryName = Category::fetchCategory(["id" => $data["id_category"]])[0];
             $data["id"] = Product::generateProductID($categoryName->getName() ,$data["name"], $data["id_category"]);
@@ -41,7 +41,7 @@ class ProductController {
             // Loop through each uploaded file
             foreach ($_FILES["img"]["tmp_name"] as $key => $tmp_name) {
                 $timestamp = time();
-                $image_name = $data['id']."-$timestamp.png";
+                $image_name = $data['id']."-".$timestamp*rand(1,10).".png";
                 $image_tmp = $_FILES["img"]["tmp_name"][$key];
                 
                 // Move the uploaded file to a desired location
@@ -118,34 +118,18 @@ class ProductController {
         try {
             if (!empty($_POST)) {
 
+                print_r($_POST);
+
                 $productId = $_POST["id"];
-                if(isset($_POST["name"])){
-                    $data["name"] = $_POST["name"];
-                }
-                if(isset($_POST["description"])){
-                    $data["description"] = $_POST["description"];
-                }
-                if(isset($_POST["id_category"])){
-                    $data["id_category"] = $_POST["id_category"];
-                }
-                if(isset($_POST["price"])){
-                    $data["price"] = $_POST["price"];
-                }
-                if(isset($_POST["stock"])){
-                    $data["stock"] = $_POST["stock"];
-                }
-                if(isset($_POST["storage"])){
-                    $data["storage"] = $_POST["storage"];
-                }
-                if(isset($_POST["memory"])){
-                    $data["memory"] = $_POST["memory"];
-                }
-                if(isset($_POST["isactive"])){
-                    $data["isactive"] = $_POST["isactive"];
-                }
-                if(isset($_POST["featured"])){
-                    $data["featured"] = $_POST["featured"];
-                }
+                $data["name"] = $_POST["name"];
+                $data["description"] = $_POST["description"];
+                $data["id_category"] = $_POST["category"];
+                $data["price"] = $_POST["price"];
+                $data["stock"] = $_POST["stock"];
+                $data["storage"] = $_POST["storage"];
+                $data["memory"] = $_POST["memory"];
+                $data["isactive"] = $_POST["isactive"];
+                $data["featured"] = $_POST["featured"];
 
                 if (count(Product::fetchProducts(['id' => $productId])) > 0) {
                     $result = Product::updateProducts($data, $productId);
@@ -153,6 +137,24 @@ class ProductController {
                         $selectedImages = $_POST["delete_imgs"];
                         Product::deleteImages($selectedImages);
                     }
+
+                    $images = [];
+                    // Loop through each uploaded file
+                    foreach ($_FILES["img"]["tmp_name"] as $key => $tmp_name) {
+                        if(is_uploaded_file($_FILES["img"]["tmp_name"][$key])){
+                            $timestamp = time();
+                            $image_name = $productId."-".$timestamp*rand(1,100).".png";
+                            $image_tmp = $_FILES["img"]["tmp_name"][$key];
+                            
+                            // Move the uploaded file to a desired location
+                            $destination = "./src/img/products/" . $image_name;
+                            move_uploaded_file($image_tmp, $destination);
+                            
+                            $images[] = $image_name;
+                        }
+                    }
+                    Product::insertImages($images, $productId);
+
                     if($result){
                         echo"<meta http-equiv='refresh' content='0; URL=index.php?controller=Product&action=showEditProducts'>";
                     } else {
@@ -246,7 +248,7 @@ class ProductController {
     
     public function toggleProduct(){
         if(isset($_GET["id"])){
-            $product = Product::getProductById($_GET["id"]);
+            $product = Product::fetchProducts(['id' => $_GET["id"]]);
             
             $product[0]->toggleStatus();
             echo "<META HTTP-EQUIV='REFRESH' CONTENT='0; URL=index.php?controller=Product&action=showEditProducts&insertOK=true'>";

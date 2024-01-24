@@ -363,13 +363,11 @@ class Product extends Database {
     public static function deleteImages($images){
         $db = self::connect();
 
-        foreach($images as $image) {
-            // Delete the image from the database
-            $query = "DELETE FROM product_image WHERE 'img' = :image";
-            $stmt = $db->prepare($query);
-            $stmt->bindParam(':image', $image);
-            $stmt->execute();
-           
+        $query = "DELETE FROM product_image WHERE img IN ('".implode("', '", $images)."')";
+        // Delete the image from the database
+        $statement = $db->prepare($query);
+        $statement->execute();
+        foreach($images as $image) {    
             // Delete the image file from the server
             $filePath = "./src/img/products/" . $image;
             if(file_exists($filePath)) {

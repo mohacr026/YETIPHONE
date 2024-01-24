@@ -78,6 +78,22 @@
                             <input type="file" id="img" name="img[]" accept="image/jpeg, image/png" multiple>
                         </div>
 
+                        <div class="formRow">
+                            <label for="featured">Featured:</label>
+                            <select id="featured" name="featured" required>
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
+                        </div>
+
+                        <div class="formRow">
+                            <label for="isactive">Active:</label>
+                            <select id="isactive" name="isactive" required>
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
+                        </div>
+
                     </div>
                 </form>
                 <div class="formAction">

@@ -78,7 +78,7 @@ header {
     flex-shrink: 0;
     border-radius: 15px;
     border: 5px solid #FFF;
-    background: black;
+    background: #292C2C;
     display: flex;
     align-items: center;
     position: relative;
@@ -101,6 +101,51 @@ header {
         }
     }
 }
+
+.categorias {
+    margin-left: 2.5em;
+    margin-right: 1em;
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: normal;
+    width: 180px;
+    height: 45px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    border: 5px solid #FFF;
+    background: #292C2C;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    margin-top: -4px;
+    overflow: hidden;
+    transition: background 0.3s, color 0.3s, border 0.3s;
+}
+
+.categorias:hover {
+    background: #1e1f1f; /* Cambia el color de fondo al pasar el ratón */
+    color: linear-gradient(to right, #000000, #442500); /* Cambiar a degradado al pasar el ratón */
+    border-color: #ff8c00; /* Cambia el color del borde al pasar el ratón */
+}
+
+.categorias::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.3)); /* Añade un degradado al fondo */
+    z-index: -1;
+    transition: transform 0.3s ease-out;
+}
+
+.categorias:hover::before {
+    transform: scaleX(1); /* Muestra el degradado al pasar el ratón */
+}
+
 
 .searchBar {
     max-width: 550px;
@@ -197,7 +242,7 @@ header {
 
 @media screen and (max-width: 767px) {
     header {
-        background-color: $medBlue;
+        background-color: black;
         display: flex;
         max-height: 5vh;
         padding-left: 0;

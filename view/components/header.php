@@ -37,6 +37,8 @@
         All Categories
     </button>
 
+    
+
     <div id="categoriasDropdown" class="categorias-dropdown">
         <?php
         $db = Database::connect();

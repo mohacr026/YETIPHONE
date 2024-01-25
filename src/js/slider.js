@@ -22,7 +22,6 @@ function handlePrincipalTouchMove(event) {
 function showPrincipalSlide(index) {
     const principalSlides = document.querySelector('.slider-principal .slider');
     const totalPrincipalSlides = document.querySelectorAll('.slider-principal .slider img').length;
-
     principalSlideIndex = (index + totalPrincipalSlides) % totalPrincipalSlides;
 
     principalSlides.style.transform = `translateX(${-principalSlideIndex * 100}%)`;
@@ -72,8 +71,8 @@ function changeDestacadosSlide(n) {
     showDestacadosSlide(destacadosSlideIndex += n);
 }
 
-// Autoplay para ambos sliders (opcional)
-setInterval(() => {
-    changePrincipalSlide(1);
-}, 10000);
+// // Autoplay para ambos sliders (opcional)
+// setInterval(() => {
+//     changePrincipalSlide(1);
+// }, 10000);
 

@@ -31,17 +31,22 @@
     }
 
     .product {
-        background: var(--DarkBlue, #217093);
+        background: #DDF1FA;
         box-shadow: 0px 4px 10px 4px rgba(0, 0, 0, 0.25);
         border-radius: 20px;
         color: white;
         margin-right: 20px;
         padding: 10px;
-        width: 100%;
+        width: 90%;
         max-width: 400px;
-        height: auto;
+        height: 105px;
         position: relative; /* Añadido para establecer un contexto de apilamiento para el posicionamiento absoluto */
         z-index: 1; /* Ajusta el valor de z-index según sea necesario */
+    }
+
+    a {
+        text-decoration: none;
+
     }
 
     .topProducts {
@@ -52,7 +57,7 @@
         width: 182px;
         height: 50px;
         flex-shrink: 0;
-        background: rgba(78, 184, 221, 1);
+        background: linear-gradient(to bottom right, #4f00a9, #e410ff);
         margin-top: -25px; /* Ajusta este valor según tus necesidades */
         margin-left: 35px;
         z-index: 10; /* Asegura que topProducts esté por encima de slider-destacados */
@@ -70,7 +75,7 @@
         justify-content: center;
         align-items: center;
         margin-left: 240px;
-        margin-top: -120px;
+        margin-top: -226px;
         width: 107px;
         height: 23px;
         flex-direction: column;
@@ -116,7 +121,7 @@
         background: none;
         border-radius: 3em;
         width: 75px;
-        color: #FFF;
+        color: black;
         font-family: Inter;
         font-size: 24px;
         font-style: normal;
@@ -130,7 +135,7 @@
         justify-content: center;
         align-items: center;
         margin-left: 65px;
-        color: #FFF;
+        color: black;
         font-family: Inter;
         font-size:15px;
         font-style: normal;
@@ -144,7 +149,7 @@
         width:100%;
         height: 275px;
         flex-shrink: 0;
-        background: var(--MediumBlue, #4EB8DD);
+        background: linear-gradient(to right, #4f00a900, rgba(0, 0, 0, 0.3));
         margin-top: 3em;
     }
 
@@ -245,10 +250,10 @@
         position: absolute;
         margin-right: -300px;
         margin-top: 75px;
-        width: 18%;
-        height: 24%;
+        width: 13%;
+        height: 26%;
         z-index: 2;
-        margin-left: -20px;
+        margin-left: -8px;
     }
 
     
@@ -263,6 +268,33 @@
         padding: 10px;
         margin: 10px;
     }
+
+    .contenido-extra {
+        display: flex;
+        margin-top: 20px;
+        width: 100%;
+        height: 300px;
+        background: white;
+    }
+
+    .info > div {
+        display: inline-block;
+    }
+
+    .gb, .ram, .carrito {
+        display: flex;
+        color: white;
+        font-size: bold;
+        background: #313131;
+        border-radius: 2em;
+        padding: 10px;
+    }
+
+    .carrito {
+        margin-left: auto;
+    }
+
+
 </style>
 
 <body>
@@ -270,13 +302,13 @@
     include("./view/components/header.php");
 ?>
     <div class="slider-container">
-        <div class="slider-principal" ontouchstart="handlePrincipalTouchStart(event)" ontouchmove="handlePrincipalTouchMove(event)">
-            <div class="slider">
-                <img src="./src/img/hola.png" alt="Slide 1">
-                <img src="./src/img/hola.png" alt="Slide 2">
-                <img src="./src/img/hola.png" alt="Slide 3">
-            </div>
-            <div class="slider-controls">
+        <!-- <div class="slider-principal" ontouchstart="handlePrincipalTouchStart(event)" ontouchmove="handlePrincipalTouchMove(event)"> -->
+            <!-- <div class="slider"> -->
+                <!-- <img src="./src/img/gif.gif" alt="Slide 1"> -->
+                <!-- <img src="./src/img/gif.gif" alt="Slide 2">
+                <img src="./src/img/gif.gif" alt="Slide 3"> -->
+            <!-- </div> -->
+            <!-- <div class="slider-controls">
                 <button class="prev" onclick="changePrincipalSlide(-1)"><i class="fas fa-chevron-left"></i></button>
                 <button class="next" onclick="changePrincipalSlide(1)"><i class="fas fa-chevron-right"></i></button>
             </div>
@@ -284,7 +316,11 @@
                 <div class="indicator"></div>
                 <div class="indicator"></div>
                 <div class="indicator"></div>
-            </div>
+            </div> -->
+        <!-- </div> -->
+
+        <div class="banner" ontouchstart="handlePrincipalTouchStart(event)" ontouchmove="handlePrincipalTouchMove(event)">
+            <img src="src/img/gif.gif" alt="">
         </div>
 
         <div class="slider-destacados" ontouchstart="handleDestacadosTouchStart(event)" ontouchmove="handleDestacadosTouchMove(event)">
@@ -302,6 +338,7 @@
                             <div class="productImg">
                                 <img src="./src/img/products/<?php echo $product->getImage()[0];?>" alt="<?php $product->getName();?>">
                             </div>
+                            <a href="index.php?controller=Product&action=showProductPage&id=<?php echo $product->getId(); ?>">
                             <div class="product">
                                 <div class="name">
                                     <p><?php echo $product->getName(); ?></p>
@@ -309,13 +346,25 @@
                                 <div class="price">
                                     <p><?php echo $product->getPrice(); ?> €</p>
                                 </div>
-
+                                <div class="info">
+                                    <div class="gb">
+                                        <p><?php echo $product->getStorage(); ?>GB </p>
+                                    </div>
+                                    <div class="ram">
+                                        <p><?php echo $product->getMemory(); ?>RAM </p>
+                                    </div>
+                                    <div class="carrito">
+                                        <img src="src/img/shoppingCart.png" alt="">
+                                    </div>
+                                </div>
                                 <div class="Tops2">
                                     <div class="topSale">
                                         <p>TOP SALE</p>
                                     </div>
                                 </div>
                             </div>
+                            </a>
+                            
                         <?php endif; ?>
                         <?php $count++; ?>
                     <?php endforeach; ?>
@@ -327,6 +376,11 @@
             </div>
         </div>
     </div>
+
+    <div class="contenido-extra">
+                            hola
+    </div>
+    
     </main>
 
     <footer>

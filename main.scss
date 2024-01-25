@@ -18,6 +18,9 @@ body{
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
+    // background: #313131;
+    background: linear-gradient(to bottom right, #000000,#000000, #4f00a9,#000000, #000000);
+
 }
 
 body.noscroll{
@@ -380,19 +383,6 @@ main{
         }
     }
 }
-
-
-.slider-principal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0.5em
-}
-.slider-principal img {
-    width: 1596px;
-    height: 600px;
-}
-
 
 .purchaseFilterContainer {
     display: flex;

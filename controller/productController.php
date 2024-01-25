@@ -253,8 +253,14 @@ class ProductController {
     public function showProducts(){
         if(isset($_GET['category'])){
             $categoria = Category::fetchCategory(['id' => $_GET['category']])[0];
-            $products = Product::fetchProducts(['id_category' => $categoria->getId() ]);
-            include "./view/product/productByCategory.php";
+            
+            if($categoria->getParentCategory() == NULL) {
+                $products = Product::fetchProducts(['id_category' => $categoria->getId() ]);
+                include "./view/product/productByParentCategory.php";
+            } else {
+                $products = Product::fetchProducts(['id_category' => $categoria->getId() ]);
+                include "./view/product/productByCategory.php";
+            }
         }
     }
 
@@ -284,4 +290,5 @@ class ProductController {
         }
     }
 }
+
 ?>

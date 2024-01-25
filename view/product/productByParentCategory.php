@@ -16,12 +16,7 @@
         include("./view/components/header.php");
     ?>
     <aside class="filtersAside">
-        <div class="price-range-slider">
-            <p class="range-value">
-            <input type="text" id="amount" readonly>
-            </p>
-            <div id="slider-range" class="range-bar"></div>
-        </div>
+    <div id="slider"></div>
     </aside>
     <main class="productCategoryContainer">
         <h2 class="categoryTitle">Showing products from <?php echo $categoria->getName(); ?></h2>

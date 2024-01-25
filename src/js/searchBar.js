@@ -1,4 +1,4 @@
-import { Product } from "./product.js";
+import { Product } from "./class/product.js";
 
 // Se agrega un evento que se ejecuta cuando la ventana ha cargado completamente
 window.addEventListener("load", () => {

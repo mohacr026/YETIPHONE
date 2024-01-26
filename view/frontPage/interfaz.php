@@ -44,6 +44,11 @@
         z-index: 1; /* Ajusta el valor de z-index según sea necesario */
     }
 
+    .searchBar svg {
+        margin-left: auto;
+
+    }
+
     a {
         text-decoration: none;
 
@@ -296,6 +301,7 @@
 
 
 </style>
+
 
 <body>
     <?php

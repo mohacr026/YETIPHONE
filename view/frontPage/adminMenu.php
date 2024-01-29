@@ -26,6 +26,7 @@
             <a href="index.php?controller=Category&action=showEditCategories">Edit Category</a>
             <a href="index.php?controller=Product&action=showInterfaz">User Interface</a>
             <a href="index.php?controller=Purchase&action=showPurchases">Purchases</a>
+            <a href="index.php?controller=Canvas&action=index">Signature</a>
         </aside>
     </main>
     <?php

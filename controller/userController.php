@@ -5,6 +5,9 @@ class UserController {
     public function showLoginForm(){
         include("./view/login/login.html");
     }
+    public function showRegisterForm(){
+        include("./view/frontPage/register.php");
+    }
 
     public function login(){
         if(!empty($_POST)){
@@ -42,6 +45,24 @@ class UserController {
 
     public function showAdminDashboard(){
         include("./view/frontPage/adminMenu.php");
+    }
+
+    public function register(){
+        if(!empty($_POST)){
+            $data["email"] = $_POST["email"];
+            $data["password"] = md5($_POST["password"]);
+            $confirmPassword = md5($_POST["confirmPassword"]);
+            $data["phone_number"] = $_POST["phoneNumber"];
+            $data["username"] = $_POST["name"];
+            $data["surname"] = $_POST["surname"];
+            $data["direction"] = $_POST["direction"];
+            $data["isactive"] = "true";
+
+            User::register($data);
+            
+        } else {
+            echo "The registration form failed, please, try again later.";
+        }
     }
 }
 ?>

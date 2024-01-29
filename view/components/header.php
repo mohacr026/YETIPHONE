@@ -172,14 +172,10 @@
 
     <div id="categoriasDropdown" class="categorias-dropdown">
         <?php
-        $db = Database::connect();
-        $query = "SELECT id, name FROM category WHERE isActive = true";
-        $stmt = $db->prepare($query);
-        $stmt->execute();
-        $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        require_once("./model/category.php");
+        $categories = Category::fetchCategory(["isactive" => "true"]);
         foreach ($categories as $category): ?>
-        
-            <a href="index.php?controller=Product&action=showProducts&category=<?= $category['id']; ?>"><?= $category['name']; ?></a>
+            <a href="index.php?controller=Product&action=showProducts&category=<?= $category->getId(); ?>"><?= $category->getName(); ?></a>
         <?php endforeach; ?>
     </div>
 

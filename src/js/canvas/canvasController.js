@@ -14,65 +14,56 @@ function loadCanvas(){
             context = mainCanvas.getContext("2d");  
         }
     }
-}
 
-if(mainCanvas != null){
-    let initialX;
-    let initialY;
-    let correccionX = 0;
-    let correccionY = 0;
+    // Variables para almacenar la posición inicial del ratón
+    var drawing = false;
+    var startX, startY;
     
-    let posicion = mainCanvas.getBoundingClientRect();
-    correccionX = posicion.x;
-    correccionY = posicion.y;
+    // Drawing mode true = draw / erase
+    var drawingMode = true;
+    var drawing = false;
+
+    document.getElementById('drawMode').addEventListener('click', function() {
+        drawingMode = true;
+    });
+
+    document.getElementById('eraseMode').addEventListener('click', function() {
+        drawingMode = false;
+    });
+
+    // Configura eventos de ratón
+    mainCanvas.addEventListener('mousedown', function(e) {
+      drawing = true;
+      startX = e.clientX - mainCanvas.getBoundingClientRect().left;
+      startY = e.clientY - mainCanvas.getBoundingClientRect().top;
+    });
     
-    const dibujar = (cursorX, cursorY) => {
-      context.beginPath();
-      context.moveTo(initialX, initialY);
-      context.lineWidth = 20;
-      context.strokeStyle = "#000";
-      context.lineCap = "round";
-      context.lineJoin = "round";
-      context.lineTo(cursorX, cursorY);
-      context.stroke();
+    mainCanvas.addEventListener('mousemove', function(e) {
+      if (!drawing) return;
     
-      initialX = cursorX;
-      initialY = cursorY;
-    };
+      var x = e.clientX - mainCanvas.getBoundingClientRect().left;
+      var y = e.clientY - mainCanvas.getBoundingClientRect().top;
     
-    const mouseDown = (evt) => {
-      evt.preventDefault();
-      if ( evt.changedTouches === undefined) {
-        initialX = evt.offsetX;
-        initialY = evt.offsetY;
-      }else{
-        //evita desfase al dibujar
-        initialX = evt.changedTouches[0].pageX - correccionX;
-        initialY = evt.changedTouches[0].pageY - correccionY;
+      if(drawingMode){
+        // Dibuja la línea
+        context.beginPath();
+        context.moveTo(startX, startY);
+        context.lineTo(x, y);
+        context.stroke();
+        
+        // Actualiza la posición inicial para la próxima línea
+        startX = x;
+        startY = y;
+      } else {
+        context.clearRect(x - 5, y - 5, 25, 25);
       }
-      dibujar(initialX, initialY);
-      mainCanvas.addEventListener("mousemove", mouseMoving);
-      mainCanvas.addEventListener('touchmove', mouseMoving);
-    };
+    });
     
-    const mouseMoving = (evt) => {
-      evt.preventDefault();
-      if ( evt.changedTouches === undefined) {
-        dibujar(evt.offsetX, evt.offsetY);
-      }else{
-        dibujar( evt.changedTouches[0].pageX - correccionX  , evt.changedTouches[0].pageY - correccionY );
-      }
-    };
+    mainCanvas.addEventListener('mouseup', function() {
+      drawing = false;
+    });
     
-    const mouseUp = () => {
-      mainCanvas.removeEventListener("mousemove", mouseMoving);
-      mainCanvas.removeEventListener("touchmove", mouseMoving);
-    };
-    
-    mainCanvas.addEventListener("mousedown", mouseDown);
-    mainCanvas.addEventListener("mouseup", mouseUp);
-    
-    //pantallas tactiles
-    mainCanvas.addEventListener('touchstart', mouseDown);
-    mainCanvas.addEventListener('touchend', mouseUp);
+    mainCanvas.addEventListener('mouseout', function() {
+      drawing = false;
+    });
 }

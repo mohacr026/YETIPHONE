@@ -18,7 +18,7 @@
     ?>
     <main>
         <?php include("./view/components/adminAside.html"); ?>
-        <canvas id="menuCanvas" width="800" height="800"></canvas>
+        <canvas id="mainCanvas" width="800" height="800" z-index="50"></canvas>
     </main>
     <?php } ?>
 </body>

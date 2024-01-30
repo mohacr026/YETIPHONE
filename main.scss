@@ -47,6 +47,8 @@ body.flex-row {
     }
 
     main {
+        display: flex;
+        justify-content: center;
         width: 70vw;
         margin: 2rem;
         margin-left: 4rem;
@@ -612,7 +614,7 @@ main {
     .productsShopContainer {
         width: 100%;
         display: flex;
-        //justify-content: center;
+        justify-content: center;
         flex-wrap: wrap;
         gap: 1em;
     }
@@ -743,11 +745,12 @@ main {
     margin-top: 1rem;
     display: flex;
     flex-direction: column;
-    border: 2.5px solid $darkBlue;
+    border: 2.5px solid rgba(255, 255, 255, 0.486);
     border-radius: 0.7em;
     padding: 1em;
     width: 80%;
     max-height: 250px;
+    background: linear-gradient(rgba(128, 0, 128, 0.772), rgba(0, 0, 0, 0.753));
 
     .cardTop {
         display: flex;
@@ -757,7 +760,7 @@ main {
 
         a:is(:link, :active, :visited) {
             text-decoration: none;
-            color: black;
+            color: white;
 
             h3 {
                 font-size: 2rem;
@@ -768,7 +771,7 @@ main {
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 2px solid $darkBlue;
+            border: 2px solid white;
             background-color: $lightBlue;
             color: $darkBlue;
             font-weight: bolder;
@@ -780,7 +783,7 @@ main {
 
     .separator {
         width: 100%;
-        border: 1px solid $darkBlue;
+        border: 1px solid rgba(255, 255, 255, 0.372);
         margin-bottom: 0.5em;
     }
 
@@ -824,6 +827,7 @@ main {
             align-items: flex-end;
             margin-left: auto;
             margin-right: 1rem;
+            color: white;
 
             p {
                 font-size: 3rem;

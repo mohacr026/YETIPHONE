@@ -17,6 +17,11 @@
                 <form action="index.php?controller=User&action=register" method="post">
                     <div class="formColumn">
                         <div class="formRow">
+                            <label for="dni">Dni:</label>
+                            <input type="text" id="dni" name="dni" maxlength="9" pattern="[0-9]{8}[a-zA-Z]" autocomplete="false" required>
+                        </div>
+                    
+                        <div class="formRow">
                             <label for="email">Email:</label>
                             <input type="email" id="email" name="email" autocomplete="false" required>
                         </div>
@@ -50,7 +55,7 @@
 
                         <div class="formRow">
                             <label for="phoneNumber">Phone number:</label>
-                            <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{9,15}" required>
+                            <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{9,15}" minlength="9" maxlength="15" required>
                         </div>
 
                         <div class="formRow">
@@ -59,7 +64,7 @@
                         </div>
 
                     </div>
-                    <input type="submit" value="Sign up" class="addBtn">
+                    <input type="submit" id="signup" value="Sign up" class="addBtn">
                 </form>
             </div>
         </div>

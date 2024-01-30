@@ -42,8 +42,8 @@
                         <div class="formRow">
                             <label for="id_category" aria-label="Product category">Category:</label>
                             <select id="category" name="id_category" required aria-required="true" tabindex="62">
-                                <?php foreach ($categories as $category): ?>
-                                    <option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
+                                <?php foreach ($allCategories as $eachCategory): ?>
+                                    <option value="<?php echo $eachCategory->getId(); ?>"><?php echo $eachCategory->getName(); ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>

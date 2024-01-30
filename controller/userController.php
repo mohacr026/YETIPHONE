@@ -49,6 +49,7 @@ class UserController {
 
     public function register(){
         if(!empty($_POST)){
+            $data["dni"] = $_POST["dni"];
             $data["email"] = $_POST["email"];
             $data["password"] = md5($_POST["password"]);
             $confirmPassword = md5($_POST["confirmPassword"]);

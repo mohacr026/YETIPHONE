@@ -14,7 +14,7 @@ class ProductController {
     }
 
     public function showAddProducts(){
-        $categories = Category::fetchCategory(["isActive" => "true"]);
+        $allCategories = Category::fetchCategory(["isActive" => "true"]);
         include("./view/adminProduct/addProduct.php");
     }
 

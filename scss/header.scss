@@ -1,16 +1,19 @@
 @import "colors.scss";
 
-    /* Oculta el botón de menú y el menú desplegable en la versión de escritorio */
-    .menu-button, .menu-button-checkbox, .mobile-menu {
-        display: none;
-    }
+/* Oculta el botón de menú y el menú desplegable en la versión de escritorio */
+.menu-button,
+.menu-button-checkbox,
+.mobile-menu {
+    display: none;
+}
 
 header {
     background-color: black;
     display: flex;
     padding: 1em;
     max-height: 5vh;
-    padding: 20px; /* Ajusta el espaciado según tus necesidades */
+    padding: 20px;
+    /* Ajusta el espaciado según tus necesidades */
     padding-left: 10%;
     padding-right: 10%;
 
@@ -47,6 +50,7 @@ header {
         }
 
         a.button {
+
             &:link,
             &:visited {
                 text-decoration: none;
@@ -96,6 +100,7 @@ header {
         height: 100%;
         padding: 0 20px;
         cursor: pointer;
+
         &:focus {
             outline: none;
         }
@@ -125,9 +130,12 @@ header {
 }
 
 .categorias:hover {
-    background: #1e1f1f; /* Cambia el color de fondo al pasar el ratón */
-    color: linear-gradient(to right, #000000, #442500); /* Cambiar a degradado al pasar el ratón */
-    border-color: #ff8c00; /* Cambia el color del borde al pasar el ratón */
+    background: #1e1f1f;
+    /* Cambia el color de fondo al pasar el ratón */
+    color: linear-gradient(to right, #000000, #442500);
+    /* Cambiar a degradado al pasar el ratón */
+    border-color: #ff8c00;
+    /* Cambia el color del borde al pasar el ratón */
 }
 
 .categorias::before {
@@ -137,13 +145,15 @@ header {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.3)); /* Añade un degradado al fondo */
+    background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.3));
+    /* Añade un degradado al fondo */
     z-index: -1;
     transition: transform 0.3s ease-out;
 }
 
 .categorias:hover::before {
-    transform: scaleX(1); /* Muestra el degradado al pasar el ratón */
+    transform: scaleX(1);
+    /* Muestra el degradado al pasar el ratón */
 }
 
 
@@ -182,6 +192,7 @@ header {
         &::placeholder {
             color: #CBCBCB;
         }
+
         &.open {
             border-radius: 50px 50px 0px 0px;
         }
@@ -250,8 +261,11 @@ header {
         position: relative;
     }
 
-    .categorias, .searchBar, .icons p {
-        display: none; /* Oculta el botón "All Categories" y otros elementos en pantallas pequeñas */
+    .categorias,
+    .searchBar,
+    .icons p {
+        display: none;
+        /* Oculta el botón "All Categories" y otros elementos en pantallas pequeñas */
     }
 
     .titulo {
@@ -285,7 +299,8 @@ header {
         right: 0;
         background-color: $medBlue;
         width: 100%;
-        border-top: 1px solid white; /* Añadido para separar del header */
+        border-top: 1px solid white;
+        /* Añadido para separar del header */
     }
 
     .mobile-menu ul {
@@ -299,12 +314,14 @@ header {
         padding: 1em;
         text-align: center;
         cursor: pointer;
-        border-bottom: 1px solid white; /* Añadido para separar los elementos del menú */
+        border-bottom: 1px solid white;
+        /* Añadido para separar los elementos del menú */
     }
 
-    #menuBtn:checked + .menu-button + .mobile-menu {
+    #menuBtn:checked+.menu-button+.mobile-menu {
         display: flex;
     }
 
 }
 
+// estilos btn

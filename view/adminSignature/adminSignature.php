@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="./src/img/snowflake.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="css/aside.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./src/js/userMenu.js"></script>
     <script src="./src/js/canvas/canvasController.js"></script>
 </head>
@@ -21,6 +22,7 @@
         <canvas id="mainCanvas" width="800" height="800" style="background-color:#FFF" z-index="50"></canvas>
         <button id="drawMode">Draw mode</button>
         <button id="eraseMode">Erase mode</button>
+        <button id="saveButton">Save</button>
     </main>
     <?php } ?>
 </body>

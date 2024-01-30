@@ -1,19 +1,8 @@
-window.onload = loadCanvas;
-
-var mainCanvas = null;
-var context = null;
-if(mainCanvas != null){
-    context = mainCanvas.getContext("2d"); 
-}
+$(document).ready(loadCanvas);
 
 function loadCanvas(){
-    if(mainCanvas == null){
-        mainCanvas = document.getElementById("mainCanvas");
-        console.log(mainCanvas);
-        if(context == null){
-            context = mainCanvas.getContext("2d");  
-        }
-    }
+    var mainCanvas = document.getElementById('mainCanvas');
+    var context = mainCanvas.getContext("2d");  
 
     // Variables para almacenar la posición inicial del ratón
     var drawing = false;
@@ -65,5 +54,31 @@ function loadCanvas(){
     
     mainCanvas.addEventListener('mouseout', function() {
       drawing = false;
+    });
+
+    saveButton = document.getElementById("saveButton")
+    saveButton.addEventListener("click", function() {
+      var imageData = mainCanvas.toDataURL();
+     
+      // Enviar la imagen al servidor
+      var XmlRequest = new XMLHttpRequest();
+    
+      XmlRequest.onreadystatechange = function() {
+          if (XmlRequest.readyState === 4) {
+              if (XmlRequest.status === 200) {
+                  console.log(XmlRequest.responseText);
+              } else {
+                  console.error("Error in the request. Status code: " + XmlRequest.status);
+              }
+          }
+      };
+    
+      XmlRequest.onerror = function() {
+          console.error("An error ocurred while saving!.");
+      };
+    
+      XmlRequest.open("POST", "view/adminSignature/saveSignature.php", true);
+      XmlRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      XmlRequest.send("imagen=" + encodeURIComponent(imageData));
     });
 }

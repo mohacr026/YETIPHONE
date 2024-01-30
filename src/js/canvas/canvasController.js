@@ -55,7 +55,7 @@ function loadCanvas(){
         startX = x;
         startY = y;
       } else {
-        context.clearRect(x - 5, y - 5, 25, 25);
+        context.clearRect(x - 5, y - 5, 50, 50);
       }
     });
     

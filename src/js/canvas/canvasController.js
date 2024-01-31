@@ -59,8 +59,6 @@ function loadCanvas(){
     saveButton = document.getElementById("saveButton")
     saveButton.addEventListener("click", function() {
       var imageData = mainCanvas.toDataURL();
-     
-      // Enviar la imagen al servidor
       var XmlRequest = new XMLHttpRequest();
     
       XmlRequest.onreadystatechange = function() {
@@ -79,6 +77,6 @@ function loadCanvas(){
     
       XmlRequest.open("POST", "view/adminSignature/saveSignature.php", true);
       XmlRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      XmlRequest.send("imagen=" + encodeURIComponent(imageData));
+      XmlRequest.send("image=" + encodeURIComponent(imageData));
     });
 }

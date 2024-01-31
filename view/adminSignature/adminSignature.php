@@ -19,7 +19,7 @@
     ?>
     <main>
         <?php include("./view/components/adminAside.html"); ?>
-        <canvas id="mainCanvas" width="800" height="800" style="background-color:#FFF" z-index="50"></canvas>
+        <canvas id="mainCanvas" width="800" height="800" style="background-color:#FFF"></canvas>
         <button id="drawMode">Draw mode</button>
         <button id="eraseMode">Erase mode</button>
         <button id="saveButton">Save</button>

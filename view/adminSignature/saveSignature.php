@@ -1,22 +1,18 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener la imagen en formato base64
-    $imagenBase64 = $_POST["imagen"];
+    // Gets the image in base 64bit format
+    $baseImage = $_POST["image"];
 
-    // Decodificar la imagen base64
-    $imagen = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imagenBase64));
+    // Decodes the base image
+    $image = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $baseImage));
 
-    // Ruta donde se guardará la imagen en el servidor
-    $rutaDestino = '../../src/img/signatures/';
+    // Server route (relative to this file)
+    $serverPath = '../../src/img/signatures/';
+    
+    $fileName = 'adminSignature.png';
+    $rutaCompleta = $serverPath . $fileName;
 
-    // Nombre de archivo único para evitar conflictos
-    $nombreArchivo = 'adminSignature.png';
-
-    // Ruta completa del archivo en el servidor
-    $rutaCompleta = $rutaDestino . $nombreArchivo;
-
-    // Guardar la imagen en el servidor
-    file_put_contents($rutaCompleta, $imagen);
+    file_put_contents($rutaCompleta, $image);
 } else {
-    echo "Error: Método no permitido";
+    echo "Method error";
 }

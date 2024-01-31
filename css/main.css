@@ -768,3 +768,11 @@ main .container h1 {
   background-color: white;
   border: 1px solid;
 }/*# sourceMappingURL=main.css.map */
+
+
+
+#productsGraph {
+  width: 60%;
+  max-height: 500px;
+  background-color: #FFF;
+}

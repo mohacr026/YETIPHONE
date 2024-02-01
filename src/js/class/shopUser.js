@@ -2,12 +2,11 @@ export class ShopUser {
   constructor(email, cart) {
     // Verificar si ya existe una instancia única
     if (!ShopUser.instance) {
-      // Intentar cargar el usuario almacenado en sessionStorage
       const storedUser = ShopUser.loadFromSessionStorage();
 
       if (storedUser) {
         // Si ya hay un usuario almacenado en sessionStorage, usar esa instancia
-        Object.assign(this, storedUser); // Copy properties to the current instance
+        Object.assign(this, storedUser);
         ShopUser.instance = this;
       } else {
         // Si no existe, crear una nueva instancia y almacenarla en sessionStorage
@@ -22,6 +21,10 @@ export class ShopUser {
     return ShopUser.instance;
   }
 
+  setCart(cart){
+    this.cart = cart;
+  }
+
   // Método para cargar el usuario desde sessionStorage
   static loadFromSessionStorage() {
     const storedUser = JSON.parse(sessionStorage.getItem('User'));
@@ -33,5 +36,3 @@ export class ShopUser {
     sessionStorage.setItem('User', JSON.stringify(this));
   }
 }
-
-

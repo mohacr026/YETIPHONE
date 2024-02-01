@@ -59,13 +59,19 @@ CREATE TABLE purchase (
 
 -- Crear la tabla usuarios
 CREATE TABLE users (
-  email VARCHAR(255),
+  email VARCHAR(255) PRIMARY KEY,
   phone_number VARCHAR(20),
   username VARCHAR(255),
   surname VARCHAR(255),
   direction VARCHAR(255),
   password VARCHAR(255),
   isActive BOOLEAN
+);
+
+CREATE TABLE userCarts (
+  email VARCHAR(255),
+  lastCart JSONB,
+  PRIMARY KEY (email)
 );
 
 -- Insert de cuenta admin

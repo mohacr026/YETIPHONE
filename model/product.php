@@ -183,11 +183,12 @@ class Product extends Database {
         }
     }
 
-    public static function insertColors($colorField, $product_id){
+    public static function insertColors($colors, $product_id){
         //Connect into the database
         $db = self::connect();
 
-        $colors = explode(",", $colorField);
+        $colors = str_replace(" ", "", $colors);
+        $colors = explode(",", $colors);
 
         if(!empty($colors)){
             foreach($colors as $color){
@@ -198,6 +199,18 @@ class Product extends Database {
                 $statement->execute();
             }
         }
+    }
+    
+    public static function updateColors($colors, $product_id){
+        //Connect into the database
+        $db = self::connect();
+
+        $sql = "DELETE FROM colors WHERE product_id = :id";
+        $statement = $db->prepare($sql);
+        $statement->bindValue(":id", $product_id);
+        $statement->execute();
+
+        self::insertColors($colors, $product_id);
     }
 
     public static function generateProductID($categoryName, $productName, $categoryID) {
@@ -267,6 +280,44 @@ class Product extends Database {
         return $colors;
     }
 
+    public static function updateProducts(array $fields = [], $productId){
+        //Connect into the database
+        $db = self::connect();
+        
+        //SQL basic query, we'll modify it later if needed
+        $sql = "UPDATE product";
+
+        //This code creates a dynamic SQL query based on the fields given by the parameters
+        if(!empty($fields)){
+            $sql .= " SET ";
+            // $i is started in 1 because the first clause will be always WHERE not ,
+            $i = 1;
+            foreach($fields as $field => $value){
+                $sql .= "$field = ? ";
+                if($i < count($fields)){
+                    $sql .= ", ";
+                }
+                $i++;
+            }
+            $sql .= " WHERE id = ?";
+        }
+
+        //Here the SQL query prepares and bind the given parameters on its values to execute the filters
+        $statement = $db->prepare($sql);
+
+        if(!empty($fields)){
+            $i = 1;
+            foreach($fields as $value){
+                $statement->bindValue($i++, $value);
+            }
+            $statement->bindValue($i++, $productId);
+        }
+
+        $result = $statement->execute();
+
+        return $result;
+    }
+
     public static function fetchProducts(array $filters = []){
         /* 
             Example of $filters array application
@@ -320,6 +371,22 @@ class Product extends Database {
             $products[] = new Product($row['id'], $row['name'], $row['description'], $row['id_category'], $images, $row['price'], $row['storage'], $row['memory'], $colors, $row['stock'], $row['featured'], $row['isactive']);
         }
         return $products;
+    }
+
+    public static function deleteImages($images){
+        $db = self::connect();
+
+        $query = "DELETE FROM product_image WHERE img IN ('".implode("', '", $images)."')";
+        // Delete the image from the database
+        $statement = $db->prepare($query);
+        $statement->execute();
+        foreach($images as $image) {    
+            // Delete the image file from the server
+            $filePath = "./src/img/products/" . $image;
+            if(file_exists($filePath)) {
+                unlink($filePath);
+            }
+        }
     }
 
     public function toggleStatus(){

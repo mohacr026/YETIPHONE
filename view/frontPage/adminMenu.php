@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/aside.css">
     <link rel="shortcut icon" href="./src/img/snowflake.png" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./src/js/userMenu.js"></script>
+    <script src="./src/js/canvas/graphCanvas.js"></script>
 </head>
 <body>
     <?php
@@ -26,7 +28,9 @@
             <a href="index.php?controller=Category&action=showEditCategories">Edit Category</a>
             <a href="index.php?controller=Product&action=showInterfaz">User Interface</a>
             <a href="index.php?controller=Purchase&action=showPurchases">Purchases</a>
+            <a href="index.php?controller=Canvas&action=index">Signature</a>
         </aside>
+        <canvas id="productsGraph" width="800" height="400"></canvas>
     </main>
     <?php
         }

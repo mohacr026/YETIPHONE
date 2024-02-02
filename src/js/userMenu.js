@@ -1,4 +1,4 @@
-window.onload = function () {
+document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("userBtn").addEventListener("click", function (event) {
         let userMenu = document.getElementById("userMenu");
         console.log(userMenu);
@@ -7,7 +7,7 @@ window.onload = function () {
             userMenu.classList.toggle("show");
         }
     });
-}
+});
 
 // Cerrar el menú si el usuario hace clic fuera de él
 window.onclick = function (event) {

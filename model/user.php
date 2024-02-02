@@ -128,8 +128,41 @@ class User extends Database {
     }
 
     //Static methods
-    public static function register(){
+    public static function register(array $data = []){
+        //Connect into the database
+        $db = self::connect();
+        
+        //SQL basic query, we'll modify it later if needed
+        $sql = "INSERT INTO users";
 
+        $columns = array_keys($data);
+        $values = [];
+
+        foreach($data as $value){
+            $values[] = $value;
+        }
+        
+        //This code creates a dynamic SQL query based on the filters given by the parameters
+        if(!empty($data)){
+
+            $valuesWithQuotes = [];
+            foreach ($values as $value) {
+                if (is_string($value)) {
+                    $valuesWithQuotes[] = "'" . $value . "'";
+                } else {
+                    $valuesWithQuotes[] = $value;
+                }
+            }
+
+            $sql .= "(". implode(', ', $columns).") VALUES(". implode(', ', $valuesWithQuotes).")";
+
+            //Here the SQL query prepares and bind the given parameters on its values to execute the filters
+            $statement = $db->prepare($sql);
+    
+            $result = $statement->execute();
+        }
+
+        return $result;
     }
 }
 ?>

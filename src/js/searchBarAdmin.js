@@ -1,5 +1,5 @@
-import { Product } from "./product.js";
-import { Category } from "./category.js";
+import { Product } from "./class/product.js";
+import { Category } from "./class/category.js";
 
 let productsArray = [];
 let categoriesArray = [];

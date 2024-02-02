@@ -5,27 +5,53 @@
     justify-content: center;
 }
 
-.slider-principal {
-    position: relative;
+.banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: red; */
     width: 80%;
-    max-width: 1596px;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 25px;
+    margin-bottom: 40px;
+    margin-top: 30px;
+}
+.banner img {
+    display: flex;
+    width: 100%;
+    height: auto;
+    border-radius: 25px;
+}
+
+.slider-principal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    max-width: 80%;
+    max-height: 350px;
     margin: auto;
     overflow: hidden;
-    height: 100%;
-    margin-bottom: 50px; /* Espacio entre los dos sliders */
-}
-
-.slider {
-    margin-top: 0.5em;
-    display: flex;
+    margin-bottom: 50px;
     transition: transform 0.5s ease-in-out;
     touch-action: pan-y;
+    margin-top: 0.5em;
+    border-radius: 25px;
+
 }
 
-.slider img {
-    width: 100%;
-    height: 100%;
+/* 
+.slider {
+    border-radius: 25px;
+
+} */
+
+.slider-principal img {
+    max-width: 100%;
+    max-height: 100%;
     object-fit: cover;
+    border-radius: 25px;
 }
 
 
@@ -37,6 +63,15 @@
     gap: 10px;
 }
 
+/* .slider {
+    margin-top: 0.5em;
+    display: flex;
+    justify-content: center;
+    transition: transform 0.5s ease-in-out;
+    touch-action: pan-y;
+    max-width: 100%;
+    max-height: 350px;
+} */
 
 
 .slider-indicators {
@@ -60,16 +95,16 @@
 }
 
 .slider-destacados {
+    display: flex;
+    flex-direction: column;
     margin-top: 20px;
-    display: block;
     border-radius: 25px;
-    background: var(--LightBlue, #bed2db);
+    background: black;
     width: 80%; /* Ajusta el ancho según tus necesidades */
     max-width: 1596px;
     height: 300px;
     margin: auto; /* Centra el slider-destacados en la página */
     flex-shrink: 0;
-    margin-bottom: 60px; /* Espacio entre los dos sliders */
 }
 
 .slider-controls button {

@@ -1,175 +1,45 @@
-<style>
-    header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 20px; /* Ajusta el espaciado según tus necesidades */
-        padding-left: 10%;
-        padding-right: 10%;
-    }
-
-    .categorias {
-        margin-left: 2.5em;
-        margin-right: 1em;
-        color: #FFF;
-        font-family: Source Sans Pro;
-        font-size: 20px;
-        font-weight: 700;
-        line-height: normal;
-        width: 180px;
-        height: 45px;
-        flex-shrink: 0;
-        border-radius: 15px;
-        border: 5px solid #FFF;
-        background: var(--MediumBlue, #4EB8DD);
-        display: flex; /* Para utilizar flexbox */
-        align-items: center; /* Centra verticalmente */
-        position: relative;
-        cursor: pointer;
-    }
-
-    .categorias select {
-        appearance: none;
-        background: transparent;
-        border: none;
-        color: inherit;
-        font-family: inherit;
-        font-size: inherit;
-        font-weight: inherit;
-        width: 100%;
-        height: 100%;
-        padding: 0 20px;
-        cursor: pointer;
-    }
-
-    .categorias select:focus {
-        outline: none;
-    }
-
-    .searchBar {
-        max-width: 550px;
-        width: 550px;
-        height: 45px;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 0;
-        align-items: center;
-        border-radius: 50px;
-        background: var(--BGColor, #F3FAFD);
-    }
-
-    .searchBar.open{
-        grid-template-rows: 1fr 100vh;
-    }
-
-    .searchBar input{
-        grid-row:1/2;
-        grid-column: 1/2;
-    }
+<header>
+<input type="checkbox" id="menuBtn" class="menu-button-checkbox">
+    <label for="menuBtn" class="menu-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </label>
+    <div id="mobileMenu" class="mobile-menu">
+        <ul>
+            <li>BEST CATEGORIES</li>
+            <li>                
+                <?php
+                    $db = Database::connect();
+                    $query = "SELECT id, name FROM category WHERE isActive = true";
+                    $stmt = $db->prepare($query);
+                    $stmt->execute();
+                    $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($categories as $category): ?>
+        
+                    <a href="index.php?controller=Product&action=showProducts&category=<?= $category['id']; ?>"><?= $category['name']; ?></a>
+                <?php endforeach; ?>
+            </li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+        </ul>
+    </div>
 
     
-
-    .searchBar svg{
-        grid-row: 1/2;
-        grid-column: 1/2;
-    }
-
-    .searchBar #resultDropdown{
-        grid-row: 2/3;
-        grid-column: 1/2;
-        z-index: 1;
-        align-self: start;
-        display: flex;
-    }
-
-    #resultDropdown img{
-        aspect-ratio: 1/1;
-        height: 1rem;
-    }
-
-    #resultDropdown ul li:hover{
-        filter: brightness(70%);
-    }
-
-    .searchBar input {
-        width: 100%; /* Ocupa el 100% del espacio disponible */
-        height: 100%;
-        border: none;
-        outline: none;
-        padding: 0 20px;
-        border-radius: 50px;
-        box-sizing: border-box;
-        background: none;
-        color: black;
-        font-family: "Inter", Source Sans Pro;
-        font-size: 20px;
-        font-weight: 700;
-        line-height: normal;
-        grid-row: 1/2;
-    }
-    .searchBar.open input{
-        border-radius: 50px 50px 0px 0px;
-    }
-
-    .search-button {
-        border: none;
-        background: transparent;
-        cursor: pointer;
-        padding: 0 10px;
-        border-radius: 50px;
-    }
-
-    .categorias-dropdown {
-        display: none;
-        position: absolute;
-        background-color: #f1f1f1;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-    }
-
-    .categorias-dropdown a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
-
-    .categorias-dropdown a:hover {
-        background-color: rgba(33, 112, 147, 1); 
-    }
-
-    .categoryshow {
-        display: flex;
-        margin-top: 120px;
-        background: rgba(78, 184, 221, 1); 
-        width: 80%;
-        border-radius: 0  0  0.5em 0.5em;
-        box-shadow: 0px -5px 10px rgba(1, 0, 0, 0);
-
-    }
-
-    .searchBar input::placeholder {
-    color: #CBCBCB;
-}
-
-</style>
-
-
-
-<header>
     <a href="index.php" style="text-decoration: none" aria-label="YETiPhone" tabindex='50'>
         <h1>YETiPhone</h1>
     <a>
     <button id="categoriasBtn" class="categorias" aria-expanded="false" aria-haspopup="true" aria-controls="categoriasDropdown" tabindex="5">
         <svg xmlns="http://www.w3.org/2000/svg" width="33" height="19" viewBox="0 0 44 29" fill="none">
             <path d="M0 2.5C0 1.11929 1.11929 0 2.5 0H41.5C42.8807 0 44 1.11929 44 2.5C44 3.88071 42.8807 5 41.5 5H2.5C1.11929 5 0 3.88071 0 2.5Z" fill="#F3FAFD"/>
-            <path d="M0 14.125C0 12.7443 1.11929 11.625 2.5 11.625H41.5C42.8807 11.625 44 12.7443 44 14.125C44 15.5057 42.8807 16.625 41.5 16.625H2.5C1.11929 16.625 0 15.5057 0 14.125Z" fill="#F3FAFD"/>
-            <path d="M0 25.75C0 24.3693 1.11929 23.25 2.5 23.25H41.5C42.8807 23.25 44 24.3693 44 25.75C44 27.1307 42.8807 28.25 41.5 28.25H2.5C1.11929 28.25 0 27.1307 0 25.75Z" fill="#F3FAFD"/>
-        </svg>
+                <path d="M0 14.125C0 12.7443 1.11929 11.625 2.5 11.625H41.5C42.8807 11.625 44 12.7443 44 14.125C44 15.5057 42.8807 16.625 41.5 16.625H2.5C1.11929 16.625 0 15.5057 0 14.125Z" fill="#F3FAFD"/>
+                <path d="M0 25.75C0 24.3693 1.11929 23.25 2.5 23.25H41.5C42.8807 23.25 44 24.3693 44 25.75C44 27.1307 42.8807 28.25 41.5 28.25H2.5C1.11929 28.25 0 27.1307 0 25.75Z" fill="#F3FAFD"/>
+            </svg>
         All Categories
     </button>
-
+    
     <div id="categoriasDropdown" class="categorias-dropdown" aria-labelledby="categoriasBtn">
         <?php
         require_once("./model/category.php");
@@ -180,29 +50,7 @@
         <?php endforeach; ?>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var categoriasBtn = document.getElementById("categoriasBtn");
-            var categoriasDropdown = document.getElementById("categoriasDropdown");
-
-            categoriasBtn.addEventListener("click", function () {
-                categoriasDropdown.classList.toggle("categoryshow");
-            });
-
-            // Cierra el desplegable si se hace clic fuera de él
-            window.addEventListener("click", function (event) {
-                if (!event.target.matches("#categoriasBtn")) {
-                    var dropdowns = document.getElementsByClassName("categorias-dropdown");
-                    for (var i = 0; i < dropdowns.length; i++) {
-                        var openDropdown = dropdowns[i];
-                        if (openDropdown.classList.contains("categoryshow")) {
-                            openDropdown.classList.remove("categoryshow");
-                        }
-                    }
-                }
-            });
-        });
-    </script>
+        <script src="./src/js/headerDropdown.js"></script>
 
     <div class="searchBar">
         <svg  width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -215,6 +63,7 @@
             </defs>
         </svg>
         <input type="text" placeholder="Search any product..." id="search" tabindex="0">
+        
     </div>
 
     <div class="icons">
@@ -225,7 +74,6 @@
                 echo "  <p>Log in</p>";
                 echo "</a>";
             } else {
-                
                 echo "<button id='userBtn' class='dropBtn' aria-haspopup='true' aria-expanded='false' aria-controls='userMenu' tabindex='2'>";
                 echo "  <img class='buttonElements' src='./src/img/userIcon.png' alt='user menu'>";
                 echo "  <p class='buttonElements'>{$_SESSION['email']}</p>";

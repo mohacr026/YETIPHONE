@@ -1,0 +1,298 @@
+@charset "UTF-8";
+/* Oculta el botón de menú y el menú desplegable en la versión de escritorio */
+.menu-button,
+.menu-button-checkbox,
+.mobile-menu {
+  display: none;
+}
+
+header {
+  background-color: black;
+  display: flex;
+  padding: 1em;
+  max-height: 5vh;
+  padding: 20px;
+  /* Ajusta el espaciado según tus necesidades */
+  padding-left: 10%;
+  padding-right: 10%;
+}
+header h1 {
+  padding-left: 1rem;
+  color: white;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+header .icons {
+  display: flex;
+  margin-left: auto;
+  padding-right: 1rem;
+  color: white;
+  text-decoration: none;
+  background-color: black;
+}
+header .icons a.button,
+header .icons button {
+  display: flex;
+  align-items: center;
+  text-wrap: nowrap;
+  margin-right: 1rem;
+  color: white;
+}
+header .icons a.button img,
+header .icons button img {
+  aspect-ratio: 1/1;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+header .icons a.button p,
+header .icons button p {
+  margin-left: 0.5rem;
+}
+header .icons a.button:link, header .icons a.button:visited {
+  text-decoration: none;
+}
+header .icons button {
+  border: none;
+  background-color: black;
+  cursor: pointer;
+}
+header .icons button:hover, header .icons button:active {
+  background-color: #4eb8dd;
+}
+
+.categorias {
+  margin-left: 2.5em;
+  margin-right: 1em;
+  color: #FFF;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: normal;
+  width: 180px;
+  height: 45px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  border: 5px solid #FFF;
+  background: #292C2C;
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  margin-top: -4px;
+}
+.categorias select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  cursor: pointer;
+}
+.categorias select:focus {
+  outline: none;
+}
+
+.categorias {
+  margin-left: 2.5em;
+  margin-right: 1em;
+  color: #FFF;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: normal;
+  width: 180px;
+  height: 45px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  border: 5px solid #FFF;
+  background: #292C2C;
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  margin-top: -4px;
+  overflow: hidden;
+  transition: background 0.3s, color 0.3s, border 0.3s;
+}
+
+.categorias:hover {
+  background: #1e1f1f;
+  /* Cambia el color de fondo al pasar el ratón */
+  color: linear-gradient(to right, #000000, #442500);
+  /* Cambiar a degradado al pasar el ratón */
+  border-color: #ff8c00;
+  /* Cambia el color del borde al pasar el ratón */
+}
+
+.categorias::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.3));
+  /* Añade un degradado al fondo */
+  z-index: -1;
+  transition: transform 0.3s ease-out;
+}
+
+.categorias:hover::before {
+  transform: scaleX(1);
+  /* Muestra el degradado al pasar el ratón */
+}
+
+.searchBar {
+  max-width: 550px;
+  width: 550px;
+  height: 45px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 0;
+  align-items: center;
+  border-radius: 50px;
+  background: var(--BGColor, #F3FAFD);
+  margin-top: -4px;
+}
+.searchBar.open {
+  grid-template-rows: 1fr 100vh;
+}
+.searchBar input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 0 20px;
+  border-radius: 50px;
+  box-sizing: border-box;
+  background: none;
+  color: black;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: normal;
+  z-index: 0;
+  grid-row: 1/2;
+  grid-column: 1/2;
+}
+.searchBar input::-moz-placeholder {
+  color: #CBCBCB;
+}
+.searchBar input::placeholder {
+  color: #CBCBCB;
+}
+.searchBar input.open {
+  border-radius: 50px 50px 0px 0px;
+}
+.searchBar svg {
+  grid-row: 1/2;
+  grid-column: 1/2;
+  z-index: 1;
+}
+.searchBar #resultDropdown {
+  grid-row: 2/3;
+  grid-column: 1/2;
+  z-index: 1;
+  align-self: start;
+  display: flex;
+}
+.searchBar #resultDropdown img {
+  aspect-ratio: 1/1;
+  height: 1rem;
+}
+.searchBar #resultDropdown ul li:hover {
+  filter: brightness(70%);
+}
+
+.categorias-dropdown {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.categorias-dropdown a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.categorias-dropdown a:hover {
+  background-color: rgb(145, 145, 145);
+}
+
+.categoryshow {
+  display: flex;
+  margin-top: 50px;
+  background: black;
+  width: 80%;
+  border-radius: 0 0 0.5em 0.5em;
+  box-shadow: 0px -5px 10px rgba(1, 0, 0, 0);
+}
+
+@media screen and (max-width: 767px) {
+  header {
+    background-color: black;
+    display: flex;
+    max-height: 5vh;
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+  }
+  .categorias,
+  .searchBar,
+  .icons p {
+    display: none;
+    /* Oculta el botón "All Categories" y otros elementos en pantallas pequeñas */
+  }
+  .titulo {
+    display: flex;
+    justify-content: center;
+  }
+  .menu-button-checkbox {
+    display: none;
+  }
+  .menu-button {
+    display: flex;
+    align-items: center;
+    padding: 1em;
+    color: white;
+    cursor: pointer;
+  }
+  .menu-button svg {
+    width: 24px;
+    height: 24px;
+  }
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    z-index: 20;
+    top: 100%;
+    right: 0;
+    background-color: #4eb8dd;
+    width: 100%;
+    border-top: 1px solid white;
+    /* Añadido para separar del header */
+  }
+  .mobile-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  .mobile-menu li {
+    color: white;
+    padding: 1em;
+    text-align: center;
+    cursor: pointer;
+    border-bottom: 1px solid white;
+    /* Añadido para separar los elementos del menú */
+  }
+  #menuBtn:checked + .menu-button + .mobile-menu {
+    display: flex;
+  }
+}/*# sourceMappingURL=header.css.map */

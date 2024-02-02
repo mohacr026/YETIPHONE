@@ -69,5 +69,11 @@ CREATE TABLE users (
   isActive BOOLEAN
 );
 
+CREATE TABLE userCarts (
+  email VARCHAR(255),
+  lastCart JSONB,
+  PRIMARY KEY (email)
+);
+
 -- Insert de cuenta admin
 INSERT INTO admin (email, pass) VALUES ('admin@gmail.com', MD5('admin'));

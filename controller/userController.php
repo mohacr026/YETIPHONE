@@ -39,6 +39,9 @@ class UserController {
     }
 
     public function logout(){
+        echo "<script>
+        sessionStorage.clear();
+        </script>";
         session_destroy();
         echo "<META HTTP-EQUIV='REFRESH' CONTENT='0; URL=index.php'>";
     }

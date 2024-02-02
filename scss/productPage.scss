@@ -1,0 +1,90 @@
+@import 'colors.scss';
+@import 'mixins.scss';
+
+.productPageContainer {
+    @include flexRow;
+    box-sizing: border-box;
+    align-content: center;
+    height: 80vh;
+    padding: 2em;
+    > div {
+        margin: 1.5em;
+    }
+    .productPagePackImages {
+        @include flexRow;
+        //max-height: 40em;
+        width: 40%;
+        #productPageShowingImage {
+            border: 1px solid black;
+            width: 70%;
+            aspect-ratio: 1/1;
+            margin: 0.5em;
+            object-fit: contain;
+        }
+        .sideImages {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            > img {
+                aspect-ratio: 1/1;
+                object-fit: contain;
+                height: 25%;
+                margin: 0.5em;
+                border: 1px solid black;
+                cursor: pointer;
+            }
+            > img.selected {
+                border: 1px solid red;
+            }
+        }
+    }
+    .productInfo{
+        display: flex;
+        flex-direction: row;
+        width: 59%;
+        .infoLabel{
+            font-size: 24px;
+            margin-bottom: 0.2em;
+        }
+        div{
+            width: 50%;
+            .color{
+                display: flex;
+                flex-wrap: wrap;
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+                max-width: 80%;
+                input[type="radio"] {
+                    display: none;
+                    &:checked + label {
+                      span { transform: scale(1.25); }
+                    } // !&:checked + label
+                  }
+                  
+                  label {
+                    display: inline-block;
+                    width: 2rem;
+                    height: 2rem;
+                    margin-right: 1em;
+                    cursor: pointer;
+                    &:hover {
+                      span { 
+                        transform: scale(1.25); 
+                        
+                      }
+                    }
+                    span {
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        transition: transform .2s ease-in-out;
+                        border-radius: 50%;
+                        border: 1px solid black;
+                    }
+                  }
+            }
+        }
+    }
+}

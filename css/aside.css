@@ -1,48 +1,58 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-main {
-    display: flex;
-}
-
 aside {
     width: 20%;
-    background-color: #f1f1f1;
+    background-color: #1e1e1e; /* Fondo del aside */
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 h2 {
-    font-size: 1.5em;
+    font-size: 1.8em; /* Tamaño de la fuente aumentado */
     margin-bottom: 15px;
+    color: #b385ff; /* Morado claro */
 }
 
 a {
     display: block;
-    padding: 10px 0;
+    padding: 20px 0; /* Ajuste del espaciado en los enlaces */
     text-decoration: none;
-    color: #333;
-    transition: background-color 0.3s;
+    color: #fff;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 8px; /* Bordes redondeados */
 }
 
 a:hover {
-    background-color: #ddd;
+    background: #7207be;
+    color: #fff;
 }
 
-#search{
-    padding: 0.5em;
-    border-radius: 4px;
-    border: solid 2px #217093;
-    font-size: 1em;
-    color: #353538;
-    transition: box-shadow .2s linear, border-color .25s ease-out;
+#search {
+    padding: 0.7em; /* Ajuste del espaciado en el cuadro de búsqueda */
+    border-radius: 20px; /* Bordes redondeados */
+    font-size: 1.2em; /* Tamaño de la fuente aumentado */
+    color: #fff;
+    background-color: transparent;
+    border: solid 2px #5e5e5e;
+    transition: box-shadow 0.2s linear, border-color 0.25s ease-out;
 }
 
 #search:focus {
     outline: none;
-    box-shadow: 0px 2px 10px rgba(0,0,0,.1);
-    border: solid 2px #4eb8dd;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+    border: solid 2px #b385ff; /* Morado claro */
+}
+
+/* Añadir animación a los botones */
+button {
+    background-color: #b385ff; /* Morado claro */
+    color: #fff;
+    padding: 15px 25px; /* Ajuste del espaciado en los botones */
+    border: none;
+    border-radius: 8px; /* Bordes redondeados */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #8e63e7; /* Morado más oscuro */
+    transform: scale(1.05);
 }

@@ -504,9 +504,9 @@ main {
   display: flex;
 }
 main aside {
-  background-color: #c1ebff;
-  width: 30vw;
-  height: 90vh;
+  background: linear-gradient(#2d0848, rgb(92, 89, 126));
+  width: 25vw;
+  height: 120vh;
   display: flex;
   flex-direction: column;
 }

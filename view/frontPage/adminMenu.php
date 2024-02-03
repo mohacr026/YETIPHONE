@@ -30,7 +30,10 @@
             <a href="index.php?controller=Purchase&action=showPurchases">Purchases</a>
             <a href="index.php?controller=Canvas&action=index">Signature</a>
         </aside>
-        <canvas id="productsGraph" width="800" height="400"></canvas>
+        <div id="graphs">
+            <canvas id="ProductsGraph" width="800" height="400"></canvas>
+            <canvas id="CategorysGraph" width="800" height="400"></canvas>
+        </div>  
     </main>
     <?php
         }

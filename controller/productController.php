@@ -171,7 +171,7 @@ class ProductController {
                     echo "Product not found";
                 }
             } else {
-                echo"<meta http-equiv='refresh' content='0; URL=index.php?controller=Product&action=editProduct&id=".$productId."'>";
+                echo"<meta http-equiv='refresh' content='0; URL=index.php?controller=Product&action=showEditProducts'>";
             }
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage();
@@ -185,7 +185,7 @@ class ProductController {
             $productId = $_GET['id'];
             
             // Obtener el producto existente de la base de datos
-            $existingProducts = Product::getProductById($productId);
+            $existingProducts = Product::fetchProducts(['id' => $productId])[0];
     
             if (!empty($existingProducts)) {
                 foreach ($existingProducts as $existingProduct) {
@@ -216,7 +216,7 @@ class ProductController {
             $productId = $_GET['id'];
             
             // Obtener el producto existente de la base de datos
-            $existingProduct = $this->getProductById($productId);
+            $existingProduct = Product::fetchProducts(['id' => $productId])[0];
     
             if ($existingProduct) {
                 // Cambiar el estado del producto
@@ -224,7 +224,7 @@ class ProductController {
                 $existingProduct->setIsActive($newStatus);
     
                 // Actualizar el producto en la base de datos
-                $existingProduct->updateProductIsActive();
+                $existingProduct->updateProducts(['isactive' => $existingProduct->getIsActive()], $existingProduct->getId());
     
                 // Redirigir o mostrar un mensaje, según sea necesario
                 header("Location: index.php?controller=Product&action=showProductList");
@@ -301,6 +301,17 @@ class ProductController {
             echo "$productsJSON";
         }
     }
-}
 
-?>
+    public function fetchProducts(){
+        ob_clean();
+        header("Content-Type: application/json");
+
+        $data = Product::fetchProducts();
+        $treatedData = array();
+        foreach($data as $product){
+            array_push($treatedData, [ "name" => $product->getName(), "count" => $product->getStock() ]);
+        }
+        echo json_encode(['success' => true, 'info' => $treatedData]);
+        exit;
+    }
+}

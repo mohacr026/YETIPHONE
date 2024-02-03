@@ -1659,3 +1659,13 @@ footer {
 .carrito {
   margin-left: auto;
 }/*# sourceMappingURL=main.css.map */
+
+#graphs {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+#ProductsGraph, #CategorysGraph {
+  max-height: 400px;
+  background-color: #FFF;
+}

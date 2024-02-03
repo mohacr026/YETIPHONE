@@ -403,7 +403,9 @@ class Product extends Database {
 
     public static function searchProducts($toSearch){
         $db = self::connect();
-        $sql = "SELECT * FROM product WHERE LOWER(name) LIKE :name";
+        $sql = "SELECT *, (SELECT i.img FROM product_image i WHERE i.product_id=p.id LIMIT 1) as img
+        FROM product p
+        WHERE LOWER(p.name) LIKE :name";
         $stmt = $db->prepare($sql);
         $search = "%" . strtolower($toSearch) . "%";
         $stmt->bindParam(':name', $search);
@@ -419,7 +421,7 @@ class Product extends Database {
                 "productId" => $value['id'],
                 "name" => $value['name'],
                 "id_category" => $value['id_category'],
-                "img" => $value['img'],
+                "img" => "./src/img/products/" . $value['img'],
                 "price" => $value['price'],
                 "stock" => $value['stock'],
                 "storage" => $value['storage'],

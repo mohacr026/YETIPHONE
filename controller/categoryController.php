@@ -109,4 +109,3 @@ class CategoryController{
         exit;
     }
 }
-?>

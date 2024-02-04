@@ -2,6 +2,7 @@
 require_once("./model/purchase.php");
 require_once("./model/product.php");
 require_once("./model/productDetails.php");
+require_once("./model/company.php");
 class PurchaseController {
     public function showPurchases(){
         $filters = [];
@@ -40,6 +41,20 @@ class PurchaseController {
             }
         }
         include("./view/adminPurchase/editPurchase.php");
+    }
+
+    public function printPDF(){
+        ob_clean();
+        $data = Company::getCompanyInfo();
+        // $purchaseData = Purchase::fetchPurchases(['id' => $_GET['id'] ])[0];
+        $purchaseData = Purchase::fetchPurchases(['id' => 1 ])[0];
+        $productsData = ProductDetails::fetchDetails(['id' => 1]);
+        $products = array();
+        foreach($productsData as $product){
+            array_push($products, ['product_name' => Product::fetchProducts(['id' => $product->getProductId()])[0]->getName(), 'count' => $product->getQuantity()] );
+        }
+        // $productsData = ProductDetails::fetchDetails(['id' => $purchaseData->getProductDetails()])[0];
+        include("./view/adminPurchase/printPDF.php");
     }
 }
 

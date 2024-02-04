@@ -75,5 +75,13 @@ CREATE TABLE userCarts (
   PRIMARY KEY (email)
 );
 
+CREATE TABLE companyInfo(
+  name VARCHAR(255),
+  direction VARCHAR(255)
+);
+
 -- Insert de cuenta admin
 INSERT INTO admin (email, pass) VALUES ('admin@gmail.com', MD5('admin'));
+
+-- Insert companyInfo
+INSERT INTO companyInfo (name, direction) VALUES ('YETiPhone', "Yetiphone's direction");

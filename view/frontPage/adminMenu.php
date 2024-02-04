@@ -29,6 +29,7 @@
             <a href="index.php?controller=Product&action=showInterfaz">User Interface</a>
             <a href="index.php?controller=Purchase&action=showPurchases">Purchases</a>
             <a href="index.php?controller=Canvas&action=index">Signature</a>
+            <a href="index.php?controller=Purchase&action=printPDF">PrintPDF</a>
         </aside>
         <div id="graphs">
             <canvas id="ProductsGraph" width="800" height="400"></canvas>

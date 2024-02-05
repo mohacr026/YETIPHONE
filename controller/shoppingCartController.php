@@ -7,5 +7,18 @@ class ShoppingCartController {
 
         print_r($lastCart);
     }
+
+    public function saveUserCart(){
+        $email = $_REQUEST['email'];
+        $lastCart = $_REQUEST['cart'];
+
+        ShoppingCart::uploadUserCartToDatabase($email, $lastCart);
+
+        print_r($lastCart);
+    }
+
+    public function viewCart(){
+        include("./view/cart/shoppingCart.php");
+    }
 }
 ?>

@@ -11,6 +11,7 @@
     <script type="module" src="./src/js/searchBarAdmin.js"></script>
     <script id="productJSON" type="application/json"> <?php echo "$productsJsonResult"; ?> </script>
     <script id="pcategoryJSON" type="application/json"> <?php echo "$categoriesJsonResult"; ?> </script>
+    <script type="module" src="./src/js/ShoppingCart.js"></script>
 </head>
 <body>
     

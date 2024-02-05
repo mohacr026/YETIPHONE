@@ -22,5 +22,37 @@ class ShoppingCart extends Database{
 
         return $result;
     }
+
+    public static function uploadUserCartToDatabase($email, $cart) {
+        $db = self::connect();
+    
+        // Check if the usercart exists
+        $selectSql = "SELECT * FROM usercarts WHERE email = :email";
+        $selectStatement = $db->prepare($selectSql);
+        $selectStatement->bindParam(":email", $email);
+        $selectStatement->execute();
+    
+        if ($selectStatement->rowCount() > 0) {
+            // Update the existing usercart
+            $updateSql = "UPDATE usercarts SET lastcart = :cart WHERE email = :email";
+            $updateStatement = $db->prepare($updateSql);
+            $updateStatement->bindParam(':cart', $cart);
+            $updateStatement->bindParam(':email', $email);
+            $updateStatement->execute();
+        } else {
+            // Insert a new usercart
+            $insertSql = "INSERT INTO usercarts (email, lastcart) VALUES (:email, :cart)";
+            $insertStatement = $db->prepare($insertSql);
+            $insertStatement->bindParam(':email', $email);
+            $insertStatement->bindParam(':cart', $cart);
+            $insertStatement->execute();
+        }
+    
+        // Retrieve the updated/inserted usercart
+        $selectStatement->execute();
+        $result = $selectStatement->fetch(PDO::FETCH_ASSOC);
+    
+        return $result;
+    }    
 }
 ?>

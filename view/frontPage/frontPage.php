@@ -14,6 +14,7 @@
     <script src="./src/js/userMenu.js"></script>
     <script src="./src/js/slider.js"></script>
     <script id="productJSON" type="application/json"> <?php echo "$productsJsonResult"; ?> </script>
+    <script type="module" src="./src/js/ShoppingCart.js"></script>
 </head>
 
 <body>

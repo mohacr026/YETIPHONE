@@ -15,11 +15,9 @@ function checkIfUserIsLogged(){
     if(storedUser === null){
         let cartJson = fetchCartFromLocalStorage("temporalAcces");
         if(cartJson === null) cartJson = JSON.parse('{"shoppingCart": []}');
-        let newUser = new ShopUser("temporalAcces", cartJson)
+        let newUser = new ShopUser("temporalAcces", cartJson);
         newUser.saveToSessionStorage();
         storedUser = ShopUser.loadFromSessionStorage();
-    } else if(storedUser.email === "temporalAcces") {
-
     }
 }
 

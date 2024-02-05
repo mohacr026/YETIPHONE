@@ -16,7 +16,10 @@ class UserController {
 
             switch ($action) {
                 case 'login':
-                    include("./view/frontPage/frontPage.php");
+                    $email = $_SESSION['email'];
+                    echo "<div id='email' data-email='$email'></div>";
+                    echo "<script type='module' src='./src/js/logUser.js'></script>";
+                    echo "<META HTTP-EQUIV='REFRESH' CONTENT='0; URL=index.php'>";
                     break;
                 
                 case 'loginAdm':

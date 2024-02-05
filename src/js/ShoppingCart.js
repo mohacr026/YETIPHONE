@@ -8,17 +8,18 @@ window.addEventListener("load", function(){
     checkIfUserIsLogged();
     console.log("USUARIO DE SESION");
     console.log(storedUser);
-    
     addButtonEvents();
 });
 
 function checkIfUserIsLogged(){
     if(storedUser === null){
-        let cartJson = fetchCartFromLocalStorage(null);
+        let cartJson = fetchCartFromLocalStorage("temporalAcces");
         if(cartJson === null) cartJson = JSON.parse('{"shoppingCart": []}');
         let newUser = new ShopUser("temporalAcces", cartJson)
         newUser.saveToSessionStorage();
         storedUser = ShopUser.loadFromSessionStorage();
+    } else if(storedUser.email === "temporalAcces") {
+
     }
 }
 
@@ -45,7 +46,7 @@ function fetchCartFromLocalStorage(email){
     if(email == null){
         cartJson = null
     } else {
-        const cartData = localStorage.getItem("email");
+        const cartData = localStorage.getItem(email);
         if(cartData) cartJson = JSON.parse(cartData);
         else cartJson = null;
     }
@@ -86,14 +87,14 @@ function addButtonEvents(){
     let addToCartButtons = document.getElementsByClassName("addCart");
     for (let i = 0; i < addToCartButtons.length; i++) {
         let button = addToCartButtons[i];
-        button.addEventListener("click", function() {
-            let productId = button.dataset.product;
-            console.log("USER ANTES DE AÑADIR");
-            console.log(storedUser);
-            addProductToCart(productId, storedUser.cart)
-            //console.log("USER DESPUES DE AÑADIR");
-            //console.log(storedUser);
-        })
+        if(button){
+            button.addEventListener("click", function() {
+                let productId = button.dataset.product;
+                console.log("USER ANTES DE AÑADIR");
+                console.log(storedUser);
+                addProductToCart(productId, storedUser.cart)
+            })
+        }
     }
 }
 
@@ -124,13 +125,11 @@ function addProductToCart(product, cart, quantity=null){
         console.log(newCart);
         newCart.push(cartItem);
     }
-    //console.log(newCart);
+
     console.log(storedUser);
     sessionStorage.setItem('User', JSON.stringify(storedUser));
-    /*cart.shoppingCart = newCart
-    let newUser = new ShopUser(storedUser.email, cart)
-    newUser.saveToSessionStorage();
-    console.log(storedUser);*/
+    localStorage.setItem(storedUser.email, JSON.stringify(storedUser.cart.shoppingCart));
+    if(storedUser.email != "temporalAcces") uploadCartToDatabase();
 }
 
 function getItemIndex(cart, targetProduct) {

@@ -23,6 +23,7 @@
     <script src="./src/js/userMenu.js"></script>
     <script src="./src/js/slider.js"></script>
     <script type="module" src="./src/js/searchBar.js"></script>
+    <script type="module" src="./src/js/ShoppingCart.js"></script>
 </head>
 
 <body>

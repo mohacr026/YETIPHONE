@@ -95,7 +95,7 @@
                 }
             }
         ?>
-        <a href="#" class="button" tabindex="1">
+        <a href="index.php?controller=ShoppingCart&action=viewCart" class="button" tabindex="1">
             <img src="./src/img/shoppingCart.png" alt="shopping cart" aria-label="Shopping Cart">
         </a>
     </div>

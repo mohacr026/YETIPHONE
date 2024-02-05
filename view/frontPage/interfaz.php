@@ -20,8 +20,8 @@
         href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Oswald:wght@200..700&family=Poppins:wght@400;700&display=swap"
         rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="./src/js/userMenu.js"></script>
     <script src="./src/js/slider.js"></script>
+    <script src="./src/js/userMenu.js"></script>
     <script type="module" src="./src/js/searchBar.js"></script>
     <script type="module" src="./src/js/ShoppingCart.js"></script>
 </head>

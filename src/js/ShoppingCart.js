@@ -127,8 +127,24 @@ function addProductToCart(product, cart, quantity=null){
     console.log(storedUser);
     sessionStorage.setItem('User', JSON.stringify(storedUser));
     localStorage.setItem(storedUser.email, JSON.stringify(storedUser.cart.shoppingCart));
-    if(storedUser.email != "temporalAcces") uploadCartToDatabase();
+    if(storedUser.email != "temporalAcces") uploadCartToDatabase(storedUser.email, storedUser.cart);
 }
+
+function uploadCartToDatabase(email, cart){
+    const data = new FormData();
+    data.append('email', email);
+    data.append('cart', JSON.stringify(cart));
+
+    fetch('index.php?controller=ShoppingCart&action=saveUserCart', {
+      method: 'POST',
+      body: data
+    })
+    .then (response => {
+      if (response.ok) console.log("SUBIDO OK");
+      else console.log("NO SUBIDO");
+    })
+    .catch(error => console.log(error))
+  }
 
 function getItemIndex(cart, targetProduct) {
     for (let i = 0; i < cart.length; i++) {

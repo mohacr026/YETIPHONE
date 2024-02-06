@@ -1,7 +1,9 @@
 <?php 
 
+require_once './model/database.php';
+
 class CanvasController {
-    public function index(){
+    public function signature(){
         include("./view/adminSignature/adminSignature.php");
     }
 }

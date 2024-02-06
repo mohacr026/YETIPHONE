@@ -3,6 +3,7 @@ require_once("database.php");
 
 class User extends Database {
     //Attributes
+    private $dni;
     private $email;
     private $password;
     private $phoneNumber;
@@ -12,7 +13,8 @@ class User extends Database {
     private $isActive;
 
     //Constructor
-    public function __construct($email, $password, $phoneNumber = null, $name, $surname, $direction = null, $isActive = true){
+    public function __construct($dni, $email, $password, $phoneNumber = null, $name, $surname, $direction = null, $isActive = true){
+        $this->dni = $dni;
         $this->email = $email;
         $this->password = $password;
         $this->phoneNumber = $phoneNumber;
@@ -23,6 +25,10 @@ class User extends Database {
     }
 
     //Setters & Getters
+    public function getDni(){
+        return $this->dni;
+    }
+
     public function getEmail(){
         return $this->email;
     }
@@ -111,6 +117,7 @@ class User extends Database {
                 if(md5($this->getPassword()) == $userArr['password']) {
                     $passOK = true;
 
+                    $_SESSION['dni'] = $userArr['dni'];
                     $_SESSION['email'] = $userArr['email'];
                     $_SESSION['name'] = $userArr['username'];
                     $_SESSION['role'] = "user";
@@ -163,6 +170,59 @@ class User extends Database {
         }
 
         return $result;
+    }
+
+    public static function fetchUsers(array $filters = []){
+        /* 
+            Example of $filters array application
+            $filters = [
+                'user_id' => 456,
+                'status' => 'shipped',
+                'startDate' => '2023-10-01',
+                'endDate' => '2023-10-15',
+            ];
+            $records = Product::fetchPurchases($filters);
+        */
+
+        //Connect into the database
+        $db = self::connect();
+        
+        //SQL basic query, we'll modify it later if needed
+        $sql = "SELECT * FROM users";
+
+        //This code creates a dynamic SQL query based on the filters given by the parameters
+        if(!empty($filters)){
+            $sql .= " WHERE ";
+            // $i is started in 1 because the first clause will be always WHERE not AND
+            $i = 1;
+            foreach($filters as $field => $value){
+                $sql .= "$field = ? ";
+                if($i < count($filters)){
+                    $sql .= " AND ";
+                }
+                $i++;
+            }
+
+        }
+
+        //Here the SQL query prepares and bind the given parameters on its values to execute the filters
+        $statement = $db->prepare($sql);
+
+        if(!empty($filters)){
+            $i = 1;
+            foreach($filters as $value){
+                $statement->bindValue($i++, $value);
+            }
+        }
+
+        $statement->execute();
+
+        // Adds into the purchases array every purchase the SQL returned
+        $users = [];
+        while($row = $statement->fetch(PDO::FETCH_ASSOC)){
+            $users[] = new User($row['dni'], $row['email'], $row['password'], $row['phone_number'], $row['username'], $row['surname'], $row['direction'], $row['isactive'] );
+        }
+        return $users;
     }
 }
 ?>

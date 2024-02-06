@@ -43,6 +43,7 @@ CREATE TABLE colors (
 -- Crear la tabla purchase_details
 CREATE TABLE purchase_details (
   id SERIAL PRIMARY KEY,
+  purchase_id INT,
   product_id VARCHAR(10) REFERENCES product(id),
   quantity INT
 );
@@ -84,4 +85,4 @@ CREATE TABLE companyInfo(
 INSERT INTO admin (email, pass) VALUES ('admin@gmail.com', MD5('admin'));
 
 -- Insert companyInfo
-INSERT INTO companyInfo (name, direction) VALUES ('YETiPhone', "Yetiphone's direction");
+INSERT INTO companyInfo (name, direction) VALUES ('YETiPhone', 'Yetiphones direction');

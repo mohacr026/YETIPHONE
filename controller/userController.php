@@ -65,7 +65,13 @@ class UserController {
             $data["direction"] = $_POST["direction"];
             $data["isactive"] = "true";
 
-            User::register($data);
+            try {
+                User::register($data);
+                include("./view/frontPage/login.html");
+            } catch(Exception $e) {
+                echo "The registration form failed, please, use valid credentials.";
+                include("./view/frontPage/register.php");
+            }
             
         } else {
             echo "The registration form failed, please, try again later.";

@@ -281,7 +281,7 @@ header .icons button:hover, header .icons button:active {
     z-index: 20;
     top: 100%;
     right: 0;
-    background-color: #4eb8dd;
+    background-color: rgba(54, 8, 54, 0.824);
     width: 100%;
     border-top: 1px solid white;
     /* Añadido para separar del header */
@@ -504,9 +504,9 @@ main {
   display: flex;
 }
 main aside {
-  background: linear-gradient(#2d0848, rgb(92, 89, 126));
-  width: 25vw;
-  height: 120vh;
+  background-color: #c1ebff;
+  width: 30vw;
+  height: 90vh;
   display: flex;
   flex-direction: column;
 }

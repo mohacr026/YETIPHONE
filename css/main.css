@@ -1170,13 +1170,15 @@ main .container h1 {
 }
 
 .productCardContainer {
+  display: flex;
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
   border: 2.5px solid rgba(255, 255, 255, 0.486);
   border-radius: 0.7em;
   padding: 1em;
-  width: 80%;
+  width: 40%;
+  height: auto;
   max-height: 250px;
   background: linear-gradient(rgba(128, 0, 128, 0.772), rgba(0, 0, 0, 0.753));
 }

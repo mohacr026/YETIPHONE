@@ -1,7 +1,6 @@
 import { ShopUser } from "./class/shopUser.js";
 
 window.addEventListener("load", function(){
-    console.log("AAAA");
     logUser();
 });
 

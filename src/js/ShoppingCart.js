@@ -3,7 +3,8 @@ import { ShopUser } from "./class/shopUser.js";
 let storedUser;
 
 window.addEventListener("load", function(){
-    //sessionStorage.clear();
+    // sessionStorage.clear();
+    // localStorage.clear();
     storedUser = ShopUser.loadFromSessionStorage();
     checkIfUserIsLogged();
     console.log("USUARIO DE SESION");
@@ -126,7 +127,7 @@ function addProductToCart(product, cart, quantity=null){
 
     console.log(storedUser);
     sessionStorage.setItem('User', JSON.stringify(storedUser));
-    localStorage.setItem(storedUser.email, JSON.stringify(storedUser.cart.shoppingCart));
+    localStorage.setItem(storedUser.email, JSON.stringify(storedUser.cart));
     if(storedUser.email != "temporalAcces") uploadCartToDatabase(storedUser.email, storedUser.cart);
 }
 

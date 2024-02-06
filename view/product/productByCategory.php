@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="./src/js/userMenu.js"></script>
-    <script src="./src/js/priceBar.js"></script>
+    <script type="module" src="./src/js/ShoppingCart.js"></script>
 </head>
 <body class="flex-row">
     <?php

@@ -59,7 +59,8 @@ CREATE TABLE purchase (
 
 -- Crear la tabla usuarios
 CREATE TABLE users (
-  email VARCHAR(255) PRIMARY KEY,
+  dni VARCHAR(9) PRIMARY KEY,
+  email VARCHAR(255) UNIQUE,
   phone_number VARCHAR(20),
   username VARCHAR(255),
   surname VARCHAR(255),

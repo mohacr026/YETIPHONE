@@ -35,4 +35,6 @@ export class ShopUser {
   saveToSessionStorage() {
     sessionStorage.setItem('User', JSON.stringify(this));
   }
+
+  
 }

@@ -9,6 +9,7 @@
     <script src="./src/js/userMenu.js"></script>
     <script src="./src/js/imageZoom.js"></script>
     <script src="./src/js/productAmountHandler.js"></script>
+    <script type="module" src="./src/js/ShoppingCart.js"></script>
 </head>
 <body>
     <?php include("./view/components/header.php"); ?>
@@ -79,7 +80,7 @@
                             <img src="./src/img/addBtn.png" alt="increase quantity">
                         </button>
                     </div>
-                    <button class="addCart">Add to cart</button>
+                    <button class="addCart" data-product="<?= $product->getId(); ?>">Add to cart</button>
                 </div>
             </div>
         </div>

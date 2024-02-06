@@ -60,7 +60,6 @@
                     <p>TOP PRODUCTS</p>
                 </div>
             </div>
-
             <div class="products-container">
                 <div class="products-slider">
                     <?php $count = 0; ?>

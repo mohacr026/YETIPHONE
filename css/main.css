@@ -1061,14 +1061,10 @@ main .container h1 {
 .productCategoryContainer {
   flex-direction: column;
 }
-.productCategoryContainer .productsShopContainer {
-  width: 100%;
-  display: flex;
-  gap: 1em;
-}
 .productCategoryContainer .categoryTitle {
   font-size: 2rem;
   text-align: left;
+  color: white;
 }
 
 .productInfo > div:nth-child(2) {
@@ -1172,6 +1168,13 @@ main .container h1 {
   width: 80%;
 }
 
+.productsShopContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px; /* Espacio entre las tarjetas */
+  justify-items: center; /* Centra las tarjetas horizontalmente */
+}
+
 .productCardContainer {
   display: flex;
   justify-content: center;
@@ -1180,8 +1183,11 @@ main .container h1 {
   border-radius: 0.7em;
   padding: 1em;
   width: 80%;
+  max-width: 423px;
+  max-height: 561px;
   height: auto;
   background: linear-gradient(rgba(128, 0, 128, 0.772), rgba(0, 0, 0, 0.753));
+  transition: transform 0.3s ease; /* Transición para la propiedad transform */
 }
 .productCardContainer .cardTop {
   display: flex;
@@ -1206,18 +1212,6 @@ main .container h1 {
   border-radius: 25px;
   padding: 3px;
   margin-top: 5px;
-}
-.productCardContainer .cardTop div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid white;
-  background-color: #c1ebff;
-  color: #217093;
-  font-weight: bolder;
-  font-style: italic;
-  border-radius: 0.5em;
-  padding: 0.5em;
 }
 .productCardContainer .separator {
   width: 100%;
@@ -1272,10 +1266,10 @@ main .container h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 3px solid #217093;
-  background-color: #c1ebff;
+  border: 3px solid white;
+  background-color: transparent;
   text-decoration: none;
-  color: #217093;
+  color: white;
   font-weight: bold;
   font-size: 1.2rem;
   border-radius: 0.5em;
@@ -1283,11 +1277,15 @@ main .container h1 {
   cursor: pointer;
 }
 .productCardContainer .productCardInfo .price button img.cart {
-  height: 70%;
+  height: 100%;
   aspect-ratio: 1/1;
   -o-object-fit: contain;
      object-fit: contain;
   margin-right: 0.3em;
+}
+
+.productCardContainer:hover {
+  transform: scale(1.05); /* Escala un poco más grande al hacer hover */
 }
 
 .value {
@@ -1392,6 +1390,26 @@ a {
   border-radius: 3em;
   z-index: 10;
   /* Asegura que topProducts esté por encima de slider-destacados */
+  color: #FFF;
+  text-align: center;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.topSale2 {
+  display: flex;
+  background: rgb(211, 74, 74);
+  PADDING: 2px;
+  width: 45%;
+  justify-content: center;
+  border-radius: 3em;
+  z-index: 10;
+  margin-left: 140px;
+  margin-bottom: 10px;
+  margin-top: -25px;
   color: #FFF;
   text-align: center;
   font-family: Inter;

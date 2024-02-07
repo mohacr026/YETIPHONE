@@ -41,11 +41,21 @@ CREATE TABLE colors (
 );
 
 -- Crear la tabla purchase_details
+-- CREATE TABLE purchase_details (
+--   id SERIAL PRIMARY KEY,
+--   product_id VARCHAR(10) REFERENCES product(id) PRIMARY KEY,
+--   quantity INT
+-- );
+
+-- Crear la tabla purchase_details
 CREATE TABLE purchase_details (
   id SERIAL PRIMARY KEY,
-  product_id VARCHAR(10) REFERENCES product(id) PRIMARY KEY,
+  product_id VARCHAR(10) REFERENCES product(id),
   quantity INT
 );
+
+
+
 
 -- Crear la tabla purchase
 CREATE TABLE purchase (

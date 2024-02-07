@@ -80,7 +80,7 @@
                             <img src="./src/img/addBtn.png" alt="increase quantity">
                         </button>
                     </div>
-                    <button class="addCart" data-product="<?= $product->getId(); ?>">Add to cart</button>
+                    <button class="addCart" data-product="<?= $product->getId(); ?>" data-price="<?= $product->getPrice(); ?>" data-name="<?= $product->getName(); ?>" data-image="<?= $product->getImage()[0]; ?>">Add to cart</button>
                 </div>
             </div>
         </div>

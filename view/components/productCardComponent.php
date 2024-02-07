@@ -22,7 +22,7 @@
         </div>
         <div class="price">
             <p><?= $product->getPrice(); ?>€</p>
-            <button class="addCart" data-product="<?= $product->getId(); ?>">
+            <button class="addCart" data-product="<?= $product->getId(); ?>" data-price="<?= $product->getPrice(); ?>" data-name="<?= $product->getName(); ?>" data-image="<?= $product->getImage()[0]; ?>">
                 <img class="cart" src="./src/img/shoppingCartBlue.png" alt="add to cart">
                 ADD TO CART
             </button>

@@ -13,15 +13,11 @@ $content .= '<p>'.$user->getName().'</p>';
 $content .= '<h3>Products:</h3><br/>';
 $totalValue = 0;
 foreach($products as $product){
-    $content .= '<div style="background-color:#00FF00;display: flex;
-    justify-content: space-between;
-    align-items: center;flex-direction: row;">';
-    
+    $content .= '<div>';
     $content .= '<div>'.$product['product_name'].'</div>';
     $content .= '<div>'.$product['count'].' units</div>';
     $content .= '<div>'.$product['price'].'€</div><br>';
     $totalValue += $product['price'];
-    
     $content .= '</div>';
 }
 $content .= '<p>Total price: '.$totalValue.'€</p>';

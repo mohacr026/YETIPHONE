@@ -87,7 +87,7 @@
                     echo "</div>";
                 } else {
                     echo "<div id='userMenu' class='dropdownMenu'>";
-                    echo "  <a href='index.php?controller=Purchase&action=userPurchases&id='>My purchases</a>";
+                    echo "  <a href='index.php?controller=Purchase&action=userPurchases'>My purchases</a>";
                     echo "  <a>elemento</a>";
                     echo "  <div class='dropdownDivider'></div>";
                     echo "  <a href='index.php?controller=User&action=logout' tabindex='3'>Log out</a>";

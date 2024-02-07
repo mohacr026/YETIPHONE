@@ -48,15 +48,20 @@ class PurchaseController {
         ob_clean();
         $data = Company::getCompanyInfo();
         // $purchaseData = Purchase::fetchPurchases(['id' => $_GET['id'] ])[0];
-        $user = User::fetchUsers(['dni' => '48215246R'])[0];
-        $purchaseData = Purchase::fetchPurchases(['id' => 1 ])[0];
-        $productsData = ProductDetails::fetchDetails(['purchase_id' => 1]);
+        $user = User::fetchUsers(['dni' => $_SESSION['dni']])[0];
+        $purchaseData = Purchase::fetchPurchases(['id' => $_GET['id'] ])[0];
+        $productsData = ProductDetails::fetchDetails(['purchase_id' => $purchaseData->getId()]);
         $products = array();
         foreach($productsData as $product){
             array_push($products, ['product_name' => Product::fetchProducts(['id' => $product->getProductId()])[0]->getName(), 'count' => $product->getQuantity(), 'price' => Product::fetchProducts(['id' => $product->getProductId()])[0]->getPrice() * $product->getQuantity()] );
         }
         // $productsData = ProductDetails::fetchDetails(['id' => $purchaseData->getProductDetails()])[0];
         include("./view/adminPurchase/printPDF.php");
+    }
+
+    public function userPurchases(){
+        $purchases = Purchase::fetchPurchases(['id_user' => $_SESSION['dni']]);
+        include("./view/user/userPurchases.php");
     }
 }
 

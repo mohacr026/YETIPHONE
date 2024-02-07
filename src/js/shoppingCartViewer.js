@@ -39,6 +39,10 @@ window.addEventListener("load", function(){
             decProduct(item.product);
         })
 
+        delBtn.addEventListener("click", function(){
+            delProduct(item.product);
+        })
+
         product.appendChild(image);
         product.appendChild(name);
         product.appendChild(quantity);
@@ -76,10 +80,24 @@ function addProduct(productId){
 function decProduct(productId){
     let itemIndex = getItemIndex(storedUser.cart.shoppingCart, productId);
     console.log(storedUser.cart.shoppingCart[itemIndex].quantity);
-    if(storedUser.cart.shoppingCart[itemIndex].quantity > 0) storedUser.cart.shoppingCart[itemIndex].quantity -= 1;
-    else console.log("BORRAR");
-    console.log(storedUser.cart.shoppingCart[itemIndex].quantity);
+    if(storedUser.cart.shoppingCart[itemIndex].quantity > 0) {
+        storedUser.cart.shoppingCart[itemIndex].quantity -= 1;
+        console.log(storedUser.cart.shoppingCart[itemIndex].quantity);
+        sessionStorage.setItem('User', JSON.stringify(storedUser));
+        localStorage.setItem(storedUser.email, JSON.stringify(storedUser.cart));
+        if(storedUser.email != "temporalAcces") uploadCartToDatabase(storedUser.email, storedUser.cart);
+    }
+    else {
+        console.log("borra");
+        delProduct(productId);
+    }
 
+    
+}
+
+function delProduct(productId){
+    let itemIndex = getItemIndex(storedUser.cart.shoppingCart, productId);
+    storedUser.cart.shoppingCart = storedUser.cart.shoppingCart.filter(item => item.product !== productId);
     sessionStorage.setItem('User', JSON.stringify(storedUser));
     localStorage.setItem(storedUser.email, JSON.stringify(storedUser.cart));
     if(storedUser.email != "temporalAcces") uploadCartToDatabase(storedUser.email, storedUser.cart);

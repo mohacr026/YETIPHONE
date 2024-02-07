@@ -1,10 +1,12 @@
 import { ShopUser } from "./class/shopUser.js";
 
 let storedUser
+let totalPrice = 0
 
 window.addEventListener("load", function(){
     storedUser = ShopUser.loadFromSessionStorage();
     let div = document.getElementById("cartElements");
+    updatePrice()
 
     storedUser.cart.shoppingCart.forEach(item => {
         let product = document.createElement("div");
@@ -55,6 +57,15 @@ window.addEventListener("load", function(){
     });
 });
 
+function updatePrice(){
+    totalPrice = 0
+    storedUser.cart.shoppingCart.forEach(item => {
+        totalPrice += (item.quantity * item.price);
+    })
+    let totalTag = document.getElementById("total")
+    totalTag.innerText = "TOTAL: " + totalPrice
+}
+
 function addProduct(productId){
     const data = new FormData();
     data.append("product", productId)
@@ -74,6 +85,8 @@ function addProduct(productId){
                 currentQuantity.innerHTML = storedUser.cart.shoppingCart[itemIndex].quantity;
                 let currentPrice = currentProduct.getElementsByClassName("price")[0];
                 currentPrice.innerHTML = storedUser.cart.shoppingCart[itemIndex].quantity * storedUser.cart.shoppingCart[itemIndex].price;
+
+                updatePrice();
             }
             else console.log("NO STOCK");
             console.log(storedUser.cart.shoppingCart[itemIndex].quantity);
@@ -99,6 +112,8 @@ function decProduct(productId){
         let currentPrice = currentProduct.getElementsByClassName("price")[0];
         currentPrice.innerHTML = storedUser.cart.shoppingCart[itemIndex].quantity * storedUser.cart.shoppingCart[itemIndex].price;
 
+        updatePrice();
+
         sessionStorage.setItem('User', JSON.stringify(storedUser));
         localStorage.setItem(storedUser.email, JSON.stringify(storedUser.cart));
         if(storedUser.email != "temporalAcces") uploadCartToDatabase(storedUser.email, storedUser.cart);
@@ -113,10 +128,11 @@ function decProduct(productId){
 }
 
 function delProduct(productId){
-    let itemIndex = getItemIndex(storedUser.cart.shoppingCart, productId);
     storedUser.cart.shoppingCart = storedUser.cart.shoppingCart.filter(item => item.product !== productId);
     
     document.getElementById(productId).remove();
+
+    updatePrice();
 
     sessionStorage.setItem('User', JSON.stringify(storedUser));
     localStorage.setItem(storedUser.email, JSON.stringify(storedUser.cart));

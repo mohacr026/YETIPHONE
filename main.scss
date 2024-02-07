@@ -47,7 +47,7 @@ body.flex-row {
     flex-wrap: wrap;
 
     aside {
-        width: 25vw;
+        width: 24vw;
         max-width: 25vw;
         display: none; //luego se quita si se haran los filtros
 
@@ -746,10 +746,6 @@ main {
     }
 }
 
-// .filtersAside{
-//     height: 95vh;
-// }
-
 .productsShopContainer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1287,3 +1283,7 @@ footer {
 }
 
 
+
+.price-range-slider {
+    background: red;
+}

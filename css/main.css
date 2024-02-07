@@ -22,7 +22,6 @@ header {
   /* Ajusta el espaciado según tus necesidades */
   padding-left: 10%;
   padding-right: 10%;
-  width: 100%;
 }
 header h1 {
   padding-left: 1rem;
@@ -456,7 +455,7 @@ body.flex-row {
   flex-wrap: wrap;
 }
 body.flex-row aside {
-  width: 25vw;
+  width: 24vw;
   max-width: 25vw;
   display: none;
 }
@@ -1671,4 +1670,8 @@ footer {
 
 .carrito {
   margin-left: auto;
+}
+
+.price-range-slider {
+  background: red;
 }/*# sourceMappingURL=main.css.map */

@@ -21,7 +21,7 @@
         <div>
             <p>Resumen</p>
             <div class="separator"></div>
-            <p class="total"> TOTAL: </p>
+            <p id="total"></p>
             <button id="buy">Go to payment</button>
         </div>
     </aside>

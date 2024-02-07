@@ -4,7 +4,7 @@ body.cart{
 
 body.flex-row main.cart{
     width: 60vw;
-    height: 80vh;
+    height: 89vh;
     margin: 0px;
     overflow-y: auto;
     scrollbar-width: none;
@@ -32,6 +32,6 @@ body.flex-row aside.cart{
     justify-content: center;
     width: 38vw;
     max-width: 38vw;
-    height: 80vh;
+    height: 89vh;
     background-color: blueviolet;
 }

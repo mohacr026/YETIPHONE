@@ -1,10 +1,12 @@
 import { ShopUser } from "./class/shopUser.js";
 
 let storedUser
+let totalPrice = 0
 
 window.addEventListener("load", function(){
     storedUser = ShopUser.loadFromSessionStorage();
     let div = document.getElementById("cartElements");
+    updatePrice()
 
     storedUser.cart.shoppingCart.forEach(item => {
         let product = document.createElement("div");
@@ -16,8 +18,10 @@ window.addEventListener("load", function(){
         name.innerText = item.name;
         let quantity = document.createElement("p");
         quantity.innerText = item.quantity;
+        quantity.classList.add("quantity");
         let price = document.createElement("p");
-        price.innerText = item.price;
+        price.innerText = item.price * item.quantity;
+        price.classList.add("price");
 
         let addBtn = document.createElement("button");
         addBtn.innerHTML = "<img src='./src/img/addBtn.png' alt='add more of this product to cart'></img>"
@@ -39,6 +43,10 @@ window.addEventListener("load", function(){
             decProduct(item.product);
         })
 
+        delBtn.addEventListener("click", function(){
+            delProduct(item.product);
+        })
+
         product.appendChild(image);
         product.appendChild(name);
         product.appendChild(quantity);
@@ -48,6 +56,15 @@ window.addEventListener("load", function(){
         
     });
 });
+
+function updatePrice(){
+    totalPrice = 0
+    storedUser.cart.shoppingCart.forEach(item => {
+        totalPrice += (item.quantity * item.price);
+    })
+    let totalTag = document.getElementById("total")
+    totalTag.innerText = "TOTAL: " + totalPrice
+}
 
 function addProduct(productId){
     const data = new FormData();
@@ -61,7 +78,16 @@ function addProduct(productId){
             let stock = data[0].stock
             let itemIndex = getItemIndex(storedUser.cart.shoppingCart, productId);
             console.log(storedUser.cart.shoppingCart[itemIndex].quantity);
-            if(storedUser.cart.shoppingCart[itemIndex].quantity < stock) storedUser.cart.shoppingCart[itemIndex].quantity += 1;
+            if(storedUser.cart.shoppingCart[itemIndex].quantity < stock) {
+                storedUser.cart.shoppingCart[itemIndex].quantity += 1;
+                let currentProduct = document.getElementById(productId);
+                let currentQuantity = currentProduct.getElementsByClassName("quantity")[0];
+                currentQuantity.innerHTML = storedUser.cart.shoppingCart[itemIndex].quantity;
+                let currentPrice = currentProduct.getElementsByClassName("price")[0];
+                currentPrice.innerHTML = storedUser.cart.shoppingCart[itemIndex].quantity * storedUser.cart.shoppingCart[itemIndex].price;
+
+                updatePrice();
+            }
             else console.log("NO STOCK");
             console.log(storedUser.cart.shoppingCart[itemIndex].quantity);
 
@@ -76,9 +102,37 @@ function addProduct(productId){
 function decProduct(productId){
     let itemIndex = getItemIndex(storedUser.cart.shoppingCart, productId);
     console.log(storedUser.cart.shoppingCart[itemIndex].quantity);
-    if(storedUser.cart.shoppingCart[itemIndex].quantity > 0) storedUser.cart.shoppingCart[itemIndex].quantity -= 1;
-    else console.log("BORRAR");
-    console.log(storedUser.cart.shoppingCart[itemIndex].quantity);
+    if(storedUser.cart.shoppingCart[itemIndex].quantity > 1) {
+        storedUser.cart.shoppingCart[itemIndex].quantity -= 1;
+        console.log(storedUser.cart.shoppingCart[itemIndex].quantity);
+
+        let currentProduct = document.getElementById(productId);
+        let currentQuantity = currentProduct.getElementsByClassName("quantity")[0];
+        currentQuantity.innerHTML = storedUser.cart.shoppingCart[itemIndex].quantity;
+        let currentPrice = currentProduct.getElementsByClassName("price")[0];
+        currentPrice.innerHTML = storedUser.cart.shoppingCart[itemIndex].quantity * storedUser.cart.shoppingCart[itemIndex].price;
+
+        updatePrice();
+
+        sessionStorage.setItem('User', JSON.stringify(storedUser));
+        localStorage.setItem(storedUser.email, JSON.stringify(storedUser.cart));
+        if(storedUser.email != "temporalAcces") uploadCartToDatabase(storedUser.email, storedUser.cart);
+
+    }
+    else {
+        console.log("borra");
+        delProduct(productId);
+    }
+
+    
+}
+
+function delProduct(productId){
+    storedUser.cart.shoppingCart = storedUser.cart.shoppingCart.filter(item => item.product !== productId);
+    
+    document.getElementById(productId).remove();
+
+    updatePrice();
 
     sessionStorage.setItem('User', JSON.stringify(storedUser));
     localStorage.setItem(storedUser.email, JSON.stringify(storedUser.cart));

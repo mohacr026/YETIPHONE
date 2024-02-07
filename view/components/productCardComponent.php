@@ -49,11 +49,9 @@
             </div>
         </div>
         <div class="price">
-            <p>
-                <?= $product->getPrice(); ?>€
-            </p>
-            <button class="addCart" data-product="<?= $product->getId(); ?>">
-                <img class="cart" src="./src/img/shoppingCart.png" alt="add to cart">
+            <p><?= $product->getPrice(); ?>€</p>
+            <button class="addCart" data-product="<?= $product->getId(); ?>" data-price="<?= $product->getPrice(); ?>" data-name="<?= $product->getName(); ?>" data-image="<?= $product->getImage()[0]; ?>">
+                <img class="cart" src="./src/img/shoppingCartBlue.png" alt="add to cart">
             </button>
         </div>
     </div>

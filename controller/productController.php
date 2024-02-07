@@ -301,6 +301,15 @@ class ProductController {
             echo "$productsJSON";
         }
     }
+
+    public function getProductStock(){
+        if(isset($_REQUEST['product'])){
+            $JSON = Product::getProductStock($_REQUEST['product']);
+            header("Content-Type: application/json");
+            $stockJSON = json_encode($JSON);
+            echo "$stockJSON";
+        }
+    }
 }
 
 ?>

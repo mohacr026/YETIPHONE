@@ -89,15 +89,18 @@ function addButtonEvents(){
         if(button){
             button.addEventListener("click", function() {
                 let productId = button.dataset.product;
+                let productPrice = button.dataset.price;
+                let productName = button.dataset.name;
+                let productImage = button.dataset.image
                 console.log("USER ANTES DE AÑADIR");
                 console.log(storedUser);
-                addProductToCart(productId, storedUser.cart)
+                addProductToCart(productId, storedUser.cart, productPrice, productName, productImage)
             })
         }
     }
 }
 
-function addProductToCart(product, cart, quantity=null){
+function addProductToCart(product, cart, price, name, image, quantity=null){
     let newCart = cart.shoppingCart;
     console.log(newCart.length);
     quantity = quantity == null ? 1 : quantity
@@ -110,7 +113,10 @@ function addProductToCart(product, cart, quantity=null){
             // Si es un objeto nuevo en el carrito
             let cartItem = {
                 "product": product,
-                "quantity": quantity
+                "quantity": quantity,
+                "price" : price,
+                "name" : name,
+                "image" : image
             }
             console.log(newCart);
             newCart.push(cartItem);
@@ -119,7 +125,10 @@ function addProductToCart(product, cart, quantity=null){
         // Si el carrito esta vacio
         let cartItem = {
             "product": product,
-            "quantity": quantity
+            "quantity": quantity,
+            "price" : price,
+            "name" : name,
+            "image" : image
         }
         console.log(newCart);
         newCart.push(cartItem);
@@ -145,7 +154,7 @@ function uploadCartToDatabase(email, cart){
       else console.log("NO SUBIDO");
     })
     .catch(error => console.log(error))
-  }
+}
 
 function getItemIndex(cart, targetProduct) {
     for (let i = 0; i < cart.length; i++) {

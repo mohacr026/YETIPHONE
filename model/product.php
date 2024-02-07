@@ -434,5 +434,25 @@ class Product extends Database {
 
         return $productsJson;
     }
+
+    public static function getProductStock($productId){
+        $db = self::connect();
+        $sql = "SELECT id, stock FROM product WHERE id= :id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':id', $productId);
+        $stmt->execute();
+
+        $stockAsoc = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $stockJSON = [];
+        foreach ($stockAsoc as $key => $value) {
+            $json = array(
+                "stock" => $value['stock'],
+            );
+            $stockJSON[] = $json;
+        }
+
+        return $stockJSON;
+    }
 }
 ?>

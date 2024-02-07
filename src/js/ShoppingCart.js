@@ -154,7 +154,7 @@ function uploadCartToDatabase(email, cart){
       else console.log("NO SUBIDO");
     })
     .catch(error => console.log(error))
-  }
+}
 
 function getItemIndex(cart, targetProduct) {
     for (let i = 0; i < cart.length; i++) {

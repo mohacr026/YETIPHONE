@@ -54,6 +54,9 @@ CREATE TABLE purchase (
   id_user VARCHAR(255),
   purchase_details_id INT REFERENCES purchase_details(id),
   shipment_direction VARCHAR(255),
+  province VARCHAR(255),
+  city VARCHAR(255),
+  zip_code VARCHAR(255),
   status VARCHAR(10) CHECK (status IN ('PENDING', 'SHIPPED')),
   date_order TIMESTAMP,
   date_shipment TIMESTAMP

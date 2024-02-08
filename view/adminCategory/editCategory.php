@@ -66,8 +66,8 @@
                     </div>
                 </form>
                 <div class="formAction">
-                    <a href="index.php?controller=Category&action=showEditCategories" class="cancelBtn">Cancel</a>
-                    <button type="submit" value="Add category" class="addBtn" form="categoryForm">Update</button>
+                    <a href="index.php?controller=Category&action=showEditCategories" class="cancelBtn" tabindex="<?php echo $tabindex++; ?>">Cancel</a>
+                    <button type="submit" value="Add category" class="addBtn" form="categoryForm" tabindex="<?php echo $tabindex++; ?>">Update</button>
                 </div>
             </div>
         </div>

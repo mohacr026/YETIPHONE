@@ -28,12 +28,12 @@
 
                         <div class="formRow">
                             <label for="categoryId">Default Id:</label>
-                            <input type="text" id="categoryId" name="categoryId" readonly value="<?php echo "$id";?>">
+                            <input type="text" id="categoryId" name="categoryId" readonly value="<?php echo "$id";?>" tabindex="<?php echo $tabindex++; ?>">
                         </div>
     
                         <div class="formRow">
                             <label for="name">Category name:</label>
-                            <input type="text" id="name" name="name" required value="<?php echo "$name";?>">
+                            <input type="text" id="name" name="name" required value="<?php echo "$name";?>" tabindex="<?php echo $tabindex++; ?>">
                         </div>
     
                         <?php
@@ -41,18 +41,18 @@
                                 echo "
                                 <div class='formRow' id='parentCategoryDiv'>
                                 <label for='parent'>Parent category</label>
-                                <select id='parent' name='parent'>";
+                                <select id='parent' name='parent' tabindex='".$tabindex++."'>";
                                         if(isset($parentCategories)){
                                             if(empty($parentCategories)){
-                                                echo "<option value='nothing' selected>There are no parent categories</option>";
+                                                echo "<option value='nothing' selected tabindex='".$tabindex++."'>There are no parent categories</option>";
                                             } else {
                                                 foreach ($parentCategories as $_parentCategory) {
                                                     $parentId = $_parentCategory['id'];
                                                     $parentName = $_parentCategory['name'];
                                                     if($parentCategory == $parentId){
-                                                        echo "<option value='$parentId' selected>$parentName</option>";
+                                                        echo "<option value='$parentId' selected tabindex='".$tabindex++."'>$parentName</option>";
                                                     } else {
-                                                        echo "<option value='$parentId'>$parentName</option>";
+                                                        echo "<option value='$parentId' tabindex='".$tabindex++."'>$parentName</option>";
                                                     }                                                    
                                                 }
                                             }

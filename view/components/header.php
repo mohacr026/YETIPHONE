@@ -1,3 +1,4 @@
+<?php $tabindex = 1; ?>
 <header>
 <input type="checkbox" id="menuBtn" class="menu-button-checkbox">
     <label for="menuBtn" class="menu-button">

@@ -328,3 +328,9 @@ header {
 }
 
 // estilos btn
+
+body.flex-row{
+    header{
+        width: 100%;
+    }
+}

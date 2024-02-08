@@ -53,6 +53,7 @@ CREATE TABLE purchase (
   id SERIAL PRIMARY KEY,
   id_user VARCHAR(255),
   purchase_details_id INT REFERENCES purchase_details(id),
+  shipment_direction VARCHAR(255),
   status VARCHAR(10) CHECK (status IN ('PENDING', 'SHIPPED')),
   date_order TIMESTAMP,
   date_shipment TIMESTAMP

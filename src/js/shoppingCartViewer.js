@@ -5,9 +5,14 @@ let totalPrice = 0
 
 window.addEventListener("load", function(){
     storedUser = ShopUser.loadFromSessionStorage();
-    let div = document.getElementById("cartElements");
+    initCart()
     updatePrice()
+    paymentButtonEvt();
+    
+});
 
+function initCart(){
+    let div = document.getElementById("cartElements");
     storedUser.cart.shoppingCart.forEach(item => {
         let product = document.createElement("div");
         product.id = item.product;
@@ -55,7 +60,7 @@ window.addEventListener("load", function(){
         div.appendChild(product);
         
     });
-});
+}
 
 function updatePrice(){
     totalPrice = 0
@@ -64,6 +69,18 @@ function updatePrice(){
     })
     let totalTag = document.getElementById("total")
     totalTag.innerText = "TOTAL: " + totalPrice
+}
+
+function paymentButtonEvt(){
+    let paymentBtn = document.getElementById("buy");
+
+    paymentBtn.addEventListener("click", function(){
+        if(storedUser.cart.shoppingCart.length === 0){
+            console.log("carritoVacio");
+        } else {
+            document.location.href = "index.php?controller=ShoppingCart&action=goToPayment";
+        }
+    });
 }
 
 function addProduct(productId){

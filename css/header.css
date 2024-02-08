@@ -295,4 +295,7 @@ header .icons button:hover, header .icons button:active {
   #menuBtn:checked + .menu-button + .mobile-menu {
     display: flex;
   }
+}
+body.flex-row header {
+  width: 100%;
 }/*# sourceMappingURL=header.css.map */

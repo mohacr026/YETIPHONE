@@ -303,6 +303,10 @@ header .icons button:hover, header .icons button:active {
     display: flex;
   }
 }
+body.flex-row header {
+  width: 100%;
+}
+
 .productDetailDisplay {
   width: 575px;
   height: 75px;
@@ -463,9 +467,12 @@ body.flex-row main {
   display: flex;
   justify-content: center;
   width: 70vw;
-  margin: 2rem;
   margin-left: 4rem;
   margin-right: 0;
+  min-height: 89vh;
+}
+body.flex-row main h2 {
+  margin-top: 2rem;
 }
 
 /* Estilos generales de la barra de desplazamiento */

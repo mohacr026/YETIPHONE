@@ -18,7 +18,6 @@ if (class_exists($controllerName)){
     else{
         $action ="showInterfaz";
     }
-        $tabindex = 1;
         $controller->$action(); 
 } else {
     echo "<script>alert('No existe el nombre del controlador')</script>";

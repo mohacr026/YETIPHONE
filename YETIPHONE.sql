@@ -78,11 +78,14 @@ CREATE TABLE userCarts (
 
 CREATE TABLE companyInfo(
   name VARCHAR(255),
-  direction VARCHAR(255)
+  direction VARCHAR(255),
+  email VARCHAR(255),
+  phone INT,
+  cif VARCHAR(255)
 );
 
 -- Insert de cuenta admin
 INSERT INTO admin (email, pass) VALUES ('admin@gmail.com', MD5('admin'));
 
 -- Insert companyInfo
-INSERT INTO companyInfo (name, direction) VALUES ('YETiPhone', 'Yetiphones direction');
+INSERT INTO companyInfo (name, direction, email, phone, cif) VALUES ('YETiPhone', 'Street california 19, 21', 'contact@yetiphone.com', 123456789, 'F22600183');

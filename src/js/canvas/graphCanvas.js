@@ -39,8 +39,17 @@ function loadGraph(elementID, title, data){
     // { name: "Product E", count: 2 }
     // ];
 
+    var maxLengthName = 6;
+
     // Extract the product names and counts from the data
-    var labels = data.map(function(item) { return item.name; });
+    var labels = data.map(function(item) { 
+        if(item.name.length <= maxLengthName){
+            var name = item.name;
+        } else {
+            var name = item.name.substring(0, maxLengthName) + "...";
+        }
+        return name; 
+    });
     var counts = data.map(function(item) { return item.count; });
 
     var context = canvas.getContext("2d");

@@ -25,7 +25,7 @@
                 <label for="purchase_id">Purchase ID:</label>
                 <input type="text" name="purchase_id" id="purchase_id"> <br>
             
-                <label for="user_id">User email:</label>
+                <label for="user_id">User DNI:</label>
                 <input type="text" name="user_id" id="user_id"> <br>
 
                 <label for="status">Status:</label>

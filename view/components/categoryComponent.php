@@ -15,7 +15,7 @@ class CategoryComponent {
         echo "<div class='categoryComponent'>";
         echo "  <div class='category'>";
         echo "  <p class='categoryName'>$categoryName</p>";
-        echo "  <a href='index.php?controller=Category&action=editCategory&id=$categoryId'>Edit</a>";
+        echo "  <a href='index.php?controller=Category&action=editCategory&id=$categoryId' tabindex='".$tabindex++."'>Edit</a>";
         $stateMessage = $categoryStatus ? "Disable" : "Enable";
         echo "  <a href='index.php?controller=Category&action=toggleCategory&id=$categoryId'>$stateMessage</a>";
         echo "</div>";

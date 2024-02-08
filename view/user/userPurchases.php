@@ -18,24 +18,26 @@
         ?>
         <!-- Clases temporales, cambiar las clases para aplicar nuevo CSS --> 
         <div class="purchaseFilterContainer">
-            <div class="purchaseTableDisplay">
-        <?php foreach($purchases as $purchase): ?>
-                <div>
-                    <span>Purchase ID</span>
-                    <span>Purchase date</span>
-                    <span>State</span>
-                    <span>Shipment date</span>
-                    <span>Download bill</span>
-                </div>
-                <div>
-                    <span><?= $purchase->getId(); ?></span>
-                    <span><?= $purchase->getDateOrder(); ?></span>
-                    <span><?= $purchase->getStatus(); ?></span>
-                    <span><?php if($purchase->getStatus() === "PENDING") { echo "Waiting for shipment"; } else { echo $purchase->getShipmentDate(); } ?></span>
-                    <span><a href="index.php?controller=Purchase&action=printPdf&id=<?php echo $purchase->getId() ?>">Download bill</a></span>
-                </div>
-            </div>
-        <?php endforeach; ?>
+            <table class="purchaseTableDisplay">
+                <tr>
+                    <th>Purchase ID</th>
+                    <th>Purchase date</th>
+                    <th>State</th>
+                    <th>Shipment date</th>
+                    <th>Purchase details</th>
+                    <th>Download bill</th>
+                </tr>
+            <?php foreach($purchases as $purchase): ?>
+                <tr>
+                    <td><?= $purchase->getId(); ?></td>
+                    <td><?= $purchase->getDateOrder(); ?></td>
+                    <td><?= $purchase->getStatus(); ?></td>
+                    <td><?php if($purchase->getStatus() === "PENDING") { echo "Waiting for shipment"; } else { echo $purchase->getShipmentDate(); } ?></td>
+                    <td><a href="index.php?controller=Purchase&action=userPurchaseDetails&id=<?php echo $purchase->getId() ?>">View details</a></td>
+                    <td><a href="index.php?controller=Purchase&action=printPdf&id=<?php echo $purchase->getId() ?>">Download bill</a></td>
+                </tr>
+                <?php endforeach; ?>
+            </table>
         </div>
     </body>
 </html>

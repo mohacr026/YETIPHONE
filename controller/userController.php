@@ -23,6 +23,7 @@ class UserController {
                     break;
                 
                 case 'loginAdm':
+                    $email = $_SESSION['email'];
                     echo "<div id='email' data-email='$email'></div>";
                     echo "<script type='module' src='./src/js/logUser.js'></script>";
                     echo "<META HTTP-EQUIV='REFRESH' CONTENT='0; URL=index.php?controller=User&action=showAdminDashboard'>";

@@ -18,7 +18,7 @@
 
     ?>
     <main>
-        <?php include("./view/components/adminAside.html"); ?>
+        <?php include("./view/components/adminAside.php"); ?>
         <div class="purchaseContainer">
             <form method="POST" action="index.php?controller=Purchase&action=showPurchases&purchase=<?= urlencode(serialize($purchase)) ?>">
                 <input type="hidden" name="id" value="<?= $purchase->getId() ?>">
@@ -33,14 +33,14 @@
                 <span><?= $purchase->getDateShipment() ?></span>
 
                 <label for="status">Status:</label>
-                <select name="status">
-                    <option value="PENDING" <?php if ($purchase->getStatus() === 'PENDING') echo 'selected'; ?>>Pending</option>
-                    <option value="SHIPPED" <?php if ($purchase->getStatus() === 'SHIPPED') echo 'selected'; ?>>Shipped</option>
+                <select name="status" tabindex="<?php echo $tabindex++; ?>">
+                    <option value="PENDING" <?php if ($purchase->getStatus() === 'PENDING') echo 'selected'; ?> tabindex="<?php echo $tabindex++; ?>">Pending</option>
+                    <option value="SHIPPED" <?php if ($purchase->getStatus() === 'SHIPPED') echo 'selected'; ?> tabindex="<?php echo $tabindex++; ?>">Shipped</option>
                 </select><br>
 
                 <div>
-                    <button type="submit">SAVE</button>
-                    <a href="index.php?controller=Purchase&action=showPurchases">CANCEL</a>
+                    <button type="submit" tabindex="<?php echo $tabindex++; ?>">SAVE</button>
+                    <a href="index.php?controller=Purchase&action=showPurchases" tabindex="<?php echo $tabindex++; ?>">CANCEL</a>
                 </div>
             </form>
             <div>

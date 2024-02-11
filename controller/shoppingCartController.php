@@ -28,5 +28,9 @@ class ShoppingCartController {
             include("./view/cart/paymentResume.php");
         }
     }
+
+    public function purchase(){
+        
+    }
 }
 ?>

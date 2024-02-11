@@ -61,7 +61,7 @@ class ProductController {
             Product::insertColors($_POST["colors"], $data["id"]);
 
             $categories = Category::fetchCategory(["isActive" => "true"]);
-            include("./view/adminProduct/addProduct.php");
+            echo "<META HTTP-EQUIV='REFRESH' CONTENT='0; URL=index.php?controller=Product&action=showAddProducts'>";
         } else {
             echo "The form was not submitted correctly.";
         }

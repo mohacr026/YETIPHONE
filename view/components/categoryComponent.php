@@ -15,9 +15,9 @@ class CategoryComponent {
         echo "<div class='categoryComponent'>";
         echo "  <div class='category'>";
         echo "  <p class='categoryName'>$categoryName</p>";
-        echo "  <a href='index.php?controller=Category&action=editCategory&id=$categoryId'>Edit</a>";
+        echo "  <a href='index.php?controller=Category&action=editCategory&id=$categoryId' tabindex='".$tabindex++."'>Edit</a>";
         $stateMessage = $categoryStatus ? "Disable" : "Enable";
-        echo "  <a href='index.php?controller=Category&action=toggleCategory&id=$categoryId'>$stateMessage</a>";
+        echo "  <a href='index.php?controller=Category&action=toggleCategory&id=$categoryId' tabindex='".$tabindex++."'>$stateMessage</a>";
         echo "</div>";
 
         if(!empty($this->__subcategories)){
@@ -28,9 +28,9 @@ class CategoryComponent {
                     $subStatus = $value->getIsActive();
                     echo "<div class='subcategory'>";
                     echo "  <p class='subcategoryName'>$subName</p>";
-                    echo "  <a href='index.php?controller=Category&action=editCategory&id=$subId'>Edit</a>";
+                    echo "  <a href='index.php?controller=Category&action=editCategory&id=$subId' tabindex='".$tabindex++."'>Edit</a>";
                     $subMessage = $subStatus ? "Disable" : "Enable";
-                    echo "  <a href='index.php?controller=Category&action=toggleCategory&id=$subId'>$subMessage</a>";
+                    echo "  <a href='index.php?controller=Category&action=toggleCategory&id=$subId' tabindex='".$tabindex++."'>$subMessage</a>";
                     echo "</div>";
                 }
             echo "</div>";

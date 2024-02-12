@@ -20,7 +20,7 @@
     include("./view/components/header.php");
     ?>
     <main>
-        <?php include("./view/components/adminAside.html"); ?>
+        <?php include("./view/components/adminAside.php"); ?>
         <div class="container">
             <div class="formContainer">
                 <h2>Add a new category</h2>
@@ -29,32 +29,32 @@
 
                         <div class="formRow">
                             <label for="categoryId">Default Id:</label>
-                            <input type="text" id="categoryId" name="categoryId" readonly value="<?php echo "$defaultId";?>">
+                            <input type="text" id="categoryId" name="categoryId" readonly value="<?php echo "$defaultId";?>" tabindex="<?php echo $tabindex++; ?>">
                         </div>
     
                         <div class="formRow">
                             <label for="name">Category name:</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="name" required tabindex="<?php echo $tabindex++; ?>">
                         </div>
     
                         <div class="formRowLine">
                             <label for="showParent">Is a sub category:</label>
-                            <input type="checkbox" name="showParent" id="showParent">
+                            <input type="checkbox" name="showParent" id="showParent" tabindex="<?php echo $tabindex++; ?>">
                         </div>
     
                         <div class="formRow hiddenElement" id="parentCategoryDiv">
                             <label for="parent">Parent category</label>
-                            <select id="parent" name="parent">
-                                <option value=""></option>
+                            <select id="parent" name="parent" tabindex="<?php echo $tabindex++; ?>">
+                                <option value="" tabindex="<?php echo $tabindex++; ?>"></option>
                                 <?php
                                     if(isset($parentCategories)){
                                         if(empty($parentCategories)){
-                                            echo "<option value='nothing' selected>There are no parent categories</option>";
+                                            echo "<option value='nothing' selected tabindex='".$tabindex++."'>There are no parent categories</option>";
                                         } else {
                                             foreach ($parentCategories as $parentCategory) {
                                                 $id = $parentCategory['id'];
                                                 $name = $parentCategory['name'];
-                                                echo "<option value='$id'>$name</option>";
+                                                echo "<option value='$id' tabindex='".$tabindex++."'>$name</option>";
                                             }
                                         }
                                     }
@@ -64,7 +64,7 @@
                     </div>
                 </form>
                 <div class="formAction">
-                    <button type="submit" value="Add category" class="addBtn" form="categoryForm">Add category</button>
+                    <button type="submit" value="Add category" class="addBtn" form="categoryForm" tabindex="<?php echo $tabindex++; ?>">Add category</button>
                 </div>
             </div>
         </div>

@@ -23,13 +23,13 @@
         <img class="productImage" src="./src/img/products/<?php echo $product->getImage()[0]; ?>"
             alt="<?php $product->getName(); ?>">
         <a href="index.php?controller=Product&action=showProductPage&product=<?= urlencode(serialize($product)) ?>&category=<?= $product->getCategory(); ?>"
-            class="enlaceVista">Vista rápida</a>
+            class="enlaceVista" tabindex="<?php echo $tabindex++; ?>">Vista rápida</a>
     </div>
     <div class="separator"></div>
     <div class="productCardInfo">
         <div class="info">
             <a
-                href="index.php?controller=Product&action=showProductPage&product=<?= urlencode(serialize($product)) ?>&category=<?= $product->getCategory(); ?>">
+                href="index.php?controller=Product&action=showProductPage&product=<?= urlencode(serialize($product)) ?>&category=<?= $product->getCategory(); ?>" tabindex="<?php echo $tabindex++; ?>">
                 <h3>
                     <?= $product->getName(); ?>
                 </h3>
@@ -49,7 +49,7 @@
         </div>
         <div class="price">
             <p><?= $product->getPrice(); ?>€</p>
-            <button class="addCart" data-product="<?= $product->getId(); ?>" data-price="<?= $product->getPrice(); ?>" data-name="<?= $product->getName(); ?>" data-image="<?= $product->getImage()[0]; ?>">
+            <button class="addCart" data-product="<?= $product->getId(); ?>" data-price="<?= $product->getPrice(); ?>" data-name="<?= $product->getName(); ?>" data-image="<?= $product->getImage()[0]; ?>" tabindex="<?php echo $tabindex++; ?>">
                 <img class="cart" src="./src/img/shoppingCart.png" alt="add to cart">
             </button>
         </div>

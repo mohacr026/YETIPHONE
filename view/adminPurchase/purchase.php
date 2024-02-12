@@ -19,29 +19,29 @@
 
     ?>
     <main>
-        <?php include("./view/components/adminAsideSearch.html"); ?>
+        <?php include("./view/components/adminAsideSearch.php"); ?>
         <div class="purchaseFilterContainer">
             <form method="POST" action="index.php?controller=Purchase&action=showPurchases">
                 <label for="purchase_id">Purchase ID:</label>
-                <input type="text" name="purchase_id" id="purchase_id"> <br>
+                <input type="text" name="purchase_id" id="purchase_id" tabindex="<?php echo $tabindex++; ?>"> <br>
             
                 <label for="user_id">User email:</label>
-                <input type="text" name="user_id" id="user_id"> <br>
+                <input type="text" name="user_id" id="user_id" tabindex="<?php echo $tabindex++; ?>"> <br>
 
                 <label for="status">Status:</label>
-                <select name="status" id="status">
-                    <option value="NOSTATE" selected>Any state</option>
-                    <option value="PENDING">Pending</option>
-                    <option value="SHIPPED">Shipped</option>
+                <select name="status" id="status" tabindex="<?php echo $tabindex++; ?>">
+                    <option value="NOSTATE" selected tabindex="<?php echo $tabindex++; ?>">Any state</option>
+                    <option value="PENDING" tabindex="<?php echo $tabindex++; ?>">Pending</option>
+                    <option value="SHIPPED" tabindex="<?php echo $tabindex++; ?>">Shipped</option>
                 </select> <br>
 
                 <label for="dateOrder">Date Order:</label>
-                <input type="date" name="dateOrder" id="dateOrder"> <br>
+                <input type="date" name="dateOrder" id="dateOrder" tabindex="<?php echo $tabindex++; ?>"> <br>
 
                 <label for="dateShipment">Date Shipment:</label>
-                <input type="date" name="dateShipment" id="dateShipment"> <br>
+                <input type="date" name="dateShipment" id="dateShipment" tabindex="<?php echo $tabindex++; ?>"> <br>
 
-                <button type="submit">Filter Purchases</button>
+                <button type="submit" tabindex="<?php echo $tabindex++; ?>">Filter Purchases</button>
             </form><br>
             <div class="purchaseTableDisplay">
                 <div>
@@ -52,7 +52,7 @@
                 </div>
                 <?php foreach($purchases as $purchase): ?>
                     <div>
-                        <a href="index.php?controller=Purchase&action=showPurchaseInformation&purchase=<?= urlencode(serialize($purchase)) ?>">
+                        <a href="index.php?controller=Purchase&action=showPurchaseInformation&purchase=<?= urlencode(serialize($purchase)) ?>" tabindex="<?php echo $tabindex++; ?>">
                             <span><?= $purchase->getId() ?></span>
                             <span><?= $purchase->getUserId() ?></span>
                             <span><?= $purchase->getDateOrder() ?></span>

@@ -15,12 +15,15 @@ window.addEventListener("load", function(){
         let image = document.createElement("img");
         image.src = "./src/img/products/" + item.image
         let name = document.createElement("p");
+        name.setAttribute("name", "name");
         name.innerText = item.name;
         let quantity = document.createElement("p");
         quantity.innerText = item.quantity;
+        quantity.setAttribute("quantity", "quantity");
         quantity.classList.add("quantity");
         let price = document.createElement("p");
         price.innerText = item.price * item.quantity;
+        price.setAttribute("price", "price");
         price.classList.add("price");
 
         let addBtn = document.createElement("button");
@@ -28,8 +31,11 @@ window.addEventListener("load", function(){
         let decBtn = document.createElement("button");
         decBtn.innerHTML = "<img src='./src/img/decBtn.png' alt='decrease amount of this product to cart'></img>"
         let delBtn = document.createElement("button");
-        delBtn.innerHTML = "<img src='./src/img/delBtn.png' alt='remove this product from cart'></img>"
+        delBtn.innerHTML = "<img src='./src/img/trash.png' alt='remove this product from cart'></img> "
         let btnDiv = document.createElement("div");
+
+
+        
         btnDiv.appendChild(addBtn);
         btnDiv.appendChild(decBtn);
         btnDiv.appendChild(delBtn);

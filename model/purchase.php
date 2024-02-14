@@ -201,12 +201,5 @@ class Purchase extends Database {
         $statement->bindValue(3, $this->id);
         $statement->execute();
     }
-
-    // TODO - Implement the functions
-    public function getProductDetails() {
-        // Parse and extract product details from $product_details
-        // ...
-        // Return an array of product information
-    }
 }
 ?> 

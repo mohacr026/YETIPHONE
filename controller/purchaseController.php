@@ -55,7 +55,6 @@ class PurchaseController {
         foreach($productsData as $product){
             array_push($products, ['product_name' => Product::fetchProducts(['id' => $product->getProductId()])[0]->getName(), 'count' => $product->getQuantity(), 'price' => Product::fetchProducts(['id' => $product->getProductId()])[0]->getPrice()] );
         }
-        // $productsData = ProductDetails::fetchDetails(['id' => $purchaseData->getProductDetails()])[0];
         include("./view/adminPurchase/printPDF.php");
     }
 

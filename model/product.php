@@ -443,7 +443,7 @@ class Product extends Database {
         $stmt->execute();
 
         $stockAsoc = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+        
         $stockJSON = [];
         foreach ($stockAsoc as $key => $value) {
             $json = array(
@@ -454,5 +454,24 @@ class Product extends Database {
 
         return $stockJSON;
     }
+
+    public static function decreaseProductsStock($ids, $quantities){
+        $db = self::connect();
+        $sql = "UPDATE product SET stock = stock - :quantity WHERE id = :id";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(":quantity", $quantity);
+        $stmt->bindParam(":id", $id);
+        
+        for ($i = 0; $i < count($ids); $i++) {
+            $quantity = $quantities[$i];
+            $id = $ids[$i];
+            
+            $stmt->bindValue(":quantity", $quantity);
+            $stmt->bindValue(":id", $id);
+            
+            $stmt->execute();
+        }
+    }
+    
 }
 ?>

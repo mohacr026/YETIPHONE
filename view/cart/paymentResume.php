@@ -10,28 +10,34 @@
     <script src="./src/js/userMenu.js"></script>
     <script type="module" src="./src/js/searchBar.js"></script>
     <script type="module" src="./src/js/ShoppingCart.js"></script>
+    <script type="module" src="./src/js/purchaseSubmitter.js"></script>
 </head>
 <body class="flex-row">
     <?php include("./view/components/header.php"); ?>
     <main class="payment">
-        <form action="index.php?controller=ShoppingCart&action=purchase" method="post">
-            
+        <form action="index.php?controller=ShoppingCart&action=purchase" method="post" id="shippingDirection">
             <div class="formRow">
-                <label for="">DIRECTION</label>
-                <input type="text" name="directon" id="direction" required>
-            </div>
-            <div class="formRow">
-                <label for="city">CITY</label>
-                <input type="text" name="city" id="city" required>
+                <label for="direction">DIRECTION</label>
+                <input type="text" name="direction" id="direction" required>
             </div>
             <div class="formRow">
                 <label for="province">PROVINCE</label>
                 <input list="provinces" id="province" name="province" required>
             </div>
             <div class="formRow">
+                <label for="city">CITY</label>
+                <input type="text" name="city" id="city" required>
+            </div>
+            <div class="formRow">
+                <label for="zipCode">Zip code</label>
+                <input type="number" name="zipCode" id="zipCode" required>
+            </div>
+            <div class="formRow">
                 <label for="specifications">Additional specifications</label>
                 <input type="text" name="specifications" id="specifications">
             </div>
+            <input type="hidden" name="user" id="user" value="">
+            <input type="hidden" name="cart" id="cart" value="">
             <datalist id="provinces">
                 <option value="Álava">
                 <option value="Albacete">
@@ -91,7 +97,7 @@
                 fherfhuierhfuier
             </div>
             <p id="totalPrice">TOTAL PRICE: 123123</p>
-            <button id="purchase">Purchase</button>
+            <button id="purchase" form="shippingDirection" action="submit">Purchase</button>
             <button id="back">Go back</button>
         </div>
     </main>

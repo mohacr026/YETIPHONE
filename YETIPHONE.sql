@@ -40,19 +40,11 @@ CREATE TABLE colors (
   color_code VARCHAR(20)
 );
 
--- Crear la tabla purchase_details
-CREATE TABLE purchase_details (
-  id SERIAL PRIMARY KEY,
-  purchase_id INT,
-  product_id VARCHAR(10) REFERENCES product(id),
-  quantity INT
-);
 
 -- Crear la tabla purchase
 CREATE TABLE purchase (
   id SERIAL PRIMARY KEY,
   id_user VARCHAR(255),
-  purchase_details_id INT REFERENCES purchase_details(id),
   shipment_direction VARCHAR(255),
   province VARCHAR(255),
   city VARCHAR(255),
@@ -62,10 +54,21 @@ CREATE TABLE purchase (
   date_shipment TIMESTAMP
 );
 
+-- Crear la tabla purchase_details
+CREATE TABLE purchase_details (
+  purchase_id INT,
+  product_id VARCHAR(10),
+  quantity INT,
+  PRIMARY KEY (purchase_id, product_id),
+  FOREIGN KEY (purchase_id) REFERENCES purchase(id),
+  FOREIGN KEY (product_id) REFERENCES product(id)
+);
+
+
 -- Crear la tabla usuarios
 CREATE TABLE users (
-  dni VARCHAR(9) PRIMARY KEY,
-  email VARCHAR(255) UNIQUE,
+  email VARCHAR(255) PRIMARY KEY,
+  dni VARCHAR(9) UNIQUE,
   phone_number VARCHAR(20),
   username VARCHAR(255),
   surname VARCHAR(255),

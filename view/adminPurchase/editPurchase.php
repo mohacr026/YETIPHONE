@@ -11,15 +11,16 @@
     <script type="module" src="./src/js/ShoppingCart.js"></script>
 </head>
 <body>
-    <?php include('./view/components/header.php'); 
+    <?php include('./view/components/header.php');
     if(!isset($_SESSION['role']) && $_SESSION['role'] != "admin"){
         echo "<META HTTP-EQUIV='REFRESH' CONTENT='0; URL=index.php?controller=User&action=showLoginForm'>";
     } else {
 
     ?>
-    <main>
+    <main class="purchases">
         <?php include("./view/components/adminAside.php"); ?>
         <div class="purchaseContainer">
+
             <form method="POST" action="index.php?controller=Purchase&action=showPurchases&purchase=<?= urlencode(serialize($purchase)) ?>">
                 <input type="hidden" name="id" value="<?= $purchase->getId() ?>">
 
@@ -32,6 +33,8 @@
                 <label>Date of shipment:</label>
                 <span><?= $purchase->getDateShipment() ?></span>
 
+        </div>
+        <div class="purchaseContainer">
                 <label for="status">Status:</label>
                 <select name="status" tabindex="<?php echo $tabindex++; ?>">
                     <option value="PENDING" <?php if ($purchase->getStatus() === 'PENDING') echo 'selected'; ?> tabindex="<?php echo $tabindex++; ?>">Pending</option>

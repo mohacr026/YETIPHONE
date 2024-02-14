@@ -25,7 +25,7 @@
             <div class="formContainer">
                 <h2>Add a new category</h2>
                 <form action="index.php?controller=Category&action=registerCategory" method="POST" id="categoryForm">
-                    <div class="formColumn">
+                    <div class="formColumn" id="categoriass">
 
                         <div class="formRow">
                             <label for="categoryId">Default Id:</label>

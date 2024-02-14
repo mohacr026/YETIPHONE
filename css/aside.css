@@ -11,7 +11,7 @@ h2 {
     color: #b385ff; /* Morado claro */
 }
 
-a {
+aside .links {
     display: block;
     padding: 20px 0; /* Ajuste del espaciado en los enlaces */
     text-decoration: none;
@@ -20,26 +20,12 @@ a {
     border-radius: 8px; /* Bordes redondeados */
 }
 
-a:hover {
+.links:hover {
     background: #7207be;
     color: #fff;
 }
 
-#search {
-    padding: 0.7em; /* Ajuste del espaciado en el cuadro de búsqueda */
-    border-radius: 20px; /* Bordes redondeados */
-    font-size: 1.2em; /* Tamaño de la fuente aumentado */
-    color: #fff;
-    background-color: transparent;
-    border: solid 2px #5e5e5e;
-    transition: box-shadow 0.2s linear, border-color 0.25s ease-out;
-}
 
-#search:focus {
-    outline: none;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
-    border: solid 2px #b385ff; /* Morado claro */
-}
 
 /* Añadir animación a los botones */
 button {

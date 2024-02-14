@@ -75,7 +75,7 @@
                         <button id="decreaseAmount">
                             <img src="./src/img/decBtn.png" alt="decrease quantity">
                         </button>
-                        <input type="number" name="amount" id="amount" value="1">
+                        <input type="number" name="amount" id="amount" value="1" max="<?php echo $stock; ?>">
                         <button id="increaseAmount">
                             <img src="./src/img/addBtn.png" alt="increase quantity">
                         </button>

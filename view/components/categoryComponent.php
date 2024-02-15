@@ -8,7 +8,7 @@ class CategoryComponent {
         $this->__subcategories = $subcategories;
     }
 
-    public function render(){
+    public function render($tabindex){
         $categoryName = $this->__category->getName();
         $categoryId = $this->__category->getId();
         $categoryStatus = $this->__category->getIsActive();

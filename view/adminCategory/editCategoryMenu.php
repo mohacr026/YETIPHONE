@@ -36,7 +36,7 @@
                         $category = new Category($value['id'], $value['name'], "", $state);
                         $subCategories = $subCategoriesArray[strval($value['id'])];
                         $component = new CategoryComponent($category, $subCategories);
-                        $component->render();
+                        $component->render($tabindex);
                     }
                 ?>
             </div>

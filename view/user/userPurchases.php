@@ -18,6 +18,7 @@
         ?>
         <!-- Clases temporales, cambiar las clases para aplicar nuevo CSS --> 
         <div class="purchaseFilterContainer">
+            <?php if($purchases != null) { ?>
             <table class="purchaseTableDisplay">
                 <tr>
                     <th>Purchase ID</th>
@@ -38,6 +39,10 @@
                 </tr>
                 <?php endforeach; ?>
             </table>
-        </div>
+            <?php } else { ?>
+                <div class="purchaseTableDisplay">
+                    There's no purchases yet
+                </div>
+            <?php } ?>
     </body>
 </html>

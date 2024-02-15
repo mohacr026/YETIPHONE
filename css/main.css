@@ -429,15 +429,15 @@ body.flex-row header {
 }
 
 body {
-  margin: 0; /* Elimina el margen predeterminado */
-  padding: 0; /* Elimina el relleno predeterminado */
-  height: 100%; /* Establece la altura al 100% del viewport height */
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* Altura del viewport */
   background-color: #e2f6ff;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  /* background: #313131; */
   background: linear-gradient(to bottom right, #000000, #000000, #4f00a9, #000000, #000000);
+  background-attachment: fixed; /* Fondo fijo */
   scrollbar-width: thin;
   scrollbar-color: #8e44ad #2c3e50; /* Lila y negro */
 }
@@ -636,7 +636,7 @@ input[type=text],
 input[type=email],
 input[type=number],
 textarea,
-select {
+select, #phoneNumber, #password, #confirmPassword {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -649,6 +649,45 @@ select {
   font-size: 1rem;
   color: #333;
   transition: background-color 0.3s, border-color 0.3s;
+}
+
+.formContainer2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  margin: 0 auto; /* Centra horizontalmente */
+  margin-top: 32px;
+  margin-bottom: 32px;
+  padding: 2rem;
+  border-radius: 1em;
+  background: linear-gradient(to right, #6e48aa, #ad62aa);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  color: white;
+  font-family: "Roboto", sans-serif;
+}
+
+.container2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.formColumn2 {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+  width: calc(45% - 1rem);
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 input[type=number],
@@ -1500,7 +1539,7 @@ footer {
   align-items: center;
   /* justify-content: center; */
   margin-top: 20px;
-  width: 80%;
+  width: 87%;
   height: 500px;
   background: linear-gradient(to left top, #c32c71 50%, #b33771 50%);
   margin: auto;

@@ -4,6 +4,7 @@ require './vendor/autoload.php';
 ob_clean();
 
 $html2pdf = new \Spipu\Html2Pdf\Html2Pdf('P', 'A4', 'en');
+
 $vueltas = 40;
 $content =  '<page>';
 $content .= '<h1>Purchase bill</h1>';

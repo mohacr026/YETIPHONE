@@ -201,5 +201,52 @@ class Purchase extends Database {
         $statement->bindValue(3, $this->id);
         $statement->execute();
     }
+
+
+    // TODO - Implement the functions
+    public function getProductDetails() {
+        // Parse and extract product details from $product_details
+        // ...
+        // Return an array of product information
+    }
+
+    public static function insertPurchase($user, $direction, $province, $city, $zipCode, $details){
+        $db = self::connect();
+
+        $sql = 
+        "INSERT INTO purchase (id_user, shipment_direction, province, city, zip_code, status, date_order)
+        VALUES (:user, :direction, :province, :city, :zipCode, 'PENDING', CURRENT_TIMESTAMP)";
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(":user", $user);
+        $stmt->bindValue(":direction", $direction);
+        $stmt->bindValue(":province", $province);
+        $stmt->bindValue(":city", $city);
+        $stmt->bindValue(":zipCode", $zipCode);
+
+        $stmt->execute();
+
+        $purchaseId = $db->lastInsertId();
+
+        $detailsSQL = 
+        "INSERT INTO purchase_details (purchase_id, product_id, quantity) 
+        VALUES (:purchaseId, :productId, :quantity)";
+        $stmt2 = $db->prepare($detailsSQL);
+        $stmt2->bindParam(":purchaseId", $purchaseId);
+        $stmt2->bindParam(":productId", $id);
+        $stmt2->bindParam(":quantity", $quantity);
+
+        foreach ($details as $detail) {
+            $id = $detail[0];
+            $quantity = $detail[1];
+            
+            $stmt2->bindValue(":productId", $id);
+            $stmt2->bindValue(":quantity", $quantity);
+            
+            $stmt2->execute();
+        }
+
+    }
+
 }
 ?> 

@@ -11,8 +11,8 @@ class ProductComponent {
         $productId = $this->__product->getId();
         $productStatus = $this->__product->getIsActive();
 
-        echo "<div class='productComponent'>";
-        echo "<div class='product'>";
+        echo "<div class='productComponent2'>";
+        echo "<div class='product2'>";
         echo "<p class='productName'>$productName</p>";
         echo "<a href='index.php?controller=Product&action=editproduct&id=$productId'>Edit</a>";
         $statusMessage = $productStatus ? "Disable" : "Enable";

@@ -19,11 +19,11 @@
     } else {
     ?>
     <main>
-        <?php include("./view/components/adminAside.html"); ?>
-        <canvas id="mainCanvas" width="800" height="800" style="background-color:#FFF"></canvas>
-        <button id="drawMode">Draw mode</button>
-        <button id="eraseMode">Erase mode</button>
-        <button id="saveButton">Save</button>
+        <?php include("./view/components/adminAside.php"); ?>
+        <canvas id="mainCanvas" width="800" height="800" style="background-color:#FFF" tabindex="<?php echo $tabindex++; ?>"></canvas>
+        <button id="drawMode" tabindex="<?php echo $tabindex++; ?>">Draw mode</button>
+        <button id="eraseMode" tabindex="<?php echo $tabindex++; ?>">Erase mode</button>
+        <button id="saveButton" tabindex="<?php echo $tabindex++; ?>">Save</button>
     </main>
     <?php } ?>
 </body>

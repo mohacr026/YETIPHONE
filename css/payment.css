@@ -1,0 +1,33 @@
+body.flex-row main.payment{
+    height: 80vh;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: auto;
+    margin-left: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 100%;
+}
+
+form{
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    width: 58%;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+
+    .formRow{
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+    }
+}
+
+.resume{
+    background-color: violet;
+    width: 38%;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+}

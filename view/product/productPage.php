@@ -6,6 +6,7 @@
     <title>YETiPhone</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="shortcut icon" href="./src/img/snowflake.png" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./src/js/userMenu.js"></script>
     <script src="./src/js/imageZoom.js"></script>
     <script src="./src/js/productAmountHandler.js"></script>
@@ -75,12 +76,14 @@
                         <button id="decreaseAmount">
                             <img src="./src/img/decBtn.png" alt="decrease quantity">
                         </button>
-                        <input type="number" name="amount" id="amount" value="1" max="<?php echo $stock; ?>">
+
+                        <input type="number" name="amount" id="amount" value="1" max="<?= $stock ?>">
+
                         <button id="increaseAmount">
                             <img src="./src/img/addBtn.png" alt="increase quantity">
                         </button>
                     </div>
-                    <button class="addCart" data-product="<?= $product->getId(); ?>">Add to cart</button>
+                    <button class="addCart" data-product="<?= $product->getId(); ?>" data-price="<?= $product->getPrice(); ?>" data-name="<?= $product->getName(); ?>" data-image="<?= $product->getImage()[0]; ?>">Add to cart</button>
                 </div>
             </div>
         </div>

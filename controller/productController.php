@@ -61,7 +61,7 @@ class ProductController {
             Product::insertColors($_POST["colors"], $data["id"]);
 
             $categories = Category::fetchCategory(["isActive" => "true"]);
-            include("./view/adminProduct/addProduct.php");
+            echo "<META HTTP-EQUIV='REFRESH' CONTENT='0; URL=index.php?controller=Product&action=showAddProducts'>";
         } else {
             echo "The form was not submitted correctly.";
         }
@@ -299,6 +299,16 @@ class ProductController {
             header("Content-Type: application/json");
             $productsJSON = json_encode($JSON);
             echo "$productsJSON";
+        }
+    }
+
+
+    public function getProductStock(){
+        if(isset($_REQUEST['product'])){
+            $JSON = Product::getProductStock($_REQUEST['product']);
+            header("Content-Type: application/json");
+            $stockJSON = json_encode($JSON);
+            echo "$stockJSON";
         }
     }
 

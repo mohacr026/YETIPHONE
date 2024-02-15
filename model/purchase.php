@@ -10,6 +10,16 @@ class Purchase extends Database {
     private $dateShipment;
 
     // Constructor
+    /**
+     * Constructs a new Purchase object.
+     * 
+     * @param int $id The ID of the purchase.
+     * @param int $userId The ID of the user making the purchase.
+     * @param array $purchaseDetails An array of ProductDetails objects representing the purchase details.
+     * @param string $status The status of the purchase.
+     * @param string $dateOrder The date of the purchase order.
+     * @param string|null $dateShipment The date of shipment, or null if not yet shipped.
+     */
     public function __construct($id, $userId, $purchaseDetails, $status, $dateOrder, $dateShipment = null){
         $this->id = $id;
         $this->userId = $userId;
@@ -20,44 +30,99 @@ class Purchase extends Database {
     }
 
     // Setter y Getter
+    /**
+     * Get the ID of the purchase.
+     * 
+     * @return int The ID of the purchase.
+     */
     public function getId(){
         return $this->id;
     }
+    /**
+     * Set the ID of the purchase.
+     * 
+     * @param int $id The ID of the purchase.
+     */
     public function setId($id){
         $this->id = $id;
     }
-
+    /**
+     * Get the ID of the user making the purchase.
+     * 
+     * @return int The ID of the user making the purchase.
+     */
     public function getUserId(){
         return $this->userId;
     }
+    /**
+     * Set the ID of the user making the purchase.
+     * 
+     * @param int $userId The ID of the user making the purchase.
+     */
     public function setUserId($userId){
         $this->userId = $userId;
     }
-
+    /**
+     * Get the purchase details.
+     * 
+     * @return array An array of ProductDetails objects representing the purchase details.
+     */
     public function getPurchaseDetails(){
         return $this->purchaseDetails;
     }
+    /**
+     * Set the purchase details.
+     * 
+     * @param array $purchaseDetails An array of ProductDetails objects representing the purchase details.
+     */
     public function setPurchaseDetails($purchaseDetails){
         $this->purchaseDetails = $purchaseDetails;
     }
-
+    /**
+     * Get the status of the purchase.
+     * 
+     * @return string The status of the purchase.
+     */
     public function getStatus(){
         return $this->status;
     }
+    /**
+     * Set the status of the purchase.
+     * 
+     * @param string $status The status of the purchase.
+     */
     public function setStatus($status){
         $this->status = $status;
     }
-
+    /**
+     * Get the date of the purchase order.
+     * 
+     * @return string The date of the purchase order.
+     */
     public function getDateOrder(){
         return $this->dateOrder;
     }
+    /**
+     * Set the date of the purchase order.
+     * 
+     * @param string $dateOrder The date of the purchase order.
+     */
     public function setDateOrder($dateOrder){
         $this->dateOrder = $dateOrder;
     }
-
+    /**
+     * Get the date of shipment.
+     * 
+     * @return string|null The date of shipment, or null if not yet shipped.
+     */
     public function getDateShipment(){
         return $this->dateShipment;
     }
+    /**
+     * Set the date of shipment.
+     * 
+     * @param string|null $dateShipment The date of shipment, or null if not yet shipped.
+     */
     public function setDateShipment($dateShipment){
         $this->dateShipment = $dateShipment;
     }
@@ -137,6 +202,7 @@ class Purchase extends Database {
         $statement->execute();
     }
 
+
     // TODO - Implement the functions
     public function getProductDetails() {
         // Parse and extract product details from $product_details
@@ -181,5 +247,6 @@ class Purchase extends Database {
         }
 
     }
+
 }
 ?> 

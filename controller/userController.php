@@ -11,7 +11,7 @@ class UserController {
 
     public function login(){
         if(!empty($_POST)){
-            $user = new User($_POST['email'], $_POST['password'], "", "", "", "", "");
+            $user = new User("", $_POST['email'], $_POST['password'], "", "", "", "", "");
             $action = $user->checkLogin();
 
             switch ($action) {
@@ -68,7 +68,13 @@ class UserController {
             $data["direction"] = $_POST["direction"];
             $data["isactive"] = "true";
 
-            User::register($data);
+            try {
+                User::register($data);
+                include("./view/login/login.html");
+            } catch(Exception $e) {
+                echo "The registration form failed, please, use valid credentials.";
+                include("./view/frontPage/register.php");
+            }
             
         } else {
             echo "The registration form failed, please, try again later.";

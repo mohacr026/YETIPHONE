@@ -40,7 +40,6 @@ CREATE TABLE colors (
   color_code VARCHAR(20)
 );
 
-
 -- Crear la tabla purchase
 CREATE TABLE purchase (
   id SERIAL PRIMARY KEY,

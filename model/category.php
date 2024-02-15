@@ -1,14 +1,28 @@
 <?php
 require_once("database.php");
 
+/**
+ * Class Category - Represents a category entity.
+ */
 class Category extends Database {
     // Attributes
+    /** @var int $id The category's ID. */
     private $id;
+    /** @var string $name The category's name. */
     private $name;
+    /** @var int|null $parentCategory The parent category's ID. */
     private $parentCategory; // Default is null
+    /** @var bool $isActive Indicates if the category is active or not. */
     private $isActive; // Default is true
 
     // Constructor
+    /**
+     * Category constructor.
+     * @param int $id The category's ID.
+     * @param string $name The category's name.
+     * @param int|null $parentCategory The parent category's ID. (Optional)
+     * @param bool $isActive Indicates if the category is active or not. (Optional, default is true)
+     */
     public function __construct($id, $name, $parentCategory = null, $isActive = true) {
         $this->id = $id;
         $this->name = $name;
@@ -17,40 +31,77 @@ class Category extends Database {
     }
 
     // Setters
+    /**
+     * Set the category's ID.
+     * @param int $id The category's ID.
+     */
     public function setId($id) {
         $this->id = $id;
     }
 
+    /**
+     * Set the category's name.
+     * @param string $name The category's name.
+     */
     public function setName($name) {
         $this->name = $name;
     }
 
+    /**
+     * Set the parent category's ID.
+     * @param int|null $parentCategory The parent category's ID.
+     */
     public function setParentCategory($parentCategory) {
         $this->parentCategory = $parentCategory;
     }
 
+    /**
+     * Set whether the category is active or not.
+     * @param bool $isActive Indicates if the category is active or not.
+     */
     public function setIsActive($isActive) {
         $this->isActive = $isActive;
     }
 
     // Getters
+    /**
+     * Get the category's ID.
+     * @return int The category's ID.
+     */
     public function getId() {
         return $this->id;
     }
 
+    /**
+     * Get the category's name.
+     * @return string The category's name.
+     */
     public function getName() {
         return $this->name;
     }
 
+    /**
+     * Get the parent category's ID.
+     * @return int|null The parent category's ID.
+     */
     public function getParentCategory() {
         return $this->parentCategory;
     }
 
+    /**
+     * Get whether the category is active or not.
+     * @return bool Indicates if the category is active or not.
+     */
     public function getIsActive() {
         return $this->isActive;
     }
 
     // Methods
+    /**
+     * Get parent categories from the database.
+     * @param bool $onlyActives Indicates whether to fetch only active parent categories. (Optional, default is true)
+     * @return array|null An array of parent categories.
+     */
     public static function getParentCategories($onlyActives = true) {
         try {
             $db = Category::connect();
@@ -76,6 +127,10 @@ class Category extends Database {
 
     }
 
+    /**
+     * Get all categories from the database.
+     * @return array An array of Category objects.
+     */
     public static function getAllCategories(){
         $db = Category::connect();
         $sql = "SELECT * FROM category";
@@ -96,6 +151,10 @@ class Category extends Database {
         return $categoriesArray;
     }
 
+    /**
+     * Get subcategories from the database.
+     * @return array|null An array of subcategories.
+     */
     public static function getSubCategories() {
         try {
             $db = self::connect();
@@ -122,12 +181,17 @@ class Category extends Database {
     
             return $subCategoriesArray;
         } catch (PDOException $e) {
+            return null;
             // Manejar el error según tus necesidades
             // Por ejemplo: throw new Exception("Error fetching subcategories: " . $e->getMessage());
         }
     }
        
 
+    /**
+     * Get the default ID for a new category.
+     * @return int|null The default ID for a new category.
+     */
     public static function getDefaultId(){
         try {
             $db = Category::connect();
@@ -147,6 +211,11 @@ class Category extends Database {
         
     }
 
+    /**
+     * Get a category by its ID.
+     * @param int $id The ID of the category to fetch.
+     * @return Category|null The category object if found, else null.
+     */
     public static function getCategoryById($id) {
         $db = Category::connect();
         $sql = "SELECT * FROM category WHERE id = ?";
@@ -184,6 +253,9 @@ class Category extends Database {
         $stmt->execute();
     }
 
+    /**
+     * Update the category's name in the database.
+     */
     public function updateCategory(){
         $db = Category::connect();
         $sql = "UPDATE category SET name = ? WHERE id = ?";
@@ -196,6 +268,9 @@ class Category extends Database {
         $stmt->execute();
     }
     
+    /**
+     * Toggle the status (active/inactive) of the category in the database.
+     */
     public function toggleStatus(){
         $id = $this->getId();
         $status = $this->getIsActive();
@@ -208,6 +283,11 @@ class Category extends Database {
         $stmt->execute();
     }    
     
+    /**
+     * Fetch categories from the database based on given filters.
+     * @param array $filters An array containing filters for the query.
+     * @return array An array of Category objects matching the filters.
+     */
     public static function fetchCategory(array $filters = []){
         //Connect into the database
         $db = self::connect();

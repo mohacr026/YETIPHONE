@@ -22,4 +22,3 @@ if (class_exists($controllerName)){
 } else {
     echo "<script>alert('No existe el nombre del controlador')</script>";
 }
-?>

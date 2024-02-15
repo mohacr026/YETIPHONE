@@ -17,6 +17,21 @@ class Product extends Database {
     private $isActive;
 
     // Constructor
+    /**
+     * Constructor for Product class.
+     * @param int $id The product ID.
+     * @param string $name The name of the product.
+     * @param string $description The description of the product.
+     * @param string $category The category of the product.
+     * @param string $image The image path of the product.
+     * @param float $price The price of the product.
+     * @param string $storage The storage specification of the product.
+     * @param string $memory The memory specification of the product.
+     * @param string $colors The available colors of the product.
+     * @param int $stock The stock quantity of the product.
+     * @param bool $featured Indicates if the product is featured.
+     * @param bool $isActive Indicates if the product is active.
+     */
     public function __construct($id, $name, $description, $category, $image, $price, $storage, $memory, $colors, $stock, $featured, $isActive){
         $this->id = $id;
         $this->name = $name;
@@ -34,103 +49,204 @@ class Product extends Database {
 
     // Getters and Setters
 
+    /**
+     * Get the product ID.
+     * @return int The product ID.
+     */
     public function getId() {
         return $this->id;
     }
 
+    /**
+     * Set the product ID.
+     * @param int $id The product ID.
+     */
     public function setId($id) {
         $this->id = $id;
     }
 
+    /**
+     * Get the name of the product.
+     * @return string The name of the product.
+     */
     public function getName() {
         return $this->name;
     }
 
+    /**
+     * Set the name of the product.
+     * @param string $name The name of the product.
+     */
     public function setName($name) {
         $this->name = $name;
     }
 
+    /**
+     * Get the description of the product.
+     * @return string The description of the product.
+     */
     public function getDescription() {
         return $this->description;
     }
 
+    /**
+     * Set the description of the product.
+     * @param string $description The description of the product.
+     */
     public function setDescription($description) {
         $this->description = $description;
     }
 
+    /**
+     * Get the category of the product.
+     * @return string The category of the product.
+     */
     public function getCategory() {
         return $this->category;
     }
 
+    /**
+     * Set the category of the product.
+     * @param string $category The category of the product.
+     */
     public function setCategory($category) {
         $this->category = $category;
     }
 
+    /**
+     * Get the image path of the product.
+     * @return string The image path of the product.
+     */
     public function getImage() {
         return $this->image;
     }
 
+    /**
+     * Set the image path of the product.
+     * @param string $image The image path of the product.
+     */
     public function setImage($image) {
         $this->image = $image;
     }
 
+    /**
+     * Get the price of the product.
+     * @return float The price of the product.
+     */
     public function getPrice() {
         return $this->price;
     }
 
+    /**
+     * Set the price of the product.
+     * @param float $price The price of the product.
+     */
     public function setPrice($price) {
         $this->price = $price;
     }
 
+    /**
+     * Get the stock quantity of the product.
+     * @return int The stock quantity of the product.
+     */
     public function getStock() {
         return $this->stock;
     }
 
+    /**
+     * Set the stock quantity of the product.
+     * @param int $stock The stock quantity of the product.
+     */
     public function setStock($stock) {
         $this->stock = $stock;
     }
 
+    /**
+     * Get the storage specification of the product.
+     * @return string The storage specification of the product.
+     */
     public function getStorage(){
         return $this->storage;
     }
 
+    /**
+     * Set the storage specification of the product.
+     * @param string $storage The storage specification of the product.
+     */
     public function setStorage($storage) {
         $this->storage = $storage;
     }
 
+    /**
+     * Get the memory specification of the product.
+     * @return string The memory specification of the product.
+     */
     public function getMemory() {
         return $this->memory;
     }
 
+    /**
+     * Set the memory specification of the product.
+     * @param string $memory The memory specification of the product.
+     */
     public function setMemory($memory) {
         $this->memory = $memory;
     }
 
+    /**
+     * Get the available colors of the product.
+     * @return string The available colors of the product.
+     */
     public function getColors() {
         return $this->colors;
     }
 
+    /**
+     * Set the available colors of the product.
+     * @param string $colors The available colors of the product.
+     */
     public function setColors($colors) {
         $this->colors = $colors;
     }
 
+    /**
+     * Check if the product is featured.
+     * @return bool True if the product is featured, false otherwise.
+     */
     public function getFeatured() {
         return $this->featured;
     }
 
+    /**
+     * Set if the product is featured.
+     * @param bool $featured True if the product is featured, false otherwise.
+     */
     public function setFeatured($featured) {
         $this->featured = $featured;
     }
 
+    /**
+     * Check if the product is active.
+     * @return bool True if the product is active, false otherwise.
+     */
     public function getIsActive() {
         return $this->isActive;
     }
 
+    /**
+     * Set if the product is active.
+     * @param bool $isActive True if the product is active, false otherwise.
+     */
     public function setIsActive($isActive) {
         $this->isActive = $isActive;
     }
 
     // Metodos
+    /**
+     * Insert products into the database.
+     * @param array $data Associative array containing product data.
+     * @return bool True if the insertion was successful, false otherwise.
+     */
     public static function insertProducts(array $data = []){
         //Connect into the database
         $db = self::connect();
@@ -168,6 +284,11 @@ class Product extends Database {
         return $result;
     }
 
+    /**
+     * Insert images into the database for a given product.
+     * @param array $images Array containing image paths.
+     * @param int $product_id The ID of the product.
+     */
     public static function insertImages(array $images = [], $product_id){
         //Connect into the database
         $db = self::connect();
@@ -183,6 +304,11 @@ class Product extends Database {
         }
     }
 
+    /**
+     * Insert colors into the database for a given product.
+     * @param string $colors Comma-separated list of colors.
+     * @param int $product_id The ID of the product.
+     */
     public static function insertColors($colors, $product_id){
         //Connect into the database
         $db = self::connect();
@@ -201,6 +327,11 @@ class Product extends Database {
         }
     }
     
+    /**
+     * Update colors for a given product.
+     * @param string $colors Comma-separated list of colors.
+     * @param int $product_id The ID of the product.
+     */
     public static function updateColors($colors, $product_id){
         //Connect into the database
         $db = self::connect();
@@ -213,6 +344,13 @@ class Product extends Database {
         self::insertColors($colors, $product_id);
     }
 
+    /**
+     * Generate a unique product ID based on category, product name, and category ID.
+     * @param string $categoryName The name of the category.
+     * @param string $productName The name of the product.
+     * @param int $categoryID The ID of the category.
+     * @return string The generated product ID.
+     */
     public static function generateProductID($categoryName, $productName, $categoryID) {
         // Get the first two letters of the category name
         $categoryPrefix = strtoupper(substr($categoryName, 0, 2));
@@ -240,6 +378,12 @@ class Product extends Database {
         return $productID;
     }
 
+    /**
+     * Fetch product images from the database.
+     * @param int $productId The ID of the product.
+     * @param bool $parsed Indicates if the images should be parsed or returned as raw data.
+     * @return array Array containing product images.
+     */
     public static function fetchProductImages($productId, $parsed = true){
         // Connect into database
         $db = self::connect();
@@ -262,6 +406,11 @@ class Product extends Database {
         return $images;
     }
 
+    /**
+     * Fetch product colors from the database.
+     * @param int $productId The ID of the product.
+     * @return array Array containing product colors.
+     */
     public static function fetchProductColors($productId){
         // Connect into database
         $db = self::connect();
@@ -280,6 +429,12 @@ class Product extends Database {
         return $colors;
     }
 
+    /**
+     * Update products in the database.
+     * @param array $fields Associative array containing fields to be updated.
+     * @param int $productId The ID of the product.
+     * @return bool True if the update was successful, false otherwise.
+     */
     public static function updateProducts(array $fields = [], $productId){
         //Connect into the database
         $db = self::connect();
@@ -318,6 +473,11 @@ class Product extends Database {
         return $result;
     }
 
+    /**
+     * Fetch products from the database based on provided filters.
+     * @param array $filters Associative array of filters.
+     * @return array Array of Product objects that match the filters.
+     */
     public static function fetchProducts(array $filters = []){
         /* 
             Example of $filters array application
@@ -373,6 +533,10 @@ class Product extends Database {
         return $products;
     }
 
+    /**
+     * Delete images from the database and server.
+     * @param array $images Array of image filenames to be deleted.
+     */
     public static function deleteImages($images){
         $db = self::connect();
 
@@ -389,6 +553,9 @@ class Product extends Database {
         }
     }
 
+    /**
+     * Toggle the status of a product between active and inactive.
+     */
     public function toggleStatus(){
         $id = $this->getId();
         $status = $this->getIsActive();
@@ -401,6 +568,11 @@ class Product extends Database {
         $stmt->execute();
     }    
 
+    /**
+     * Search for products based on a search string.
+     * @param string $toSearch The string to search for.
+     * @return array Array of products matching the search criteria.
+     */
     public static function searchProducts($toSearch){
         $db = self::connect();
         $sql = "SELECT *, (SELECT i.img FROM product_image i WHERE i.product_id=p.id LIMIT 1) as img

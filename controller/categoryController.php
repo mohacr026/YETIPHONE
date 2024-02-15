@@ -93,5 +93,19 @@ class CategoryController{
             echo "No";
         }
     }
+
+    public function fetchCategorys(){
+        require_once './model/product.php';
+        ob_clean();
+        header("Content-Type: application/json");
+
+        $categories = Category::fetchCategory();
+        $data = array();
+        foreach($categories as $category){
+            $products = Product::fetchProducts(['id_category' => $category->getId()]);
+            array_push($data, ["name" => $category->getName(), "count" => count($products)]);
+        }
+        echo json_encode(['success' => true, 'info' => $data]);
+        exit;
+    }
 }
-?>

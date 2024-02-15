@@ -1,23 +1,55 @@
 $(document).ready(loadGraphs);
 
 function loadGraphs(){
-    loadProductsGraph();
+    fetchData("Product", "Products stock");
+    fetchData("Category", "Categories products")
 }
 
-function loadProductsGraph(){
-    var canvas = document.getElementById("productsGraph");
+function fetchData(model, graphTitle){    
+    console.log('index.php?controller=' + model + '&action=fetch' + model + 's');
+    $.ajax({
+        url: 'index.php?controller=' + model + '&action=fetch' + model + 's',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            if(data.success){
+                console.log(data.info);
+                loadGraph(model+"sGraph", graphTitle, data.info);
+            } else {
+                console.error(data.message);
+            }
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.error(xhr);
+            console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
+            console.error('Estado de la respuesta', xhr.status);
+            console.error('Respuesta del servidor:', xhr.responseText);
+        }
+    });
+}
 
-    // TODO - Get data from an AJAX function
-    var data = [
-    { product_name: "Product A", count: 10 },
-    { product_name: "Product B", count: 8 },
-    { product_name: "Product C", count: 6 },
-    { product_name: "Product D", count: 4 },
-    { product_name: "Product E", count: 2 }
-    ];
+function loadGraph(elementID, title, data){
+    var canvas = document.getElementById(elementID);
+
+    // var data = [
+    // { name: "Product A", count: 10 },
+    // { name: "Product B", count: 8 },
+    // { name: "Product C", count: 7 },
+    // { name: "Product D", count: 4 },
+    // { name: "Product E", count: 2 }
+    // ];
+
+    var maxLengthName = 6;
 
     // Extract the product names and counts from the data
-    var labels = data.map(function(item) { return item.product_name; });
+    var labels = data.map(function(item) { 
+        if(item.name.length <= maxLengthName){
+            var name = item.name;
+        } else {
+            var name = item.name.substring(0, maxLengthName) + "...";
+        }
+        return name; 
+    });
     var counts = data.map(function(item) { return item.count; });
 
     var context = canvas.getContext("2d");
@@ -39,6 +71,12 @@ function loadProductsGraph(){
     var x = startX + (barWidth + barSpacing) * i;
     var height = (counts[i] / maxCount) * (canvas.height - 100);
     var y = startY - height;
+
+    // Write the text "Products stock" in the top left corner
+    context.fillStyle = "black";
+    context.font = "16px Arial";
+    context.textAlign = "left";
+    context.fillText(title, canvas.clientWidth / 2, 25);
 
     // Draw the bar
     context.fillStyle = "rgba(75, 192, 192, 0.2)";

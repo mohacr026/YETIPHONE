@@ -1631,6 +1631,16 @@ footer {
   margin-left: auto;
 }
 
+#graphs {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+#ProductsGraph, #CategorysGraph {
+  max-height: 400px;
+  background-color: #FFF;
+}
+
 .price-range-slider {
   background: red;
 }

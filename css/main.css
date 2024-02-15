@@ -14,15 +14,12 @@
 }
 
 header {
-  position: fixed; /* Fija el encabezado en su posición */
-  top: 0; /* Coloca el encabezado en la parte superior de la ventana del navegador */
-  left: 0; /* Alinea el encabezado a la izquierda */
-  width: 100%; /* Ajusta el ancho al 100% del viewport */
   background-color: black;
   display: flex;
-  align-items: center; /* Centra verticalmente el contenido */
   padding: 1em;
   max-height: 5vh;
+  padding: 20px;
+  /* Ajusta el espaciado según tus necesidades */
   padding-left: 10%;
   padding-right: 10%;
 }
@@ -1629,16 +1626,6 @@ footer {
 
 .carrito {
   margin-left: auto;
-}
-
-#graphs {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-}
-#ProductsGraph, #CategorysGraph {
-  max-height: 400px;
-  background-color: #FFF;
 }
 
 .price-range-slider {

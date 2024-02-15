@@ -314,5 +314,17 @@ class User extends Database {
         }
         return $users;
     }
+
+    public static function getAdmin($email){
+        $db = self::connect();
+        $sql = "SELECT * FROM admin WHERE email = :email";
+        $statement = $db->prepare($sql);
+
+        $statement->bindParam(":email", $email);
+        $statement->execute();
+
+        $admin = $statement->fetch(PDO::FETCH_ASSOC);
+        return $admin;
+    }
 }
 ?>

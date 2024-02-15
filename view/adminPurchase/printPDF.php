@@ -61,6 +61,7 @@ foreach($products as $product){
 }
 $content .= '<tr><td></td><td></td><td>Total price</td><td>'.$totalValue.'€</td></tr></table>';
 $content .= '<page_footer>';
+$content .= '<p>This website is supervised and administrated by: '.$adminName.'</p>';
 $content .= '<h3>Administrator signature:</h3><br/>';
 $content .= '<img src="./src/img/signatures/adminSignature.png" alt="Administrator signature" style="width:200px;height:200px;">';
 $content .= '</page_footer></page>';

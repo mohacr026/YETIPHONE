@@ -55,6 +55,8 @@ class PurchaseController {
         foreach($productsData as $product){
             array_push($products, ['product_name' => Product::fetchProducts(['id' => $product->getProductId()])[0]->getName(), 'count' => $product->getQuantity(), 'price' => Product::fetchProducts(['id' => $product->getProductId()])[0]->getPrice()] );
         }
+        $admin = User::getAdmin("admin@gmail.com");
+        $adminName = preg_replace('/@.*$/', '',$admin['email']);
         include("./view/adminPurchase/printPDF.php");
     }
 

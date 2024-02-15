@@ -11,12 +11,12 @@
     <script type="module" src="./src/js/ShoppingCart.js"></script>
 </head>
 <body>
-    <main>
-        <div class="container">
-            <div class="formContainer">
+    <main class="register">
+        <div class="container2">
+            <div class="formContainer2">
                 <h2>Register</h2>
                 <form action="index.php?controller=User&action=register" method="post">
-                    <div class="formColumn">
+                    <div class="formColumn2">
                         <div class="formRow">
                             <label for="dni">Dni:</label>
                             <input type="text" id="dni" name="dni" maxlength="9" pattern="[0-9]{8}[a-zA-Z]" autocomplete="false" required>
@@ -42,7 +42,7 @@
                         </div>
     
                     </div>
-                    <div class="formColumn">
+                    <div class="formColumn2">
 
                         <div class="formRow">
                             <label for="name">Name:</label>

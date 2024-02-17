@@ -21,19 +21,7 @@
     include("./view/components/header.php");
     ?>
     <main>
-        <aside>
-            <h2>Navigation / Preferences</h2>
-
-            <a href="index.php?controller=Product&action=showAddProducts">Add Products</a>
-            <a href="index.php?controller=Product&action=showEditProducts">Edit Products</a>
-            <a href="index.php?controller=Category&action=showAddCategories">Add Category</a>
-            <a href="index.php?controller=Category&action=showEditCategories">Edit Category</a>
-            <a href="index.php?controller=Product&action=showInterfaz">User Interface</a>
-            <a href="index.php?controller=Purchase&action=showPurchases">Purchases</a>
-            <a href="index.php?controller=Canvas&action=index">Signature</a>
-            <a href="index.php?controller=Purchase&action=printPDF">PrintPDF</a>
-
-        </aside>
+        <?php include("./view/components/adminAside.php") ?>
         <div id="graphs">
             <canvas id="ProductsGraph" width="800" height="400"></canvas>
             <canvas id="CategorysGraph" width="800" height="400"></canvas>

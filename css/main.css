@@ -601,7 +601,7 @@ form {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .formColumn {
@@ -1936,4 +1936,8 @@ footer {
   display: flex;
   width: 80%;
   height: 2vh;
+}
+
+#graphs canvas {
+  background-color: rgb(255, 255, 255);
 }/*# sourceMappingURL=main.css.map */

@@ -21,42 +21,21 @@
     <main>
         <?php include("./view/components/adminAsideSearch.php"); ?>
         <div class="purchaseFilterContainer">
-          
-                <label for="user_id">User DNI:</label>
-                <input type="text" name="user_id" id="user_id"> <br>
 
-                <label for="status">Status:</label>
-                <select name="status" id="status">
-                    <option value="NOSTATE" selected>Any state</option>
-                    <option value="PENDING">Pending</option>
-                    <option value="SHIPPED">Shipped</option>
-                </select> <br>
-
-                <label for="dateOrder">Date Order:</label>
-                <input type="date" name="dateOrder" id="dateOrder"> <br>
-
-                <label for="dateShipment">Date Shipment:</label>
-                <input type="date" name="dateShipment" id="dateShipment"> <br>
-
-                <button type="submit">Filter Purchases</button>
-            </form><br>
-
-            <div class="purchaseTableDisplay">
-                <div>
-                    <span>Purchase ID</span>
-                    <span>User name</span>
-                    <span>Purchase date</span>
-                    <span>State</span>
-                </div>
+            <table class="purchaseTableDisplay">
+                <tr>
+                    <th>Purchase ID</th>
+                    <th>User name</th>
+                    <th>Purchase date</th>
+                    <th>State</th>
+                </tr>
                 <?php foreach($purchases as $purchase): ?>
-                    <div>
-                        <a href="index.php?controller=Purchase&action=showPurchaseInformation&purchase=<?= urlencode(serialize($purchase)) ?>" tabindex="<?php echo $tabindex++; ?>">
-                            <span><?= $purchase->getId() ?></span>
-                            <span><?= $purchase->getUserId() ?></span>
-                            <span><?= $purchase->getDateOrder() ?></span>
-                            <span><?= $purchase->getStatus() ?></span>
-                        </a>
-                    </div>
+                    <tr onclick="location.href='index.php?controller=Purchase&action=showPurchaseInformation&purchase=<?= urlencode(serialize($purchase)) ?>'" tabindex="<?php echo $tabindex++; ?>">
+                        <td><?= $purchase->getId() ?></td>
+                        <td><?= $purchase->getUserId() ?></td>
+                        <td><?= $purchase->getDateOrder() ?></td>
+                        <td><?= $purchase->getStatus() ?></td>
+                    </tr>
                 <?php endforeach; ?>
             </table>
             <form method="POST" id="" action="index.php?controller=Purchase&action=showPurchases">

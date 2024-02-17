@@ -86,14 +86,12 @@
                 if($_SESSION['role'] == "admin"){
                     echo "<div id='userMenu' class='dropdownMenu' aria-labelledby='userBtn'>";
                     echo "  <a href='index.php?controller=User&action=showAdminDashboard' tabindex='".$tabindex++."'>Dashboard</a>";
-                    echo "  <a>elemento</a>";
                     echo "  <div class='dropdownDivider'></div>";
                     echo "  <a href='index.php?controller=User&action=logout' tabindex='".$tabindex++."'>Log out</a>";
                     echo "</div>";
                 } else {
                     echo "<div id='userMenu' class='dropdownMenu'>";
                     echo "  <a href='index.php?controller=Purchase&action=userPurchases'>My purchases</a>";
-                    echo "  <a>elemento</a>";
                     echo "  <div class='dropdownDivider'></div>";
                     echo "  <a href='index.php?controller=User&action=logout' tabindex='".$tabindex++."'>Log out</a>";
                     echo "</div>";

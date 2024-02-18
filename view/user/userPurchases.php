@@ -33,7 +33,7 @@
                     <td><?= $purchase->getId(); ?></td>
                     <td><?= $purchase->getDateOrder(); ?></td>
                     <td><?= $purchase->getStatus(); ?></td>
-                    <td><?php if($purchase->getStatus() === "PENDING") { echo "Waiting for shipment"; } else { echo $purchase->getShipmentDate(); } ?></td>
+                    <td><?php if($purchase->getStatus() === "PENDING") { echo "Waiting for shipment"; } else { echo $purchase->getDateShipment(); } ?></td>
                     <td><a href="index.php?controller=Purchase&action=userPurchaseDetails&id=<?php echo $purchase->getId() ?>">View details</a></td>
                     <td><a href="index.php?controller=Purchase&action=printPdf&id=<?php echo $purchase->getId() ?>">Download bill</a></td>
                 </tr>

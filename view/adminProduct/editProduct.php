@@ -56,10 +56,10 @@
                                 <label for="delete_imgs" aria-label="Select to delete product images">Product
                                     images:</label>
                                 <?php foreach ($productImages as $image): ?>
-                                    <input type="checkbox" name="delete_imgs[]" value="<?php echo $image['img']; ?>"
-                                        tabindex="<?php echo $tabindex++; ?>"><img style="width: 50px;"
-                                        src="./src/img/products/<?php echo $image['img']; ?>"
-                                        alt="<?php echo $product->getName(); ?>'s image">
+                                    <div>
+                                        <input onclick="this.parentElement.style.display='none'" type="checkbox" name="delete_imgs[]" value="<?php echo $image['img']; ?>" tabindex="<?php echo $tabindex++; ?>">
+                                        <img style="width: 50px;" src="./src/img/products/<?php echo $image['img']; ?>" alt="<?php echo $product->getName(); ?>'s image">
+                                    </div>
                                 <?php endforeach; ?>
                             </div>
 

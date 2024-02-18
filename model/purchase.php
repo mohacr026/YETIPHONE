@@ -4,7 +4,10 @@ class Purchase extends Database {
     // Attributes
     private $id;
     private $userId;
-    private $purchaseDetails;
+    private $shipmentDirection;
+    private $province;
+    private $city;
+    private $zipCode;
     private $status;
     private $dateOrder;
     private $dateShipment;
@@ -15,15 +18,17 @@ class Purchase extends Database {
      * 
      * @param int $id The ID of the purchase.
      * @param int $userId The ID of the user making the purchase.
-     * @param array $purchaseDetails An array of ProductDetails objects representing the purchase details.
      * @param string $status The status of the purchase.
      * @param string $dateOrder The date of the purchase order.
      * @param string|null $dateShipment The date of shipment, or null if not yet shipped.
      */
-    public function __construct($id, $userId, $purchaseDetails, $status, $dateOrder, $dateShipment = null){
+    public function __construct($id, $userId, $shipmentDirection, $province, $city, $zipCode, $status, $dateOrder, $dateShipment = null){
         $this->id = $id;
         $this->userId = $userId;
-        $this->purchaseDetails = $purchaseDetails;
+        $this->shipmentDirection = $shipmentDirection;
+        $this->province = $province;
+        $this->city = $city;
+        $this->zipCode = $zipCode;
         $this->status = $status;
         $this->dateOrder = $dateOrder;
         $this->dateShipment = $dateShipment;
@@ -62,21 +67,29 @@ class Purchase extends Database {
     public function setUserId($userId){
         $this->userId = $userId;
     }
-    /**
-     * Get the purchase details.
-     * 
-     * @return array An array of ProductDetails objects representing the purchase details.
-     */
-    public function getPurchaseDetails(){
-        return $this->purchaseDetails;
+    public function getShipmentDirection(){
+        return $this->shipmentDirection;
     }
-    /**
-     * Set the purchase details.
-     * 
-     * @param array $purchaseDetails An array of ProductDetails objects representing the purchase details.
-     */
-    public function setPurchaseDetails($purchaseDetails){
-        $this->purchaseDetails = $purchaseDetails;
+    public function setShipmentDirection($shipmentDirection){
+        $this->shipmentDirection = $shipmentDirection;
+    }
+    public function getProvince(){
+        return $this->province;
+    }
+    public function setProvince($province){
+        $this->province = $province;
+    }
+    public function getCity(){
+        return $this->city;
+    }
+    public function setCity($city){
+        $this->city = $city;
+    }
+    public function getZipCode(){
+        return $this->zipCode;
+    }
+    public function setZipCode($zipCode){
+        $this->zipCode = $zipCode;
     }
     /**
      * Get the status of the purchase.
@@ -175,7 +188,7 @@ class Purchase extends Database {
         // Adds into the purchases array every purchase the SQL returned
         $purchases = [];
         while($row = $statement->fetch(PDO::FETCH_ASSOC)){
-            $purchases[] = new Purchase($row['id'], $row['id_user'], $row['purchase_details_id'], $row['status'], $row['date_order'], $row['date_shipment']);
+            $purchases[] = new Purchase($row['id'], $row['id_user'], $row['shipment_direction'], $row['province'], $row['city'], $row['zip_code'], $row['status'], $row['date_order'], $row['date_shipment']);
         }
         return $purchases;
     }

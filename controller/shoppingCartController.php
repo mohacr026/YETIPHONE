@@ -59,6 +59,7 @@ class ShoppingCartController {
                     $details[] = [$idArray[$i], $quantityArray[$i]];
                 }
                 Purchase::insertPurchase($_POST['user'], $_POST['direction'], $_POST['province'],$_POST['city'], $_POST['zipCode'], $details);
+                echo("<meta http-equiv='refresh' content='0;url=index.php'>");
             }
         }
     }

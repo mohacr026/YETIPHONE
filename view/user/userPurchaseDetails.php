@@ -17,8 +17,8 @@
         
         ?>
         <!-- Clases temporales, cambiar las clases para aplicar nuevo CSS --> 
-        <div class="userPurchaseContainer">
-            <table class="purchaseTable">
+        <div class="purchaseFilterContainer">
+            <table class="purchaseTableDisplay">
                 <tr>
                     <th>Product image</th>
                     <th>Product name</th>

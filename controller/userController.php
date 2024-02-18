@@ -11,7 +11,7 @@ class UserController {
 
     public function login(){
         if(!empty($_POST)){
-            $user = new User("", $_POST['email'], $_POST['password'], "", "", "", "", "");
+            $user = new User("", $_POST['email'], $_POST['password'], "", "", "", "");
             $action = $user->checkLogin();
 
             switch ($action) {

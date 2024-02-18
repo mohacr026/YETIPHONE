@@ -61,7 +61,7 @@ class PurchaseController {
     }
 
     public function userPurchases(){
-        $purchases = Purchase::fetchPurchases(['id_user' => $_SESSION['dni']]);
+        $purchases = Purchase::fetchPurchases(['id_user' => $_SESSION['email']]);
         include("./view/user/userPurchases.php");
     }
 

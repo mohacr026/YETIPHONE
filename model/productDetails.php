@@ -113,7 +113,7 @@ class ProductDetails extends Database {
         // Adds into the purchases array every purchase the SQL returned
         $details = [];
         while($row = $statement->fetch(PDO::FETCH_ASSOC)){
-            $details[] = new ProductDetails($row['id'], $row['product_id'], $row['quantity']);
+            $details[] = new ProductDetails($row['purchase_id'], $row['product_id'], $row['quantity']);
         }
         return $details;
     }

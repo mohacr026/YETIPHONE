@@ -455,6 +455,7 @@ body.noscroll {
 body.flex-row {
   display: flex;
   justify-content: center;
+  align-content: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
 }
@@ -632,6 +633,12 @@ form {
   margin-bottom: 0.5rem;
 }
 
+#shippingDirection .formRow {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+input[list=provinces],
 input[type=text],
 input[type=email],
 input[type=number],
@@ -826,7 +833,8 @@ input[type=file] {
   display: flex;
   flex-direction: column;
   width: 50%;
-  margin: 50px auto;
+  margin-top: 50px;
+  height: 80vh;
 }
 .purchaseFilterContainer form {
   display: flex;
@@ -887,15 +895,15 @@ input[type=file] {
 }
 .purchaseFilterContainer .purchaseTableDisplay {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  max-height: 600px;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to right, #6e48aa, #ad62aa);
-  flex-direction: column;
+  background: #a044ac;
   border-radius: 20px;
   padding: 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 .purchaseFilterContainer .purchaseTableDisplay div {
   display: flex;
@@ -909,7 +917,7 @@ input[type=file] {
   color: #ffffff; /* Color del texto */
 }
 .purchaseFilterContainer .purchaseTableDisplay a {
-  color: #6e48aa; /* Color del texto */
+  color: white; /* Color del texto */
   text-decoration: none; /* Quitamos la subrayado */
   transition: color 0.3s;
 }
@@ -1111,6 +1119,7 @@ input[type=file] {
 
 .productInfo > div:nth-child(1) {
   padding: 0.5em;
+  color: white;
 }
 .productInfo > div:nth-child(1) h2 {
   font-size: 3rem;
@@ -1202,6 +1211,7 @@ input[type=file] {
   color: rgb(74, 74, 74);
 }
 .productCardContainer .productCardInfo .price {
+  width: auto;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -1306,6 +1316,11 @@ a {
   text-decoration: none;
 }
 
+#xiaomiOferta {
+  aspect-ratio: 16/9;
+  width: 80%;
+}
+
 .topProducts {
   display: flex;
   justify-content: center;
@@ -1401,14 +1416,13 @@ a {
   align-items: center;
   background: none;
   border-radius: 3em;
-  width: 75px;
+  width: 100%;
   color: black;
   font-family: Inter;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  margin-left: 175px;
 }
 
 /* .name {
@@ -1429,7 +1443,8 @@ footer {
   width: 100%;
   height: 275px;
   flex-shrink: 0;
-  background: linear-gradient(to right, rgba(79, 0, 169, 0), rgba(0, 0, 0, 0.3));
+  background: rgba(48, 19, 57, 0.72);
+  /* background: linear-gradient(to right, #4f00a900, rgba(0, 0, 0, 0.3)); */
   margin-top: 3em;
 }
 
@@ -1539,7 +1554,6 @@ footer {
   align-items: center;
   /* justify-content: center; */
   margin-top: 20px;
-  width: 87%;
   height: 500px;
   background: linear-gradient(to left top, #c32c71 50%, #b33771 50%);
   margin: auto;

@@ -11,23 +11,56 @@ body.flex-row main.payment{
 }
 
 form{
-    background-color: aqua;
+    color: white;
     display: flex;
     flex-direction: column;
     width: 58%;
     margin-top: 2vw;
     margin-bottom: 2vw;
 
-    .formRow{
-        display: flex;
-        flex-direction: column;
-        padding: 1rem;
-    }
+}
+.formRow{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
 }
 
 .resume{
-    background-color: violet;
+    color: white;
     width: 38%;
     margin-top: 2vw;
     margin-bottom: 2vw;
+    text-align: center;
+}
+
+.resumeContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: start;
+    gap: 10px;
+}
+.resumeContent button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.5em;
+    background: #b92bcc;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    box-shadow: none;
+    width: 8em;
+    height: 2em;
+    align-self: center;
+    margin: auto;
+    font-size: 1.55em;
+    color: #FFF;
+    font-weight: 600;
+    font-family: inherit;
+    transition: background-color 0.2s ease-out;
+}
+.resumeContent button:hover {
+    background-color: #cf4fdf;
 }

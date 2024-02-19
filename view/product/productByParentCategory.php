@@ -16,9 +16,6 @@
     <?php
         include("./view/components/header.php");
     ?>
-    <aside class="filtersAside">
-    <div id="slider"></div>
-    </aside>
     <main class="productCategoryContainer">
         <h2 class="categoryTitle">Showing products from <?php echo $categoria->getName(); ?></h2>
         <div class="productsShopContainer">

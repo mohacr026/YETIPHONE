@@ -66,7 +66,7 @@
             </defs>
         </svg>
 
-        <input type="text" placeholder="Search any product..." id="search" tabindex="<?php echo $tabindex++; ?>">
+        <input type="" placeholder="Search any product..." id="search" tabindex="<?php echo $tabindex++; ?>">
 
         
     </div>

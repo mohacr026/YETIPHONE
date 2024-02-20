@@ -94,7 +94,9 @@ function addButtonEvents(){
                 let productImage = button.dataset.image
                 console.log("USER ANTES DE AÑADIR");
                 console.log(storedUser);
-                addProductToCart(productId, storedUser.cart, productPrice, productName, productImage)
+                let productQuantity = document.getElementById("amount");
+                if(productQuantity) addProductToCart(productId, storedUser.cart, productPrice, productName, productImage, productQuantity.value)
+                else addProductToCart(productId, storedUser.cart, productPrice, productName, productImage)
             })
         }
     }

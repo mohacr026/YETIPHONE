@@ -10,21 +10,18 @@
     </label>
     <div id="mobileMenu" class="mobile-menu">
         <ul>
-            <li tabindex="<?php echo $tabindex++; ?>">BEST CATEGORIES</li>
-            <li tabindex="<?php echo $tabindex++; ?>">                
-                <?php
-                    $db = Database::connect();
-                    $query = "SELECT id, name FROM category WHERE isActive = true";
-                    $stmt = $db->prepare($query);
-                    $stmt->execute();
-                    $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    foreach ($categories as $category): ?>
-        
-                    <a href="index.php?controller=Product&action=showProducts&category=<?= $category['id']; ?>" tabindex="<?php echo $tabindex++; ?>"><?= $category['name']; ?></a>
-                <?php endforeach; ?>
-            </li>
-            <li tabindex="<?php echo $tabindex++; ?>">Link 3</li>
-            <li tabindex="<?php echo $tabindex++; ?>">Link 4</li>
+            <!-- TODO fix mobile header -->
+            <?php
+                $db = Database::connect();
+                $query = "SELECT id, name FROM category WHERE isActive = true";
+                $stmt = $db->prepare($query);
+                $stmt->execute();
+                $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($categories as $category): ?>
+                    <li tabindex="<?php echo $tabindex++; ?>">                
+                        <a href="index.php?controller=Product&action=showProducts&category=<?= $category['id']; ?>" tabindex="<?php echo $tabindex++; ?>"><?= $category['name']; ?></a>
+                    </li>
+            <?php endforeach; ?>
         </ul>
     </div>
 

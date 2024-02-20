@@ -66,7 +66,7 @@
                         <div class="formColumn">
 
                             <div class="formRow">
-                                <label for="id_category" aria-label="Product category">Category:</label>
+                                <label for="category" aria-label="Product category">Category:</label>
                                 <select id="category" name="id_category" required aria-required="true"
                                     tabindex="<?php echo $tabindex++; ?>">
                                     <?php foreach ($allCategories as $eachCategory): ?>

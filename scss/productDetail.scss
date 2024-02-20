@@ -6,12 +6,12 @@
     border-radius: 25px;
     @include flexCenterAroundItems;
     flex-direction: row;
-    background-color: $lightBlue;
+    background-color: #6e48aa;
     span, img {
         height: 45px;
         border-radius: 25px;
         @include flexCenterAroundItems;
-        background-color: $medBlue;
+        background-color: #a08ac3;
         color: $white;
         font-weight: bold;
         font-size: 20px;

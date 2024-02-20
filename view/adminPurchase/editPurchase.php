@@ -33,19 +33,19 @@
                 <label>Date of shipment:</label>
                 <span><?= $purchase->getDateShipment() ?></span>
 
-        </div>
-        <div class="purchaseContainer">
                 <label for="status">Status:</label>
                 <select name="status" tabindex="<?php echo $tabindex++; ?>">
                     <option value="PENDING" <?php if ($purchase->getStatus() === 'PENDING') echo 'selected'; ?> tabindex="<?php echo $tabindex++; ?>">Pending</option>
                     <option value="SHIPPED" <?php if ($purchase->getStatus() === 'SHIPPED') echo 'selected'; ?> tabindex="<?php echo $tabindex++; ?>">Shipped</option>
                 </select><br>
-
+        
                 <div>
                     <button type="submit" tabindex="<?php echo $tabindex++; ?>">SAVE</button>
                     <a href="index.php?controller=Purchase&action=showPurchases" tabindex="<?php echo $tabindex++; ?>">CANCEL</a>
                 </div>
             </form>
+        </div>
+        <div class="purchaseContainer">
             <div>
                 <?php foreach($products as $product): ?>
                     <?php try {

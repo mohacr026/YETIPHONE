@@ -61,7 +61,7 @@
                 <button type="submit" tabindex="<?php echo $tabindex++; ?>">Filter Purchases</button>
             </form>
         </div>
-    <main>
+    </main>
     <?php
     }
     ?>

@@ -39,10 +39,13 @@ class PurchaseController {
     public function showPurchaseInformation(){
         if (isset($_GET['purchase'])) {
             $purchase = unserialize(urldecode($_GET['purchase']));
-            $products = Product::fetchProducts(['id' => $purchase->getId()]);
-            $details = [];
+            $details = ProductDetails::fetchDetails(['purchase_id' => $purchase->getId()]);
+            $products = [];
+            foreach($details as $detail){
+                $products = array_merge($products, Product::fetchProducts(['id' => $detail->getProductId()]));
+            }
             foreach($products as $product){
-                $details[$product->getId()] = ProductDetails::fetchDetails(['id' => $purchase->getPurchaseDetails()])[0];
+                $details[$product->getId()] = ProductDetails::fetchDetails(['purchase_id' => $purchase->getId()]);
             }
         }
         $categories = Category::fetchCategory(["isactive" => "true"]);

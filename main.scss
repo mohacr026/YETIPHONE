@@ -39,32 +39,59 @@ body.noscroll {
     max-height: 100svh;
 }
 
-body.flex-row {
-    display: flex;
-    justify-content: center;
-    align-content: flex-start;
-    flex-direction: row;
-    flex-wrap: wrap;
+ body.flex-row {
+     display: flex;
+     justify-content: center;
+     align-content: flex-start;
+     flex-direction: row;
+     flex-wrap: wrap;
 
-    aside {
-        width: 24vw;
-        max-width: 25vw;
-        display: none; //luego se quita si se haran los filtros
+     aside {
+         width: 24vw;
+         max-width: 25vw;
+         display: none; // luego se quita si se haran los filtros
 
-    }
+     }
 
-    main {
-        display: flex;
-        justify-content: center;
-        width: 70vw;
-        margin-left: 4rem;
-        margin-right: 0;
-        min-height: 89vh;
-        h2{
-            margin-top: 2rem;
-        }
-    }
-}
+     main {
+         display: flex;
+         justify-content: center;
+         width: 70vw;
+         margin-left: 4rem;
+         margin-right: 0;
+         min-height: 89vh;
+         h2{
+             margin-top: 2rem;
+         }
+     }
+ }
+
+// @media screen and (max-width: 768px) {
+//     aside#mobile-nav {
+//         display: none;
+//     }
+// }
+
+// body.flex-row {
+//     display: flex;
+//     justify-content: center;
+//     align-content: flex-start;
+//     flex-direction: row;
+//     flex-wrap: wrap;
+
+//     main {
+//         display: flex;
+//         justify-content: center;
+//         width: 70vw;
+//         margin-left: 4rem;
+//         margin-right: 0;
+//         min-height: 89vh;
+//         h2 {
+//             margin-top: 2rem;
+//         }
+//     }
+// }
+
 
 /* Estilos generales de la barra de desplazamiento */
 ::-webkit-scrollbar {
@@ -104,31 +131,31 @@ body.flex-row {
     display: none;
 }
 
-main {
-    width: 100vw;
-    display: flex;
+ main {
+     width: 100vw;
+     display: flex;
 
-    aside {
-        background-color: black;
-        width: 25vw;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-    }
+     aside {
+         background-color: black;
+         width: 25vw;
+         height: auto;
+         display: flex;
+         flex-direction: column;
+     }
 
-    .container {
-        width: 70vw;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+     .container {
+         width: 70vw;
+         height: auto;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
 
-        h1 {
-            margin: 2rem;
-            margin-bottom: 0;
-        }
-    }
-}
+         h1 {
+             margin: 2rem;
+             margin-bottom: 0;
+         }
+     }
+ }
 
 .categoryContainer {
     // display: flex;
@@ -1706,6 +1733,98 @@ footer {
         margin-top: 47px;
         font-size: 16px;
     }
+
+    main .container {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .formContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0;
+        width: 85%;
+        margin-top: 32px;
+        margin-bottom: 32px;
+        padding: 2rem;
+        border-radius: 0;
+        background: linear-gradient(to right, #6e48aa, #ad62aa);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        color: white;
+        font-family: "Roboto", sans-serif;
+    }
+
+    aside#mobile-nav {
+        display: none;
+    }
+
+    .toggle-button {
+        position: fixed;
+        top: 20px; /* Ajusta según tu diseño */
+        left: 15px; /* Ajusta según tu diseño */
+        z-index: 9999; /* Asegura que esté por encima de cualquier otro contenido */
+    }
+    
+    /* Estilo adicional si lo necesitas */
+    .toggle-button {
+        padding: 10px;
+        font-size: 20px;
+        cursor: pointer;
+        background: black;
+    }
+
+    button:hover {
+        background-color: black;
+        transform: scale(1.3);
+    }
+
+    body.flex-row {
+        display: flex;
+        justify-content: center;
+        align-content: flex-start;
+        flex-direction: row;
+        flex-wrap: wrap;
+    
+        main {
+            display: flex;
+            justify-content: center;
+            width: 70vw;
+            margin-left: 4rem;
+            margin-right: 0;
+            min-height: 89vh;
+            h2 {
+                margin-top: 2rem;
+            }
+        }
+    }
+    #graphs{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+    }
+
+    #ProductsGraph, #CategorysGraph {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 95%;
+    }
+
+    .formColumn {
+        display: flex;
+        flex-direction: column;
+        margin: 0.5rem;
+        width: calc(44% - -15rem);
+    }
+    
+
 }
 
 /* Estilos para dispositivos móviles */

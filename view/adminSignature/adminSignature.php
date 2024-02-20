@@ -18,7 +18,7 @@
         echo "<META HTTP-EQUIV='REFRESH' CONTENT='0; URL=index.php?controller=User&action=showLoginForm'>";
     } else {
     ?>
-    <main>
+    <main id="main-admin">
         <?php include("./view/components/adminAside.php"); ?>
         <canvas id="mainCanvas" width="800" height="800" style="background-color:#FFF" tabindex="<?php echo $tabindex++; ?>"></canvas>
         <button id="drawMode" tabindex="<?php echo $tabindex++; ?>">Draw mode</button>

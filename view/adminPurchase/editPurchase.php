@@ -17,7 +17,7 @@
     } else {
 
     ?>
-    <main class="purchases">
+    <main id="main-admin" class="purchases">
         <?php include("./view/components/adminAside.php"); ?>
         <div class="purchaseContainer">
 

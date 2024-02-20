@@ -134,7 +134,6 @@ body.noscroll {
  main {
      width: 100vw;
      display: flex;
-
      aside {
          background-color: black;
          width: 25vw;
@@ -2027,4 +2026,14 @@ footer {
 
 #graphs canvas {
     background-color: rgb(255, 255, 255);
+}
+
+
+aside {
+    height: auto;
+}
+
+#main-admin {
+    width: 100vw;
+    display: flex;
 }

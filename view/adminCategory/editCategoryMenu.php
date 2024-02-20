@@ -24,7 +24,7 @@
 
     include("./view/components/header.php");
     ?>
-    <main>
+    <main id="main-admin">
         <?php include("./view/components/adminAsideSearch.php"); ?>
         <div class="container">
             <h2>Categories</h2>

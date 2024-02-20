@@ -18,7 +18,7 @@
     } else {
 
         ?>
-        <main>
+        <main id="main-admin">
             <?php include("./view/components/adminAside.php"); ?>
             <div class="container">
                 <div class="formContainer">

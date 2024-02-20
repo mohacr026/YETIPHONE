@@ -18,7 +18,7 @@
     } else {
 
     ?>
-    <main>
+    <main id="main-admin">
         <?php include("./view/components/adminAsideSearch.php"); ?>
         <div class="purchaseFilterContainer">
 

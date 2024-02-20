@@ -20,7 +20,7 @@
 
     include("./view/components/header.php");
     ?>
-    <main>
+    <main id="main-admin">
         <?php include("./view/components/adminAside.php") ?>
         <div id="graphs">
             <canvas id="ProductsGraph" width="800" height="400"></canvas>

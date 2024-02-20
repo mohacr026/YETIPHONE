@@ -4,6 +4,8 @@ require_once("./model/product.php");
 require_once("./model/productDetails.php");
 require_once("./model/company.php");
 require_once("./model/user.php");
+require_once("./model/category.php");
+
 class PurchaseController {
     public function showPurchases(){
         $filters = [];
@@ -30,6 +32,8 @@ class PurchaseController {
             }
         }
         $purchases = Purchase::fetchPurchases($filters);
+        
+        $categories = Category::fetchCategory(["isactive" => "true"]);
         include("./view/adminPurchase/purchase.php");
     }
     public function showPurchaseInformation(){
@@ -41,6 +45,7 @@ class PurchaseController {
                 $details[$product->getId()] = ProductDetails::fetchDetails(['id' => $purchase->getPurchaseDetails()])[0];
             }
         }
+        $categories = Category::fetchCategory(["isactive" => "true"]);
         include("./view/adminPurchase/editPurchase.php");
     }
 
@@ -62,6 +67,7 @@ class PurchaseController {
 
     public function userPurchases(){
         $purchases = Purchase::fetchPurchases(['id_user' => $_SESSION['email']]);
+        $categories = Category::fetchCategory(["isactive" => "true"]);
         include("./view/user/userPurchases.php");
     }
 
@@ -73,6 +79,7 @@ class PurchaseController {
                 $product = Product::fetchProducts(['id' => $purchase->getProductId()])[0];
                 array_push($purchaseData, ['name' => $product->getName(), 'image' => $product->getImage()[0], 'price' => $product->getPrice(), 'quantity' => $purchase->getQuantity()]);
             }
+            $categories = Category::fetchCategory(["isactive" => "true"]);
             include("./view/user/userPurchaseDetails.php");
         } else {
             echo "<script>alert('An error ocurred, try again later')</script>";

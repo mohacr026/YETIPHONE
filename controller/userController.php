@@ -1,5 +1,6 @@
 <?php
 require_once("./model/user.php");
+require_once("./model/category.php");
 class UserController {
 
     public function showLoginForm(){
@@ -53,6 +54,7 @@ class UserController {
     }
 
     public function showAdminDashboard(){
+        $categories = Category::fetchCategory(["isactive" => "true"]);
         include("./view/frontPage/adminMenu.php");
     }
 
@@ -70,9 +72,11 @@ class UserController {
 
             try {
                 User::register($data);
+                $categories = Category::fetchCategory(["isactive" => "true"]);
                 include("./view/login/login.html");
             } catch(Exception $e) {
                 echo "The registration form failed, please, use valid credentials.";
+                $categories = Category::fetchCategory(["isactive" => "true"]);
                 include("./view/frontPage/register.php");
             }
             

@@ -1,5 +1,7 @@
 <?php
 require_once("./model/category.php");
+require_once './model/product.php';
+
 class CategoryController{
     public function showAddCategories(){
         $defaultId = Category::getDefaultId();
@@ -8,6 +10,7 @@ class CategoryController{
         if($parentCategories == null) {
             $parentCategories = array();
         }
+        $categories = Category::fetchCategory(["isactive" => "true"]);
         include("./view/adminCategory/addCategory.php");
         if(isset($_GET['insertOk'])) {
             echo "<script src='./src/js/popups/popupInsertOk.js'></script>";
@@ -38,7 +41,7 @@ class CategoryController{
 
         }
         $categoriesJsonResult = json_encode($categoriesJSON);
-
+        $categories = Category::fetchCategory(["isactive" => "true"]);
         include("./view/adminCategory/editCategoryMenu.php");
     }
 
@@ -69,6 +72,7 @@ class CategoryController{
             
             $isActive = $category->getIsActive();
 
+            $categories = Category::fetchCategory(["isactive" => "true"]);
             include("./view/adminCategory/editCategory.php");
         } else{
             echo "bad id";
@@ -95,7 +99,6 @@ class CategoryController{
     }
 
     public function fetchCategorys(){
-        require_once './model/product.php';
         ob_clean();
         header("Content-Type: application/json");
 

@@ -2,6 +2,7 @@
 require_once("./model/shoppingCart.php");
 require_once("./model/purchase.php");
 require_once("./model/product.php");
+require_once("./model/category.php");
 
 class ShoppingCartController {
     public function getUserCart(){
@@ -21,6 +22,7 @@ class ShoppingCartController {
     }
 
     public function viewCart(){
+        $categories = Category::fetchCategory(["isactive" => "true"]);
         include("./view/cart/shoppingCart.php");
     }
 
@@ -28,6 +30,7 @@ class ShoppingCartController {
         if(!isset($_SESSION['email'])){
             echo "<META HTTP-EQUIV='REFRESH' CONTENT='0; URL=index.php?controller=User&action=showLoginForm'>";
         } else {
+            $categories = Category::fetchCategory(["isactive" => "true"]);
             include("./view/cart/paymentResume.php");
         }
     }

@@ -4,23 +4,27 @@ require_once("./model/category.php");
 
 class ProductController {
     public function showFrontPageProducts(){
+        $categories = Category::fetchCategory(["isactive" => "true"]);
         include("./view/frontPage/frontPage.php");
     }
 
     public function showInterfaz(){
         $products = Product::fetchProducts(["featured" => "true"]);
     
+        $categories = Category::fetchCategory(["isactive" => "true"]);
         include("./view/frontPage/interfaz.php");
     }
 
     public function showPageProductMobile(){
         $products = Product::fetchProducts(["featured" => "true"]);
     
+        $categories = Category::fetchCategory(["isactive" => "true"]);
         include("./view/frontPage/pageProductMobile.php");
     }
 
     public function showAddProducts(){
         $allCategories = Category::fetchCategory(["isActive" => "true"]);
+        $categories = Category::fetchCategory(["isactive" => "true"]);
         include("./view/adminProduct/addProduct.php");
     }
 
@@ -98,6 +102,7 @@ class ProductController {
         $productsJsonResult = json_encode($productsJSON);
         $categoriesJsonResult = json_encode($categoriesJSON);
         // Incluir la vista de la lista de productos
+        $categories = Category::fetchCategory(["isactive" => "true"]);
         include("./view/adminProduct/editProductMenu.php");
     }
     
@@ -110,6 +115,7 @@ class ProductController {
             $product = Product::fetchProducts(['id' => $productId])[0];
             $productImages = Product::fetchProductImages($product->getId(), false);
             $categoriesArray = Category::getAllCategories();
+        $categories = Category::fetchCategory(["isactive" => "true"]);
             include("./view/adminProduct/editProduct.php");
         } else {
             echo "ID de producto no proporcionado.";
@@ -268,9 +274,11 @@ class ProductController {
             
             if($categoria->getParentCategory() == NULL) {
                 $products = Product::fetchProducts(['id_category' => $categoria->getId() ]);
+                $categories = Category::fetchCategory(["isactive" => "true"]);
                 include "./view/product/productByParentCategory.php";
             } else {
                 $products = Product::fetchProducts(['id_category' => $categoria->getId() ]);
+                $categories = Category::fetchCategory(["isactive" => "true"]);
                 include "./view/product/productByCategory.php";
             }
         }
@@ -280,10 +288,12 @@ class ProductController {
         if(isset($_GET['product'])){
             $product = unserialize(urldecode($_GET['product']));
             $categoria = Category::getCategoryById($product->getCategory());
+            $categories = Category::fetchCategory(["isactive" => "true"]);
             include("./view/product/productPage.php");
         } else if(isset($_GET['id'])) {
             $product = Product::fetchProducts(['id' => $_GET['id']])[0];
             $categoria = Category::getCategoryById($product->getCategory());
+            $categories = Category::fetchCategory(["isactive" => "true"]);
             include("./view/product/productPage.php");
         } else {
             if(isset($_GET['category'])){

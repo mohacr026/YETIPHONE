@@ -1,6 +1,7 @@
 <aside>
-    <!-- <label for="search"><h2>Search</h2></label>
-    <input type="text" name="search" id="search2" class="searchBar" tabindex="<?php echo $tabindex++; ?>" aria-label="Search"> -->
+    <!-- 
+    <label for="search"><h2>Search</h2></label>
+    <input type="text" name="search" id="search2" class="searchBar" tabindex="<?php // echo $tabindex++; ?>" aria-label="Search"> -->
     <h2>Navigation</h2>
     <a href="index.php?controller=Product&action=showAddProducts" class="links" tabindex="<?php echo $tabindex++; ?>">Add new products</a>
     <a href="index.php?controller=Product&action=showEditProducts" class="links" tabindex="<?php echo $tabindex++; ?>">Edit existing products</a>

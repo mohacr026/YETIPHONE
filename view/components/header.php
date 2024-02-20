@@ -1,7 +1,7 @@
 <?php $tabindex = 1; ?>
 <header>
-<input type="checkbox" id="menuBtn" class="menu-button-checkbox" tabindex="<?php echo $tabindex++; ?>">
-    <label for="menuBtn" class="menu-button">
+    <input type="checkbox" id="menuBtn" name="menuBtn" class="menu-button-checkbox" tabindex="<?php echo $tabindex++; ?>">
+    <label for="menuBtn" class="menu-button" aria-label="Open category menu">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="3" y1="12" x2="21" y2="12"></line>
             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -10,21 +10,13 @@
     </label>
     <div id="mobileMenu" class="mobile-menu">
         <ul>
-            <li tabindex="<?php echo $tabindex++; ?>">BEST CATEGORIES</li>
-            <li tabindex="<?php echo $tabindex++; ?>">                
-                <?php
-                    $db = Database::connect();
-                    $query = "SELECT id, name FROM category WHERE isActive = true";
-                    $stmt = $db->prepare($query);
-                    $stmt->execute();
-                    $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    foreach ($categories as $category): ?>
-        
-                    <a href="index.php?controller=Product&action=showProducts&category=<?= $category['id']; ?>" tabindex="<?php echo $tabindex++; ?>"><?= $category['name']; ?></a>
-                <?php endforeach; ?>
-            </li>
-            <li tabindex="<?php echo $tabindex++; ?>">Link 3</li>
-            <li tabindex="<?php echo $tabindex++; ?>">Link 4</li>
+            <!-- TODO fix mobile header -->
+            <?php
+                foreach($categories as $category): ?>
+                    <li tabindex="<?php echo $tabindex++; ?>">                
+                        <a href="index.php?controller=Product&action=showProducts&category=<?= $category->getId(); ?>" tabindex="<?php echo $tabindex++; ?>"><?= $category->getName(); ?></a>
+                    </li>
+            <?php endforeach; ?>
         </ul>
     </div>
 
@@ -45,10 +37,7 @@
     
     <div id="categoriasDropdown" class="categorias-dropdown" aria-labelledby="categoriasBtn">
         <?php
-        require_once("./model/category.php");
-        $categories = Category::fetchCategory(["isactive" => "true"]);
-        $index = 10;
-        foreach ($categories as $category): ?>
+        foreach($categories as $category): ?>
             <a href="index.php?controller=Product&action=showProducts&category=<?= $category->getId(); ?>" tabindex="<?php echo $tabindex++; ?>"><?= $category->getName(); ?></a>
         <?php endforeach; ?>
     </div>
@@ -66,7 +55,8 @@
             </defs>
         </svg>
 
-        <input type="" placeholder="Search any product..." id="search" tabindex="<?php echo $tabindex++; ?>">
+        <label for="search" class="hiddenElement" aria-label="Search any product"></label>
+        <input type="text" name="search" placeholder="Search any product..." id="search" tabindex="<?php echo $tabindex++; ?>">
 
         
     </div>

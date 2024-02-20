@@ -16,7 +16,6 @@
             include("./view/components/header.php");
         
         ?>
-        <!-- Clases temporales, cambiar las clases para aplicar nuevo CSS --> 
         <div class="purchaseFilterContainer">
             <table class="purchaseTableDisplay">
                 <tr>

@@ -1,8 +1,3 @@
-<!--
-    POR HACER:
-        CSS
--->
-
 <!DOCTYPE html>
 <html lang="en">
 

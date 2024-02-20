@@ -56,7 +56,7 @@
         </svg>
 
         <label for="search" class="hiddenElement" aria-label="Search any product"></label>
-        <input type="text" name="search" placeholder="Search any product..." id="search" tabindex="<?php echo $tabindex++; ?>">
+        <input type="" name="search" placeholder="Search any product..." id="search" tabindex="<?php echo $tabindex++; ?>">
 
         
     </div>

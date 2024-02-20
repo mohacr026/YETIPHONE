@@ -77,6 +77,7 @@
                             <img src="./src/img/decBtn.png" alt="decrease quantity">
                         </button>
 
+                        <label for="amount" aria-label="Write an amount of stock to buy" class="hidden">Increase amount of stock</label>
                         <input type="number" name="amount" id="amount" value="1" max="<?= $stock ?>">
 
                         <button id="increaseAmount">

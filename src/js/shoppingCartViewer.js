@@ -18,7 +18,8 @@ function initCart(){
         product.id = item.product;
         product.classList.add("cartProduct");
         let image = document.createElement("img");
-        image.src = "./src/img/products/" + item.image
+        image.src = "./src/img/products/" + item.image;
+        image.alt = item.name;
         let name = document.createElement("p");
         name.setAttribute("name", "name");
         name.innerText = item.name;

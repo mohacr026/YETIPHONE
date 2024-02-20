@@ -94,10 +94,9 @@
         <div class="resume">
             <h3>Order details</h3>
             <div class="resumeContent">
-            <div id="details">
-                fherfhuierhfuier
-            </div>
-            <p id="totalPrice">TOTAL PRICE: 123123</p>
+            <ul id="resume">
+            </ul>
+            <p id="totalPrice"></p>
             <button id="purchase" form="shippingDirection" action="submit">Purchase</button>
             <button id="back">Go back</button>
             <div>

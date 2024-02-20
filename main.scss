@@ -2038,3 +2038,18 @@ aside {
     display: flex;
 }
 
+.popupError{
+    position: fixed;
+    top: 30%;
+    max-width: 50vw;
+
+    display: flex;
+    flex-direction: column;
+    background-color: purple;
+    padding: 1rem;
+
+    h3{
+        text-align: center;
+        font-size: 3rem;
+    }
+}

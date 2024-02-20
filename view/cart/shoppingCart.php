@@ -16,12 +16,18 @@
 
 <body class="flex-row cart">
     <?php include("./view/components/header.php"); ?>
+    <?php
+        if(isset($_GET['error'])) echo "<script src='./src/js/errorCartPopup.js'></script>";
+    ?>
     <main class="cart">
         <div id="cartElements"></div>
     </main>
     <aside class="cart">
     <div class="cart2">
-        <p>Resumen</p>
+        <p>Resume</p>
+        <ul id="resume">
+
+        </ul>
         <div class="separator"></div>
         <p id="total"></p>
         <button id="buy">Go to payment</button>

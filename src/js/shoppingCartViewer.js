@@ -5,10 +5,10 @@ let totalPrice = 0
 
 window.addEventListener("load", function(){
     storedUser = ShopUser.loadFromSessionStorage();
-    initCart()
-    updatePrice()
+    initCart();
+    updatePrice();
     paymentButtonEvt();
-    
+    loadResume();
 });
 
 function initCart(){
@@ -110,6 +110,7 @@ function addProduct(productId){
                 currentPrice.innerHTML = storedUser.cart.shoppingCart[itemIndex].quantity * storedUser.cart.shoppingCart[itemIndex].price;
 
                 updatePrice();
+                loadResume();
             }
             else console.log("NO STOCK");
             console.log(storedUser.cart.shoppingCart[itemIndex].quantity);
@@ -136,6 +137,7 @@ function decProduct(productId){
         currentPrice.innerHTML = storedUser.cart.shoppingCart[itemIndex].quantity * storedUser.cart.shoppingCart[itemIndex].price;
 
         updatePrice();
+        loadResume();
 
         sessionStorage.setItem('User', JSON.stringify(storedUser));
         localStorage.setItem(storedUser.email, JSON.stringify(storedUser.cart));
@@ -156,6 +158,7 @@ function delProduct(productId){
     document.getElementById(productId).remove();
 
     updatePrice();
+    loadResume();
 
     sessionStorage.setItem('User', JSON.stringify(storedUser));
     localStorage.setItem(storedUser.email, JSON.stringify(storedUser.cart));
@@ -185,4 +188,16 @@ function uploadCartToDatabase(email, cart){
       else console.log("NO SUBIDO");
     })
     .catch(error => console.log(error))
+}
+
+function loadResume(){
+    let resume = document.getElementById("resume");
+    while(resume.firstChild) {
+        resume.removeChild(resume.firstChild);
+    }
+    storedUser.cart.shoppingCart.forEach(item => {
+      let li = document.createElement("li");
+      li.innerHTML = item.name + " x " + item.quantity
+      resume.appendChild(li);
+    })
 }

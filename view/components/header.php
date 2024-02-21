@@ -88,8 +88,9 @@
                 }
             }
         ?>
-        <a href="index.php?controller=ShoppingCart&action=viewCart" class="button" tabindex="<?php echo $tabindex++; ?>">
+        <a href="index.php?controller=ShoppingCart&action=viewCart" id="headerCartIcon" class="button" tabindex="<?php echo $tabindex++; ?>">
             <img src="./src/img/shoppingCart.png" alt="shopping cart" aria-label="Shopping Cart">
+            <span id="cartNumber" class="hidden"></span>
         </a>
     </div>
 </header>

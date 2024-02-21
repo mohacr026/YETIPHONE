@@ -9,6 +9,7 @@ window.addEventListener("load", function(){
     checkIfUserIsLogged();
     console.log("USUARIO DE SESION");
     console.log(storedUser);
+    setCartNumber();
     addButtonEvents();
 });
 
@@ -22,9 +23,13 @@ function checkIfUserIsLogged(){
     }
 }
 
-function logUser(email) {
-    if(!storedUser.email === "temporalAcces") {
-        let cart = getNewestCart(email);
+function setCartNumber(){
+    let cartNumber = storedUser.cart.shoppingCart.length
+    let cartNumberLabel = document.getElementById("cartNumber");
+    if(cartNumber === 0) cartNumberLabel.classList.add("hidden");
+    else {
+        cartNumberLabel.classList.remove("hidden");
+        cartNumberLabel.innerText = cartNumber;
     }
 }
 
@@ -94,7 +99,9 @@ function addButtonEvents(){
                 let productImage = button.dataset.image
                 console.log("USER ANTES DE AÑADIR");
                 console.log(storedUser);
-                addProductToCart(productId, storedUser.cart, productPrice, productName, productImage)
+                let productQuantity = document.getElementById("amount");
+                if(productQuantity) addProductToCart(productId, storedUser.cart, productPrice, productName, productImage, productQuantity.value)
+                else addProductToCart(productId, storedUser.cart, productPrice, productName, productImage)
             })
         }
     }
@@ -108,7 +115,7 @@ function addProductToCart(product, cart, price, name, image, quantity=null){
         let itemIndex = getItemIndex(newCart, product);
         if(itemIndex != -1){
             // Si el objeto ya esta en el carrito
-            newCart[itemIndex].quantity += quantity;
+            newCart[itemIndex].quantity = parseInt(newCart[itemIndex].quantity) + parseInt(quantity);
         } else {
             // Si es un objeto nuevo en el carrito
             let cartItem = {
@@ -138,6 +145,7 @@ function addProductToCart(product, cart, price, name, image, quantity=null){
     sessionStorage.setItem('User', JSON.stringify(storedUser));
     localStorage.setItem(storedUser.email, JSON.stringify(storedUser.cart));
     if(storedUser.email != "temporalAcces") uploadCartToDatabase(storedUser.email, storedUser.cart);
+    setCartNumber();
 }
 
 function uploadCartToDatabase(email, cart){

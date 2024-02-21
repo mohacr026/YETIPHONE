@@ -37,9 +37,7 @@ class ShoppingCartController {
 
     public function purchase(){
         if(isset($_POST['user'])){
-            print_r($_POST);
             $cart = json_decode($_POST['cart']);
-            //print_r($cart);
             $errors = false;
             $idArray = [];
             $quantityArray = [];
@@ -62,7 +60,11 @@ class ShoppingCartController {
                     $details[] = [$idArray[$i], $quantityArray[$i]];
                 }
                 Purchase::insertPurchase($_POST['user'], $_POST['direction'], $_POST['province'],$_POST['city'], $_POST['zipCode'], $details);
+                ShoppingCart::removeUserCartFromDB($_POST['user']);
+                echo "<script src='./src/js/deleteCart.js'></script>";
                 echo("<meta http-equiv='refresh' content='0;url=index.php'>");
+            } else {
+                echo("<meta http-equiv='refresh' content='0;url=index.php?controller=ShoppingCart&action=viewCart&error'>");
             }
         }
     }

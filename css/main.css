@@ -2228,4 +2228,30 @@ aside {
 #main-admin {
   width: 100vw;
   display: flex;
+}
+
+.popupError {
+  position: fixed;
+  top: 30%;
+  max-width: 50vw;
+  display: flex;
+  flex-direction: column;
+  background-color: purple;
+  padding: 1rem;
+}
+.popupError h3 {
+  text-align: center;
+  font-size: 3rem;
+}
+
+#cartNumber {
+  position: relative;
+  max-width: 0.5rem;
+  max-height: 0.5rem;
+  z-index: 999;
+  top: 0.7rem;
+  right: 0.5rem;
+  background-color: purple;
+  border-radius: 100%;
+  padding: 0.5rem;
 }/*# sourceMappingURL=main.css.map */

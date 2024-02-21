@@ -27,20 +27,20 @@
                         enctype="multipart/form-data">
                         <div class="formColumn">
                             <div class="formRow">
-                                <label for="id" aria-label="Product id">Id:</label>
-                                <input type="text" name="id" readonly value="<?php print($product->getId()); ?>"
+                                <label for="product-id" aria-label="Product id">Id:</label>
+                                <input type="text" id="product-id" name="id" readonly value="<?php print($product->getId()); ?>"
                                     tabindex="<?php echo $tabindex++; ?>">
                             </div>
 
                             <div class="formRow">
                                 <label for="name" aria-label="Product name">Name:</label>
-                                <input type="text" name="name" value="<?php print($product->getName()); ?>" required
+                                <input type="text" id="name" name="name" value="<?php print($product->getName()); ?>" required
                                     tabindex="<?php echo $tabindex++; ?>">
                             </div>
 
                             <div class="formRow">
                                 <label for="description" aria-label="Product description">Description:</label>
-                                <textarea name="description" required
+                                <textarea id="description" name="description" required
                                     tabindex="<?php echo $tabindex++; ?>"><?php print($product->getDescription()); ?></textarea>
                             </div>
 
@@ -57,7 +57,7 @@
                                     images:</label>
                                 <?php foreach ($productImages as $image): ?>
                                     <div>
-                                        <input onclick="this.parentElement.style.display='none'" type="checkbox" name="delete_imgs[]" value="<?php echo $image['img']; ?>" tabindex="<?php echo $tabindex++; ?>">
+                                        <input id="delete_imgs" onclick="this.parentElement.style.display='none'" type="checkbox" name="delete_imgs[]" value="<?php echo $image['img']; ?>" tabindex="<?php echo $tabindex++; ?>">
                                         <img style="width: 50px;" src="./src/img/products/<?php echo $image['img']; ?>" alt="<?php echo $product->getName(); ?>'s image">
                                     </div>
                                 <?php endforeach; ?>
@@ -73,7 +73,7 @@
                         <div class="formColumn">
                             <div class="formRow">
                                 <label for="price" aria-label="Product price">Price:</label>
-                                <input type="number" name="price" value="<?php print($product->getPrice()); ?>" required
+                                <input type="number" id="price" name="price" value="<?php print($product->getPrice()); ?>" required
                                     tabindex="<?php echo $tabindex++; ?>">
                             </div>
 
@@ -97,19 +97,19 @@
 
                             <div class="formRow">
                                 <label for="storage" aria-label="Product storage">Storage:</label>
-                                <input type="number" name="storage" min="0" value="<?php print($product->getStorage()); ?>"
+                                <input type="number" id="storage" name="storage" min="0" value="<?php print($product->getStorage()); ?>"
                                     required tabindex="<?php echo $tabindex++; ?>">
                             </div>
 
                             <div class="formRow">
                                 <label for="memory" aria-label="Product memory">Memory:</label>
-                                <input type="number" name="memory" min="0" value="<?php print($product->getMemory()); ?>"
+                                <input type="number" id="memory" name="memory" min="0" value="<?php print($product->getMemory()); ?>"
                                     required tabindex="<?php echo $tabindex++; ?>">
                             </div>
 
                             <div class="formRow">
                                 <label for="stock" aria-label="Product stock">Stock:</label>
-                                <input type="number" name="stock" min="0" value="<?php print($product->getStock()); ?>"
+                                <input type="number" id="stock" name="stock" min="0" value="<?php print($product->getStock()); ?>"
                                     required tabindex="<?php echo $tabindex++; ?>">
                             </div>
 

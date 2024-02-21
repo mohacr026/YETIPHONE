@@ -5,10 +5,10 @@ let totalPrice = 0
 
 window.addEventListener("load", function(){
     storedUser = ShopUser.loadFromSessionStorage();
-    initCart()
-    updatePrice()
+    initCart();
+    updatePrice();
     paymentButtonEvt();
-    
+    loadResume();
 });
 
 function initCart(){
@@ -18,7 +18,8 @@ function initCart(){
         product.id = item.product;
         product.classList.add("cartProduct");
         let image = document.createElement("img");
-        image.src = "./src/img/products/" + item.image
+        image.src = "./src/img/products/" + item.image;
+        image.alt = item.name;
         let name = document.createElement("p");
         name.setAttribute("name", "name");
         name.innerText = item.name;
@@ -110,6 +111,7 @@ function addProduct(productId){
                 currentPrice.innerHTML = storedUser.cart.shoppingCart[itemIndex].quantity * storedUser.cart.shoppingCart[itemIndex].price;
 
                 updatePrice();
+                loadResume();
             }
             else console.log("NO STOCK");
             console.log(storedUser.cart.shoppingCart[itemIndex].quantity);
@@ -136,6 +138,8 @@ function decProduct(productId){
         currentPrice.innerHTML = storedUser.cart.shoppingCart[itemIndex].quantity * storedUser.cart.shoppingCart[itemIndex].price;
 
         updatePrice();
+        loadResume();
+        setCartNumber();
 
         sessionStorage.setItem('User', JSON.stringify(storedUser));
         localStorage.setItem(storedUser.email, JSON.stringify(storedUser.cart));
@@ -156,6 +160,8 @@ function delProduct(productId){
     document.getElementById(productId).remove();
 
     updatePrice();
+    loadResume();
+    setCartNumber()
 
     sessionStorage.setItem('User', JSON.stringify(storedUser));
     localStorage.setItem(storedUser.email, JSON.stringify(storedUser.cart));
@@ -185,4 +191,26 @@ function uploadCartToDatabase(email, cart){
       else console.log("NO SUBIDO");
     })
     .catch(error => console.log(error))
+}
+
+function loadResume(){
+    let resume = document.getElementById("resume");
+    while(resume.firstChild) {
+        resume.removeChild(resume.firstChild);
+    }
+    storedUser.cart.shoppingCart.forEach(item => {
+      let li = document.createElement("li");
+      li.innerHTML = item.name + " x " + item.quantity
+      resume.appendChild(li);
+    })
+}
+
+function setCartNumber(){
+    let cartNumber = storedUser.cart.shoppingCart.length
+    let cartNumberLabel = document.getElementById("cartNumber");
+    if(cartNumber === 0) cartNumberLabel.classList.add("hidden");
+    else {
+        cartNumberLabel.classList.remove("hidden");
+        cartNumberLabel.innerText = cartNumber;
+    }
 }

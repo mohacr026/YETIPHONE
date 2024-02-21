@@ -54,5 +54,12 @@ class ShoppingCart extends Database{
     
         return $result;
     }    
+
+    public static function removeUserCartFromDB($user){
+        $sql = "DELETE FROM usercarts WHERE email = :user";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(":user", $user);
+        $stmt->execute();
+    }
 }
 ?>

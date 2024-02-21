@@ -67,7 +67,7 @@
                                         </p>
                                     </div>
                                     <div class="carrito">
-                                        <button data-product="<?= $product->getId(); ?>"
+                                        <button value="Add to cart" data-product="<?= $product->getId(); ?>"
                                             data-price="<?= $product->getPrice(); ?>"
                                             data-name="<?= $product->getName(); ?>"
                                             data-image="<?= $product->getImage()[0]; ?>">
@@ -106,7 +106,7 @@
         <footer>
             <div class="columna">
                 <div>
-                    <img src="./src/img/yeti.png" alt="Logo" class="logo" width="200px">
+                    <img src="./src/img/yeti.png" alt="Logo de YETiPhone" class="logo" width="200px">
                 </div>
             </div>
 

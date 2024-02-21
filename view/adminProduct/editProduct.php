@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/aside.css">
     <script src="./src/js/userMenu.js"></script>
+    <script type="module" src="./src/js/searchBar.js"></script>
     <script type="module" src="./src/js/ShoppingCart.js"></script>
 </head>
 

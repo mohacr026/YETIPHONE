@@ -75,13 +75,13 @@ class UserController {
                 $categories = Category::fetchCategory(["isactive" => "true"]);
                 include("./view/login/login.html");
             } catch(Exception $e) {
-                echo "The registration form failed, please, use valid credentials.";
+                $error = "The registration form failed, please, use valid credentials.";
                 $categories = Category::fetchCategory(["isactive" => "true"]);
                 include("./view/frontPage/register.php");
             }
             
         } else {
-            echo "The registration form failed, please, try again later.";
+            $error = "The registration form failed, please, try again later.";
         }
     }
 }

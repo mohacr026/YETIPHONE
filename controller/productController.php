@@ -273,7 +273,7 @@ class ProductController {
             $categoria = Category::fetchCategory(['id' => $_GET['category']])[0];
             
             if($categoria->getParentCategory() == NULL) {
-                $products = Product::fetchProducts(['id_category' => $categoria->getId() ]);
+                $products = Product::fetchProducts(['id_category' => $categoria->getId(), 'isactive' => "true" ]);
                 $categories = Category::fetchCategory(["isactive" => "true"]);
                 include "./view/product/productByParentCategory.php";
             } else {

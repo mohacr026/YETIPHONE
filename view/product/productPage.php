@@ -33,6 +33,11 @@
                 <!--<div><?= $product->getDescription(); ?></div>-->
                 <div class="separator"></div>
                 <div>
+                    <p class="infoLabel">Description</p>
+                    <p><?= $product->getDescription(); ?></p>
+                </div>
+                <div class="separator"></div>
+                <div>
                     <p class="infoLabel">Storage</p>
                     <p><?= $product->getStorage(); ?> GB</p>
                 </div>

@@ -10,6 +10,7 @@
     <script src="./src/js/userMenu.js"></script>
     <script src="./src/js/imageZoom.js"></script>
     <script src="./src/js/productAmountHandler.js"></script>
+    <script type="module" src="./src/js/searchBar.js"></script>
     <script type="module" src="./src/js/ShoppingCart.js"></script>
 </head>
 <body>

@@ -62,11 +62,6 @@ header {
             border: none;
             background-color: black;
             cursor: pointer;
-
-            &:hover,
-            &:active {
-                background-color: $medBlue;
-            }
         }
     }
 }
@@ -135,7 +130,7 @@ header {
     /* Cambia el color de fondo al pasar el ratón */
     color: linear-gradient(to right, #000000, #442500);
     /* Cambiar a degradado al pasar el ratón */
-    border-color: #ff8c00;
+    border-color: #c800ff;
     /* Cambia el color del borde al pasar el ratón */
 }
 

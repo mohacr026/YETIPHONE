@@ -38,14 +38,13 @@ function showDestacadosSlide(index) {
     }
 
     destacadosSlideIndex = newIndex;
-    destacadosSlides.style.transition = 'transform 60s linear'; // Transición lenta durante 60 segundos (ajusta según sea necesario)
+    destacadosSlides.style.transition = 'transform 120s linear'; // Transición lenta durante 60 segundos (ajusta según sea necesario)
     destacadosSlides.style.transform = `translateX(${-destacadosSlideIndex * 100}%)`;
 
     // Cambiar la dirección después de 5 segundos
     setTimeout(() => {
         forwardDirection = !forwardDirection;
-    }, 5000);
+    }, 6000);
 }
 
-// Iniciar el slider automático al cargar la página
 startAutoSlider();

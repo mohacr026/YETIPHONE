@@ -2053,3 +2053,15 @@ aside {
         font-size: 3rem;
     }
 }
+
+#cartNumber{
+    position: relative;
+    max-width: 0.5rem;
+    max-height: 0.5rem;
+    z-index: 999;
+    top: 0.7rem;
+    right: 0.5rem;
+    background-color: purple;
+    border-radius: 100%;
+    padding: 0.5rem;
+}

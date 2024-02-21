@@ -139,6 +139,7 @@ function decProduct(productId){
 
         updatePrice();
         loadResume();
+        setCartNumber();
 
         sessionStorage.setItem('User', JSON.stringify(storedUser));
         localStorage.setItem(storedUser.email, JSON.stringify(storedUser.cart));
@@ -160,6 +161,7 @@ function delProduct(productId){
 
     updatePrice();
     loadResume();
+    setCartNumber()
 
     sessionStorage.setItem('User', JSON.stringify(storedUser));
     localStorage.setItem(storedUser.email, JSON.stringify(storedUser.cart));
@@ -201,4 +203,14 @@ function loadResume(){
       li.innerHTML = item.name + " x " + item.quantity
       resume.appendChild(li);
     })
+}
+
+function setCartNumber(){
+    let cartNumber = storedUser.cart.shoppingCart.length
+    let cartNumberLabel = document.getElementById("cartNumber");
+    if(cartNumber === 0) cartNumberLabel.classList.add("hidden");
+    else {
+        cartNumberLabel.classList.remove("hidden");
+        cartNumberLabel.innerText = cartNumber;
+    }
 }

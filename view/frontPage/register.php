@@ -69,6 +69,11 @@
                     <input type="submit" id="signup" value="Sign up" class="addBtn">
                     <a href="index.php?controller=User&action=showLoginForm" class="addBtn">Log in</a>
                 </form>
+                <?php if(isset($error)){ ?>
+                    <div>
+                        <p><?php echo $error ?></p>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </main>

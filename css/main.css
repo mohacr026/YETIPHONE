@@ -64,9 +64,6 @@ header .icons button {
   background-color: black;
   cursor: pointer;
 }
-header .icons button:hover, header .icons button:active {
-  background-color: #4eb8dd;
-}
 
 .categorias {
   margin-left: 2.5em;
@@ -132,7 +129,7 @@ header .icons button:hover, header .icons button:active {
   /* Cambia el color de fondo al pasar el ratón */
   color: linear-gradient(to right, #000000, #442500);
   /* Cambiar a degradado al pasar el ratón */
-  border-color: #ff8c00;
+  border-color: #c800ff;
   /* Cambia el color del borde al pasar el ratón */
 }
 
@@ -1035,8 +1032,8 @@ input[type=file] {
 .productInfo > div:nth-child(2) > div:first-of-type {
   display: flex;
   flex-direction: column;
-  border: 1px solid #217093;
-  background-color: #c1ebff;
+  border: 1px solid #fbd6ff;
+  background: white;
   width: 80%;
   padding: 1em;
   border-radius: 0.5em;
@@ -1110,7 +1107,7 @@ input[type=file] {
   align-self: center;
   width: 100%;
   padding: 10px 20px;
-  background-color: #217093;
+  background: linear-gradient(to bottom right, #4f00a9, #e410ff);
   color: white;
   border: none;
   border-radius: 5px;
@@ -1165,6 +1162,7 @@ input[type=file] {
   color: black;
 }
 .productCardContainer .cardTop a:is(:link, :active, :visited) h3 {
+  color: white;
   font-size: 2rem;
 }
 .productCardContainer .cardTop .enlaceVista {
@@ -1203,12 +1201,15 @@ input[type=file] {
 }
 .productCardContainer .productCardInfo .info .spec p:nth-child(1) {
   font-size: 1.2rem;
-  color: #217093;
+  color: rgb(142, 142, 142);
 }
 .productCardContainer .productCardInfo .info .spec p:nth-child(2) {
   font-size: 1.6rem;
   font-weight: bolder;
-  color: rgb(74, 74, 74);
+  color: rgb(248, 247, 247);
+}
+.productCardContainer .productCardInfo .info h3 {
+  color: white;
 }
 .productCardContainer .productCardInfo .price {
   width: auto;
@@ -2254,4 +2255,12 @@ aside {
   background-color: purple;
   border-radius: 100%;
   padding: 0.5rem;
+}
+
+.productPageContainer .productInfo div {
+  width: 85%;
+}
+
+#userBtn:hover {
+  background: black;
 }/*# sourceMappingURL=main.css.map */

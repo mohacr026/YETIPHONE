@@ -722,8 +722,8 @@ input[type='file'] {
 
         display: flex;
         flex-direction: column;
-        border: 1px solid $darkBlue;
-        background-color: $lightBlue;
+        border: 1px solid #fbd6ff;
+        background: white;
         width: 80%;
         padding: 1em;
         border-radius: 0.5em;
@@ -804,7 +804,7 @@ input[type='file'] {
             align-self: center;
             width: 100%;
             padding: 10px 20px;
-            background-color: $darkBlue;
+            background: linear-gradient(to bottom right, #4f00a9, #e410ff);
             color: white;
             border: none;
             border-radius: 5px;
@@ -863,6 +863,7 @@ input[type='file'] {
             color: black;
 
             h3 {
+                color: white;
                 font-size: 2rem;
             }
         }
@@ -909,13 +910,17 @@ input[type='file'] {
 
             .spec p:nth-child(1) {
                 font-size: 1.2rem;
-                color: $darkBlue;
+                color: rgb(142, 142, 142);
             }
 
             .spec p:nth-child(2) {
                 font-size: 1.6rem;
                 font-weight: bolder;
-                color: rgb(74, 74, 74);
+                color: rgb(248, 247, 247);
+            }
+
+            h3 {
+                color: white;
             }
         }
 
@@ -2064,4 +2069,12 @@ aside {
     background-color: purple;
     border-radius: 100%;
     padding: 0.5rem;
+}
+
+.productPageContainer .productInfo div {
+    width: 85%;
+}
+
+#userBtn:hover {
+    background: black;
 }

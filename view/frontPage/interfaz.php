@@ -92,7 +92,7 @@
         </div>
 
 
-        <a id="xiaomiOferta" href="index.php?controller=Product&action=showProductPage&id=<?php echo $product->getId(); ?>">
+        <a id="xiaomiOferta" href="index.php?controller=Product&action=showProducts&category=3">
             <div class="contenido-extra">
                 <div class="texto-extra">
                     <h1>Las mejores ofertas de Xiaomi</h1>

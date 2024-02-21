@@ -57,9 +57,6 @@ header .icons button {
   background-color: black;
   cursor: pointer;
 }
-header .icons button:hover, header .icons button:active {
-  background-color: #4eb8dd;
-}
 
 .categorias {
   margin-left: 2.5em;
@@ -125,7 +122,7 @@ header .icons button:hover, header .icons button:active {
   /* Cambia el color de fondo al pasar el ratón */
   color: linear-gradient(to right, #000000, #442500);
   /* Cambiar a degradado al pasar el ratón */
-  border-color: #ff8c00;
+  border-color: #c800ff;
   /* Cambia el color del borde al pasar el ratón */
 }
 

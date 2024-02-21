@@ -8,8 +8,8 @@
     <link rel="shortcut icon" href="./src/img/snowflake.png" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./src/js/userMenu.js"></script>
-    <script src="./src/js/imageChanger.js"></script>
     <script src="./src/js/imageZoom.js"></script>
+    <script src="./src/js/imageChanger.js"></script>
     <script src="./src/js/productAmountHandler.js"></script>
     <script type="module" src="./src/js/searchBar.js"></script>
     <script type="module" src="./src/js/ShoppingCart.js"></script>

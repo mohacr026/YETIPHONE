@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+    loadZoom();
+    function loadZoom(){
     const image = document.getElementById('productPageShowingImage');
     const zoom = document.getElementById('zoom');
     const zoomImage = document.createElement('img');
@@ -114,4 +116,5 @@ document.addEventListener("DOMContentLoaded", function () {
     image.addEventListener('touchmove', move);
 
     image.addEventListener('wheel', handleZoom);
+    }
 });

@@ -7,6 +7,7 @@ window.addEventListener("load", function(){
         const image = sideImages[i];
         image.addEventListener("click", function(){
             bigImage.src = image.src;
+            loadZoom();
         })
     }
 })

@@ -115,7 +115,7 @@ function addProductToCart(product, cart, price, name, image, quantity=null){
         let itemIndex = getItemIndex(newCart, product);
         if(itemIndex != -1){
             // Si el objeto ya esta en el carrito
-            newCart[itemIndex].quantity += quantity;
+            newCart[itemIndex].quantity = parseInt(newCart[itemIndex].quantity) + parseInt(quantity);
         } else {
             // Si es un objeto nuevo en el carrito
             let cartItem = {

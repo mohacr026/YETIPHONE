@@ -72,11 +72,13 @@ function loadGraph(elementID, title, data){
     var height = (counts[i] / maxCount) * (canvas.height - 100);
     var y = startY - height;
 
+    let canvasX = canvas.width;
+
     // Write the text "Products stock" in the top left corner
     context.fillStyle = "black";
     context.font = "16px Arial";
-    context.textAlign = "left";
-    context.fillText(title, canvas.clientWidth / 2, 25);
+    context.textAlign = "center";
+    context.fillText(title, canvasX / 2, 25);
 
     // Draw the bar
     context.fillStyle = "rgba(75, 192, 192, 0.2)";
